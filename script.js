@@ -1,4 +1,3 @@
-
 renderWorkouts();
 const days = [
   {name:"Dushanba",work:"💪 Yelka",class:"card"},
@@ -61,9 +60,38 @@ function finishWorkout(){
   localStorage.setItem("xp", xp);
   updateXP();
 }
+const level = Math.floor(xp / 100) + 1;
 
-function updateXP(){
+const ranks = [
+  "ROOKIE","AMATEUR","SEMI PRO","PRO","ELITE",
+  "MASTER","LEGEND","CHAMPION","HERO","GOAT"
+];
+const rank = ranks[Math.min(Math.floor((level - 1) / 10), 9)];
+
+const levelEl = document.getElementById("level");
+const rankEl = document.getElementById("rank");
+
+if (levelEl) levelEl.textContent = level;
+if (rankEl) rankEl.textContent = rank;
+
+function updateXP() {
   document.getElementById("xp").innerText = xp;
+
+  const level = Math.floor(xp / 100) + 1;
+
+  const ranks = [
+    "ROOKIE","AMATEUR","SEMI PRO","PRO","ELITE",
+    "MASTER","LEGEND","CHAMPION","HERO","GOAT"
+  ];
+
+  const rank = ranks[Math.min(Math.floor((level - 1) / 10), 9)];
+
+  const levelEl = document.getElementById("level");
+  const rankEl = document.getElementById("rank");
+
+  if (levelEl) levelEl.textContent = level;
+  if (rankEl) rankEl.textContent = rank;
+
   let percent = xp % 100;
   document.getElementById("xpFill").style.width = percent + "%";
 }
