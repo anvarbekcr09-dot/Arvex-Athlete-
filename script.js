@@ -23,3 +23,5 @@ days.forEach(d=>{
 });
 
 document.getElementById("week").innerHTML = html;
+const username = localStorage.getItem("name") || "Sportchi";
+document.getElementById("welcome").innerText = "👋 Salom, " + username + "!";
