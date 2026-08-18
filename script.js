@@ -56,3 +56,26 @@ function finishWorkout(){
 }
 
 updateUI();
+const workouts = [
+  { day: "Dushanba", name: "Ko'krak + Triceps" },
+  { day: "Seshanba", name: "Orqa + Biceps" },
+  { day: "Chorshanba", name: "Kardio + Press" },
+  { day: "Payshanba", name: "Yelka" },
+  { day: "Juma", name: "Oyoq" },
+  { day: "Shanba", name: "Full Body" },
+  { day: "Yakshanba", name: "Dam olish" }
+];
+
+function renderWorkouts() {
+  const week = document.getElementById("week");
+  if (!week) return;
+
+  week.innerHTML = workouts.map(w => `
+    <div class="day-card">
+      <h3>${w.day}</h3>
+      <p>${w.name}</p>
+    </div>
+  `).join("");
+}
+
+renderWorkouts();
