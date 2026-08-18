@@ -1,81 +1,69 @@
-let xp = Number(localStorage.getItem("xp")) || 0;
-let streak = Number(localStorage.getItem("streak")) || 0;
-let lastDay = localStorage.getItem("lastDay") || "";
-
-function updateUI() {
-  document.getElementById("xp").textContent = xp;
-
-  const fill = Math.min((xp % 100) / 100 * 100, 100);
-  document.getElementById("xpFill").style.width = fill + "%";
-
-  const today = new Date().toLocaleDateString("uz-UZ");
-  document.getElementById("today").textContent = today;
-
-  const cards = {
-    bronze:100,
-    silver:250,
-    gold:500,
-    elite:1000
-  };
-
-  Object.keys(cards).forEach(id=>{
-    const el = document.querySelector("." + id);
-    if(!el) return;
-    el.style.opacity = xp >= cards[id] ? "1" : "0.35";
-    el.style.filter = xp >= cards[id] ? "none" : "grayscale(100%)";
-  });
-}
-
-function finishWorkout(){
-  const today = new Date().toLocaleDateString("uz-UZ");
-
-  if(lastDay === today){
-    alert("Bugungi mashq allaqachon bajarilgan!");
-    return;
-  }
-
-  xp += 25;
-
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate()-1);
-
-  if(lastDay === yesterday.toLocaleDateString("uz-UZ")){
-    streak++;
-  }else{
-    streak = 1;
-  }
-
-  lastDay = today;
-
-  localStorage.setItem("xp", xp);
-  localStorage.setItem("streak", streak);
-  localStorage.setItem("lastDay", lastDay);
-
-  updateUI();
-  alert("🔥 +25 XP qo'shildi!");
-}
-
-updateUI();
-const workouts = [
-  { day: "Dushanba", name: "Ko'krak + Triceps" },
-  { day: "Seshanba", name: "Orqa + Biceps" },
-  { day: "Chorshanba", name: "Kardio + Press" },
-  { day: "Payshanba", name: "Yelka" },
-  { day: "Juma", name: "Oyoq" },
-  { day: "Shanba", name: "Full Body" },
-  { day: "Yakshanba", name: "Dam olish" }
-];
-
-function renderWorkouts() {
-  const week = document.getElementById("week");
-  if (!week) return;
-
-  week.innerHTML = workouts.map(w => `
-    <div class="day-card">
-      <h3>${w.day}</h3>
-      <p>${w.name}</p>
-    </div>
-  `).join("");
-}
 
 renderWorkouts();
+const days = [
+  {name:"Dushanba",work:"💪 Yelka",class:"card"},
+  {name:"Seshanba",work:"🪽 Qanot",class:"card"},
+  {name:"Chorshanba",work:"🔥 Ko'krak",class:"card"},
+  {name:"Payshanba",work:"🦵 Oyoq",class:"card blue"},
+  {name:"Juma",work:"💪 Biceps + Triceps",class:"card"},
+  {name:"Shanba",work:"🔴 Polniy Tana",class:"card red"},
+  {name:"Yakshanba",work:"😴 Dam olish",class:"card"}
+];
+
+const today = new Date().getDay();
+const index = today === 0 ? 6 : today - 1;
+
+document.getElementById("today").innerText =
+  "Bugun: " + days[index].name;
+
+let html = "";
+
+// Dushanba–Shanba
+days.slice(0,6).forEach(d=>{
+  html += `
+    <div class="${d.class}">
+      <h3>${d.name}</h3>
+      <p>${d.work}</p>
+    </div>`;
+});
+
+// Yakshanba oxirida
+const sunday = days[6];
+html += `
+  <div class="${sunday.class} sunday-card">
+    <h3>${sunday.name}</h3>
+    <p>${sunday.work}</p>
+  </div>`;
+
+document.getElementById("week").innerHTML = html;
+const username = localStorage.getItem("name") || "Sportchi";
+document.getElementById("welcome").innerText = "👋 Salom, " + username + "!";
+const details = [
+"Military Press 4×10\nLateral Raise 3×12\nFront Raise 3×12\nShrug 3×15",
+"Pull Up 4×8\nLat Pulldown 3×12\nBarbell Row 4×10\nFace Pull 3×15",
+"Bench Press 4×10\nIncline Press 3×12\nPush Up 3×15\nCable Fly 3×15",
+"Squat 4×10\nLeg Press 3×12\nRomanian Deadlift 3×10\nCalf Raise 4×15",
+"Biceps Curl 4×12\nHammer Curl 3×12\nTriceps Pushdown 4×12\nDips 3×10",
+"Full Body Circuit • 45 daqiqa",
+"Dam olish va cho'zilish • 15 daqiqa"
+];
+
+document.getElementById("todayCard").innerHTML = `
+  <h3>🔥 Bugungi vazifa</h3>
+  <p>${days[index].work}</p>
+  <small>${details[index].replace(/\n/g,"<br>")}</small>
+`;
+let xp = Number(localStorage.getItem("xp")) || 0;
+updateXP();
+
+function finishWorkout(){
+  xp += 10;
+  localStorage.setItem("xp", xp);
+  updateXP();
+}
+
+function updateXP(){
+  document.getElementById("xp").innerText = xp;
+  let percent = xp % 100;
+  document.getElementById("xpFill").style.width = percent + "%";
+}
