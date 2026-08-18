@@ -189,3 +189,46 @@ body{
   background:linear-gradient(90deg,#00ff66,#00aaff);
   transition:.4s;
 }
+.medal-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin:20px 0;
+}
+
+.medal{
+  background:#0a0a0a;
+  border-radius:20px;
+  padding:18px;
+  text-align:center;
+  border:1px solid #222;
+}
+
+.medal .icon{
+  font-size:52px;
+  margin-bottom:10px;
+}
+
+.bronze{
+  color:#cd7f32;
+  border-color:#cd7f32;
+  box-shadow:0 0 18px #cd7f32;
+}
+
+.silver{
+  color:#e8e8e8;
+  border-color:#c0c0c0;
+  box-shadow:0 0 18px #7fd3ff;
+}
+
+.gold{
+  color:#ffd700;
+  border-color:#ffd700;
+  box-shadow:0 0 18px #ffd700;
+}
+
+.elite{
+  color:#d28cff;
+  border-color:#9b4dff;
+  box-shadow:0 0 20px #9b4dff;
+}
