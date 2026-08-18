@@ -15,12 +15,23 @@ document.getElementById("today").innerText =
   "Bugun: " + days[index].name;
 
 let html = "";
-days.forEach(d=>{
-  html += `<div class="${d.class}">
-    <h3>${d.name}</h3>
-    <p>${d.work}</p>
-  </div>`;
+
+// Dushanba–Shanba
+days.slice(0,6).forEach(d=>{
+  html += `
+    <div class="${d.class}">
+      <h3>${d.name}</h3>
+      <p>${d.work}</p>
+    </div>`;
 });
+
+// Yakshanba oxirida
+const sunday = days[6];
+html += `
+  <div class="${sunday.class} sunday-card">
+    <h3>${sunday.name}</h3>
+    <p>${sunday.work}</p>
+  </div>`;
 
 document.getElementById("week").innerHTML = html;
 const username = localStorage.getItem("name") || "Sportchi";
