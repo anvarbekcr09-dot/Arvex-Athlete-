@@ -51,3 +51,17 @@ document.getElementById("todayCard").innerHTML = `
   <p>${days[index].work}</p>
   <small>${details[index].replace(/\n/g,"<br>")}</small>
 `;
+let xp = Number(localStorage.getItem("xp")) || 0;
+updateXP();
+
+function finishWorkout(){
+  xp += 10;
+  localStorage.setItem("xp", xp);
+  updateXP();
+}
+
+function updateXP(){
+  document.getElementById("xp").innerText = xp;
+  let percent = xp % 100;
+  document.getElementById("xpFill").style.width = percent + "%";
+}
