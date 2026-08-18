@@ -138,3 +138,20 @@ body{
 .container{
   padding-bottom:90px;
 }
+.week-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:20px;
+}
+
+.week-grid .card{
+  margin:0;
+  padding:12px;
+}
+
+.week-grid .card:last-child{
+  grid-column:1 / -1;
+  max-width:220px;
+  justify-self:center;
+}
