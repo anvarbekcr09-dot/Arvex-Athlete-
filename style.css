@@ -191,31 +191,27 @@ body{
 }
 /* ===== MEDAL KARTALAR ===== */
 
+.medal-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+  margin:20px 0;
 }
 
 .medal{
-  position:relative;
-  background:linear-gradient(180deg,#0f0f12,#050505);
+  background:linear-gradient(180deg,#111,#050505);
   border:2px solid #333;
-  border-radius:30px;
-  padding:22px 16px;
+  border-radius:28px;
+  padding:18px;
   text-align:center;
-  overflow:hidden;
   transition:.35s;
-}
-
-.medal::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at top,rgba(255,255,255,.12),transparent 60%);
-  pointer-events:none;
+  overflow:hidden;
 }
 
 .medal .icon{
-  width:110px;
-  height:110px;
-  margin:0 auto 14px;
+  width:95px;
+  height:95px;
+  margin:0 auto 12px;
 }
 
 .medal .icon img{
@@ -225,21 +221,21 @@ body{
 }
 
 .medal h3{
-  font-size:22px;
+  font-size:20px;
   margin:8px 0;
 }
 
 .medal p{
-  font-size:24px;
+  font-size:22px;
   font-weight:bold;
   color:#fff;
 }
 
 .medal:hover{
   transform:translateY(-8px) scale(1.05);
-}
 
-.bronze{
+}
+ .bronze{
   color:#cd7f32;
   border-color:#cd7f32;
   box-shadow:0 0 30px rgba(205,127,50,.8);
@@ -262,4 +258,3 @@ body{
   border-color:#b347ff;
   box-shadow:0 0 35px rgba(179,71,255,.9);
 }
-body::after{content:"v2";display:none;}
