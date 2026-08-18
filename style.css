@@ -232,3 +232,20 @@ body{
   border-color:#9b4dff;
   box-shadow:0 0 20px #9b4dff;
 }
+.medal .icon img{
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 10px;
+  filter: drop-shadow(0 0 18px currentColor);
+}
+
+.medal{
+  transition: .3s;
+}
+
+.medal:hover{
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 0 30px currentColor;
+}
