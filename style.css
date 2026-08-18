@@ -262,3 +262,4 @@ body{
   border-color:#b347ff;
   box-shadow:0 0 35px rgba(179,71,255,.9);
 }
+body::after{content:"v2";display:none;}
