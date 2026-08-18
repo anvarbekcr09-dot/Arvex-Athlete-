@@ -1,32 +1,66 @@
 body{
-  background:#0d1117;
+  margin:0;
+  background:#050505;
   color:white;
-  text-align:center;
   font-family:Arial,sans-serif;
-  padding-top:100px;
 }
 
-button{
-  background:#00c853;
-  color:white;
-  border:none;
-  padding:12px 24px;
-  border-radius:10px;
+.container{
+  max-width:360px;
+  margin:40px auto;
+  padding:20px;
 }
-.login-box{
-  max-width:320px;
-  margin:100px auto;
+
+h1{
   text-align:center;
+  font-size:38px;
 }
 
-.login-box input{
-  width:100%;
-  padding:12px;
+.green{color:#00ff66;}
+.gray{color:#bfbfbf;}
+
+#today{
+  text-align:center;
+  color:#00ff66;
+  margin-bottom:20px;
+}
+
+.card{
+  background:#111;
+  border:1px solid #00ff66;
+  border-radius:16px;
+  padding:15px;
   margin:10px 0;
-  border-radius:10px;
-  border:none;
 }
 
-.login-box a{
-  color:#00c853;
+.blue{
+  border-color:#008cff;
+  box-shadow:0 0 12px #008cff;
+}
+
+.red{
+  border-color:#ff2b2b;
+  box-shadow:0 0 12px #ff2b2b;
+}
+
+.meal{
+  background:#111;
+  border-radius:16px;
+  padding:15px;
+  margin-top:10px;
+}
+
+.badges{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:10px;
+}
+
+.badges span{
+  background:#111;
+  border:1px solid #00ff66;
+  border-radius:12px;
+  padding:12px;
+  text-align:center;
 }
