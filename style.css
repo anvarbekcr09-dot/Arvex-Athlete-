@@ -278,3 +278,93 @@ body{
   font-weight:bold;
   margin-top:8px;
 }
+.week-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin:22px 0;
+}
+
+.day-card{
+  position:relative;
+  border-radius:22px;
+  padding:18px 10px;
+  text-align:center;
+  color:#fff;
+  font-weight:700;
+  overflow:hidden;
+  transition:.35s;
+}
+
+.day-card::before{
+  content:"";
+  position:absolute;
+  inset:-18px;
+  border-radius:30px;
+  filter:blur(25px);
+  opacity:.9;
+  z-index:-1;
+}
+
+.day-card img{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  margin-bottom:10px;
+  border:3px solid currentColor;
+  box-shadow:0 0 25px currentColor;
+}
+
+.day-card h3{
+  margin:8px 0;
+  font-size:18px;
+}
+
+.day-card p{
+  margin:0;
+  font-size:15px;
+}
+
+.day-card:hover{
+  transform:translateY(-8px) scale(1.05);
+}
+
+/* Ranglar */
+
+.green{
+  background:linear-gradient(180deg,#061a06,#010101);
+  border:3px solid #39ff14;
+  color:#7dff61;
+  box-shadow:0 0 22px #39ff14;
+}
+.green::before{background:#39ff14;}
+
+.blue{
+  background:linear-gradient(180deg,#03142f,#010101);
+  border:3px solid #27a9ff;
+  color:#7fd6ff;
+  box-shadow:0 0 24px #27a9ff;
+}
+.blue::before{background:#27a9ff;}
+
+.red{
+  background:linear-gradient(180deg,#2b0202,#010101);
+  border:3px solid #ff2a2a;
+  color:#ff6b6b;
+  box-shadow:0 0 26px #ff2a2a;
+}
+.red::before{background:#ff2a2a;}
+
+.yellow{
+  background:linear-gradient(180deg,#3a2d00,#111);
+  border:3px solid #ffd400;
+  color:#ffe55c;
+  box-shadow:0 0 28px #ffd400;
+}
+.yellow::before{background:#ffd400;}
+
+.sunday{
+  grid-column:1/-1;
+  max-width:240px;
+  justify-self:center;
+}
