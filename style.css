@@ -189,63 +189,94 @@ body{
   background:linear-gradient(90deg,#00ff66,#00aaff);
   transition:.4s;
 }
+  
 .medal-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:14px;
+  gap:16px;
   margin:20px 0;
 }
 
 .medal{
-  background:#0a0a0a;
-  border-radius:20px;
+  position:relative;
+  background:linear-gradient(180deg,#111,#050505);
+  border:2px solid #333;
+  border-radius:26px;
   padding:18px;
   text-align:center;
-  border:1px solid #222;
+  overflow:hidden;
+  transition:.35s;
+}
+
+.medal::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top, rgba(255,255,255,.15), transparent 60%);
+  pointer-events:none;
 }
 
 .medal .icon{
-  font-size:52px;
-  margin-bottom:10px;
+  width:95px;
+  height:95px;
+  margin:0 auto 12px;
+}
+
+.medal .icon img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.medal h3{
+  font-size:20px;
+  margin:8px 0;
+}
+
+.medal p{
+  font-size:22px;
+  font-weight:bold;
+  color:#fff;
+}
+
+.medal:hover{
+  transform:translateY(-8px) scale(1.04);
 }
 
 .bronze{
   color:#cd7f32;
   border-color:#cd7f32;
-  box-shadow:0 0 18px #cd7f32;
+  box-shadow:0 0 22px rgba(205,127,50,.8);
 }
 
 .silver{
   color:#e8e8e8;
-  border-color:#c0c0c0;
-  box-shadow:0 0 18px #7fd3ff;
+  border-color:#9fd8ff;
+  box-shadow:0 0 22px rgba(159,216,255,.8);
 }
 
 .gold{
   color:#ffd700;
   border-color:#ffd700;
-  box-shadow:0 0 18px #ffd700;
+  box-shadow:0 0 22px rgba(255,215,0,.8);
 }
 
 .elite{
-  color:#d28cff;
-  border-color:#9b4dff;
-  box-shadow:0 0 20px #9b4dff;
+  color:#c35cff;
+  border-color:#b347ff;
+  box-shadow:0 0 25px rgba(179,71,255,.9);
 }
-.medal .icon img{
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto 10px;
-  filter: drop-shadow(0 0 18px currentColor);
-}
-
-.medal{
-  transition: .3s;
+.medal p{
+  font-size:22px;
+  font-weight:bold;
+  color:#fff;
 }
 
 .medal:hover{
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 0 30px currentColor;
+  transform:translateY(-8px) scale(1.04);
 }
+
+.bronze{color:#cd7f32;border-color:#cd7f32;box-shadow:0 0 22px rgba(205,127,50,.8);}
+.silver{color:#e8e8e8;border-color:#9fd8ff;box-shadow:0 0 22px rgba(159,216,255,.8);}
+.gold{color:#ffd700;border-color:#ffd700;box-shadow:0 0 22px rgba(255,215,0,.8);}
+.elite{color:#c35cff;border-color:#b347ff;box-shadow:0 0 25px rgba(179,71,255,.9);}
