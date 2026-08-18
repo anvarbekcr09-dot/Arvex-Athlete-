@@ -110,3 +110,31 @@ body{
   color:#bfbfbf;
   text-shadow:0 0 10px #008cff;
 }
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:#0a0a0a;
+  border-top:1px solid #008cff;
+  display:flex;
+  justify-content:space-around;
+  padding:10px 0;
+  box-shadow:0 -5px 20px rgba(0,140,255,.3);
+}
+
+.bottom-nav a{
+  color:#bfbfbf;
+  text-decoration:none;
+  text-align:center;
+  font-size:14px;
+}
+
+.bottom-nav a.active{
+  color:#00ff66;
+  text-shadow:0 0 10px #00ff66;
+}
+
+.container{
+  padding-bottom:90px;
+}
