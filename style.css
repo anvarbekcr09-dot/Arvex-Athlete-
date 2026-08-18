@@ -151,7 +151,17 @@ body{
 }
 
 .week-grid .card:last-child{
+    grid-column:1 / -1;
+    max-width:220px;
+    justify-self:center;
+
+    border:1px solid #FFD700;
+    box-shadow:0 0 18px #FFD700;
+}
+.sunday-card{
   grid-column:1 / -1;
   max-width:220px;
   justify-self:center;
+  border:1px solid #FFD700;
+  box-shadow:0 0 18px #FFD700;
 }
