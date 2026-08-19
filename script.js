@@ -210,3 +210,27 @@ function updateXP() {
 }
 
 updateXP();
+
+const motivations = [
+  "Boshlash — eng muhim qadam.",
+  "Intizom kayfiyatdan kuchliroq.",
+  "Bugungi mehnat ertangi natijani yaratadi.",
+  "Qiyinchilik — rivojlanishning bir qismi.",
+  "O‘zingga bergan va’dangni bajar.",
+  "Chegarangni sinab ko‘r.",
+  "Dam ol, tiklan va yana kuchli qayt."
+];
+
+const motivationEl =
+  document.getElementById("motivation");
+
+if (motivationEl) {
+  const day =
+    new Date().getDay();
+
+  const index =
+    day === 0 ? 6 : day - 1;
+
+  motivationEl.innerText =
+    motivations[index];
+}
