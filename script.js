@@ -1,97 +1,212 @@
-renderWorkouts();
 const days = [
-  {name:"Dushanba",work:"💪 Yelka",class:"card"},
-  {name:"Seshanba",work:"🪽 Qanot",class:"card"},
-  {name:"Chorshanba",work:"🔥 Ko'krak",class:"card"},
-  {name:"Payshanba",work:"🦵 Oyoq",class:"card blue"},
-  {name:"Juma",work:"💪 Biceps + Triceps",class:"card"},
-  {name:"Shanba",work:"🔴 Polniy Tana",class:"card red"},
-  {name:"Yakshanba",work:"😴 Dam olish",class:"card"}
+  {
+    name: "Dushanba",
+    work: "⚡🟢 YELKA",
+    class: "green",
+    exercises: [
+      "▸ Shoulder Press — 4×10",
+      "▸ Lateral Raise — 3×12",
+      "▸ Front Raise — 3×12",
+      "▸ Shrug — 3×15"
+    ]
+  },
+  {
+    name: "Seshanba",
+    work: "🟢 QANOT",
+    class: "green",
+    exercises: [
+      "▸ Pull Up — 4×8",
+      "▸ Lat Pulldown — 3×12",
+      "▸ Barbell Row — 4×10",
+      "▸ Face Pull — 3×15"
+    ]
+  },
+  {
+    name: "Chorshanba",
+    work: "🟢 KO‘KRAK",
+    class: "green",
+    exercises: [
+      "▸ Bench Press — 4×10",
+      "▸ Incline Press — 3×12",
+      "▸ Push Up — 3×15",
+      "▸ Cable Fly — 3×15"
+    ]
+  },
+  {
+    name: "Payshanba",
+    work: "🔵 OYOQ",
+    class: "blue",
+    exercises: [
+      "▸ Squat — 4×10",
+      "▸ Leg Press — 3×12",
+      "▸ Romanian Deadlift — 3×10",
+      "▸ Calf Raise — 4×15"
+    ]
+  },
+  {
+    name: "Juma",
+    work: "🟢 BICEPS + TRICEPS",
+    class: "green",
+    exercises: [
+      "▸ Biceps Curl — 4×12",
+      "▸ Hammer Curl — 3×12",
+      "▸ Triceps Pushdown — 4×12",
+      "▸ Dips — 3×10"
+    ]
+  },
+  {
+    name: "Shanba",
+    work: "🔴 FULL BODY",
+    class: "red",
+    exercises: [
+      "▸ Full Body Circuit",
+      "▸ 45 daqiqa"
+    ]
+  },
+  {
+    name: "Yakshanba",
+    work: "🟡🏠 RECOVERY",
+    class: "yellow",
+    exercises: [
+      "▸ Dam olish",
+      "▸ Cho‘zilish — 15 daqiqa"
+    ]
+  }
 ];
 
+/* BUGUN */
 const today = new Date().getDay();
 const index = today === 0 ? 6 : today - 1;
+const todayData = days[index];
 
-document.getElementById("today").innerText =
-  "Bugun: " + days[index].name;
+const todayEl = document.getElementById("today");
 
-let html = "";
+if (todayEl) {
+  todayEl.innerText = "BUGUN — " + todayData.name;
+}
 
-// Dushanba–Shanba
-days.slice(0,6).forEach(d=>{
-  html += `
-    <div class="${d.class}">
-      <h3>${d.name}</h3>
-      <p>${d.work}</p>
-    </div>`;
-});
+/* HAFTALIK JADVAL */
+const weekEl = document.getElementById("week");
 
-// Yakshanba oxirida
-const sunday = days[6];
-html += `
-  <div class="${sunday.class} sunday-card">
-    <h3>${sunday.name}</h3>
-    <p>${sunday.work}</p>
-  </div>`;
+if (weekEl) {
+  weekEl.innerHTML = days.map((day, i) => `
+    <div class="day-card ${day.class} ${i === index ? "active-day" : ""}">
+      <span class="day-label">${day.name}</span>
+      <h3>${day.work}</h3>
+      <div class="exercise-list">
+        ${day.exercises.map(ex => `<div>${ex}</div>`).join("")}
+      </div>
+      ${i === index ? `<span class="today-badge">BUGUN</span>` : ""}
+    </div>
+  `).join("");
+}
 
-document.getElementById("week").innerHTML = html;
-const username = localStorage.getItem("name") || "Sportchi";
-document.getElementById("welcome").innerText = "👋 Salom, " + username + "!";
-const details = [
-"Military Press 4×10\nLateral Raise 3×12\nFront Raise 3×12\nShrug 3×15",
-"Pull Up 4×8\nLat Pulldown 3×12\nBarbell Row 4×10\nFace Pull 3×15",
-"Bench Press 4×10\nIncline Press 3×12\nPush Up 3×15\nCable Fly 3×15",
-"Squat 4×10\nLeg Press 3×12\nRomanian Deadlift 3×10\nCalf Raise 4×15",
-"Biceps Curl 4×12\nHammer Curl 3×12\nTriceps Pushdown 4×12\nDips 3×10",
-"Full Body Circuit • 45 daqiqa",
-"Dam olish va cho'zilish • 15 daqiqa"
-];
+/* SALOMLASHISH */
+const username =
+  localStorage.getItem("name") || "Sportchi";
 
-document.getElementById("todayCard").innerHTML = `
-  <h3>🔥 Bugungi vazifa</h3>
-  <p>${days[index].work}</p>
-  <small>${details[index].replace(/\n/g,"<br>")}</small>
-`;
-let xp = Number(localStorage.getItem("xp")) || 0;
-updateXP();
+const welcomeEl =
+  document.getElementById("welcome");
 
-function finishWorkout(){
+if (welcomeEl) {
+  welcomeEl.innerText =
+    "Salom, " + username + "!";
+}
+
+/* BUGUNGI KARTA */
+const todayCard =
+  document.getElementById("todayCard");
+
+if (todayCard) {
+  todayCard.innerHTML = `
+    <h3>⚡ BUGUNGI MASHQ</h3>
+
+    <p class="today-work">
+      ${todayData.work}
+    </p>
+
+    <div class="today-exercises">
+      ${todayData.exercises
+        .map(ex => `<div>${ex}</div>`)
+        .join("")}
+    </div>
+  `;
+}
+
+/* XP */
+let xp =
+  Number(localStorage.getItem("xp")) || 0;
+
+/* MASHG‘ULOT YAKUNLASH */
+function finishWorkout() {
   xp += 10;
-  localStorage.setItem("xp", xp);
+
+  localStorage.setItem(
+    "xp",
+    xp
+  );
+
   updateXP();
 }
-const level = Math.floor(xp / 100) + 1;
 
-const ranks = [
-  "ROOKIE","AMATEUR","SEMI PRO","PRO","ELITE",
-  "MASTER","LEGEND","CHAMPION","HERO","GOAT"
-];
-const rank = ranks[Math.min(Math.floor((level - 1) / 10), 9)];
-
-const levelEl = document.getElementById("level");
-const rankEl = document.getElementById("rank");
-
-if (levelEl) levelEl.textContent = level;
-if (rankEl) rankEl.textContent = rank;
-
+/* LEVEL VA RANK */
 function updateXP() {
-  document.getElementById("xp").innerText = xp;
 
-  const level = Math.floor(xp / 100) + 1;
+  const xpEl =
+    document.getElementById("xp");
+
+  const xpFill =
+    document.getElementById("xpFill");
+
+  const levelEl =
+    document.getElementById("level");
+
+  const rankEl =
+    document.getElementById("rank");
+
+  if (xpEl) {
+    xpEl.innerText = xp;
+  }
+
+  const level =
+    Math.floor(xp / 100) + 1;
 
   const ranks = [
-    "ROOKIE","AMATEUR","SEMI PRO","PRO","ELITE",
-    "MASTER","LEGEND","CHAMPION","HERO","GOAT"
+    "ROOKIE",
+    "AMATEUR",
+    "SEMI PRO",
+    "PRO",
+    "ELITE",
+    "MASTER",
+    "LEGEND",
+    "CHAMPION",
+    "HERO",
+    "GOAT"
   ];
 
-  const rank = ranks[Math.min(Math.floor((level - 1) / 10), 9)];
+  const rank =
+    ranks[
+      Math.min(
+        Math.floor((level - 1) / 10),
+        9
+      )
+    ];
 
-  const levelEl = document.getElementById("level");
-  const rankEl = document.getElementById("rank");
+  if (levelEl) {
+    levelEl.innerText = level;
+  }
 
-  if (levelEl) levelEl.textContent = level;
-  if (rankEl) rankEl.textContent = rank;
+  if (rankEl) {
+    rankEl.innerText = rank;
+  }
 
-  let percent = xp % 100;
-  document.getElementById("xpFill").style.width = percent + "%";
+  const percent =
+    xp % 100;
+
+  if (xpFill) {
+    xpFill.style.width =
+      percent + "%";
+  }
 }
+
+updateXP();
