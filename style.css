@@ -439,8 +439,7 @@ body{
   border-radius:24px;
   overflow:hidden;
   background:
-    linear-gradient(rgba(20,0,30,.45),rgba(10,0,20,.75)),
-    url("ARVEX_HERO_BG.png") center top/cover no-repeat;
+ background: linear-gradient(135deg,#12001f,#240046);
   border:2px solid #8b3dff;
   display:flex;
   align-items:flex-end;
