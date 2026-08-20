@@ -368,3 +368,66 @@ body{
   max-width:240px;
   justify-self:center;
 }
+/* ===== ARVEX PREMIUM HERO ===== */
+
+.hero-card{
+  margin:18px 0;
+  border-radius:30px;
+  overflow:hidden;
+  background:
+    linear-gradient(rgba(5,0,12,.55), rgba(5,0,12,.78)),
+    url("ARVEX_HERO_BG.png") center/cover;
+  border:2px solid #8b3dff;
+  box-shadow:
+    0 0 35px rgba(139,61,255,.45),
+    0 0 25px rgba(57,255,20,.30);
+}
+
+.hero-content{
+  padding:22px;
+  color:#fff;
+}
+
+.hero-banner{
+  padding:12px;
+  border-radius:18px;
+  border:1px solid #39ff14;
+  background:rgba(0,0,0,.45);
+  font-weight:700;
+}
+
+.hero-banner small{
+  display:block;
+  margin-top:6px;
+  color:#b06dff;
+  font-size:12px;
+}
+
+.hero-level span{
+  color:#39ff14;
+  letter-spacing:3px;
+  font-size:13px;
+}
+
+.hero-level h2{
+  font-size:72px;
+  margin:8px 0;
+  color:#fff;
+  text-shadow:0 0 18px #39ff14,0 0 18px #8b3dff;
+}
+
+.xp-row{
+  display:flex;
+  justify-content:space-between;
+  font-weight:bold;
+  margin-top:12px;
+}
+
+.motivation-card{
+  margin-top:18px;
+  padding:14px;
+  border-radius:18px;
+  border:1px solid #8b3dff;
+  background:rgba(0,0,0,.45);
+  box-shadow:0 0 15px rgba(139,61,255,.35);
+}
