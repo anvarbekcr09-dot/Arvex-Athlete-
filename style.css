@@ -431,3 +431,41 @@ body{
   background:rgba(0,0,0,.45);
   box-shadow:0 0 15px rgba(139,61,255,.35);
 }
+/* ===== AMIR TEMUR BANNER ===== */
+
+.temur-banner{
+  margin:16px 0;
+  height:170px;
+  border-radius:24px;
+  overflow:hidden;
+  background:
+    linear-gradient(rgba(20,0,30,.45),rgba(10,0,20,.75)),
+    url("ARVEX_HERO_BG.png") center top/cover no-repeat;
+  border:2px solid #8b3dff;
+  display:flex;
+  align-items:flex-end;
+  padding:18px;
+  box-shadow:0 0 25px rgba(139,61,255,.45);
+}
+
+.temur-text h2{
+  margin:0;
+  color:#fff;
+  font-size:28px;
+}
+
+.temur-text p{
+  margin:6px 0 0;
+  color:#b96dff;
+  font-weight:700;
+}
+
+/* HERO foni */
+.hero-card{
+  background:
+    linear-gradient(rgba(5,0,12,.45),rgba(5,0,12,.75)),
+    url("ARVEX_HERO_BG.png");
+  background-size:100% auto;
+  background-position:center top;
+  background-repeat:no-repeat;
+}
