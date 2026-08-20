@@ -133,80 +133,42 @@ if (todayCard) {
   `;
 }
 
-/* XP */
-let xp =
-  Number(localStorage.getItem("xp")) || 0;
-
 /* MASHG‘ULOT YAKUNLASH */
-function finishWorkout() {
+let xp = Number(localStorage.getItem("xp")) || 0;
+
+function finishWorkout(){
+
+  const today = new Date().toDateString();
+
+  if(localStorage.getItem("todayDone") === today){
+    return;
+  }
+
   xp += 10;
 
-  localStorage.setItem(
-    "xp",
-    xp
-  );
+  localStorage.setItem("xp", xp);
+  localStorage.setItem("todayDone", today);
 
   updateXP();
 }
 
-/* LEVEL VA RANK */
-function updateXP() {
+function updateXP(){
 
-  const xpEl =
-    document.getElementById("xp");
+  const xpEl = document.getElementById("xp");
+  const xpFill = document.getElementById("xpFill");
+  const levelEl = document.getElementById("level");
 
-  const xpFill =
-    document.getElementById("xpFill");
+  if(xpEl) xpEl.innerText = xp;
 
-  const levelEl =
-    document.getElementById("level");
+  const level = Math.floor(xp / 100) + 1;
 
-  const rankEl =
-    document.getElementById("rank");
+  if(levelEl) levelEl.innerText = level;
 
-  if (xpEl) {
-    xpEl.innerText = xp;
-  }
+  const percent = xp % 100;
 
-  const level =
-    Math.floor(xp / 100) + 1;
-
-  const ranks = [
-    "ROOKIE",
-    "AMATEUR",
-    "SEMI PRO",
-    "PRO",
-    "ELITE",
-    "MASTER",
-    "LEGEND",
-    "CHAMPION",
-    "HERO",
-    "GOAT"
-  ];
-
-  const rank =
-    ranks[
-      Math.min(
-        Math.floor((level - 1) / 10),
-        9
-      )
-    ];
-
-  if (levelEl) {
-    levelEl.innerText = level;
-  }
-
-  if (rankEl) {
-    rankEl.innerText = rank;
-  }
-
-  const percent =
-    xp % 100;
-
-  if (xpFill) {
-    xpFill.style.width =
-      percent + "%";
-  }
+  if(xpFill) xpFill.style.width = percent + "%";
+  const xpLeft = document.getElementById("xpLeft");
+if (xpLeft) xpLeft.innerText = (100 - percent) + " XP";
 }
 
 updateXP();
