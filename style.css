@@ -433,20 +433,6 @@ body{
 }
 /* ===== AMIR TEMUR BANNER ===== */
 
-.temur-banner{
-  margin:16px 0;
-  height:170px;
-  border-radius:24px;
-  overflow:hidden;
-  background:
- background: linear-gradient(135deg,#12001f,#240046);
-  border:2px solid #8b3dff;
-  display:flex;
-  align-items:flex-end;
-  padding:18px;
-  box-shadow:0 0 25px rgba(139,61,255,.45);
-}
-
 .temur-text h2{
   margin:0;
   color:#fff;
@@ -470,15 +456,7 @@ body{
 }
 
 .temur-banner{
-  margin:16px 0;
-  height:220px;
-  border-radius:24px;
-  overflow:hidden;
-  border:2px solid #8b3dff;
-  box-shadow:0 0 25px rgba(139,61,255,.45);
-}
-
-.temur-banner{
+    width:100%;
     margin:16px 0;
     border-radius:24px;
     overflow:hidden;
@@ -491,5 +469,4 @@ body{
     width:100%;
     height:auto;
     display:block;
-    object-fit:contain;
 }
