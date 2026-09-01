@@ -196,3 +196,23 @@ if (motivationEl) {
   motivationEl.innerText =
     motivations[index];
 }
+  /* LEVEL BOSILGANDA */
+const levelEl = document.getElementById("level");
+
+if (levelEl) {
+  levelEl.style.cursor = "pointer";
+
+  levelEl.addEventListener("click", () => {
+    const currentLevel = Math.floor(xp / 100) + 1;
+    const currentXP = xp % 100;
+    const remainingXP = 100 - currentXP;
+
+    alert(
+      "⚡ ARVEX LEVEL\n\n" +
+      "🏆 Level: " + currentLevel + "\n" +
+      "⚡ XP: " + xp + "\n\n" +
+      "Keyingi Level: " + (currentLevel + 1) + "\n" +
+      "Keyingi Levelgacha: " + remainingXP + " XP"
+    );
+  });
+}
