@@ -171,8 +171,6 @@ function updateXP(){
 if (xpLeft) xpLeft.innerText = (100 - percent) + " XP";
 }
 
-updateXP();
-
 const motivations = [
   "Boshlash — eng muhim qadam.",
   "Intizom kayfiyatdan kuchliroq.",
