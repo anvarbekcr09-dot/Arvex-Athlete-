@@ -180,13 +180,10 @@ const motivations = [
   "Chegarangni sinab ko‘r.",
   "Dam ol, tiklan va yana kuchli qayt."
 ];
-
-const motivationEl =
-  document.getElementById("motivation");
+ const motivationEl = document.getElementById("motivation");
 
 if (motivationEl) {
-  const day =
-    new Date().getDay();
+  const day = new Date().getDay();
 
   const index =
     day === 0 ? 6 : day - 1;
@@ -194,13 +191,15 @@ if (motivationEl) {
   motivationEl.innerText =
     motivations[index];
 }
-  /* LEVEL BOSILGANDA */
-const levelEl = document.getElementById("level");
 
-if (levelEl) {
-  levelEl.style.cursor = "pointer";
 
-  levelEl.addEventListener("click", () => {
+/* LEVEL BOSILGANDA */
+const levelButton = document.getElementById("level");
+
+if (levelButton) {
+  levelButton.style.cursor = "pointer";
+
+  levelButton.onclick = function () {
     const currentLevel = Math.floor(xp / 100) + 1;
     const currentXP = xp % 100;
     const remainingXP = 100 - currentXP;
@@ -208,9 +207,10 @@ if (levelEl) {
     alert(
       "⚡ ARVEX LEVEL\n\n" +
       "🏆 Level: " + currentLevel + "\n" +
-      "⚡ XP: " + xp + "\n\n" +
+      "⚡ XP: " + currentXP + "/100\n\n" +
       "Keyingi Level: " + (currentLevel + 1) + "\n" +
       "Keyingi Levelgacha: " + remainingXP + " XP"
     );
-  });
+  };
 }
+
