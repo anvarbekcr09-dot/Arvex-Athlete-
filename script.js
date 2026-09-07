@@ -213,4 +213,16 @@ if (levelButton) {
     );
   };
 }
+     function showLevel() {
+  const currentLevel = Math.floor(xp / 100) + 1;
+  const currentXP = xp % 100;
+  const remainingXP = 100 - currentXP;
 
+  alert(
+    "⚡ ARVEX LEVEL\n\n" +
+    "🏆 Level: " + currentLevel + "\n" +
+    "⚡ XP: " + currentXP + "/100\n\n" +
+    "Keyingi Level: " + (currentLevel + 1) + "\n" +
+    "Keyingi Levelgacha: " + remainingXP + " XP"
+  );
+     }
