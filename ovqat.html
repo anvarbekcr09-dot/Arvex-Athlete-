@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARVEX — Ovqat</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>
+    <span class="green">ARVEX</span>
+    <span class="gray">OVQAT</span>
+  </h1>
+
+  <div class="motivation-card">
+    🍽️ <span>Bugungi sportchi ovqatlanish tartibi</span>
+  </div>
+
+  <div id="dailyMeals"></div>
+
+</div>
+
+<div class="bottom-nav">
+  <a href="index.html">🏠<br><span>Uy</span></a>
+  <a href="profile.html">💪<br><span>Reja</span></a>
+  <a href="ovqat.html" class="active">🍽️<br><span>Ovqat</span></a>
+  <a href="profile.html">👤<br><span>Profil</span></a>
+</div>
+
+<script>
+const meals = {
+  0: {
+    breakfast: ["🥚 Tuxum + non", "🥣 Suli bo‘tqasi", "🍎 Meva"],
+    lunch: ["🍗 Tovuq go‘shti", "🍚 Guruch", "🥗 Sabzavotli salat"],
+    dinner: ["🐟 Baliq", "🥔 Kartoshka", "🥦 Sabzavot"]
+  },
+
+  1: {
+    breakfast: ["🧀 Pishloq + non", "🥛 Sut yoki yogurt", "🍌 Banan"],
+    lunch: ["🥩 Mol go‘shti", "🌾 Grechka", "🥗 Salat"],
+    dinner: ["🍗 Tovuq go‘shti", "🍚 Guruch", "🥒 Bodring va pomidor"]
+  },
+
+  2: {
+    breakfast: ["🥚 Tuxum", "🥣 Suli bo‘tqasi", "🍐 Meva"],
+    lunch: ["🐟 Baliq", "🍚 Guruch", "🥗 Sabzavot"],
+    dinner: ["🥩 Mol go‘shti", "🥔 Kartoshka", "🥦 Brokkoli yoki sabzavot"]
+  },
+
+  3: {
+    breakfast: ["🥣 Suli bo‘tqasi", "🥛 Yogurt", "🍎 Olma"],
+    lunch: ["🍗 Tovuq go‘shti", "🥔 Kartoshka", "🥗 Salat"],
+    dinner: ["🐟 Baliq", "🍚 Guruch", "🥦 Sabzavot"]
+  },
+
+  4: {
+    breakfast: ["🥚 Tuxum", "🍞 Non", "🍌 Banan"],
+    lunch: ["🥩 Mol go‘shti", "🍚 Guruch", "🥗 Sabzavotli salat"],
+    dinner: ["🍗 Tovuq go‘shti", "🌾 Grechka", "🥒 Sabzavot"]
+  },
+
+  5: {
+    breakfast: ["🥛 Yogurt", "🥣 Suli bo‘tqasi", "🍓 Meva"],
+    lunch: ["🐟 Baliq", "🥔 Kartoshka", "🥗 Salat"],
+    dinner: ["🥩 Go‘sht", "🍚 Guruch", "🥦 Sabzavot"]
+  },
+
+  6: {
+    breakfast: ["🥚 Tuxum + non", "🧀 Pishloq", "🍎 Meva"],
+    lunch: ["🍗 Tovuq go‘shti", "🍝 Makaron yoki guruch", "🥗 Salat"],
+    dinner: ["🐟 Baliq yoki go‘sht", "🥔 Kartoshka", "🥦 Sabzavot"]
+  }
+};
+
+const days = [
+  "Yakshanba",
+  "Dushanba",
+  "Seshanba",
+  "Chorshanba",
+  "Payshanba",
+  "Juma",
+  "Shanba"
+];
+
+const today = new Date().getDay();
+const menu = meals[today];
+
+document.getElementById("dailyMeals").innerHTML = `
+  <h2>📅 ${days[today]}</h2>
+
+  <div class="meal">
+    <h2>🌅 Nonushta</h2>
+    ${menu.breakfast.map(x => `<p>${x}</p>`).join("")}
+  </div>
+
+  <div class="meal">
+    <h2>☀️ Tushlik</h2>
+    ${menu.lunch.map(x => `<p>${x}</p>`).join("")}
+  </div>
+
+  <div class="meal">
+    <h2>🌙 Kechki ovqat</h2>
+    ${menu.dinner.map(x => `<p>${x}</p>`).join("")}
+  </div>
+`;
+</script>
+
+</body>
+</html>
