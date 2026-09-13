@@ -572,3 +572,267 @@ body{
     background-position:300% 50%;
   }
 }
+/* ===== ARVEX FC — OVQATLANISH ===== */
+
+.food-page{
+  max-width:420px;
+  margin:auto;
+  padding:25px 16px 120px;
+}
+
+.food-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.food-brand{
+  font-size:28px;
+  font-weight:900;
+}
+
+.food-brand span{
+  color:#00ff66;
+  text-shadow:0 0 15px #00ff66;
+}
+
+.food-brand b{
+  color:#aaa;
+}
+
+.food-header small{
+  color:#777;
+  font-size:8px;
+  letter-spacing:2px;
+}
+
+.food-label{
+  color:#00aaff;
+  border:1px solid #008cff;
+  padding:7px 10px;
+  border-radius:12px;
+  font-size:11px;
+  box-shadow:0 0 12px rgba(0,140,255,.25);
+}
+
+.food-subtitle{
+  color:#aaa;
+  margin-top:5px;
+  font-size:13px;
+}
+
+/* 1 HAFTALIK MENYU */
+
+.weekly-menu-button{
+  width:100%;
+  margin-top:25px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  border:1px solid rgba(0,255,102,.4);
+  border-radius:20px;
+
+  color:white;
+  background:
+    linear-gradient(135deg,
+    rgba(0,255,102,.12),
+    rgba(80,0,255,.15));
+
+  box-shadow:
+    0 0 20px rgba(0,255,102,.12),
+    inset 0 0 20px rgba(80,0,255,.08);
+
+  text-align:left;
+  cursor:pointer;
+}
+
+.weekly-icon{
+  font-size:34px;
+}
+
+.weekly-menu-button strong{
+  display:block;
+  color:#00ff66;
+  font-size:17px;
+}
+
+.weekly-menu-button span{
+  display:block;
+  color:#aaa;
+  font-size:11px;
+  margin-top:5px;
+}
+
+.arrow{
+  margin-left:auto;
+  font-size:28px;
+  color:#00ff66;
+}
+
+/* HAFTALIK RO‘YXAT */
+
+.weekly-menu{
+  display:none;
+  margin-top:20px;
+}
+
+.weekly-menu.show{
+  display:block;
+}
+
+.weekly-title{
+  text-align:center;
+  margin-bottom:15px;
+}
+
+.weekly-title h2{
+  margin-bottom:5px;
+}
+
+.weekly-title p{
+  color:#777;
+  font-size:12px;
+}
+
+.day-list{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.day-card{
+  width:100%;
+  padding:14px;
+  border-radius:15px;
+  background:#101010;
+  color:white;
+  border:1px solid #222;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:14px;
+  cursor:pointer;
+}
+
+.day-card span{
+  font-weight:bold;
+}
+
+.day-card b{
+  margin-left:auto;
+  font-size:22px;
+}
+
+.green-day{
+  border-color:rgba(0,255,102,.35);
+}
+
+.blue-day{
+  border-color:rgba(0,150,255,.4);
+}
+
+.purple-day{
+  border-color:rgba(155,80,255,.45);
+}
+
+.yellow-day{
+  border-color:rgba(255,220,0,.4);
+}
+
+.red-day{
+  border-color:rgba(255,50,50,.45);
+}
+
+.orange-day{
+  border-color:rgba(255,150,0,.45);
+}
+
+/* TANLANGAN KUN */
+
+.day-menu{
+  margin-top:18px;
+}
+
+.selected-day{
+  padding:5px;
+}
+
+.selected-day h2{
+  text-align:center;
+  margin-bottom:18px;
+}
+
+.food-meal{
+  background:#0d0d0d;
+  border-radius:18px;
+  padding:17px;
+  margin-bottom:13px;
+  border:1px solid #222;
+}
+
+.meal-top{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.meal-top > span{
+  font-size:30px;
+}
+
+.meal-top h3{
+  margin:0;
+  font-size:18px;
+}
+
+.meal-top small{
+  color:#777;
+}
+
+.food-meal p{
+  margin:9px 0;
+  color:#ddd;
+  font-size:13px;
+}
+
+.food-meal label{
+  display:inline-block;
+  margin-top:7px;
+  padding:5px 9px;
+  border-radius:8px;
+  font-size:10px;
+}
+
+/* OVQAT KARTALARI */
+
+.breakfast{
+  border-color:rgba(0,255,102,.4);
+  box-shadow:0 0 18px rgba(0,255,102,.08);
+}
+
+.breakfast label{
+  color:#00ff66;
+  background:rgba(0,255,102,.1);
+}
+
+.lunch{
+  border-color:rgba(0,150,255,.45);
+  box-shadow:0 0 18px rgba(0,150,255,.08);
+}
+
+.lunch label{
+  color:#00aaff;
+  background:rgba(0,150,255,.1);
+}
+
+.dinner{
+  border-color:rgba(155,80,255,.45);
+  box-shadow:0 0 18px rgba(155,80,255,.1);
+}
+
+.dinner label{
+  color:#b477ff;
+  background:rgba(155,80,255,.1);
+}
