@@ -3,14 +3,386 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARVEX FC — Ovqatlanish</title>
-<link rel="stylesheet" href="style.css">
+<title>ARVEX FC — Ovqat</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#050505;
+  color:white;
+  font-family:Arial,sans-serif;
+}
+
+.food-page{
+  max-width:430px;
+  margin:auto;
+  padding:25px 16px 120px;
+}
+
+/* HEADER */
+.food-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.food-brand{
+  font-size:30px;
+  font-weight:900;
+}
+
+.food-brand span{
+  color:#00ff66;
+  text-shadow:0 0 18px #00ff66;
+}
+
+.food-brand b{
+  color:#aaa;
+}
+
+.food-header small{
+  color:#777;
+  letter-spacing:3px;
+  font-size:8px;
+}
+
+.food-label{
+  color:#00aaff;
+  border:1px solid #008cff;
+  padding:8px 11px;
+  border-radius:14px;
+  box-shadow:0 0 15px rgba(0,140,255,.3);
+}
+
+.food-subtitle{
+  color:#aaa;
+  font-size:14px;
+  margin-top:7px;
+}
+
+/* 1 HAFTALIK MENYU */
+.weekly-menu-button{
+  width:100%;
+  margin-top:24px;
+  padding:15px;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  border-radius:18px;
+  color:white;
+  background:linear-gradient(
+    135deg,
+    rgba(0,255,102,.10),
+    rgba(80,0,255,.14)
+  );
+  border:1px solid rgba(0,255,102,.4);
+  box-shadow:0 0 18px rgba(0,255,102,.12);
+  cursor:pointer;
+  text-align:left;
+}
+
+.weekly-icon{
+  font-size:29px;
+}
+
+.weekly-menu-button strong{
+  display:block;
+  color:#00ff66;
+  font-size:15px;
+}
+
+.weekly-menu-button span{
+  display:block;
+  color:#888;
+  font-size:10px;
+  margin-top:4px;
+}
+
+.arrow{
+  margin-left:auto;
+  color:#00ff66;
+  font-size:26px;
+}
+
+/* BUGUNGI OVQAT */
+.today-card{
+  margin-top:18px;
+  padding:20px;
+  border-radius:24px;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(0,255,102,.13),
+      transparent 45%
+    ),
+    linear-gradient(145deg,#101510,#080808);
+
+  border:1px solid rgba(0,255,102,.55);
+
+  box-shadow:
+    0 0 25px rgba(0,255,102,.16),
+    inset 0 0 25px rgba(0,255,102,.04);
+}
+
+.today-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:6px;
+}
+
+.today-title .calendar{
+  font-size:32px;
+}
+
+.today-title h2{
+  margin:0;
+  font-size:20px;
+  color:#00ff66;
+  text-shadow:0 0 12px rgba(0,255,102,.5);
+}
+
+.today-name{
+  color:#aaa;
+  font-size:13px;
+  margin:4px 0 18px;
+}
+
+/* OVQAT KARTALARI */
+.today-meal{
+  padding:15px;
+  margin-top:11px;
+  border-radius:17px;
+  background:#0b0b0b;
+}
+
+.today-meal h3{
+  margin:0 0 4px;
+  font-size:17px;
+}
+
+.meal-time{
+  color:#777;
+  font-size:10px;
+}
+
+.today-meal p{
+  color:#ddd;
+  font-size:13px;
+  margin:9px 0;
+}
+
+.breakfast-card{
+  border:1px solid rgba(0,255,102,.35);
+}
+
+.breakfast-card h3{
+  color:#00ff66;
+}
+
+.lunch-card{
+  border:1px solid rgba(0,150,255,.4);
+}
+
+.lunch-card h3{
+  color:#00aaff;
+}
+
+.dinner-card{
+  border:1px solid rgba(160,80,255,.45);
+}
+
+.dinner-card h3{
+  color:#b477ff;
+}
+
+.food-tag{
+  display:inline-block;
+  margin-top:5px;
+  padding:5px 9px;
+  border-radius:8px;
+  font-size:9px;
+}
+
+.green-tag{
+  color:#00ff66;
+  background:rgba(0,255,102,.1);
+}
+
+.blue-tag{
+  color:#00aaff;
+  background:rgba(0,150,255,.1);
+}
+
+.purple-tag{
+  color:#b477ff;
+  background:rgba(160,80,255,.1);
+}
+
+/* HAFTALIK MENYU ICHKI QISMI */
+.weekly-menu{
+  display:none;
+  margin-top:18px;
+}
+
+.weekly-menu.show{
+  display:block;
+}
+
+.weekly-title{
+  text-align:center;
+  margin:15px 0;
+}
+
+.weekly-title h2{
+  margin:0;
+}
+
+.weekly-title p{
+  color:#777;
+  font-size:11px;
+}
+
+.day-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.day-card{
+  width:100%;
+  padding:13px;
+  border-radius:14px;
+  background:#101010;
+  color:white;
+  border:1px solid #252525;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  text-align:left;
+}
+
+.day-card span{
+  font-weight:bold;
+  font-size:13px;
+}
+
+.day-card b{
+  margin-left:auto;
+  font-size:21px;
+}
+
+.green-day{
+  border-color:rgba(0,255,102,.35);
+}
+
+.blue-day{
+  border-color:rgba(0,150,255,.4);
+}
+
+.purple-day{
+  border-color:rgba(160,80,255,.4);
+}
+
+.yellow-day{
+  border-color:rgba(255,220,0,.4);
+}
+
+.red-day{
+  border-color:rgba(255,50,50,.4);
+}
+
+.orange-day{
+  border-color:rgba(255,150,0,.4);
+}
+
+/* MOTIVATSIYA */
+.food-motivation{
+  margin-top:20px;
+  padding:18px;
+  text-align:center;
+  border-radius:18px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(110,50,255,.15),
+      rgba(0,255,102,.08)
+    );
+  border:1px solid rgba(140,80,255,.3);
+}
+
+.food-motivation strong{
+  display:block;
+  color:#fff;
+  font-size:15px;
+}
+
+.food-motivation span{
+  display:block;
+  color:#999;
+  font-size:11px;
+  margin-top:5px;
+}
+
+/* PASTKI MENYU */
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:430px;
+  height:70px;
+  background:rgba(5,5,5,.96);
+  border-top:1px solid #222;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:1000;
+}
+
+.bottom-nav a{
+  text-decoration:none;
+  color:#777;
+  font-size:11px;
+  text-align:center;
+}
+
+.bottom-nav a div{
+  font-size:22px;
+  margin-bottom:3px;
+}
+
+.bottom-nav a.active{
+  color:#00ff66;
+  text-shadow:0 0 10px #00ff66;
+}
+
+/* YARATUVCHI */
+.site-creator{
+  text-align:center;
+  color:#777;
+  font-size:11px;
+  margin-top:25px;
+  margin-bottom:10px;
+}
+
+.site-creator b{
+  color:#aaa;
+}
+</style>
 </head>
 
 <body>
 
 <div class="food-page">
 
+  <!-- HEADER -->
   <div class="food-header">
     <div>
       <div class="food-brand">
@@ -19,241 +391,375 @@
       <small>STRONGER EVERY DAY</small>
     </div>
 
-    <div class="food-label">🍴 OVQAT</div>
+    <div class="food-label">
+      🍴 OVQAT
+    </div>
   </div>
 
-  <p class="food-subtitle">
+  <div class="food-subtitle">
     Sog‘lom tana — kuchli kelajak
-  </p>
+  </div>
+
 
   <!-- 1 HAFTALIK MENYU -->
-  <button class="weekly-menu-button" onclick="openWeeklyMenu()">
+  <button class="weekly-menu-button" onclick="toggleWeeklyMenu()">
     <div class="weekly-icon">🍽️</div>
+
     <div>
       <strong>1 HAFTALIK MENYU</strong>
       <span>Haftalik ovqatlanish rejasini ko‘rish</span>
     </div>
-    <b class="arrow">›</b>
+
+    <b class="arrow" id="arrow">›</b>
   </button>
 
-  <!-- HAFTALIK MENYU -->
+
+  <!-- BUGUNGI OVQATLANISH TARTIBI -->
+  <div class="today-card">
+
+    <div class="today-title">
+      <div class="calendar">🍽️</div>
+
+      <div>
+        <h2>BUGUNGI OVQATLANISH TARTIBI</h2>
+      </div>
+    </div>
+
+    <div id="todayName" class="today-name"></div>
+
+    <div id="todayMeals"></div>
+
+  </div>
+
+
+  <!-- 1 HAFTALIK MENYU YASHIRIN QISMI -->
   <div id="weeklyMenu" class="weekly-menu">
 
     <div class="weekly-title">
-      <h2>📅 1 haftalik menyu</h2>
-      <p>Kerakli kunni tanlang</p>
+      <h2>1 HAFTALIK MENYU</h2>
+      <p>Hafta davomida ovqatlanish tartibi</p>
     </div>
 
     <div class="day-list">
 
-      <button onclick="showDay(1)" class="day-card green-day">
-        🟢 <span>Dushanba</span>
+      <div class="day-card green-day">
+        <span>🌿 Dushanba</span>
         <b>›</b>
-      </button>
+      </div>
 
-      <button onclick="showDay(2)" class="day-card blue-day">
-        🔵 <span>Seshanba</span>
+      <div class="day-card green-day">
+        <span>⚡ Seshanba</span>
         <b>›</b>
-      </button>
+      </div>
 
-      <button onclick="showDay(3)" class="day-card purple-day">
-        🟣 <span>Chorshanba</span>
+      <div class="day-card green-day">
+        <span>💪 Chorshanba</span>
         <b>›</b>
-      </button>
+      </div>
 
-      <button onclick="showDay(4)" class="day-card yellow-day">
-        🟡 <span>Payshanba</span>
+      <div class="day-card blue-day">
+        <span>🔵 Payshanba</span>
         <b>›</b>
-      </button>
+      </div>
 
-      <button onclick="showDay(5)" class="day-card green-day">
-        🟢 <span>Juma</span>
+      <div class="day-card green-day">
+        <span>🔥 Juma</span>
         <b>›</b>
-      </button>
+      </div>
 
-      <button onclick="showDay(6)" class="day-card red-day">
-        🔴 <span>Shanba</span>
+      <div class="day-card red-day">
+        <span>🔴 Shanba</span>
         <b>›</b>
-      </button>
+      </div>
 
-      <button onclick="showDay(0)" class="day-card orange-day">
-        🟠 <span>Yakshanba</span>
+      <div class="day-card yellow-day">
+        <span>🟡 Yakshanba</span>
         <b>›</b>
-      </button>
+      </div>
 
     </div>
 
-    <!-- TANLANGAN KUN -->
-    <div id="dayMenu" class="day-menu"></div>
+  </div>
 
+
+  <!-- MOTIVATSIYA -->
+  <div class="food-motivation">
+    <strong>🥗 To‘g‘ri ovqatlan — kuchli bo‘l</strong>
+    <span>Har kuni o‘zingning eng yaxshi versiyangga yaqinlash.</span>
+  </div>
+
+
+  <!-- YARATUVCHI -->
+  <div class="site-creator">
+    Sayt yaratuvchisi: <b>Qodirov Anvarbek</b>
   </div>
 
 </div>
 
 
-<!-- SAYT YARATUVCHISI -->
-<div class="site-creator">
-  Sayt yaratuvchisi: <b>Qodirov Anvarbek</b>
-</div>
+<!-- PASTKI NAV -->
+<nav class="bottom-nav">
 
-
-<!-- PASTKI MENYU -->
-<div class="bottom-nav">
   <a href="index.html">
-    🏠<br><span>Uy</span>
+    <div>🏠</div>
+    Uy
   </a>
 
   <a href="profile.html">
-    💪<br><span>Reja</span>
+    <div>📋</div>
+    Reja
   </a>
 
   <a href="ovqat.html" class="active">
-    🍽️<br><span>Ovqat</span>
+    <div>🍽️</div>
+    Ovqat
   </a>
 
   <a href="profile.html">
-    👤<br><span>Profil</span>
+    <div>👤</div>
+    Profil
   </a>
-</div>
+
+</nav>
 
 
 <script>
 
+/* 7 KUNLIK OVQAT MENYUSI */
+
 const menus = {
 
-1: {
-name:"Dushanba",
-color:"green",
-breakfast:["🥚 Tuxum","🍞 Donli non","🥛 Sut","🍎 Meva"],
-lunch:["🍗 Tovuq go‘shti","🍚 Guruch","🥗 Sabzavotli salat"],
-dinner:["🐟 Baliq","🥦 Sabzavot","🥗 Yengil salat"]
-},
+  0:{
+    name:"Yakshanba",
+    breakfast:[
+      "🥚 Tuxum + non",
+      "🧀 Pishloq",
+      "🍎 Meva"
+    ],
+    lunch:[
+      "🍗 Tovuq go‘shti",
+      "🍚 Guruch",
+      "🥗 Salat"
+    ],
+    dinner:[
+      "🐟 Baliq",
+      "🥔 Kartoshka",
+      "🥦 Sabzavot"
+    ]
+  },
 
-2: {
-name:"Seshanba",
-color:"blue",
-breakfast:["🥣 Suli bo‘tqasi","🍌 Banan","🥛 Yogurt"],
-lunch:["🥩 Mol go‘shti","🌾 Grechka","🥗 Salat"],
-dinner:["🍗 Tovuq go‘shti","🍚 Guruch","🥒 Bodring va pomidor"]
-},
+  1:{
+    name:"Dushanba",
+    breakfast:[
+      "🥚 Tuxum",
+      "🍞 Donli non",
+      "🥛 Sut",
+      "🍎 Meva"
+    ],
+    lunch:[
+      "🍗 Tovuq go‘shti",
+      "🍚 Guruch",
+      "🥗 Salat"
+    ],
+    dinner:[
+      "🐟 Baliq",
+      "🥦 Sabzavot",
+      "🥗 Salat"
+    ]
+  },
 
-3: {
-name:"Chorshanba",
-color:"purple",
-breakfast:["🥚 Tuxum","🍞 Non","🍐 Meva","🥛 Sut"],
-lunch:["🐟 Baliq","🍚 Guruch","🥗 Sabzavot"],
-dinner:["🥩 Mol go‘shti","🥔 Kartoshka","🥦 Brokkoli"]
-},
+  2:{
+    name:"Seshanba",
+    breakfast:[
+      "🥣 Suli bo‘tqasi",
+      "🍌 Banan",
+      "🥛 Yogurt"
+    ],
+    lunch:[
+      "🥩 Mol go‘shti",
+      "🌾 Grechka",
+      "🥗 Salat"
+    ],
+    dinner:[
+      "🍗 Tovuq go‘shti",
+      "🍚 Guruch",
+      "🥒 Sabzavot"
+    ]
+  },
 
-4: {
-name:"Payshanba",
-color:"yellow",
-breakfast:["🥣 Suli bo‘tqasi","🍎 Olma","🥛 Yogurt"],
-lunch:["🍗 Tovuq go‘shti","🥔 Kartoshka","🥗 Salat"],
-dinner:["🐟 Baliq","🍚 Guruch","🥦 Sabzavot"]
-},
+  3:{
+    name:"Chorshanba",
+    breakfast:[
+      "🥚 Tuxum",
+      "🍞 Non",
+      "🍐 Meva",
+      "🥛 Sut"
+    ],
+    lunch:[
+      "🐟 Baliq",
+      "🍚 Guruch",
+      "🥗 Sabzavot"
+    ],
+    dinner:[
+      "🥩 Mol go‘shti",
+      "🥔 Kartoshka",
+      "🥦 Brokkoli"
+    ]
+  },
 
-5: {
-name:"Juma",
-color:"green",
-breakfast:["🥚 Tuxum","🍞 Donli non","🍌 Banan"],
-lunch:["🥩 Mol go‘shti","🍚 Guruch","🥗 Salat"],
-dinner:["🍗 Tovuq go‘shti","🌾 Grechka","🥒 Sabzavot"]
-},
+  4:{
+    name:"Payshanba",
+    breakfast:[
+      "🥣 Suli bo‘tqasi",
+      "🍎 Olma",
+      "🥛 Yogurt"
+    ],
+    lunch:[
+      "🍗 Tovuq go‘shti",
+      "🥔 Kartoshka",
+      "🥗 Salat"
+    ],
+    dinner:[
+      "🐟 Baliq",
+      "🍚 Guruch",
+      "🥦 Sabzavot"
+    ]
+  },
 
-6: {
-name:"Shanba",
-color:"red",
-breakfast:["🥛 Yogurt","🥣 Suli bo‘tqasi","🍓 Meva"],
-lunch:["🐟 Baliq","🥔 Kartoshka","🥗 Salat"],
-dinner:["🥩 Go‘sht","🍚 Guruch","🥦 Sabzavot"]
-},
+  5:{
+    name:"Juma",
+    breakfast:[
+      "🥚 Tuxum",
+      "🍞 Donli non",
+      "🍌 Banan"
+    ],
+    lunch:[
+      "🥩 Mol go‘shti",
+      "🍚 Guruch",
+      "🥗 Salat"
+    ],
+    dinner:[
+      "🍗 Tovuq go‘shti",
+      "🌾 Grechka",
+      "🥒 Sabzavot"
+    ]
+  },
 
-0: {
-name:"Yakshanba",
-color:"orange",
-breakfast:["🥚 Tuxum + non","🧀 Pishloq","🍎 Meva"],
-lunch:["🍗 Tovuq go‘shti","🍝 Makaron yoki guruch","🥗 Salat"],
-dinner:["🐟 Baliq yoki go‘sht","🥔 Kartoshka","🥦 Sabzavot"]
-}
+  6:{
+    name:"Shanba",
+    breakfast:[
+      "🥛 Yogurt",
+      "🥣 Suli bo‘tqasi",
+      "🍓 Meva"
+    ],
+    lunch:[
+      "🐟 Baliq",
+      "🥔 Kartoshka",
+      "🥗 Salat"
+    ],
+    dinner:[
+      "🥩 Go‘sht",
+      "🍚 Guruch",
+      "🥦 Sabzavot"
+    ]
+  }
 
 };
 
 
-function openWeeklyMenu(){
+/* BUGUNGI KUNNI ANIQLASH */
 
-  const menu = document.getElementById("weeklyMenu");
+const today = new Date().getDay();
 
-  menu.classList.toggle("show");
+const menu = menus[today];
 
-}
-
-
-function showDay(day){
-
-  const menu = menus[day];
-
-  document.getElementById("dayMenu").innerHTML = `
-
-    <div class="selected-day ${menu.color}">
-
-      <h2>📅 ${menu.name}</h2>
-
-      <div class="food-meal breakfast">
-        <div class="meal-top">
-          <span>🌅</span>
-          <div>
-            <h3>Nonushta</h3>
-            <small>07:00 — 08:00</small>
-          </div>
-        </div>
-
-        ${menu.breakfast.map(food =>
-          `<p>✓ ${food}</p>`
-        ).join("")}
-
-        <label>⚡ Energiya</label>
-      </div>
+document.getElementById("todayName").textContent =
+  "📅 Bugun — " + menu.name;
 
 
-      <div class="food-meal lunch">
-        <div class="meal-top">
-          <span>☀️</span>
-          <div>
-            <h3>Tushlik</h3>
-            <small>12:30 — 13:30</small>
-          </div>
-        </div>
+/* BUGUNGI OVQATLARNI CHIQARISH */
 
-        ${menu.lunch.map(food =>
-          `<p>✓ ${food}</p>`
-        ).join("")}
+document.getElementById("todayMeals").innerHTML = `
 
-        <label>💪 Kuch</label>
-      </div>
+  <div class="today-meal breakfast-card">
 
+    <h3>🌅 Nonushta</h3>
 
-      <div class="food-meal dinner">
-        <div class="meal-top">
-          <span>🌙</span>
-          <div>
-            <h3>Kechki ovqat</h3>
-            <small>18:30 — 19:30</small>
-          </div>
-        </div>
-
-        ${menu.dinner.map(food =>
-          `<p>✓ ${food}</p>`
-        ).join("")}
-
-        <label>🧘 Tinchlik</label>
-      </div>
-
+    <div class="meal-time">
+      07:00 — 08:00
     </div>
-  `;
 
-  document.getElementById("dayMenu")
-    .scrollIntoView({behavior:"smooth"});
+    ${menu.breakfast
+      .map(x => `<p>✓ ${x}</p>`)
+      .join("")
+    }
+
+    <span class="food-tag green-tag">
+      ⚡ Energiya
+    </span>
+
+  </div>
+
+
+  <div class="today-meal lunch-card">
+
+    <h3>☀️ Tushlik</h3>
+
+    <div class="meal-time">
+      12:30 — 13:30
+    </div>
+
+    ${menu.lunch
+      .map(x => `<p>✓ ${x}</p>`)
+      .join("")
+    }
+
+    <span class="food-tag blue-tag">
+      💪 Kuch
+    </span>
+
+  </div>
+
+
+  <div class="today-meal dinner-card">
+
+    <h3>🌙 Kechki ovqat</h3>
+
+    <div class="meal-time">
+      18:30 — 19:30
+    </div>
+
+    ${menu.dinner
+      .map(x => `<p>✓ ${x}</p>`)
+      .join("")
+    }
+
+    <span class="food-tag purple-tag">
+      🌙 Tinchlik
+    </span>
+
+  </div>
+
+`;
+
+
+/* HAFTALIK MENYUNI OCHISH/YOPISH */
+
+function toggleWeeklyMenu(){
+
+  const menuBox =
+    document.getElementById("weeklyMenu");
+
+  const arrow =
+    document.getElementById("arrow");
+
+  menuBox.classList.toggle("show");
+
+  if(menuBox.classList.contains("show")){
+    arrow.textContent = "⌄";
+  }else{
+    arrow.textContent = "›";
+  }
 
 }
 
