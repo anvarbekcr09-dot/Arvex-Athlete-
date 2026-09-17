@@ -284,3 +284,274 @@
     }
   </style>
 </head>
+<body>
+
+<header class="top">
+  <div class="logo">
+    ARVEX <span>FC</span>
+  </div>
+  <div class="tag">
+    ATHLETE PERFORMANCE SYSTEM
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- HOME -->
+  <section id="home" class="page active">
+
+    <div class="panel hero">
+      <div class="eyebrow">WELCOME, ATHLETE</div>
+
+      <h1>
+        BUILD YOUR<br>
+        <span>LEGACY.</span>
+      </h1>
+
+      <p>
+        Bugun kechagidan kuchliroq bo‘l.
+        Harakat — natijaning boshlanishi.
+      </p>
+
+      <button onclick="openPage('workout')">
+        START WORKOUT ↗
+      </button>
+
+      <button class="alt" onclick="openPage('profile')">
+        MY PROFILE
+      </button>
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        <b id="level">1</b>
+        LEVEL
+      </div>
+
+      <div class="stat">
+        <b id="xp">0</b>
+        XP
+      </div>
+
+      <div class="stat">
+        <b id="days">0</b>
+        ACTIVE DAYS
+      </div>
+
+    </div>
+
+    <div class="panel">
+
+      <h2>Level Progress</h2>
+
+      <p class="muted">
+        <span id="currentxp">0</span> / 1000 XP
+      </p>
+
+      <div class="progress">
+        <div class="fill" id="bar"></div>
+      </div>
+
+      <button onclick="claimDaily()">
+        DAILY XP +20
+      </button>
+
+      <p class="muted" id="xpmsg"></p>
+
+    </div>
+
+    <div class="panel">
+
+      <h2>Bugungi motivatsiya</h2>
+
+      <p class="quote" id="quote">
+        Intizom — natijaning boshlanishi.
+      </p>
+
+      <p class="muted">
+        Maqsad:
+        <b style="color:var(--green)">
+          AMIR TEMUR — INTIZOM VA G‘ALABA
+        </b>
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- WORKOUT -->
+  <section id="workout" class="page">
+
+    <div class="panel">
+
+      <h2>Weekly Workout</h2>
+
+      <p class="muted">
+        Kun kartasini bosing.
+        Mashqlar, mushaklar va vaqt chiqadi.
+      </p>
+
+      <div id="workoutGrid" class="grid"></div>
+
+      <div id="workoutDetail" class="detail">
+        Mashg‘ulot kunini tanlang.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- NUTRITION -->
+  <section id="nutrition" class="page">
+
+    <div class="panel">
+
+      <h2>Nutrition System</h2>
+
+      <p class="muted">
+        Haftalik menyu va bugungi ovqatlanish tartibi.
+      </p>
+
+      <div id="mealGrid" class="grid"></div>
+
+      <div id="mealDetail" class="detail">
+        Kun menyusini tanlang.
+      </div>
+
+    </div>
+
+    <div class="panel">
+
+      <h2>Nutrition Rules</h2>
+
+      <div class="grid2">
+
+        <div class="goal">
+          🥗 Muvozanatli ovqatlanish
+        </div>
+
+        <div class="goal">
+          💧 Yetarli suv ichish
+        </div>
+
+        <div class="goal">
+          🥚 Proteinli mahsulotlar
+        </div>
+
+        <div class="goal">
+          😴 Sifatli uyqu
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MEDALS -->
+  <section id="medals" class="page">
+
+    <div class="panel">
+
+      <h2>Medals & Rewards</h2>
+
+      <p class="muted">
+        Faol kunlar bo‘yicha medallar ochiladi.
+      </p>
+
+      <div id="medalGrid" class="grid2"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROFILE -->
+  <section id="profile" class="page">
+
+    <div class="panel">
+
+      <h2>Athlete Profile</h2>
+
+      <input
+        id="first"
+        placeholder="Ism"
+      >
+
+      <input
+        id="last"
+        placeholder="Familiya"
+      >
+
+      <input
+        id="goal"
+        placeholder="Maqsadingiz"
+      >
+
+      <button onclick="saveProfile()">
+        SAVE PROFILE
+      </button>
+
+      <div id="profileResult" class="detail">
+        Profil ma’lumotlarini kiriting.
+      </div>
+
+    </div>
+
+    <div class="panel">
+
+      <h2>Athlete ID</h2>
+
+      <p class="muted">
+        ARVEX FC / ATHLETE MEMBER
+      </p>
+
+      <h2 id="athleteId">
+        ARVEX-0000
+      </h2>
+
+      <p class="muted">
+        Elite mindset.
+        Daily discipline.
+        Long-term results.
+      </p>
+
+    </div>
+
+  </section>
+
+  <div class="creator">
+    Saytni yaratgan inson: Qodirov Anvarbek
+  </div>
+
+</main>
+
+
+<!-- BOTTOM NAVIGATION -->
+<nav class="nav">
+
+  <button onclick="openPage('home')" id="nav-home">
+    ⌂<br>Home
+  </button>
+
+  <button onclick="openPage('workout')" id="nav-workout">
+    🏋<br>Workout
+  </button>
+
+  <button onclick="openPage('nutrition')" id="nav-nutrition">
+    🍎<br>Nutrition
+  </button>
+
+  <button onclick="openPage('medals')" id="nav-medals">
+    🏅<br>Medals
+  </button>
+
+  <button onclick="openPage('profile')" id="nav-profile">
+    👤<br>Profile
+  </button>
+
+</nav>
