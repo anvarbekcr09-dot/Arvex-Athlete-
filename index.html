@@ -555,3 +555,358 @@
   </button>
 
 </nav>
+<script>
+const workouts = [
+  [
+    "Dushanba",
+    "SHOULDER",
+    "green",
+    "Yelka",
+    "07:00 yoki 18:00",
+    [
+      "Shoulder press — 3×12",
+      "Lateral raise — 3×12",
+      "Front raise — 3×12"
+    ]
+  ],
+  [
+    "Seshanba",
+    "BACK / LATS",
+    "orange",
+    "Qanot",
+    "07:00 yoki 18:00",
+    [
+      "Pull-up — 3×8",
+      "Lat pulldown — 3×12",
+      "Dumbbell row — 3×10"
+    ]
+  ],
+  [
+    "Chorshanba",
+    "LEGS",
+    "purple",
+    "Oyoq",
+    "07:00 yoki 18:00",
+    [
+      "Squat — 3×12",
+      "Lunge — 3×10",
+      "Calf raise — 3×15"
+    ]
+  ],
+  [
+    "Payshanba",
+    "FULL BODY",
+    "blue",
+    "Butun tana",
+    "07:00 yoki 18:00",
+    [
+      "Push-up — 3×12",
+      "Squat — 3×12",
+      "Plank — 3×30 sec"
+    ]
+  ],
+  [
+    "Juma",
+    "ARMS",
+    "cyan",
+    "Qo‘l",
+    "07:00 yoki 18:00",
+    [
+      "Biceps curl — 3×12",
+      "Triceps extension — 3×12",
+      "Dips — 3×8"
+    ]
+  ],
+  [
+    "Shanba",
+    "TOTAL BODY",
+    "red",
+    "Polniy tana",
+    "09:00 yoki 18:00",
+    [
+      "Push-up — 3×12",
+      "Squat — 3×12",
+      "Row — 3×10",
+      "Plank — 3×30 sec"
+    ]
+  ],
+  [
+    "Yakshanba",
+    "REST DAY",
+    "yellow",
+    "Dam olish",
+    "Istalgan vaqt",
+    [
+      "Yengil yurish",
+      "Cho‘zilish",
+      "Tiklanish"
+    ]
+  ]
+];
+
+const meals = [
+  [
+    "Dushanba",
+    "Tuxum, non va meva",
+    "Tovuq, guruch va salat",
+    "Tvorog va meva"
+  ],
+  [
+    "Seshanba",
+    "Suli yormasi va banan",
+    "Go‘sht va grechka",
+    "Qatiq va yong‘oq"
+  ],
+  [
+    "Chorshanba",
+    "Tuxum va sabzavot",
+    "Tovuq va kartoshka",
+    "Yengil sho‘rva"
+  ],
+  [
+    "Payshanba",
+    "Tvorog va meva",
+    "Baliq va guruch",
+    "Tuxumli salat"
+  ],
+  [
+    "Juma",
+    "Suli va sut",
+    "Go‘sht va sabzavot",
+    "Tovuq va non"
+  ],
+  [
+    "Shanba",
+    "Tuxum va meva",
+    "Tovuq va makaron",
+    "Qatiq va meva"
+  ],
+  [
+    "Yakshanba",
+    "Yengil nonushta",
+    "Uy taomi va salat",
+    "Sho‘rva va meva"
+  ]
+];
+
+let xp = Number(localStorage.getItem("arvex_xp") || 0);
+let days = Number(localStorage.getItem("arvex_days") || 0);
+
+const quotes = [
+  "Intizom — natijaning boshlanishi.",
+  "Og‘ir mashq, kuchli xarakter.",
+  "Bugungi harakat — ertangi g‘alaba.",
+  "Bahona emas, natija yarat.",
+  "O‘zing bilan raqobat qil."
+];
+
+function openPage(id) {
+  document
+    .querySelectorAll(".page")
+    .forEach(page => page.classList.remove("active"));
+
+  document.getElementById(id).classList.add("active");
+
+  document
+    .querySelectorAll(".nav button")
+    .forEach(button => button.classList.remove("active"));
+
+  const navButton = document.getElementById("nav-" + id);
+
+  if (navButton) {
+    navButton.classList.add("active");
+  }
+
+  window.scrollTo(0, 0);
+}
+
+function update() {
+  const level = Math.floor(xp / 1000) + 1;
+  const currentXP = xp % 1000;
+
+  document.getElementById("level").textContent = level;
+  document.getElementById("xp").textContent = xp;
+  document.getElementById("currentxp").textContent = currentXP;
+  document.getElementById("bar").style.width =
+    (currentXP / 10) + "%";
+
+  document.getElementById("days").textContent = days;
+
+  localStorage.setItem("arvex_xp", xp);
+  localStorage.setItem("arvex_days", days);
+
+  renderMedals();
+}
+
+function claimDaily() {
+  const today = new Date().toDateString();
+
+  if (localStorage.getItem("arvex_daily") === today) {
+    document.getElementById("xpmsg").textContent =
+      "Bugungi XP allaqachon olindi.";
+    return;
+  }
+
+  localStorage.setItem("arvex_daily", today);
+
+  xp += 20;
+  days++;
+
+  document.getElementById("xpmsg").textContent =
+    "+20 XP qo‘shildi!";
+
+  update();
+}
+
+function completeWorkout() {
+  xp += 100;
+  update();
+
+  alert("+100 XP! Mashg‘ulot bajarildi.");
+}
+
+function renderWorkouts() {
+  document.getElementById("workoutGrid").innerHTML =
+    workouts.map((workout, index) => `
+      <div
+        class="day ${workout[2]}"
+        onclick="showWorkout(${index})"
+      >
+        <b>${workout[0]}</b>
+        <br>
+        <small>${workout[1]}</small>
+        <br>
+        <span class="muted">${workout[3]}</span>
+      </div>
+    `).join("");
+}
+
+function showWorkout(index) {
+  const workout = workouts[index];
+
+  document.getElementById("workoutDetail").innerHTML = `
+    <h3>${workout[0]} — ${workout[1]}</h3>
+
+    <p>
+      <b>Mushak:</b> ${workout[3]}
+      <br>
+      <b>Vaqt:</b> ${workout[4]}
+    </p>
+
+    <ul>
+      ${workout[5]
+        .map(exercise => `<li>${exercise}</li>`)
+        .join("")}
+    </ul>
+
+    <button onclick="completeWorkout()">
+      MASHG‘ULOTNI YAKUNLASH +100 XP
+    </button>
+  `;
+}
+
+function renderMeals() {
+  document.getElementById("mealGrid").innerHTML =
+    meals.map((meal, index) => `
+      <div
+        class="meal"
+        onclick="showMeal(${index})"
+      >
+        <b>${meal[0]}</b>
+        <br>
+        <span class="muted">3 mahal ovqat</span>
+      </div>
+    `).join("");
+}
+
+function showMeal(index) {
+  const meal = meals[index];
+
+  document.getElementById("mealDetail").innerHTML = `
+    <h3>${meal[0]} — Bugungi ovqatlanish</h3>
+
+    <p>
+      🌅 <b>Nonushta:</b> ${meal[1]}
+    </p>
+
+    <p>
+      ☀️ <b>Tushlik:</b> ${meal[2]}
+    </p>
+
+    <p>
+      🌙 <b>Kechki ovqat:</b> ${meal[3]}
+    </p>
+  `;
+}
+
+function renderMedals() {
+  const medals = [
+    ["🥉", "BRONZE", "7 kun", 7],
+    ["🥈", "SILVER", "30 kun", 30],
+    ["🥇", "GOLD", "90 kun", 90],
+    ["🏆", "ELITE", "180 kun", 180],
+    ["📜", "1 YEAR CERTIFICATE", "365 kun", 365]
+  ];
+
+  document.getElementById("medalGrid").innerHTML =
+    medals.map(medal => `
+      <div class="medal ${days < medal[3] ? "lock" : ""}">
+        <strong>${medal[0]}</strong>
+        <h3>${medal[1]}</h3>
+        <p>${medal[2]}</p>
+        <small>
+          ${days >= medal[3] ? "UNLOCKED" : "LOCKED"}
+        </small>
+      </div>
+    `).join("");
+}
+
+function saveProfile() {
+  const first = document.getElementById("first").value;
+  const last = document.getElementById("last").value;
+  const goal = document.getElementById("goal").value;
+
+  localStorage.setItem(
+    "arvex_profile",
+    JSON.stringify({
+      first,
+      last,
+      goal
+    })
+  );
+
+  document.getElementById("profileResult").innerHTML = `
+    <h3>👋 Salom, ${first} ${last}!</h3>
+    <p>Maqsad: ${goal}</p>
+  `;
+}
+
+function loadProfile() {
+  const saved = JSON.parse(
+    localStorage.getItem("arvex_profile") || "null"
+  );
+
+  if (!saved) return;
+
+  document.getElementById("first").value = saved.first;
+  document.getElementById("last").value = saved.last;
+  document.getElementById("goal").value = saved.goal;
+
+  document.getElementById("profileResult").innerHTML = `
+    <h3>👋 Salom, ${saved.first} ${saved.last}!</h3>
+    <p>Maqsad: ${saved.goal}</p>
+  `;
+}
+
+document.getElementById("quote").textContent =
+  quotes[new Date().getDay() % quotes.length];
+
+renderWorkouts();
+renderMeals();
+update();
+loadProfile();
+openPage("home");
+</script>
+
+  </body>
+</html>
