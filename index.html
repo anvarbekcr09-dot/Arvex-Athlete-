@@ -1,19 +1,286 @@
->!doctype html><html lang="uz"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#06110c"><title>ARVEX FC 2.0</title><style>
-:root{--g:#00ff91;--bg:#030807;--p:#091b14;--mut:#a6b9b0;--cyan:#00eaff;--purple:#b75cff;--orange:#ffad20;--red:#ff326e;--blue:#2998ff;--yellow:#ffe000}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#123c28,#030807 48%);color:#f4fff9;font-family:Arial,sans-serif}.hidden{display:none!important}button,input{font:inherit}button{cursor:pointer}.app{max-width:1100px;margin:auto;padding:14px 14px 100px}.top{display:flex;justify-content:space-between;align-items:center;padding:8px 0 18px}.logo{font-size:clamp(28px,6vw,50px);font-weight:1000;font-style:italic;letter-spacing:-2px}.logo span{color:#c6d0cc}.sub{font-size:10px;letter-spacing:3px;color:var(--mut)}.btn{border:1px solid #28795a;background:#071a12;color:var(--g);border-radius:13px;padding:10px 14px;font-weight:800}.primary{border:0;background:linear-gradient(100deg,#00b96b,#00ff91);color:#001b0e;border-radius:14px;padding:13px 17px;font-weight:900}.hero{position:relative;overflow:hidden;border:1px solid #20875d;border-radius:28px;padding:28px;background:linear-gradient(90deg,#04160ef5,#04100bcc),url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1a?auto=format&fit=crop&w=1400&q=85') center/cover;box-shadow:0 0 35px #00ff9120}.hero h1{font-size:clamp(38px,8vw,80px);line-height:.94;margin:12px 0}.hero h1 span{color:var(--g)}.hero p{max-width:570px;color:#d0e0d8;line-height:1.6}.tag{color:var(--g);font-size:11px;font-weight:900;letter-spacing:1px}.quote{color:var(--cyan);font-weight:800}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.stat{background:#061a12dc;border:1px solid #1e7252;border-radius:15px;padding:12px}.stat b{display:block;color:var(--g);font-size:23px}.stat small{color:var(--mut)}section{margin-top:24px}.head{display:flex;justify-content:space-between;align-items:end;margin-bottom:12px}.head h2{margin:0;font-size:22px}.head small{color:var(--mut)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{background:linear-gradient(145deg,#0c251aeb,#040c08ed);border:1px solid #205e47;border-radius:21px;padding:17px;box-shadow:inset 0 1px #fff1,0 10px 30px #0006;transition:.2s;color:#fff}.card:hover{transform:translateY(-3px);border-color:var(--g)}.card h3{margin:7px 0;font-size:18px}.card p{color:#b9cbc2;font-size:13px;line-height:1.55}.icon{font-size:32px}.level{display:grid;grid-template-columns:100px 1fr;gap:17px;align-items:center}.lv{border:2px solid var(--purple);border-radius:25px;text-align:center;padding:15px;box-shadow:0 0 25px #b75cff33}.lv small{display:block;color:var(--g);font-weight:900}.lv strong{font-size:47px}.progress{height:12px;background:#192b24;border-radius:99px;overflow:hidden;margin:11px 0}.progress i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--purple),var(--g));border-radius:99px}.days{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.day{min-height:115px;text-align:left;border-color:var(--c);background:linear-gradient(145deg,color-mix(in srgb,var(--c) 18%,#07110d),#06100d)}.day strong{color:var(--c);font-size:12px}.day b{display:block;margin:10px 0;font-size:16px}.day small{color:#d0ded8}.day.active{outline:2px solid var(--c);box-shadow:0 0 25px color-mix(in srgb,var(--c) 35%,transparent)}.detail{margin-top:12px;border-color:var(--c)}.detail li{line-height:1.9;font-size:13px;color:#d8e6df}.medals{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.medal{text-align:center;min-height:175px;border-color:var(--c)}.medal .symbol{font-size:45px;filter:drop-shadow(0 0 10px var(--c))}.medal h3{color:var(--c);font-size:15px}.locked{opacity:.42;filter:grayscale(1)}.wide{grid-column:span 2}.bottom{position:fixed;z-index:10;bottom:9px;left:50%;transform:translateX(-50%);width:min(720px,calc(100% - 20px));display:grid;grid-template-columns:repeat(5,1fr);gap:3px;padding:8px;background:#030b08f2;border:1px solid #206b50;border-radius:22px;box-shadow:0 0 30px #000b;backdrop-filter:blur(12px)}.nav{border:0;background:transparent;color:#82968c;border-radius:14px;padding:7px 2px;font-size:10px;font-weight:900}.nav span{display:block;font-size:21px;margin-bottom:3px}.nav.active{color:var(--g);background:#00ff9112}.auth{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at top,#164c32,#030807 65%)}.authbox{width:min(470px,100%);padding:28px;border:1px solid #20875d;border-radius:28px;background:linear-gradient(145deg,#092218f2,#030807f2),url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=80') center/cover}.authbox h1{font-size:43px;color:var(--g);font-style:italic;margin:0}.field{display:block;color:#bcd0c5;font-size:12px;font-weight:800;margin:13px 0}.field input{display:block;width:100%;margin-top:7px;padding:13px;border-radius:12px;border:1px solid #236b51;background:#06120d;color:#fff}.authbox .primary{width:100%;margin-top:10px}.switch{text-align:center;color:var(--mut);font-size:13px;margin-top:15px}.switch button{border:0;background:none;color:var(--g);font-weight:900}.notice{font-size:11px;color:#e2b96c;line-height:1.5;margin-top:15px}@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}.medals{grid-template-columns:repeat(2,1fr)}.wide{grid-column:span 2}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:480px){.app{padding:10px 10px 100px}.hero{padding:21px}.grid,.days{gap:8px}.card{padding:13px;border-radius:18px}.day b{font-size:14px}.level{grid-template-columns:78px 1fr;gap:10px}.lv strong{font-size:38px}.nav{font-size:9px}}
-</style></head><body>
-<div id="auth" class="auth"><div class="authbox"><div class="tag">AMIR TEMUR AVLODLARI</div><h1>ARVEX FC</h1><p class="quote">“Kuch — intizomda, g‘alaba — sabrda.”</p><form id="form"><label class="field">Ism<input id="first" required maxlength="30" placeholder="Anvarbek"></label><label class="field">Familiya<input id="last" required maxlength="30" placeholder="Qodirov"></label><label class="field">Parol<input id="pass" required minlength="4" type="password" placeholder="Kamida 4 belgi"></label><button class="primary" id="submit">RO‘YXATDAN O‘TISH →</button></form><div class="switch"><span id="switchText">Akkauntingiz bormi?</span> <button id="switch" type="button">Kirish</button></div><div class="notice">Demo versiya: ma’lumotlar ushbu brauzerda saqlanadi.</div></div></div>
-<div id="app" class="app hidden"><header class="top"><div><div class="logo">ARVEX <span>FC</span></div><div class="sub">STRONGER THAN YESTERDAY</div></div><button class="btn" id="logout">↪</button></header>
-<main id="home" class="page"><div class="hero"><div class="tag">ATHLETE MODE • DISCIPLINE • PROGRESS</div><h1>BUILD YOUR<br><span>LEGACY.</span></h1><p id="welcome"></p><div class="quote" id="motivation"></div><div class="stats"><div class="stat"><b id="hLevel">1</b><small>Level</small></div><div class="stat"><b id="hXp">0</b><small>Total XP</small></div><div class="stat"><b id="hDays">0</b><small>Active days</small></div><div class="stat"><b id="hMedals">0</b><small>Medals</small></div></div></div><section><div class="head"><h2>Today’s Level</h2><small>+100 XP once daily</small></div><div class="card level"><div class="lv"><small>LEVEL</small><strong id="level">1</strong></div><div><h3 id="levelName">Athlete Beginner</h3><b id="xpText">0 / 1000 XP</b><div class="progress"><i id="xpBar"></i></div><p id="levelHint"></p><button class="primary" id="xpBtn">⚡ GET DAILY XP +100</button></div></div></section><section><div class="head"><h2>Quick Access</h2><small>Choose your mission</small></div><div class="grid"><button class="card" data-go="workout"><div class="icon">💪</div><h3>Workout</h3><p>Strength and discipline.</p></button><button class="card" data-go="nutrition"><div class="icon">🍽️</div><h3>Nutrition</h3><p>Fuel your body.</p></button><button class="card" data-go="medals"><div class="icon">🏆</div><h3>Medals</h3><p>Unlock achievements.</p></button><button class="card" data-go="profile"><div class="icon">👤</div><h3>Profile</h3><p>Your athlete zone.</p></button></div></section><section><div class="head"><h2>Daily Challenge</h2><small>+50 XP</small></div><div class="card"><div class="icon">⚡</div><h3 id="challenge">20 ta squat</h3><p>Vazifani bajaring va o‘zingizni sinang.</p><button class="primary" id="challengeBtn">MARK AS COMPLETE</button></div></section></main>
-<main id="workout" class="page hidden"><div class="hero"><div class="tag">ARVEX TRAINING SYSTEM</div><h1>TRAIN<br><span>HARD.</span></h1><p>Har bir mashg‘ulot — kuchliroq versiyangizga yana bir qadam.</p></div><section><div class="head"><h2>Weekly Workout</h2><small>Tap a day</small></div><div id="workoutDays" class="days"></div><div id="workoutDetail" class="card detail"></div></section></main>
-<main id="nutrition" class="page hidden"><div class="hero"><div class="tag">FUEL YOUR PERFORMANCE</div><h1>EAT<br><span>SMART.</span></h1><p>Muvozanatli ovqatlanish — sog‘lom sport odatlarining asosi.</p></div><section><div class="head"><h2>Today’s Nutrition</h2><small id="mealToday"></small></div><div id="todayMeal" class="card"></div></section><section><div class="head"><h2>Weekly Menu</h2><small>Tap a day</small></div><div id="mealDays" class="days"></div><div id="mealDetail" class="card detail"></div></section></main>
-<main id="medals" class="page hidden"><div class="hero"><div class="tag">EARN YOUR LEGACY</div><h1>UNLOCK<br><span>HONOR.</span></h1><p>Har bir medal muntazamlik va mehnatni ifodalaydi.</p></div><section><div class="head"><h2>Achievement Medals</h2><small id="medalStatus"></small></div><div id="medalGrid" class="medals"></div></section></main>
-<main id="profile" class="page hidden"><div class="hero"><div class="tag">ATHLETE IDENTITY</div><h1>YOUR<br><span>PROFILE.</span></h1><p>Intizomni saqlang. Natijangizni kuzating.</p></div><section><div class="card"><div class="tag">ARVEX SPORTCHI</div><h2 id="pName"></h2><p>ARVEX FC MEMBER • ATHLETE</p><div class="stats"><div class="stat"><b id="pXp">0</b><small>XP</small></div><div class="stat"><b id="pDays">0</b><small>Active days</small></div><div class="stat"><b id="pLevel">1</b><small>Level</small></div><div class="stat"><b id="pMedals">0</b><small>Medals</small></div></div></div></section><section><div class="grid"><div class="card"><div class="icon">🎯</div><h3>My Goal</h3><p>Healthy strength, discipline and steady progress.</p></div><div class="card"><div class="icon">📚</div><h3>ARVEX Academy</h3><p>Sport va sog‘lom odatlar bo‘yicha bilimlar.</p></div><div class="card wide"><div class="icon">🏅</div><h3>Elite Mindset</h3><p>“Maqsad — faqat medal emas, muntazamlik va intizom.”</p></div></div></section></main><p style="text-align:right;color:#8ea59b;font-size:12px">Website creator: <b>Qodirov Anvarbek</b></p></div>
-<nav id="nav" class="bottom hidden"><button class="nav active" data-go="home"><span>⌂</span>Home</button><button class="nav" data-go="workout"><span>⚒</span>Workout</button><button class="nav" data-go="nutrition"><span>◉</span>Nutrition</button><button class="nav" data-go="medals"><span>🏆</span>Medals</button><button class="nav" data-go="profile"><span>♙</span>Profile</button></nav>
-<script>
-'use strict';const $=id=>document.getElementById(id),KEY='arvexAccount',XP='arvexXP',CURRENT='arvexCurrent',DAY='arvexDaily';let login=false,wi=0,mi=0;
-const W=[['DUSHANBA','SHOULDER','#00ff91','18:00–19:30','Yelkani kuchaytirish va shakllantirish.',['Shoulder press — 3×12','Lateral raise — 3×15','Front raise — 3×12','Shrugs — 3×15']],['SESHANBA','BACK / LATS','#ffad20','18:00–19:30','Orqa mushaklarini rivojlantirish.',['Lat pulldown — 3×12','Dumbbell row — 3×12','Seated row — 3×15','Back extension — 3×12']],['CHORSHANBA','LEGS','#b75cff','18:00–19:30','Oyoq mushaklarini kuchaytirish.',['Squat — 3×12','Lunges — 3×12','Calf raise — 3×20','Glute bridge — 3×15']],['PAYSHANBA','FULL BODY','#2998ff','18:00–19:30','Barcha asosiy mushaklar uchun kompleks mashg‘ulot.',['Bodyweight squat — 3×15','Push-up — 3×10','Plank — 3×30 sec','Mountain climber — 3×20']],['JUMA','ARMS','#00eaff','18:00–19:30','Qo‘l mushaklarini kuchaytirish.',['Biceps curl — 3×12','Hammer curl — 3×12','Triceps extension — 3×12','Close-grip push-up — 3×10']],['SHANBA','TOTAL BODY','#ff326e','18:00–19:30','To‘liq tana uchun umumiy mashg‘ulot.',['Squat — 3×15','Push-up — 3×12','Row — 3×12','Plank — 3×40 sec']],['YAKSHANBA','REST DAY','#ffe000','Recovery','Tana tiklanadi va keyingi haftaga tayyorlanadi.',['Yengil yurish','Stretching','Yetarli uyqu','Suv va muvozanatli ovqatlanish']]];
-const M=[['DUSHANBA','Tovuq + guruch + sabzavot','#00ff91'],['SESHANBA','Baliq + kartoshka','#ffad20'],['CHORSHANBA','Go‘sht + makaron','#b75cff'],['PAYSHANBA','Tuxum + suli','#2998ff'],['JUMA','Tovuq + bulg‘ur','#00eaff'],['SHANBA','Mol go‘shti + guruch','#ff326e'],['YAKSHANBA','Yengil ovqat + meva','#ffe000']];const MM=['Breakfast: tuxum, suli va meva','Lunch: oqsil, guruch yoki don mahsuloti, sabzavot','Dinner: baliq yoki loviya, salat'];const MED=[['Bronze','🥉',7,'#cd7f32'],['Silver','🥈',30,'#b8c4d1'],['Gold','🥇',90,'#ffd21c'],['Elite','💎',180,'#b75cff'],['1 Year Certificate','🏆',365,'#00eaff']];
-function acc(){try{return JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){return null}}function save(a){localStorage.setItem(KEY,JSON.stringify(a));localStorage.setItem(CURRENT,'1')}function xp(){return +(localStorage.getItem(XP)||0)}function days(){return +(acc()?.days||0)}function lv(){return Math.floor(xp()/1000)+1}function today(){return(new Date().getDay()+6)%7}function showApp(){ $('auth').classList.add('hidden');$('app').classList.remove('hidden');$('nav').classList.remove('hidden');render();go('home')}function render(){let a=acc(),x=xp(),l=lv(),d=days();$('welcome').textContent=`Xush kelibsiz, ${a.first} ${a.last}! Bugun ham o‘zingizni rivojlantiring.`;$('motivation').textContent=['Har kuni kichik qadam katta natijaga olib boradi.','Intizom — motivatsiya yo‘q paytda ham davom etish.','Bugungi mehnat — ertangi kuch.','Kuch tanada, g‘alaba odatlarda.'][new Date().getDate()%4];$('hLevel').textContent=l;$('hXp').textContent=x;$('hDays').textContent=d;$('hMedals').textContent=MED.filter(m=>d>=m[2]).length;$('level').textContent=l;$('levelName').textContent=l>=5?'Rising Athlete':'Athlete Beginner';$('xpText').textContent=`${x%1000} / 1000 XP`;$('xpBar').style.width=(x%1000)/10+'%';$('levelHint').textContent=`Keyingi levelga ${1000-x%1000} XP qoldi.`;$('xpBtn').disabled=localStorage.getItem(DAY)===new Date().toISOString().slice(0,10);$('xpBtn').textContent=$('xpBtn').disabled?'✓ TODAY’S XP COLLECTED':'⚡ GET DAILY XP +100';$('pName').textContent=a.first+' '+a.last;$('pXp').textContent=x;$('pDays').textContent=d;$('pLevel').textContent=l;$('pMedals').textContent=MED.filter(m=>d>=m[2]).length;renderW();renderM();renderMed()}function renderW(){$('workoutDays').innerHTML=W.map((w,i)=>`<button class="card day ${i===wi?'active':''}" style="--c:${w[2]}" data-w="${i}"><strong>${w[0]}</strong><b>${w[1]}</b><small>${w[3]}</small></button>`).join('');let w=W[wi];$('workoutDetail').style.setProperty('--c',w[2]);$('workoutDetail').innerHTML=`<div class="tag">${w[0]}</div><h3 style="color:${w[2]}">${w[1]}</h3><p>${w[4]}<br>⏱ ${w[3]}</p><ul>${w[5].map(x=>`<li>${x}</li>`).join('')}</ul><button class="primary" data-complete="1">✓ COMPLETE SESSION</button>`}function renderM(){$('mealDays').innerHTML=M.map((m,i)=>`<button class="card day ${i===mi?'active':''}" style="--c:${m[2]}" data-m="${i}"><strong>${m[0]}</strong><b>${m[1]}</b><small>3 meals</small></button>`).join('');let m=M[mi];$('mealDetail').style.setProperty('--c',m[2]);$('mealDetail').innerHTML=`<div class="tag">${m[0]}</div><h3 style="color:${m[2]}">${m[1]}</h3><ul>${MM.map(x=>`<li>${x}</li>`).join('')}</ul>`;$('mealToday').textContent=M[today()][0];$('todayMeal').innerHTML=`<div class="tag">TODAY’S MENU</div><h3 style="color:${M[today()][2]}">${M[today()][1]}</h3><ul>${MM.map(x=>`<li>${x}</li>`).join('')}</ul>`}function renderMed(){let d=days();$('medalStatus').textContent=MED.filter(m=>d>=m[2]).length+' / 5 unlocked';$('medalGrid').innerHTML=MED.map(m=>`<div class="card medal ${d>=m[2]?'':'locked'}" style="--c:${m[3]}"><div class="symbol">${m[1]}</div><h3>${m[0]}</h3><p>${m[2]} days</p><small>${d>=m[2]?'✓ UNLOCKED':'🔒 LOCKED'}</small></div>`).join('')}function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('hidden',p.id!==id));document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.go===id));scrollTo(0,0)}
-$('form').addEventListener('submit',e=>{e.preventDefault();let f=$('first').value.trim(),l=$('last').value.trim(),p=$('pass').value,a=acc();if(login){if(!a||a.first!==f||a.last!==l||a.password!==p)return alert('Ma’lumotlar noto‘g‘ri.')}else{if(a&&!confirm('Eski akkauntni almashtirasizmi?'))return;save({first:f,last:l,password:p,days:0});localStorage.setItem(XP,'0');localStorage.removeItem(DAY)}showApp()});$('switch').addEventListener('click',()=>{login=!login;$('submit').textContent=login?'KIRISH →':'RO‘YXATDAN O‘TISH →';$('switchText').textContent=login?'Yangi akkaunt kerakmi?':'Akkauntingiz bormi?';$('switch').textContent=login?'Ro‘yxatdan o‘tish':'Kirish'});$('xpBtn').addEventListener('click',()=>{let k=new Date().toISOString().slice(0,10);if(localStorage.getItem(DAY)===k)return;localStorage.setItem(DAY,k);localStorage.setItem(XP,String(xp()+100));let a=acc();a.days=days()+1;save(a);render();alert('+100 XP olindi!')});$('challengeBtn').addEventListener('click',()=>{let k='challenge'+new Date().toISOString().slice(0,10);if(localStorage.getItem(k))return alert('Bugungi challenge bajarilgan.');localStorage.setItem(k,'1');localStorage.setItem(XP,String(xp()+50));render();alert('+50 XP! Zo‘r ish!')});$('logout').addEventListener('click',()=>{localStorage.removeItem(CURRENT);$('auth').classList.remove('hidden');$('app').classList.add('hidden');$('nav').classList.add('hidden')});document.addEventListener('click',e=>{let g=e.target.closest('[data-go]');if(g)return go(g.dataset.go);let w=e.target.closest('[data-w]');if(w){wi=+w.dataset.w;renderW()}let m=e.target.closest('[data-m]');if(m){mi=+m.dataset.m;renderM()}if(e.target.closest('[data-complete]'))alert('Mashg‘ulot belgilandi!')});if(acc()&&localStorage.getItem(CURRENT)==='1')showApp();
-</script></body></html>
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>ARVEX FC</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --green: #42ff9b;
+      --background: #070a0f;
+      --card: #111923;
+      --border: #293747;
+      --text: #f5f7fb;
+      --muted: #8d9aaa;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding-bottom: 90px;
+      background: var(--background);
+      color: var(--text);
+      font-family: "Inter", Arial, sans-serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.5;
+      background:
+        linear-gradient(#07100ecc, #070a0fee),
+        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=85")
+        center / cover;
+    }
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 18px;
+      background: #080d14dd;
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .logo span {
+      color: #89919e;
+    }
+
+    .tag {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: auto;
+      padding: 18px;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .panel {
+      margin: 15px 0;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      background: linear-gradient(145deg, #141e29ee, #0d131cee);
+      box-shadow: 0 12px 35px #0006;
+    }
+
+    .hero {
+      min-height: 310px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background:
+        linear-gradient(90deg, #07100eee, #07100e55),
+        url("https://images.unsplash.com/photo-1581009146145-b5ef050c2e1a?auto=format&fit=crop&w=1500&q=85")
+        center / cover;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 3px;
+    }
+
+    h1 {
+      margin: 12px 0;
+      font-size: clamp(38px, 8vw, 75px);
+      font-weight: 900;
+    }
+
+    h1 span {
+      color: var(--green);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    button {
+      margin: 4px;
+      padding: 12px 16px;
+      border: 0;
+      border-radius: 13px;
+      background: var(--green);
+      color: #07100b;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    button.alt {
+      background: #202d3b;
+      color: white;
+    }
+
+    .stats,
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .stat {
+      padding: 17px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: #ffffff08;
+    }
+
+    .stat b {
+      display: block;
+      color: var(--green);
+      font-size: 27px;
+    }
+
+    .progress {
+      height: 13px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #2a3542;
+    }
+
+    .fill {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--green), #a66cff);
+      transition: 0.5s;
+    }
+
+    .day,
+    .meal,
+    .medal {
+      padding: 17px;
+      border: 1px solid #3a495b;
+      border-radius: 18px;
+      cursor: pointer;
+    }
+
+    .green {
+      background: #153f2d;
+    }
+
+    .orange {
+      background: #6b3b17;
+    }
+
+    .purple {
+      background: #47265f;
+    }
+
+    .blue {
+      background: #1d4d7e;
+    }
+
+    .cyan {
+      background: #15565a;
+    }
+
+    .red {
+      background: #6b2636;
+    }
+
+    .yellow {
+      background: #66551c;
+    }
+
+    .detail {
+      margin-top: 15px;
+      padding: 20px;
+      border: 1px solid var(--green);
+      border-radius: 20px;
+      background: #09130fdd;
+    }
+
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: center;
+      padding: 10px 4px;
+      background: #0b111bef;
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border);
+    }
+
+    .nav button {
+      padding: 9px;
+      background: transparent;
+      color: #b9c4d0;
+      font-size: 11px;
+    }
+
+    .nav button.active {
+      color: var(--green);
+    }
+
+    input {
+      width: 100%;
+      margin: 6px 0;
+      padding: 14px;
+      border: 1px solid #344457;
+      border-radius: 12px;
+      background: #0a111a;
+      color: white;
+    }
+
+    .creator {
+      margin: 25px 0;
+      color: #778596;
+      text-align: center;
+      font-size: 11px;
+    }
+
+    @media (max-width: 600px) {
+      .stats,
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .panel {
+        padding: 17px;
+      }
+
+      .nav button {
+        padding: 8px 6px;
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
