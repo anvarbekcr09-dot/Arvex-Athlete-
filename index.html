@@ -1,157 +1,585 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>ARVEX FC 2.0</title>
+<title>ARVEX FC</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
---g:#20ff78;--b:#20a9ff;--p:#873cff;--bg:#040708;
---card:#0b1114;--muted:#849198;--white:#f4f7f8;
+ --g:#20ff78;
+ --b:#20a9ff;
+ --p:#873cff;
+ --red:#ff4050;
+ --gold:#ffd52a;
+ --bg:#030607;
+ --card:#0b1114;
+ --muted:#849198;
+ --white:#f5f8f9;
 }
+html{scroll-behavior:smooth}
 body{
-font-family:Arial,sans-serif;color:var(--white);background:
-radial-gradient(circle at 10% 5%,rgba(32,255,120,.13),transparent 28%),
-radial-gradient(circle at 90% 15%,rgba(32,169,255,.14),transparent 30%),
-#040708;min-height:100vh;padding-bottom:90px
+ font-family:Arial,sans-serif;
+ color:var(--white);
+ min-height:100vh;
+ padding-bottom:100px;
+ background:
+ radial-gradient(circle at 5% 5%,#20ff7818,transparent 27%),
+ radial-gradient(circle at 95% 10%,#20a9ff18,transparent 30%),
+ radial-gradient(circle at 50% 100%,#873cff12,transparent 35%),
+ #030607;
 }
 button{font-family:inherit;border:0;cursor:pointer}
-.app{max-width:650px;margin:auto;padding:16px 13px}
-.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.logo{font-size:32px;font-weight:1000;letter-spacing:-1.5px}
-.logo span{color:var(--g)}.logo b{color:#aeb4b7}
-.temur{font-size:11px;letter-spacing:2px;color:#879399;font-weight:bold;margin-top:2px}
-.dots{display:flex;gap:4px;margin-top:5px}.dot{width:5px;height:5px;border-radius:50%;background:var(--g)}
-.page{display:none;animation:fade .25s ease}.page.active{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
-.title{font-size:34px;font-weight:1000;line-height:1;margin:17px 0 5px}
-.subtitle{color:var(--muted);font-size:13px;margin-bottom:16px}
+button:active{transform:scale(.95)}
+.app{width:100%;max-width:650px;margin:auto;padding:15px 13px}
+
+.header{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:8px;
+}
+.logo{
+ font-size:33px;
+ font-weight:1000;
+ letter-spacing:-2px;
+ text-shadow:0 0 22px #20ff7840;
+}
+.logo span{color:var(--g)}
+.logo b{color:#aeb4b7}
+.temur{
+ font-size:10px;
+ letter-spacing:3px;
+ color:#879399;
+ font-weight:bold;
+ margin-top:2px;
+}
+.dots{display:flex;gap:4px;margin-top:5px}
+.dot{
+ width:5px;height:5px;border-radius:50%;
+ background:var(--g);
+ box-shadow:0 0 8px var(--g);
+}
+
+.page{display:none}
+.page.active{display:block;animation:pageIn .3s ease}
+@keyframes pageIn{
+ from{opacity:0;transform:translateY(10px)}
+ to{opacity:1;transform:translateY(0)}
+}
+
+.title{
+ font-size:35px;
+ font-weight:1000;
+ line-height:1;
+ margin:17px 0 5px;
+ letter-spacing:-1px;
+}
+.subtitle{
+ color:var(--muted);
+ font-size:13px;
+ margin-bottom:16px;
+}
+
 .card{
-background:linear-gradient(145deg,#0d1518,#080c0e);
-border:1px solid rgba(255,255,255,.07);border-radius:21px;
-padding:17px;margin-bottom:12px;box-shadow:0 12px 35px #0005
+ background:linear-gradient(145deg,#0d1518,#080c0e);
+ border:1px solid #ffffff0e;
+ border-radius:22px;
+ padding:17px;
+ margin-bottom:12px;
+ box-shadow:0 12px 35px #0007;
 }
-.label{font-size:11px;color:var(--muted);letter-spacing:1.5px;font-weight:bold;text-transform:uppercase}
-.big{font-size:24px;font-weight:1000;margin-top:7px}
-.goal{border-color:#20ff7833;background:linear-gradient(135deg,#20ff7812,#20a9ff09),#0b1012}
+
+.label{
+ font-size:10px;
+ color:var(--muted);
+ letter-spacing:1.7px;
+ font-weight:bold;
+ text-transform:uppercase;
+}
+.big{
+ font-size:24px;
+ font-weight:1000;
+ margin-top:7px;
+ line-height:1.15;
+}
+
+.goal{
+ border-color:#20ff7838;
+ background:
+ linear-gradient(135deg,#20ff7814,#20a9ff09),
+ #0b1012;
+}
+
 .level{
-background:linear-gradient(135deg,#873cff2b,#20ff780d),#0c0d12;
-border-color:#873cff55
+ background:
+ radial-gradient(circle at 100% 0,#873cff2c,transparent 45%),
+ linear-gradient(135deg,#20ff7809,#873cff12),
+ #0c0d12;
+ border-color:#873cff60;
 }
-.leveltop{display:flex;justify-content:space-between;align-items:center}
-.lv{font-size:38px;font-weight:1000}
+
+.leveltop{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+}
+.lv{
+ font-size:39px;
+ font-weight:1000;
+ text-shadow:0 0 18px #873cff70;
+}
+
 .xpbtn{
-padding:12px 16px;border-radius:14px;color:white;font-weight:1000;
-background:linear-gradient(135deg,#873cff,#20ff78)
+ padding:12px 15px;
+ border-radius:14px;
+ color:#fff;
+ font-weight:1000;
+ background:linear-gradient(135deg,#873cff,#20ff78);
+ box-shadow:0 0 18px #873cff45;
 }
-.xpbar{height:10px;background:#20262a;border-radius:20px;overflow:hidden;margin-top:14px}
-.xpfill{height:100%;width:0;background:linear-gradient(90deg,#873cff,#20ff78,#20a9ff);transition:.5s}
-.xptxt{font-size:11px;color:#9ca8ad;margin-top:7px}
-.mot{margin-top:14px;font-size:17px;font-weight:900}.mot span{color:var(--g);display:block;margin-top:4px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-.stat{background:#0b1012;border:1px solid #ffffff0c;border-radius:17px;text-align:center;padding:13px 5px}
-.stat strong{font-size:23px;display:block;font-weight:1000}.stat small{font-size:9px;color:var(--muted)}
-.days{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.day{min-height:64px;border-radius:16px;color:white;font-weight:1000;font-size:12px;border:1px solid #ffffff1c}
-.day:active{transform:scale(.96)}
-.green{background:linear-gradient(145deg,#0c9e4a,#19dc69)}
-.blue{background:linear-gradient(145deg,#0876c7,#20b8ff)}
-.red{background:linear-gradient(145deg,#ae1c2a,#ff4050)}
-.yellow{background:linear-gradient(145deg,#bd9000,#ffd52a);color:#111}
-.orange{background:linear-gradient(145deg,#c34d00,#ff8a18)}
-.purple{background:linear-gradient(145deg,#40145e,#7629a6)}
-.tiffany{background:linear-gradient(145deg,#008d9a,#36e2d1)}
-.day.active{box-shadow:0 0 22px #20ff7844}
-.detail{display:none;border-radius:21px;padding:19px;margin-top:11px;animation:fade .25s}
-.detail.show{display:block}.detail h3{font-size:23px;font-weight:1000;margin-bottom:8px}
-.detail p{line-height:1.55;color:#edf2f3}
-.time{display:inline-block;margin-top:11px;padding:8px 11px;border-radius:10px;background:#0004;font-weight:bold;font-size:12px}
-.complete{
-margin-top:13px;padding:11px 14px;border-radius:12px;background:#0005;color:white;font-weight:900
+
+.xpbar{
+ height:10px;
+ background:#20262a;
+ border-radius:20px;
+ overflow:hidden;
+ margin-top:14px;
 }
-.section-title{font-size:20px;font-weight:1000;margin:18px 0 10px}
+.xpfill{
+ height:100%;
+ width:0;
+ background:linear-gradient(90deg,#873cff,#20ff78,#20a9ff);
+ box-shadow:0 0 14px #20ff78;
+ transition:.5s;
+}
+.xptxt{
+ font-size:11px;
+ color:#9ca8ad;
+ margin-top:7px;
+}
+.mot{
+ margin-top:14px;
+ font-size:17px;
+ font-weight:900;
+}
+.mot span{
+ color:var(--g);
+ display:block;
+ margin-top:4px;
+}
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:9px;
+}
+.stat{
+ background:#0b1012;
+ border:1px solid #ffffff0d;
+ border-radius:18px;
+ text-align:center;
+ padding:13px 5px;
+ box-shadow:inset 0 0 18px #ffffff02;
+}
+.stat strong{
+ font-size:23px;
+ display:block;
+ font-weight:1000;
+}
+.stat small{
+ font-size:9px;
+ color:var(--muted);
+}
+
+.section-title{
+ font-size:20px;
+ font-weight:1000;
+ margin:19px 0 10px;
+}
+
 .challenge{
-background:linear-gradient(135deg,#20a9ff22,#20ff7810),#0b1013;
-border:1px solid #20a9ff44
+ background:
+ radial-gradient(circle at 100% 0,#20a9ff28,transparent 45%),
+ linear-gradient(135deg,#20ff7810,#20a9ff15),
+ #0b1013;
+ border-color:#20a9ff48;
 }
-.challenge-row{display:flex;align-items:center;gap:12px}
-.challenge-icon{font-size:31px}
-.challenge h3{font-size:17px}.challenge p{color:#9ca7ac;font-size:12px;margin-top:4px}
+.challenge-row{
+ display:flex;
+ align-items:center;
+ gap:12px;
+}
+.sticker{
+ width:52px;
+ height:52px;
+ flex:none;
+ display:grid;
+ place-items:center;
+ border-radius:17px;
+ font-size:27px;
+ background:linear-gradient(145deg,#14272c,#091013);
+ border:1px solid #ffffff13;
+ box-shadow:0 0 22px #20a9ff22;
+}
+.challenge h3{font-size:17px}
+.challenge p{
+ color:#9ca7ac;
+ font-size:12px;
+ margin-top:4px;
+}
 .challenge button{
-margin-top:13px;width:100%;padding:11px;border-radius:12px;
-background:linear-gradient(90deg,#20a9ff,#20ff78);font-weight:1000
+ margin-top:13px;
+ width:100%;
+ padding:12px;
+ border-radius:13px;
+ background:linear-gradient(90deg,#20a9ff,#20ff78);
+ font-weight:1000;
+ color:#04100a;
 }
+
 .progress-list{display:grid;gap:9px}
-.progress-row{display:flex;justify-content:space-between;padding:11px 13px;background:#0b1012;border-radius:13px;font-size:13px}
+.progress-row{
+ display:flex;
+ justify-content:space-between;
+ padding:12px 13px;
+ background:#0b1012;
+ border-radius:13px;
+ font-size:13px;
+}
 .progress-row b{color:var(--g)}
-.achievements{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.achievement{padding:14px;border-radius:17px;background:#0c1114;border:1px solid #ffffff0a}
-.achievement .ico{font-size:25px}.achievement h4{margin-top:6px}.achievement p{font-size:10px;color:#849198;margin-top:3px}
-.locked{opacity:.35;filter:grayscale(1)}
+
+.days{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:8px;
+}
+.day{
+ min-height:67px;
+ border-radius:17px;
+ color:#fff;
+ font-weight:1000;
+ font-size:11px;
+ border:1px solid #ffffff20;
+ transition:.18s;
+ box-shadow:0 7px 20px #0005;
+}
+.day.selected{
+ transform:translateY(-3px);
+ box-shadow:0 0 25px #20ff7860;
+ border-color:#ffffff70;
+}
+
+.green{background:linear-gradient(145deg,#078b42,#20df70)}
+.blue{background:linear-gradient(145deg,#066db8,#20b8ff)}
+.red{background:linear-gradient(145deg,#a51928,#ff4050)}
+.yellow{
+ background:linear-gradient(145deg,#bd9000,#ffd52a);
+ color:#111;
+}
+.orange{background:linear-gradient(145deg,#bd4800,#ff8a18)}
+.purple{background:linear-gradient(145deg,#40145e,#842dba)}
+.tiffany{background:linear-gradient(145deg,#008a96,#36e2d1)}
+
+.detail{
+ display:none;
+ border-radius:22px;
+ padding:19px;
+ margin-top:11px;
+ animation:detailIn .3s ease;
+ box-shadow:0 15px 35px #0007;
+}
+.detail.show{display:block}
+@keyframes detailIn{
+ from{opacity:0;transform:translateY(-8px)}
+ to{opacity:1;transform:translateY(0)}
+}
+.detail h3{
+ font-size:23px;
+ font-weight:1000;
+ margin-bottom:8px;
+}
+.detail p{line-height:1.55}
+.time{
+ display:inline-block;
+ margin-top:11px;
+ padding:8px 11px;
+ border-radius:10px;
+ background:#0005;
+ font-weight:bold;
+ font-size:12px;
+}
+.complete{
+ display:block;
+ margin-top:13px;
+ padding:12px 15px;
+ border-radius:13px;
+ background:#0006;
+ color:#fff;
+ font-weight:900;
+}
+
 .medals{display:grid;gap:10px}
-.medal{display:flex;gap:13px;align-items:center;padding:15px;border-radius:19px;background:#0c1114;border:1px solid #ffffff0b}
-.medalicon{width:53px;height:53px;border-radius:50%;display:grid;place-items:center;font-size:24px;background:linear-gradient(145deg,#272d31,#101416)}
-.medal h3{font-size:17px}.medal p{font-size:11px;color:#849198;margin-top:3px}
-.profile{text-align:center}.avatar{
-width:86px;height:86px;margin:auto;border-radius:50%;display:grid;place-items:center;
-font-size:35px;font-weight:1000;background:linear-gradient(135deg,#20ff78,#20a9ff);
-box-shadow:0 0 32px #20ff7830
+.medal{
+ position:relative;
+ overflow:hidden;
+ display:flex;
+ gap:13px;
+ align-items:center;
+ padding:15px;
+ border-radius:20px;
+ background:
+ linear-gradient(135deg,#101719,#090d0f);
+ border:1px solid #ffffff0c;
+ transition:.25s;
 }
-.pname{font-size:26px;font-weight:1000;margin-top:10px}.role{color:#849198;font-size:12px;margin-top:3px}
+.medal.unlocked{
+ border-color:#20ff7850;
+ box-shadow:0 0 20px #20ff7815;
+}
+.medalicon{
+ width:57px;
+ height:57px;
+ flex:none;
+ border-radius:50%;
+ display:grid;
+ place-items:center;
+ font-size:27px;
+ background:radial-gradient(circle,#30383d,#101416);
+ border:1px solid #ffffff16;
+ box-shadow:inset 0 0 16px #fff1;
+}
+.medal h3{font-size:17px}
+.medal p{
+ font-size:11px;
+ color:#849198;
+ margin-top:3px;
+}
+
+.achievements{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:9px;
+}
+.achievement{
+ padding:15px;
+ border-radius:18px;
+ background:#0c1114;
+ border:1px solid #ffffff0a;
+}
+.achievement .ico{font-size:27px}
+.achievement h4{margin-top:6px}
+.achievement p{
+ font-size:10px;
+ color:#849198;
+ margin-top:3px;
+}
+.locked{
+ opacity:.3;
+ filter:grayscale(1);
+}
+.unlocked{
+ opacity:1;
+ filter:none;
+}
+
+.profile{text-align:center}
+.avatar{
+ width:88px;
+ height:88px;
+ margin:auto;
+ border-radius:50%;
+ display:grid;
+ place-items:center;
+ font-size:35px;
+ font-weight:1000;
+ background:linear-gradient(135deg,#20ff78,#20a9ff);
+ box-shadow:0 0 35px #20ff7850;
+ color:#03110a;
+}
+.pname{
+ font-size:26px;
+ font-weight:1000;
+ margin-top:10px;
+}
+.role{
+ color:#849198;
+ font-size:12px;
+ margin-top:3px;
+}
+
 .ai{
-background:radial-gradient(circle at 90% 0%,#20a9ff25,transparent 35%),
-radial-gradient(circle at 0% 100%,#20ff7817,transparent 35%),#0b1013;
-border-color:#20a9ff44
+ background:
+ radial-gradient(circle at 90% 0,#20a9ff25,transparent 35%),
+ radial-gradient(circle at 0 100%,#20ff7817,transparent 35%),
+ #0b1013;
+ border-color:#20a9ff44;
 }
-.aihead{display:flex;gap:11px;align-items:center}.aiicon{
-width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:24px;
-background:linear-gradient(135deg,#20a9ff,#20ff78)
+.aihead{
+ display:flex;
+ gap:11px;
+ align-items:center;
 }
-.aihead h3{font-size:20px}.aihead p{font-size:11px;color:#849198;margin-top:3px}
-.messages{height:220px;overflow:auto;margin:15px 0}
-.msg{max-width:88%;padding:11px 13px;border-radius:15px;margin-bottom:8px;font-size:13px;line-height:1.45}
-.bot{background:#151d21}.user{margin-left:auto;background:linear-gradient(135deg,#0878c9,#20a9ff)}
-.air{display:flex;gap:7px}.ainput{
-flex:1;min-width:0;background:#080c0e;color:white;border:1px solid #ffffff14;
-padding:12px;border-radius:13px;outline:none
+.aiicon{
+ width:50px;
+ height:50px;
+ border-radius:16px;
+ display:grid;
+ place-items:center;
+ font-size:25px;
+ background:linear-gradient(135deg,#20a9ff,#20ff78);
+ box-shadow:0 0 25px #20a9ff40;
 }
-.aisend{width:48px;border-radius:13px;background:linear-gradient(135deg,#20ff78,#20a9ff);font-size:19px}
-.aiopts{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}
-.aiopt{background:#121a1e;color:#dfe7e9;border:1px solid #ffffff0b;padding:9px;border-radius:11px;font-size:10px;font-weight:bold}
+.aihead h3{font-size:20px}
+.aihead p{
+ font-size:11px;
+ color:#849198;
+ margin-top:3px;
+}
+.messages{
+ height:220px;
+ overflow:auto;
+ margin:15px 0;
+}
+.msg{
+ max-width:88%;
+ padding:11px 13px;
+ border-radius:15px;
+ margin-bottom:8px;
+ font-size:13px;
+ line-height:1.45;
+}
+.bot{background:#151d21}
+.user{
+ margin-left:auto;
+ background:linear-gradient(135deg,#0878c9,#20a9ff);
+}
+.air{display:flex;gap:7px}
+.ainput{
+ flex:1;
+ min-width:0;
+ background:#080c0e;
+ color:#fff;
+ border:1px solid #ffffff14;
+ padding:12px;
+ border-radius:13px;
+ outline:none;
+}
+.ainput:focus{border-color:#20a9ff80}
+.aisend{
+ width:48px;
+ border-radius:13px;
+ background:linear-gradient(135deg,#20ff78,#20a9ff);
+ font-size:19px;
+}
+.aiopts{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:7px;
+ margin-top:9px;
+}
+.aiopt{
+ background:#121a1e;
+ color:#dfe7e9;
+ border:1px solid #ffffff0b;
+ padding:10px;
+ border-radius:12px;
+ font-size:10px;
+ font-weight:bold;
+}
+
 .nav{
-position:fixed;bottom:9px;left:50%;transform:translateX(-50%);
-width:calc(100% - 18px);max-width:620px;padding:7px;
-display:grid;grid-template-columns:repeat(5,1fr);z-index:100;
-background:#090d0ff2;backdrop-filter:blur(18px);border:1px solid #ffffff10;border-radius:21px
+ position:fixed;
+ bottom:9px;
+ left:50%;
+ transform:translateX(-50%);
+ width:calc(100% - 18px);
+ max-width:620px;
+ padding:7px;
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ z-index:100;
+ background:#090d0ff5;
+ backdrop-filter:blur(20px);
+ border:1px solid #ffffff13;
+ border-radius:22px;
+ box-shadow:0 10px 35px #0009;
 }
-.nav button{background:transparent;color:#657278;padding:7px 2px;border-radius:14px;font-size:9px;font-weight:900}
-.nav span{display:block;font-size:19px;margin-bottom:2px}.nav button.active{color:var(--g);background:#20ff780d}
+.nav button{
+ background:transparent;
+ color:#657278;
+ padding:7px 2px;
+ border-radius:14px;
+ font-size:9px;
+ font-weight:900;
+ transition:.2s;
+}
+.nav span{
+ display:block;
+ font-size:20px;
+ margin-bottom:2px;
+}
+.nav button.active{
+ color:var(--g);
+ background:#20ff7810;
+ box-shadow:0 0 16px #20ff7812;
+}
+
 .toast{
-position:fixed;top:15px;left:50%;transform:translate(-50%,-100px);
-background:#11191c;border:1px solid #20ff7855;padding:12px 16px;border-radius:13px;
-z-index:200;font-size:12px;font-weight:bold;transition:.3s
+ position:fixed;
+ top:15px;
+ left:50%;
+ transform:translate(-50%,-120px);
+ background:#11191c;
+ border:1px solid #20ff7855;
+ padding:12px 16px;
+ border-radius:14px;
+ z-index:200;
+ font-size:12px;
+ font-weight:bold;
+ box-shadow:0 10px 30px #0008;
+ transition:.3s;
+ white-space:nowrap;
 }
 .toast.show{transform:translate(-50%,0)}
-.creator{text-align:center;color:#4e595e;font-size:9px;margin:23px 0 5px}
-@media(max-width:380px){.title{font-size:29px}.logo{font-size:27px}.day{font-size:10px}}
+
+.creator{
+ text-align:center;
+ color:#4e595e;
+ font-size:9px;
+ margin:23px 0 5px;
+}
+
+@media(max-width:380px){
+ .title{font-size:29px}
+ .logo{font-size:27px}
+ .day{font-size:10px}
+ .big{font-size:21px}
+}
 </style>
 </head>
 
 <body>
+
 <div class="app">
 
 <header class="header">
 <div>
 <div class="logo"><span>ARVEX</span> <b>FC</b></div>
 <div class="temur">AMIR TEMUR</div>
-<div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+<div class="dots">
+<i class="dot"></i>
+<i class="dot"></i>
+<i class="dot"></i>
+</div>
 </div>
 </header>
 
 <!-- HOME -->
 <section id="home" class="page active">
+
 <div class="title">HOME</div>
 <div class="subtitle">Sport • Intizom • Natija</div>
 
@@ -161,59 +589,106 @@ z-index:200;font-size:12px;font-weight:bold;transition:.3s
 </div>
 
 <div class="card level">
+
 <div class="leveltop">
-<div><div class="label">LEVEL</div><div class="lv">LV <span id="level">1</span></div></div>
-<button class="xpbtn" onclick="claimXP()">+25 XP</button>
+<div>
+<div class="label">LEVEL</div>
+<div class="lv">LV <span id="level">1</span></div>
 </div>
-<div class="xpbar"><div id="xpfill" class="xpfill"></div></div>
+
+<button id="xpButton" class="xpbtn">+25 XP</button>
+</div>
+
+<div class="xpbar">
+<div id="xpfill" class="xpfill"></div>
+</div>
+
 <div id="xptxt" class="xptxt">0 / 100 XP</div>
-<div class="mot">⚡ Bugungi motivatsiya<span id="motivation">Bugun boshlash uchun eng yaxshi kun.</span></div>
+
+<div class="mot">
+⚡ Bugungi motivatsiya
+<span id="motivation">Bugun boshlash uchun eng yaxshi kun.</span>
+</div>
+
 </div>
 
 <div class="stats">
-<div class="stat"><strong id="slevel">1</strong><small>LEVEL</small></div>
-<div class="stat"><strong id="sstreak">0</strong><small>STREAK</small></div>
-<div class="stat"><strong id="sworkout">0</strong><small>WORKOUT</small></div>
+<div class="stat">
+<strong id="slevel">1</strong>
+<small>LEVEL</small>
+</div>
+<div class="stat">
+<strong id="sstreak">0</strong>
+<small>STREAK</small>
+</div>
+<div class="stat">
+<strong id="sworkout">0</strong>
+<small>WORKOUT</small>
+</div>
 </div>
 
 <div class="section-title">🎯 Daily Challenge</div>
+
 <div class="card challenge">
 <div class="challenge-row">
-<div class="challenge-icon">⚡</div>
-<div><h3 id="challengeTitle">Bugungi challenge</h3><p id="challengeDesc">Kunlik vazifani bajaring.</p></div>
+<div class="sticker">⚡</div>
+<div>
+<h3 id="challengeTitle">Bugungi challenge</h3>
+<p id="challengeDesc">Kunlik vazifani bajaring.</p>
 </div>
-<button onclick="completeChallenge()">Challenge bajarildi • +20 XP</button>
+</div>
+
+<button id="challengeButton">
+Challenge bajarildi • +20 XP
+</button>
 </div>
 
 <div class="section-title">📊 Weekly Results</div>
+
 <div class="card">
 <div class="progress-list">
-<div class="progress-row"><span>Workout</span><b id="weekWorkout">0 / 5</b></div>
-<div class="progress-row"><span>Challenges</span><b id="weekChallenge">0 / 7</b></div>
-<div class="progress-row"><span>XP</span><b id="weekXP">0</b></div>
+<div class="progress-row">
+<span>Workout</span>
+<b id="weekWorkout">0 / 5</b>
+</div>
+<div class="progress-row">
+<span>Challenges</span>
+<b id="weekChallenge">0 / 7</b>
+</div>
+<div class="progress-row">
+<span>XP</span>
+<b id="weekXP">0</b>
 </div>
 </div>
+</div>
+
 </section>
 
 <!-- WORKOUT -->
 <section id="workout" class="page">
+
 <div class="title">WORKOUT</div>
 <div class="subtitle">Haftalik mashg‘ulot rejangiz</div>
 
 <div class="days">
-<button class="day green" onclick="showWorkout(0,this)">DUSHANBA</button>
-<button class="day green" onclick="showWorkout(1,this)">SESHANBA</button>
-<button class="day green" onclick="showWorkout(2,this)">CHORSHANBA</button>
-<button class="day blue" onclick="showWorkout(3,this)">PAYSHANBA</button>
-<button class="day green" onclick="showWorkout(4,this)">JUMA</button>
-<button class="day red" onclick="showWorkout(5,this)">SHANBA</button>
-<button class="day yellow" style="grid-column:2" onclick="showWorkout(6,this)">YAKSHANBA</button>
+
+<button class="day green" data-workout="0">💪<br>DUSHANBA</button>
+<button class="day green" data-workout="1">🔥<br>SESHANBA</button>
+<button class="day green" data-workout="2">🦵<br>CHORSHANBA</button>
+<button class="day blue" data-workout="3">⚡<br>PAYSHANBA</button>
+<button class="day green" data-workout="4">🎯<br>JUMA</button>
+<button class="day red" data-workout="5">👑<br>SHANBA</button>
+<button class="day yellow" data-workout="6" style="grid-column:2">😴<br>YAKSHANBA</button>
+
 </div>
+
 <div id="workoutDetail" class="detail"></div>
+
 </section>
 
 <!-- MEALS -->
 <section id="meals" class="page">
+
 <div class="title">MEALS</div>
 <div class="subtitle">1 haftalik ovqatlanish menyusi</div>
 
@@ -224,240 +699,834 @@ z-index:200;font-size:12px;font-weight:bold;transition:.3s
 </div>
 
 <div class="days">
-<button class="day green" onclick="showMeal(0)">DUSHANBA</button>
-<button class="day orange" onclick="showMeal(1)">SESHANBA</button>
-<button class="day purple" onclick="showMeal(2)">CHORSHANBA</button>
-<button class="day blue" onclick="showMeal(3)">PAYSHANBA</button>
-<button class="day tiffany" onclick="showMeal(4)">JUMA</button>
-<button class="day red" onclick="showMeal(5)">SHANBA</button>
-<button class="day yellow" style="grid-column:2" onclick="showMeal(6)">YAKSHANBA</button>
+
+<button class="day green" data-meal="0">🥚<br>DUSHANBA</button>
+<button class="day orange" data-meal="1">🍊<br>SESHANBA</button>
+<button class="day purple" data-meal="2">🥗<br>CHORSHANBA</button>
+<button class="day blue" data-meal="3">🍚<br>PAYSHANBA</button>
+<button class="day tiffany" data-meal="4">🥛<br>JUMA</button>
+<button class="day red" data-meal="5">🍗<br>SHANBA</button>
+<button class="day yellow" data-meal="6" style="grid-column:2">🍎<br>YAKSHANBA</button>
+
 </div>
+
 <div id="mealDetail" class="detail"></div>
+
 </section>
 
 <!-- MEDALS -->
 <section id="medals" class="page">
+
 <div class="title">MEDALS</div>
 <div class="subtitle">Natijangiz oshgani sari yangi mukofotlar ochiladi</div>
 
 <div class="medals">
-<div class="medal" id="m1"><div class="medalicon">🥉</div><div><h3>Bronze</h3><p>1 kun</p></div></div>
-<div class="medal" id="m2"><div class="medalicon">🥈</div><div><h3>Silver</h3><p>7 kun</p></div></div>
-<div class="medal" id="m3"><div class="medalicon">🥇</div><div><h3>Gold</h3><p>30 kun</p></div></div>
-<div class="medal" id="m4"><div class="medalicon">🏆</div><div><h3>Elite</h3><p>90 kun</p></div></div>
-<div class="medal" id="m5"><div class="medalicon">🎖️</div><div><h3>1 Year Certificate</h3><p>365 kun</p></div></div>
+
+<div class="medal locked" id="m1">
+<div class="medalicon">🥉</div>
+<div>
+<h3>Bronze</h3>
+<p>1 kun</p>
+</div>
+</div>
+
+<div class="medal locked" id="m2">
+<div class="medalicon">🥈</div>
+<div>
+<h3>Silver</h3>
+<p>7 kun</p>
+</div>
+</div>
+
+<div class="medal locked" id="m3">
+<div class="medalicon">🥇</div>
+<div>
+<h3>Gold</h3>
+<p>30 kun</p>
+</div>
+</div>
+
+<div class="medal locked" id="m4">
+<div class="medalicon">🏆</div>
+<div>
+<h3>Elite</h3>
+<p>90 kun</p>
+</div>
+</div>
+
+<div class="medal locked" id="m5">
+<div class="medalicon">🎖️</div>
+<div>
+<h3>1 Year Certificate</h3>
+<p>365 kun</p>
+</div>
+</div>
+
 </div>
 
 <div class="section-title">🏅 Achievements</div>
+
 <div class="achievements">
-<div class="achievement" id="a1"><div class="ico">🔥</div><h4>First Step</h4><p>1 workout</p></div>
-<div class="achievement" id="a2"><div class="ico">⚡</div><h4>7 Days</h4><p>7 workout</p></div>
-<div class="achievement" id="a3"><div class="ico">💎</div><h4>30 Workouts</h4><p>30 workout</p></div>
-<div class="achievement" id="a4"><div class="ico">👑</div><h4>Elite Mode</h4><p>90 workout</p></div>
-<div class="achievement" id="a5"><div class="ico">🎯</div><h4>Challenge Master</h4><p>7 challenge</p></div>
-<div class="achievement" id="a6"><div class="ico">🚀</div><h4>Level 5</h4><p>Reach level 5</p></div>
+
+<div class="achievement locked" id="a1">
+<div class="ico">🔥</div>
+<h4>First Step</h4>
+<p>1 workout</p>
 </div>
+
+<div class="achievement locked" id="a2">
+<div class="ico">⚡</div>
+<h4>7 Days</h4>
+<p>7 workout</p>
+</div>
+
+<div class="achievement locked" id="a3">
+<div class="ico">💎</div>
+<h4>30 Workouts</h4>
+<p>30 workout</p>
+</div>
+
+<div class="achievement locked" id="a4">
+<div class="ico">👑</div>
+<h4>Elite Mode</h4>
+<p>90 workout</p>
+</div>
+
+<div class="achievement locked" id="a5">
+<div class="ico">🎯</div>
+<h4>Challenge Master</h4>
+<p>7 challenge</p>
+</div>
+
+<div class="achievement locked" id="a6">
+<div class="ico">🚀</div>
+<h4>Level 5</h4>
+<p>Reach level 5</p>
+</div>
+
+</div>
+
 </section>
 
 <!-- PROFILE -->
 <section id="profile" class="page">
+
 <div class="title">PROFILE</div>
 <div class="subtitle">Athlete profile</div>
 
 <div class="card profile">
+
 <div class="avatar">A</div>
+
 <div class="pname">ARVEX ATHLETE</div>
-<div class="role">Discipline • Strength • Progress</div>
+
+<div class="role">
+Discipline • Strength • Progress
+</div>
+
 </div>
 
 <div class="stats">
-<div class="stat"><strong id="plevel">1</strong><small>LEVEL</small></div>
-<div class="stat"><strong id="pxp">0</strong><small>XP</small></div>
-<div class="stat"><strong id="pworkout">0</strong><small>WORKOUT</small></div>
+
+<div class="stat">
+<strong id="plevel">1</strong>
+<small>LEVEL</small>
+</div>
+
+<div class="stat">
+<strong id="pxp">0</strong>
+<small>XP</small>
+</div>
+
+<div class="stat">
+<strong id="pworkout">0</strong>
+<small>WORKOUT</small>
+</div>
+
 </div>
 
 <div class="section-title">📈 My Statistics</div>
+
 <div class="card">
 <div class="progress-list">
-<div class="progress-row"><span>Current Streak</span><b id="pstreak">0</b></div>
-<div class="progress-row"><span>Total XP</span><b id="totalxp">0</b></div>
-<div class="progress-row"><span>Challenges</span><b id="pchallenge">0</b></div>
-<div class="progress-row"><span>Medals</span><b id="pmedals">0</b></div>
+
+<div class="progress-row">
+<span>Current Streak</span>
+<b id="pstreak">0</b>
+</div>
+
+<div class="progress-row">
+<span>Total XP</span>
+<b id="totalxp">0</b>
+</div>
+
+<div class="progress-row">
+<span>Challenges</span>
+<b id="pchallenge">0</b>
+</div>
+
+<div class="progress-row">
+<span>Medals</span>
+<b id="pmedals">0</b>
+</div>
+
 </div>
 </div>
 
 <div class="section-title">🤖 ARVEX AI Coach</div>
+
 <div class="card ai">
+
 <div class="aihead">
+
 <div class="aiicon">🤖</div>
-<div><h3>ARVEX AI Coach</h3><p>Virtual sport yordamchingiz</p></div>
+
+<div>
+<h3>ARVEX AI Coach</h3>
+<p>Virtual sport yordamchingiz</p>
+</div>
+
 </div>
 
 <div class="messages" id="messages">
-<div class="msg bot">Salom! Men ARVEX AI Coachman. 💪 Workout, Meals, Level yoki motivatsiya haqida savol berishingiz mumkin.</div>
+
+<div class="msg bot">
+Salom! Men ARVEX AI Coachman. 💪 Workout, Meals, Level yoki motivatsiya haqida savol berishingiz mumkin.
+</div>
+
 </div>
 
 <div class="air">
-<input id="aiInput" class="ainput" placeholder="Savolingizni yozing..." onkeydown="if(event.key==='Enter')sendAI()">
-<button class="aisend" onclick="sendAI()">➤</button>
+
+<input
+id="aiInput"
+class="ainput"
+placeholder="Savolingizni yozing..."
+>
+
+<button id="aiSend" class="aisend">➤</button>
+
 </div>
 
 <div class="aiopts">
-<button class="aiopt" onclick="quickAI('Bugungi workoutim qanday?')">🏋️ Workout</button>
-<button class="aiopt" onclick="quickAI('Bugun nima yeyishim mumkin?')">🍽️ Meals</button>
-<button class="aiopt" onclick="quickAI('Menga motivatsiya ber')">⚡ Motivation</button>
-<button class="aiopt" onclick="quickAI('Levelimni qanday oshiraman?')">📈 Level</button>
+
+<button class="aiopt" data-ai="Bugungi workoutim qanday?">
+🏋️ Workout
+</button>
+
+<button class="aiopt" data-ai="Bugun nima yeyishim mumkin?">
+🍽️ Meals
+</button>
+
+<button class="aiopt" data-ai="Menga motivatsiya ber">
+⚡ Motivation
+</button>
+
+<button class="aiopt" data-ai="Levelimni qanday oshiraman?">
+📈 Level
+</button>
+
 </div>
+
 </div>
+
 </section>
 
-<div class="creator">Saytni yaratgan inson Qodirov Anvarbek</div>
+<div class="creator">
+Saytni yaratgan inson Qodirov Anvarbek
 </div>
 
+</div>
+
+<!-- BOTTOM NAV -->
+
 <nav class="nav">
-<button class="active" onclick="openPage('home',this)"><span>⌂</span>Home</button>
-<button onclick="openPage('workout',this)"><span>🏋️</span>Workout</button>
-<button onclick="openPage('meals',this)"><span>🍽️</span>Meals</button>
-<button onclick="openPage('medals',this)"><span>🏆</span>Medals</button>
-<button onclick="openPage('profile',this)"><span>👤</span>Profile</button>
+
+<button class="active" data-page="home">
+<span>⌂</span>
+Home
+</button>
+
+<button data-page="workout">
+<span>🏋️</span>
+Workout
+</button>
+
+<button data-page="meals">
+<span>🍽️</span>
+Meals
+</button>
+
+<button data-page="medals">
+<span>🏆</span>
+Medals
+</button>
+
+<button data-page="profile">
+<span>👤</span>
+Profile
+</button>
+
 </nav>
 
 <div id="toast" class="toast"></div>
 
 <script>
-/* STORAGE */
-let level=+localStorage.getItem("arvex_level")||1;
-let xp=+localStorage.getItem("arvex_xp")||0;
-let totalXP=+localStorage.getItem("arvex_total_xp")||0;
-let workouts=+localStorage.getItem("arvex_workouts")||0;
-let streak=+localStorage.getItem("arvex_streak")||0;
-let challenges=+localStorage.getItem("arvex_challenges")||0;
-let lastXP=localStorage.getItem("arvex_last_xp")||"";
-let lastChallenge=localStorage.getItem("arvex_last_challenge")||"";
-let lastWorkout=localStorage.getItem("arvex_last_workout")||"";
+
+/* =========================
+   STATE
+========================= */
+
+let state={
+ level:Number(localStorage.getItem("arvex_level"))||1,
+ xp:Number(localStorage.getItem("arvex_xp"))||0,
+ totalXP:Number(localStorage.getItem("arvex_total_xp"))||0,
+ workouts:Number(localStorage.getItem("arvex_workouts"))||0,
+ streak:Number(localStorage.getItem("arvex_streak"))||0,
+ challenges:Number(localStorage.getItem("arvex_challenges"))||0,
+ lastXP:localStorage.getItem("arvex_last_xp")||"",
+ lastChallenge:localStorage.getItem("arvex_last_challenge")||"",
+ lastWorkout:localStorage.getItem("arvex_last_workout")||""
+};
 
 function today(){
-let d=new Date();
-return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+
+ const d=new Date();
+
+ return d.getFullYear()+"-"+
+ String(d.getMonth()+1).padStart(2,"0")+"-"+
+ String(d.getDate()).padStart(2,"0");
+
 }
 
 function save(){
-localStorage.setItem("arvex_level",level);
-localStorage.setItem("arvex_xp",xp);
-localStorage.setItem("arvex_total_xp",totalXP);
-localStorage.setItem("arvex_workouts",workouts);
-localStorage.setItem("arvex_streak",streak);
-localStorage.setItem("arvex_challenges",challenges);
-localStorage.setItem("arvex_last_xp",lastXP);
-localStorage.setItem("arvex_last_challenge",lastChallenge);
-localStorage.setItem("arvex_last_workout",lastWorkout);
-update();
+
+ localStorage.setItem("arvex_level",state.level);
+ localStorage.setItem("arvex_xp",state.xp);
+ localStorage.setItem("arvex_total_xp",state.totalXP);
+ localStorage.setItem("arvex_workouts",state.workouts);
+ localStorage.setItem("arvex_streak",state.streak);
+ localStorage.setItem("arvex_challenges",state.challenges);
+ localStorage.setItem("arvex_last_xp",state.lastXP);
+ localStorage.setItem("arvex_last_challenge",state.lastChallenge);
+ localStorage.setItem("arvex_last_workout",state.lastWorkout);
+
+ updateUI();
+
 }
 
-/* NAV */
-function openPage(id,btn){
-document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));
-btn.classList.add("active");
-scrollTo({top:0,behavior:"smooth"});
-}
+/* =========================
+   NAV
+========================= */
 
-/* XP */
+document.querySelectorAll(".nav button").forEach(btn=>{
+
+ btn.addEventListener("click",()=>{
+
+  document.querySelectorAll(".page")
+  .forEach(p=>p.classList.remove("active"));
+
+  document.getElementById(btn.dataset.page)
+  .classList.add("active");
+
+  document.querySelectorAll(".nav button")
+  .forEach(b=>b.classList.remove("active"));
+
+  btn.classList.add("active");
+
+  window.scrollTo({top:0,behavior:"smooth"});
+
+ });
+
+});
+
+/* =========================
+   XP
+========================= */
+
 function addXP(amount){
-xp+=amount;
-totalXP+=amount;
 
-while(xp>=100){
-xp-=100;
-level++;
-toast("🔥 Yangi Level! LV "+level);
-}
-save();
-}
+ state.xp+=amount;
+ state.totalXP+=amount;
 
-function claimXP(){
-if(lastXP===today()){
-toast("Bugun Level allaqachon bosilgan.");
-return;
-}
-lastXP=today();
-addXP(25);
-toast("+25 XP qo‘shildi ⚡");
+ while(state.xp>=100){
+
+  state.xp-=100;
+  state.level++;
+
+  toast("🔥 Yangi Level! LV "+state.level);
+
+ }
+
+ save();
+
 }
 
-/* CHALLENGE */
-const challengesList=[
-["10 daqiqa faol harakat","Bugun o‘zingizga mos yengil faoliyat bajaring."],
-["Workout rejangizni tekshiring","Bugungi mashg‘ulotni ko‘rib chiqing."],
-["Yaxshi dam oling","Tiklanish va uyquga e’tibor bering."],
-["Meals bo‘limini tekshiring","Bugungi ovqatlanish tartibini ko‘rib chiqing."],
-["Workoutni belgilang","Bajargan mashg‘ulotingizni tizimga kiriting."],
-["Motivatsiyani o‘qing","Bugungi maqsadingizni eslang."],
-["Haftalik natijani tekshiring","Progressingizni ko‘rib chiqing."]
+document.getElementById("xpButton")
+.addEventListener("click",()=>{
+
+ if(state.lastXP===today()){
+
+  toast("Bugun Level allaqachon bosilgan.");
+  return;
+
+ }
+
+ state.lastXP=today();
+
+ addXP(25);
+
+ toast("+25 XP qo‘shildi ⚡");
+
+});
+
+/* =========================
+   CHALLENGE
+========================= */
+
+const challengeData=[
+
+ ["10 daqiqa faol harakat","Bugun o‘zingizga mos yengil faoliyat bajaring."],
+ ["Workout rejangizni tekshiring","Bugungi mashg‘ulotni ko‘rib chiqing."],
+ ["Yaxshi dam oling","Tiklanish va uyquga e’tibor bering."],
+ ["Meals bo‘limini tekshiring","Bugungi ovqatlanish tartibini ko‘rib chiqing."],
+ ["Workoutni belgilang","Bajargan mashg‘ulotingizni tizimga kiriting."],
+ ["Motivatsiyani o‘qing","Bugungi maqsadingizni eslang."],
+ ["Haftalik natijani tekshiring","Progressingizni ko‘rib chiqing."]
+
 ];
 
 function loadChallenge(){
-let i=new Date().getDay();
-if(i===0)i=6;else i--;
-document.getElementById("challengeTitle").textContent=challengesList[i][0];
-document.getElementById("challengeDesc").textContent=challengesList[i][1];
+
+ let i=new Date().getDay();
+
+ if(i===0)i=6;
+ else i--;
+
+ document.getElementById("challengeTitle").textContent=
+ challengeData[i][0];
+
+ document.getElementById("challengeDesc").textContent=
+ challengeData[i][1];
+
 }
 
-function completeChallenge(){
-if(lastChallenge===today()){
-toast("Bugungi challenge allaqachon bajarilgan.");
-return;
-}
-lastChallenge=today();
-challenges++;
-addXP(20);
-toast("🎯 Challenge bajarildi! +20 XP");
-}
+document.getElementById("challengeButton")
+.addEventListener("click",()=>{
 
-/* WORKOUT */
-const workoutsData=[
-["Dushanba","Yelka Workout","Yelka mushaklariga yo‘naltirilgan mashg‘ulot.","18:00 • 35–45 daqiqa"],
-["Seshanba","Qanot / Orqa","Orqa va qanot mushaklari uchun mashg‘ulot.","18:00 • 35–45 daqiqa"],
-["Chorshanba","Oyoq Workout","Oyoqlar uchun umumiy mashg‘ulot.","18:00 • 35–45 daqiqa"],
-["Payshanba","Full Body","Butun tana uchun umumiy mashg‘ulot.","18:00 • 40–50 daqiqa"],
-["Juma","Yelka + Qorin","Yelka va qorin uchun mashg‘ulot.","18:00 • 30–40 daqiqa"],
-["Shanba","Full Body","Haftaning umumiy mashg‘uloti.","17:00 • 40–50 daqiqa"],
-["Yakshanba","Rest Day","Bugun tiklanish va dam olish kuni.","Dam olish kuni"]
+ if(state.lastChallenge===today()){
+
+  toast("Bugungi challenge allaqachon bajarilgan.");
+  return;
+
+ }
+
+ state.lastChallenge=today();
+ state.challenges++;
+
+ addXP(20);
+
+ toast("🎯 Challenge bajarildi! +20 XP");
+
+});
+
+/* =========================
+   WORKOUT
+========================= */
+
+const workoutData=[
+
+ ["Dushanba","Yelka Workout","Yelka mushaklariga yo‘naltirilgan mashg‘ulot.","18:00 • 35–45 daqiqa","green"],
+ ["Seshanba","Qanot / Orqa","Orqa va qanot mushaklari uchun mashg‘ulot.","18:00 • 35–45 daqiqa","green"],
+ ["Chorshanba","Oyoq Workout","Oyoqlar uchun umumiy mashg‘ulot.","18:00 • 35–45 daqiqa","green"],
+ ["Payshanba","Full Body","Butun tana uchun umumiy mashg‘ulot.","18:00 • 40–50 daqiqa","blue"],
+ ["Juma","Yelka + Qorin","Yelka va qorin uchun mashg‘ulot.","18:00 • 30–40 daqiqa","green"],
+ ["Shanba","Full Body","Haftaning umumiy mashg‘uloti.","17:00 • 40–50 daqiqa","red"],
+ ["Yakshanba","Rest Day","Bugun tiklanish va dam olish kuni.","Dam olish kuni","yellow"]
+
 ];
 
-function showWorkout(i,btn){
-document.querySelectorAll("#workout .day").forEach(x=>x.classList.remove("active"));
-btn.classList.add("active");
-let w=workoutsData[i],box=document.getElementById("workoutDetail");
-box.className="detail show";
-box.className+=" "+(["green","green","green","blue","green","red","yellow"][i]);
-box.style.color=i===6?"#111":"white";
+document.querySelectorAll("[data-workout]")
+.forEach(btn=>{
 
-box.innerHTML=`
-<h3>${w[0]} — ${w[1]}</h3>
-<p>${w[2]}</p>
-<div class="time">⏰ ${w[3]}</div>
-${i!==6?`<button class="complete" onclick="completeWorkout()">✓ Workoutni bajardim</button>`:""}
-`;
-}
+ btn.addEventListener("click",()=>{
 
-function completeWorkout(){
-if(lastWorkout===today()){
-toast("Bugungi workout allaqachon belgilangan.");
-return;
-}
-lastWorkout=today();
-workouts++;
-streak++;
-addXP(10);
-toast("🔥 Workout bajarildi! +10 XP");
-}
+  document.querySelectorAll("[data-workout]")
+  .forEach(x=>x.classList.remove("selected"));
 
-/* MEALS */
+  btn.classList.add("selected");
+
+  const i=Number(btn.dataset.workout);
+  const w=workoutData[i];
+
+  const box=document.getElementById("workoutDetail");
+
+  box.className="detail show "+w[4];
+
+  box.style.color=i===6?"#111":"white";
+
+  box.innerHTML=`
+
+  <h3>${w[0]} — ${w[1]}</h3>
+
+  <p>${w[2]}</p>
+
+  <div class="time">
+  ⏰ ${w[3]}
+  </div>
+
+  ${
+   i!==6
+   ?
+   `<button class="complete" id="completeWorkout">
+   ✓ Workoutni bajardim
+   </button>`
+   :
+   ""
+  }
+
+  `;
+
+  const complete=document.getElementById("completeWorkout");
+
+  if(complete){
+
+   complete.addEventListener("click",()=>{
+
+    if(state.lastWorkout===today()){
+
+     toast("Bugungi workout allaqachon belgilangan.");
+     return;
+
+    }
+
+    state.lastWorkout=today();
+    state.workouts++;
+    state.streak++;
+
+    addXP(10);
+
+    toast("🔥 Workout bajarildi! +10 XP");
+
+   });
+
+  }
+
+ });
+
+});
+
+/* =========================
+   MEALS
+========================= */
+
 const meals=[
-["Dushanba","Tuxum, non va meva.","Guruch yoki grechka, tovuq/go‘sht va sabzavot.","Sho‘rva yoki yengil to‘yimli ovqat."],
-["Seshanba","Suli, meva va yogurt.","Makaron yoki guruch, go‘sht va sabzavot.","Tuxum, sabzavot va non."],
-["Chorshanba","Tuxum, pishloq, non va meva.","Kartoshka yoki guruch, go‘sht va salat.","Tovuq, sabzavot va yogurt."],
-["Payshanba","Suli, yogurt va meva.","Guruch, tovuq va sabzavot.","Sho‘rva va sabzavotli taom."],
-["Juma","Tuxum, non, meva va yogurt.","Grechka, go‘sht va salat.","Tovuq 
+
+ ["Dushanba","Tuxum, non va meva.","Guruch yoki grechka, tovuq/go‘sht va sabzavot.","Yengil sho‘rva yoki to‘yimli ovqat.","green"],
+ ["Seshanba","Suli, meva va yogurt.","Makaron yoki guruch, go‘sht va sabzavot.","Tuxum, sabzavot va non.","orange"],
+ ["Chorshanba","Tuxum, pishloq, non va meva.","Kartoshka yoki guruch, go‘sht va salat.","Tovuq, sabzavot va yogurt.","purple"],
+ ["Payshanba","Suli, yogurt va meva.","Guruch, tovuq va sabzavot.","Yengil sho‘rva va sabzavotli taom.","blue"],
+ ["Juma","Tuxum, non, meva va yogurt.","Grechka, go‘sht va salat.","Tovuq yoki tuxum va sabzavot.","tiffany"],
+ ["Shanba","Suli bo‘tqasi, meva va sut.","Guruch, go‘sht va sabzavot.","Yengil sho‘rva va salat.","red"],
+ ["Yakshanba","Tuxum, non, meva va yogurt.","Muvozanatli oilaviy tushlik.","Yengil va to‘yimli kechki ovqat.","yellow"]
+
+];
+
+document.querySelectorAll("[data-meal]")
+.forEach(btn=>{
+
+ btn.addEventListener("click",()=>{
+
+  document.querySelectorAll("[data-meal]")
+  .forEach(x=>x.classList.remove("selected"));
+
+  btn.classList.add("selected");
+
+  const i=Number(btn.dataset.meal);
+  const m=meals[i];
+
+  const box=document.getElementById("mealDetail");
+
+  box.className="detail show "+m[4];
+  box.style.color=i===6?"#111":"white";
+
+  box.innerHTML=`
+
+  <h3>${m[0]}</h3>
+
+  <p>🌅 <b>Nonushta:</b><br>${m[1]}</p>
+
+  <p style="margin-top:11px">
+  ☀️ <b>Tushlik:</b><br>${m[2]}
+  </p>
+
+  <p style="margin-top:11px">
+  🌙 <b>Kechki ovqat:</b><br>${m[3]}
+  </p>
+
+  `;
+
+ });
+
+});
+
+/* =========================
+   TODAY MEAL
+========================= */
+
+function updateTodayMeal(){
+
+ let i=new Date().getDay();
+
+ if(i===0)i=6;
+ else i--;
+
+ const m=meals[i];
+
+ document.getElementById("todayMeal").textContent=m[0];
+
+ document.getElementById("todayText").innerHTML=
+ "🌅 "+m[1]+
+ "<br><br>☀️ "+m[2]+
+ "<br><br>🌙 "+m[3];
+
+}
+
+/* =========================
+   REWARDS
+========================= */
+
+function unlock(id,yes){
+
+ const el=document.getElementById(id);
+
+ if(!el)return;
+
+ el.classList.toggle("locked",!yes);
+ el.classList.toggle("unlocked",yes);
+
+}
+
+function updateRewards(){
+
+ unlock("m1",state.workouts>=1);
+ unlock("m2",state.workouts>=7);
+ unlock("m3",state.workouts>=30);
+ unlock("m4",state.workouts>=90);
+ unlock("m5",state.workouts>=365);
+
+ unlock("a1",state.workouts>=1);
+ unlock("a2",state.workouts>=7);
+ unlock("a3",state.workouts>=30);
+ unlock("a4",state.workouts>=90);
+ unlock("a5",state.challenges>=7);
+ unlock("a6",state.level>=5);
+
+}
+
+/* =========================
+   UI
+========================= */
+
+function updateUI(){
+
+ document.getElementById("level").textContent=state.level;
+ document.getElementById("slevel").textContent=state.level;
+ document.getElementById("sstreak").textContent=state.streak;
+ document.getElementById("sworkout").textContent=state.workouts;
+
+ document.getElementById("plevel").textContent=state.level;
+ document.getElementById("pxp").textContent=state.xp;
+ document.getElementById("pworkout").textContent=state.workouts;
+
+ document.getElementById("pstreak").textContent=state.streak;
+ document.getElementById("totalxp").textContent=state.totalXP;
+ document.getElementById("pchallenge").textContent=state.challenges;
+
+ let medals=0;
+
+ [1,7,30,90,365].forEach(n=>{
+
+  if(state.workouts>=n)medals++;
+
+ });
+
+ document.getElementById("pmedals").textContent=medals;
+
+ document.getElementById("xpfill").style.width=
+ state.xp+"%";
+
+ document.getElementById("xptxt").textContent=
+ state.xp+" / 100 XP";
+
+ document.getElementById("weekWorkout").textContent=
+ Math.min(state.workouts,5)+" / 5";
+
+ document.getElementById("weekChallenge").textContent=
+ Math.min(state.challenges,7)+" / 7";
+
+ document.getElementById("weekXP").textContent=
+ state.totalXP;
+
+ updateRewards();
+
+}
+
+/* =========================
+   MOTIVATION
+========================= */
+
+const motives=[
+
+ "Bugun boshlash uchun eng yaxshi kun.",
+ "Intizom motivatsiyadan kuchliroq.",
+ "Har bir kichik qadam natijaga olib boradi.",
+ "O‘zing bilan raqobat qil.",
+ "Maqsadni ko‘r. Harakatni boshla.",
+ "Bugungi mehnat — ertangi kuch.",
+ "To‘xtama. Davom et."
+
+];
+
+document.getElementById("motivation").textContent=
+motives[new Date().getDay()];
+
+/* =========================
+   AI COACH
+========================= */
+
+function addMessage(text,type){
+
+ const box=document.getElementById("messages");
+
+ const div=document.createElement("div");
+
+ div.className="msg "+type;
+ div.textContent=text;
+
+ box.appendChild(div);
+
+ box.scrollTop=box.scrollHeight;
+
+}
+
+function aiAnswer(text){
+
+ const t=text.toLowerCase();
+
+ if(t.includes("workout")||t.includes("mashq")){
+
+  return "Bugungi workoutni Workout bo‘limidan ko‘ring. Mashqlarni o‘zingizga mos darajada va yaxshi texnika bilan bajaring. 💪";
+
+ }
+
+ if(t.includes("ovqat")||t.includes("meal")||t.includes("yey")){
+
+  return "Meals bo‘limida bugungi menyu bor. Turli xil va muvozanatli ovqatlanishga e’tibor bering. 🍽️";
+
+ }
+
+ if(t.includes("motiv")){
+
+  return "Katta natija kichik, muntazam harakatlardan boshlanadi. Bugun o‘zingizga mos bitta vazifani bajaring. ⚡";
+
+ }
+
+ if(t.includes("level")||t.includes("xp")){
+
+  return "Level tugmasi kuniga bir marta +25 XP beradi. 100 XP to‘lganda keyingi Level ochiladi. 📈";
+
+ }
+
+ if(t.includes("salom")){
+
+  return "Salom! 👋 Men ARVEX AI Coachman. Workout, Meals, Level yoki motivatsiya haqida yozing.";
+
+ }
+
+ return "Men hozircha Workout, Meals, Level va motivatsiya bo‘yicha yordam bera olaman. 🤖";
+
+}
+
+function sendAI(){
+
+ const input=document.getElementById("aiInput");
+
+ const text=input.value.trim();
+
+ if(!text)return;
+
+ addMessage(text,"user");
+
+ input.value="";
+
+ setTimeout(()=>{
+
+  addMessage(aiAnswer(text),"bot");
+
+ },300);
+
+}
+
+document.getElementById("aiSend")
+.addEventListener("click",sendAI);
+
+document.getElementById("aiInput")
+.addEventListener("keydown",e=>{
+
+ if(e.key==="Enter"){
+  sendAI();
+ }
+
+});
+
+document.querySelectorAll(".aiopt")
+.forEach(btn=>{
+
+ btn.addEventListener("click",()=>{
+
+  document.getElementById("aiInput").value=
+  btn.dataset.ai;
+
+  sendAI();
+
+ });
+
+});
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+function toast(text){
+
+ const el=document.getElementById("toast");
+
+ el.textContent=text;
+
+ el.classList.add("show");
+
+ clearTimeout(toastTimer);
+
+ toastTimer=setTimeout(()=>{
+
+  el.classList.remove("show");
+
+ },2200);
+
+}
+
+/* =========================
+   START
+========================= */
+
+loadChallenge();
+updateTodayMeal();
+updateUI();
+
+</script>
+
+</body>
+</html>
