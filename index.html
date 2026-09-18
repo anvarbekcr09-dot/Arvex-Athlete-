@@ -2,1210 +2,974 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ARVEX FC — Athlete</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ARVEX FC | Athlete System</title>
 
 <style>
-:root {
-  --bg: #070b12;
-  --card: #101b2b;
-  --card2: #152439;
-  --green: #7dff45;
-  --blue: #27a8ff;
-  --purple: #9d6cff;
-  --red: #ff5577;
-  --yellow: #ffd34d;
-  --text: #ffffff;
-  --muted: #9aa9bc;
-  --border: rgba(255,255,255,0.1);
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;600;800&display=swap');
+
+:root{
+ --bg:#020711;
+ --card:rgba(7,20,34,.88);
+ --green:#55ff35;
+ --blue:#00bfff;
+ --purple:#a855ff;
+ --pink:#ff168c;
+ --yellow:#ffe600;
+ --text:#f4faff;
+ --muted:#8ba2b9;
+ --line:rgba(0,225,255,.22);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ color:var(--text);
+ font-family:Inter,Arial,sans-serif;
+ background:
+ radial-gradient(circle at 15% 10%,#063c4c,transparent 35%),
+ radial-gradient(circle at 90% 80%,#20104a,transparent 35%),
+ var(--bg);
+ min-height:100vh;
+ overflow-x:hidden;
 }
 
-body {
-  background:
-    radial-gradient(circle at top right, #12304b, transparent 45%),
-    var(--bg);
-  color: var(--text);
-  font-family: Arial, sans-serif;
-  min-height: 100vh;
+body:before{
+ content:"";
+ position:fixed;
+ inset:0;
+ pointer-events:none;
+ background:linear-gradient(120deg,transparent 40%,rgba(0,255,170,.035),transparent 70%);
+ animation:lightMove 8s infinite alternate;
 }
 
-button,
-input,
-select {
-  font: inherit;
+@keyframes lightMove{
+ from{transform:translateX(-15%)}
+ to{transform:translateX(15%)}
 }
 
-button {
-  cursor: pointer;
+button,input,select{font:inherit}
+
+button{
+ cursor:pointer;
+ transition:.25s;
 }
 
-.app {
-  max-width: 1150px;
-  margin: auto;
-  padding: 18px;
+button:active{transform:scale(.96)}
+
+.app{
+ max-width:1100px;
+ margin:auto;
+ padding:18px;
 }
 
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+.topbar{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ margin-bottom:25px;
 }
 
-.brand {
-  font-size: 26px;
-  font-weight: 900;
-  letter-spacing: 1px;
+.logo{
+ font-family:Orbitron;
+ font-size:25px;
+ font-weight:900;
+ letter-spacing:1px;
 }
 
-.brand span {
-  color: var(--green);
+.logo span{color:var(--green)}
+.logo small{
+ display:block;
+ color:#8ca1b7;
+ font-size:9px;
+ letter-spacing:4px;
+ margin-top:5px;
 }
 
-.brand small {
-  display: block;
-  color: var(--muted);
-  font-size: 10px;
-  letter-spacing: 3px;
+.icon{
+ width:54px;
+ height:54px;
+ border-radius:18px;
+ border:1px solid var(--line);
+ background:#0a1a2b;
+ color:white;
+ font-size:24px;
+ box-shadow:0 0 20px rgba(0,190,255,.1);
 }
 
-.icon-btn,
-.btn {
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 12px 16px;
-  color: white;
-  background: var(--card2);
-  font-weight: bold;
+.card{
+ position:relative;
+ background:linear-gradient(145deg,rgba(12,29,46,.94),rgba(3,12,23,.94));
+ border:1px solid var(--line);
+ border-radius:25px;
+ padding:20px;
+ box-shadow:0 0 25px rgba(0,160,255,.08);
+ overflow:hidden;
 }
 
-.btn.primary {
-  background: linear-gradient(135deg, var(--green), #2fcf93);
-  color: #041008;
-  border: none;
+.card:before{
+ content:"";
+ position:absolute;
+ inset:-1px;
+ border-radius:25px;
+ pointer-events:none;
+ background:linear-gradient(120deg,transparent,rgba(0,255,150,.06),transparent);
 }
 
-.btn.blue {
-  background: linear-gradient(135deg, var(--blue), #426bff);
-  border: none;
+.hero{
+ display:grid;
+ grid-template-columns:1.25fr .75fr;
+ gap:16px;
 }
 
-.btn.danger {
-  background: #351824;
-  color: #ff9bb0;
+.tag{
+ display:inline-block;
+ padding:9px 13px;
+ border-radius:30px;
+ background:rgba(20,100,75,.25);
+ color:var(--green);
+ font-weight:800;
+ font-size:12px;
+ box-shadow:0 0 18px rgba(85,255,53,.12);
 }
 
-.card {
-  background: linear-gradient(145deg, #111e30, #08101b);
-  border: 1px solid var(--border);
-  border-radius: 23px;
-  padding: 20px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+h1{
+ font-family:Orbitron;
+ font-size:clamp(28px,5vw,55px);
+ line-height:1.2;
+ margin:25px 0 18px;
 }
 
-.hero {
-  display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
-  gap: 15px;
+h1 span{color:var(--green);text-shadow:0 0 20px #37ff55}
+
+h2{font-family:Orbitron;font-size:21px}
+h3{margin-bottom:10px}
+p{line-height:1.65}
+.muted{color:var(--muted)}
+
+.btn{
+ padding:14px 20px;
+ border-radius:18px;
+ border:1px solid var(--line);
+ background:#10283c;
+ color:white;
+ font-weight:800;
+ box-shadow:0 0 15px rgba(0,180,255,.1);
 }
 
-h1 {
-  font-size: clamp(30px, 6vw, 58px);
-  line-height: 1;
-  margin: 18px 0;
+.btn.primary{
+ background:linear-gradient(100deg,#55ff25,#00dca7);
+ color:#021008;
+ border:none;
+ box-shadow:0 0 22px rgba(85,255,53,.35);
 }
 
-h2 {
-  margin-bottom: 14px;
+.btn.blue{
+ background:linear-gradient(100deg,#178bff,#9a38ff);
+ border:none;
+ box-shadow:0 0 22px rgba(100,80,255,.35);
 }
 
-h3 {
-  margin-bottom: 8px;
+.btn:hover{
+ transform:translateY(-3px);
+ filter:brightness(1.15);
 }
 
-p {
-  line-height: 1.6;
+.stats{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:10px;
+ margin-top:22px;
 }
 
-.muted {
-  color: var(--muted);
+.stat{
+ background:rgba(1,12,24,.8);
+ border:1px solid rgba(0,180,255,.18);
+ border-radius:18px;
+ padding:14px 10px;
 }
 
-.tag {
-  display: inline-block;
-  padding: 7px 11px;
-  border-radius: 999px;
-  background: #162b2a;
-  color: var(--green);
-  font-size: 11px;
-  font-weight: bold;
+.stat strong{
+ display:block;
+ font-size:27px;
+ font-family:Orbitron;
+ color:white;
 }
 
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 20px;
+.stat span{
+ color:var(--muted);
+ font-size:10px;
 }
 
-.stat {
-  background: #0a1320;
-  border: 1px solid var(--border);
-  border-radius: 17px;
-  padding: 13px;
+.level{
+ background:
+ radial-gradient(circle at 90% 10%,rgba(168,85,255,.25),transparent 40%),
+ linear-gradient(145deg,#191536,#092b30);
+ border-color:rgba(168,85,255,.45);
 }
 
-.stat strong {
-  display: block;
-  font-size: 24px;
+.level h2{
+ font-size:26px;
+ margin-top:25px;
 }
 
-.stat span {
-  color: var(--muted);
-  font-size: 10px;
+.progress{
+ height:14px;
+ border-radius:20px;
+ background:#020a14;
+ margin:18px 0;
+ overflow:hidden;
 }
 
-.level {
-  background: linear-gradient(145deg, #251a45, #102c2b);
+.progress i{
+ display:block;
+ height:100%;
+ width:0;
+ background:linear-gradient(90deg,#a855ff,#35ff46);
+ box-shadow:0 0 15px #62ff55;
+ transition:width .6s;
 }
 
-.progress {
-  height: 12px;
-  background: #09111d;
-  border-radius: 999px;
-  overflow: hidden;
-  margin: 15px 0;
+.nav{
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ gap:9px;
+ margin:20px 0;
 }
 
-.progress i {
-  display: block;
-  width: 0;
-  height: 100%;
-  background: linear-gradient(90deg, var(--purple), var(--green));
-  border-radius: 999px;
-  transition: width 0.3s;
+.nav button{
+ padding:15px 4px;
+ border-radius:18px;
+ border:1px solid rgba(0,190,255,.18);
+ background:#071525;
+ color:#91a8bd;
+ font-size:11px;
+ font-weight:800;
 }
 
-.nav {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-  margin: 20px 0;
+.nav button.active{
+ color:var(--green);
+ background:linear-gradient(145deg,#103d36,#082b32);
+ border-color:var(--green);
+ box-shadow:0 0 20px rgba(85,255,53,.2);
 }
 
-.nav button {
-  background: #0d1725;
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  padding: 12px 4px;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: bold;
+.page{display:none}
+.page.active{
+ display:block;
+ animation:pageIn .35s ease;
 }
 
-.nav button.active {
-  color: var(--green);
-  background: #193d31;
-  border-color: #386e61;
+@keyframes pageIn{
+ from{opacity:0;transform:translateY(12px)}
+ to{opacity:1;transform:translateY(0)}
 }
 
-.page {
-  display: none;
+.section-head{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ margin:20px 0 13px;
 }
 
-.page.active {
-  display: block;
+.days{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:10px;
 }
 
-.days {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+.day{
+ min-height:82px;
+ text-align:left;
+ padding:13px;
+ border-radius:18px;
+ color:white;
+ border:1px solid rgba(255,255,255,.15);
+ font-weight:700;
 }
 
-.day {
-  text-align: left;
-  color: white;
-  padding: 14px;
-  min-height: 85px;
-  border-radius: 17px;
-  border: 1px solid var(--border);
+.day strong{
+ display:block;
+ font-size:12px;
+ margin-bottom:8px;
 }
 
-.day strong {
-  display: block;
-  font-size: 13px;
+.day span{
+ font-size:10px;
+ opacity:.85;
 }
 
-.day span {
-  font-size: 11px;
-  opacity: 0.8;
+.green{background:linear-gradient(145deg,#075a3e,#082a29)}
+.blue{background:linear-gradient(145deg,#07518a,#10233d)}
+.orange{background:linear-gradient(145deg,#914719,#302019)}
+.purple{background:linear-gradient(145deg,#55258b,#231b3b)}
+.red{background:linear-gradient(145deg,#8e1746,#321526)}
+.yellow{background:linear-gradient(145deg,#7a6510,#302915)}
+
+.day.selected{
+ outline:2px solid var(--green);
+ box-shadow:0 0 22px rgba(85,255,53,.35);
+ transform:translateY(-3px);
 }
 
-.day.green {
-  background: linear-gradient(145deg, #124d37, #12271f);
+.detail{
+ margin:16px 0;
+ padding:18px;
+ border-radius:20px;
+ background:rgba(1,12,24,.9);
+ border:1px solid rgba(0,200,255,.2);
 }
 
-.day.blue {
-  background: linear-gradient(145deg, #123f68, #142238);
+.exercise{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ padding:14px 0;
+ border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.day.red {
-  background: linear-gradient(145deg, #64233b, #281823);
+.meal{
+ padding:15px;
+ border-radius:17px;
+ border:1px solid rgba(0,255,150,.18);
+ background:rgba(3,35,35,.6);
 }
 
-.day.yellow {
-  background: linear-gradient(145deg, #66521a, #292316);
+.medals{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:12px;
 }
 
-.day.orange {
-  background: linear-gradient(145deg, #743c18, #2b211a);
+.medal{
+ text-align:center;
+ padding:20px 10px;
+ border-radius:22px;
+ background:linear-gradient(145deg,#142437,#050c17);
+ border:1px solid rgba(0,200,255,.22);
+ transition:.3s;
 }
 
-.day.purple {
-  background: linear-gradient(145deg, #493071, #211d32);
+.medal:hover{
+ transform:translateY(-5px);
+ box-shadow:0 0 25px rgba(0,200,255,.25);
 }
 
-.day.selected {
-  outline: 2px solid var(--green);
+.medal .emoji{
+ font-size:40px;
+ filter:drop-shadow(0 0 10px rgba(255,255,255,.3));
 }
 
-.detail {
-  margin: 15px 0;
-  padding: 17px;
-  border-radius: 18px;
-  background: #091321;
-  border: 1px solid var(--border);
+.medal small{color:var(--muted)}
+
+.profile-top{
+ display:flex;
+ align-items:center;
+ gap:18px;
 }
 
-.exercise {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
+.avatar{
+ width:105px;
+ height:105px;
+ border-radius:50%;
+ border:3px solid var(--green);
+ object-fit:cover;
+ background:#0a2030;
+ box-shadow:0 0 25px rgba(85,255,53,.25);
 }
 
-.medals {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+.form{
+ display:grid;
+ gap:14px;
+ margin-top:25px;
 }
 
-.medal {
-  text-align: center;
-  padding: 15px;
-  background: #151f2d;
-  border: 1px solid var(--border);
-  border-radius: 18px;
+label{
+ color:#d8e5f2;
+ font-weight:600;
 }
 
-.emoji {
-  font-size: 32px;
+input,select{
+ width:100%;
+ padding:15px;
+ margin-top:7px;
+ border-radius:16px;
+ border:1px solid rgba(0,200,255,.2);
+ background:#030e1b;
+ color:white;
+ outline:none;
 }
 
-.medal small {
-  color: var(--muted);
+input:focus,select:focus{
+ border-color:var(--green);
+ box-shadow:0 0 15px rgba(85,255,53,.15);
 }
 
-.profile-top {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+.footer{
+ text-align:center;
+ color:#61778c;
+ font-size:11px;
+ padding:30px 0 10px;
 }
 
-.avatar {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid var(--green);
+.toast{
+ position:fixed;
+ bottom:25px;
+ left:50%;
+ transform:translateX(-50%);
+ padding:14px 20px;
+ border-radius:15px;
+ background:#0d2935;
+ border:1px solid var(--green);
+ color:white;
+ box-shadow:0 0 25px rgba(85,255,53,.25);
+ z-index:10;
 }
 
-.form {
-  display: grid;
-  gap: 12px;
-  margin-top: 20px;
-}
+.hidden{display:none!important}
 
-input,
-select {
-  width: 100%;
-  padding: 13px;
-  margin-top: 6px;
-  border: 1px solid var(--border);
-  border-radius: 13px;
-  background: #091321;
-  color: white;
-}
-
-.footer {
-  text-align: center;
-  color: var(--muted);
-  font-size: 12px;
-  padding: 30px 0 10px;
-}
-
-.toast {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #172b3d;
-  border: 1px solid var(--green);
-  padding: 13px 18px;
-  border-radius: 13px;
-}
-
-.hidden {
-  display: none;
-}
-
-@media (max-width: 760px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
-
-  .app {
-    padding: 12px;
-  }
-
-  .nav button {
-    font-size: 10px;
-  }
-
-  .medals {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .card {
-    padding: 15px;
-  }
+@media(max-width:760px){
+ .app{padding:12px}
+ .hero{grid-template-columns:1fr}
+ .days{grid-template-columns:repeat(3,1fr)}
+ .medals{grid-template-columns:repeat(2,1fr)}
+ .nav button{font-size:10px;padding:12px 2px}
+ .stats strong{font-size:21px}
+ .card{padding:16px}
+ h1{font-size:34px}
 }
 </style>
 </head>
+
 <body>
 
 <div class="app">
 
 <header class="topbar">
-  <div class="brand">
-    <span>ARVEX</span> FC
-    <small>ATHLETE SYSTEM</small>
-  </div>
-
-  <button class="icon-btn" onclick="toggleTheme()">☀️</button>
+ <div class="logo">
+  <span>ARVEX</span> FC
+  <small>ATHLETE SYSTEM</small>
+ </div>
+ <button class="icon" onclick="toggleTheme()">☀️</button>
 </header>
 
 <section class="hero">
 
-  <div class="card">
-    <span class="tag">● ATHLETE MODE</span>
+<div class="card">
+ <span class="tag">● ATHLETE MODE</span>
 
-    <h1>
-      Build your<br>
-      <span style="color:var(--green)">strongest</span> self.
-    </h1>
+ <h1>
+  Build your<br>
+  <span>strongest</span> self.
+ </h1>
 
-    <p class="muted">
-      Har kuni kichik qadam. Kuch, intizom va muntazamlik —
-      ARVEX FC bilan maqsadingga yaqinlash.
-    </p>
+ <p class="muted">
+  Har kuni kichik qadam. Kuch, intizom va muntazamlik —
+  ARVEX FC bilan maqsadingga yaqinlash.
+ </p>
 
-    <button class="btn primary" onclick="openPage('workout')">
-      Start Workout →
-    </button>
+ <button class="btn primary" onclick="openPage('workout')">
+  Start Workout →
+ </button>
 
-    <div class="stats">
-      <div class="stat">
-        <strong id="streak">1</strong>
-        <span>DAY STREAK</span>
-      </div>
-
-      <div class="stat">
-        <strong id="doneCount">0</strong>
-        <span>WORKOUTS</span>
-      </div>
-
-      <div class="stat">
-        <strong id="mealCount">0</strong>
-        <span>MEALS VIEWED</span>
-      </div>
-    </div>
+ <div class="stats">
+  <div class="stat">
+   <strong id="streak">1</strong>
+   <span>DAY STREAK</span>
   </div>
 
-  <div class="card level">
-    <span class="tag">LEVEL SYSTEM</span>
-
-    <h2 style="margin-top:15px">
-      Level <span id="levelNumber">1</span>
-    </h2>
-
-    <p class="muted" id="xpText">0 / 100 XP</p>
-
-    <div class="progress">
-      <i id="xpBar"></i>
-    </div>
-
-    <button class="btn blue" id="xpButton" onclick="addXP()">
-      + Daily XP
-    </button>
-
-    <hr style="border-color:var(--border);margin:20px 0">
-
-    <h3>Bugungi motivatsiya</h3>
-
-    <p class="muted">
-      Intizom — kayfiyat bo‘lmagan paytda ham davom etish.
-    </p>
+  <div class="stat">
+   <strong id="doneCount">0</strong>
+   <span>WORKOUTS</span>
   </div>
+
+  <div class="stat">
+   <strong id="mealCount">0</strong>
+   <span>MEALS VIEWED</span>
+  </div>
+ </div>
+</div>
+
+<div class="card level">
+ <span class="tag">LEVEL SYSTEM</span>
+
+ <h2>Level <span id="levelNumber">1</span></h2>
+
+ <p class="muted" id="xpText">0 / 100 XP</p>
+
+ <div class="progress">
+  <i id="xpBar"></i>
+ </div>
+
+ <button class="btn blue" id="xpButton" onclick="addXP()">
+  ⚡ Bugungi XP +25
+ </button>
+
+ <hr style="border-color:rgba(255,255,255,.1);margin:25px 0">
+
+ <h3>Bugungi motivatsiya</h3>
+
+ <p class="muted">
+  Kichik qadamlar katta natijalarga olib keladi.
+ </p>
+</div>
 
 </section>
 
 <nav class="nav">
-
-  <button data-page="home" onclick="openPage('home')">
-    ⌂ Home
-  </button>
-
-  <button data-page="workout" onclick="openPage('workout')">
-    🏋 Workout
-  </button>
-
-  <button data-page="meals" onclick="openPage('meals')">
-    🍽 Meals
-  </button>
-
-  <button data-page="medals" onclick="openPage('medals')">
-    🏅 Medals
-  </button>
-
-  <button data-page="profile" onclick="openPage('profile')">
-    👤 Profile
-  </button>
-
+ <button data-page="home" onclick="openPage('home')">⌂ Home</button>
+ <button data-page="workout" onclick="openPage('workout')">🏋 Workout</button>
+ <button data-page="meals" onclick="openPage('meals')">🍽 Meals</button>
+ <button data-page="medals" onclick="openPage('medals')">🏅 Medals</button>
+ <button data-page="profile" onclick="openPage('profile')">👤 Profile</button>
 </nav>
 
 <main>
 
 <section id="page-home" class="page active">
 
-  <div class="card">
+ <div class="card">
+  <span class="tag">AMIR TEMUR</span>
+  <h2 style="margin-top:20px">Maqsading</h2>
 
-    <span class="tag">AMIR TEMUR</span>
+  <p class="muted">
+   Kuch — birlikda, natija — harakatda.
+  </p>
 
-    <h2 style="margin-top:15px">
-      Maqsading
-    </h2>
+  <p>
+   Bugun o‘zingni kechagidan bir qadam kuchliroq qil.
+  </p>
+ </div>
 
-    <p class="muted">
-      Kuch — birlikda, natija — harakatda.
-    </p>
+ <div class="section-head">
+  <h2>Quick Actions</h2>
+ </div>
 
-    <p>
-      Bugun o‘zingni kechagidan bir qadam kuchliroq qil.
-    </p>
+ <div class="hero">
+  <button class="card" onclick="openPage('workout')"
+   style="color:white;text-align:left">
+   <h3>🏋️ Weekly Workout</h3>
+   <p class="muted">Haftalik mashg‘ulot rejasi</p>
+  </button>
 
-  </div>
-
-  <div style="margin:18px 0 12px">
-    <h2>Quick Actions</h2>
-  </div>
-
-  <div class="hero">
-
-    <button class="card"
-      onclick="openPage('workout')"
-      style="text-align:left;color:white">
-
-      <h3>🏋️ Weekly Workout</h3>
-
-      <p class="muted">
-        Haftalik mashg‘ulot rejasi
-      </p>
-
-    </button>
-
-    <button class="card"
-      onclick="openPage('meals')"
-      style="text-align:left;color:white">
-
-      <h3>🥗 Nutrition</h3>
-
-      <p class="muted">
-        Kunlik ovqatlanish tartibi
-      </p>
-
-    </button>
-
-  </div>
+  <button class="card" onclick="openPage('meals')"
+   style="color:white;text-align:left">
+   <h3>🥗 Nutrition</h3>
+   <p class="muted">Kunlik ovqatlanish tartibi</p>
+  </button>
+ </div>
 
 </section>
 
 <section id="page-workout" class="page">
 
-  <div class="section-head">
-    <h2>Weekly Workout</h2>
-    <span class="tag">7 DAYS</span>
-  </div>
+ <div class="section-head">
+  <h2>Weekly Workout</h2>
+  <span class="tag">7 DAYS</span>
+ </div>
 
-  <div class="card">
+ <div class="card">
+  <div class="days" id="workoutDays"></div>
+  <div id="workoutDetail" class="detail"></div>
 
-    <div class="days" id="workoutDays"></div>
-
-    <div id="workoutDetail" class="detail">
-      Kunlardan birini tanlang.
-    </div>
-
-    <button class="btn primary" onclick="finishWorkout()">
-      ✓ Finish today's workout
-    </button>
-
-  </div>
+  <button class="btn primary" onclick="finishWorkout()">
+   ✓ Workoutni tugatish +20 XP
+  </button>
+ </div>
 
 </section>
 
 <section id="page-meals" class="page">
 
-  <div class="section-head">
-    <h2>Meals / Nutrition</h2>
-    <span class="tag">3 MEALS</span>
-  </div>
+ <div class="section-head">
+  <h2>Ovqatlanish</h2>
+  <span class="tag">NUTRITION</span>
+ </div>
 
-  <div class="card">
-
-    <div class="days" id="mealDays"></div>
-
-    <div id="mealDetail" class="detail">
-      Kunlardan birini tanlang.
-    </div>
-
-  </div>
+ <div class="card">
+  <div class="days" id="mealDays"></div>
+  <div id="mealDetail" class="detail"></div>
+ </div>
 
 </section>
 
 <section id="page-medals" class="page">
 
-  <div class="section-head">
-    <h2>Medals</h2>
-    <span class="tag">REWARDS</span>
+ <div class="section-head">
+  <h2>Medallar</h2>
+  <span class="tag">REWARDS</span>
+ </div>
+
+ <div class="medals">
+
+  <div class="medal">
+   <div class="emoji">🥉</div>
+   <h3>BRONZE</h3>
+   <small>1 kun</small>
   </div>
 
-  <div class="medals">
-
-    <div class="medal">
-      <div class="emoji">🥉</div>
-      <h3>Bronze</h3>
-      <small>1 day</small>
-    </div>
-
-    <div class="medal">
-      <div class="emoji">🥈</div>
-      <h3>Silver</h3>
-      <small>1 week</small>
-    </div>
-
-    <div class="medal">
-      <div class="emoji">🥇</div>
-      <h3>Gold</h3>
-      <small>30 days</small>
-    </div>
-
-    <div class="medal">
-      <div class="emoji">🏆</div>
-      <h3>Elite</h3>
-      <small>90 days</small>
-    </div>
-
+  <div class="medal">
+   <div class="emoji">🥈</div>
+   <h3>SILVER</h3>
+   <small>1 hafta</small>
   </div>
 
-  <div class="card" style="margin-top:15px">
-
-    <h3>1 Year Certificate</h3>
-
-    <p class="muted">
-      12 oy davomida intizomni saqlagan sportchi
-      uchun maxsus sertifikat.
-    </p>
-
+  <div class="medal">
+   <div class="emoji">🥇</div>
+   <h3>GOLD</h3>
+   <small>30 kun</small>
   </div>
+
+  <div class="medal">
+   <div class="emoji">🏆</div>
+   <h3>ELITE</h3>
+   <small>90 kun</small>
+  </div>
+
+ </div>
+
+ <div class="card" style="margin-top:15px">
+  <h3>💜 1 Year Certificate</h3>
+  <p class="muted">
+   365 kunlik intizom uchun maxsus sertifikat.
+  </p>
+ </div>
 
 </section>
 
 <section id="page-profile" class="page">
 
-  <div class="card">
+ <div class="card">
 
-    <div class="profile-top">
+  <div class="profile-top">
+   <img id="avatar" class="avatar" alt="Profile">
 
-      <img id="avatar" class="avatar" alt="Profile photo">
+   <div>
+    <h2 id="profileName">Anvarbek</h2>
+    <p class="muted">ARVEX FC Athlete</p>
+   </div>
+  </div>
 
-      <div>
-        <h2 id="profileName">Anvarbek</h2>
-        <p class="muted">ARVEX FC Athlete</p>
-      </div>
+  <div class="form">
 
-    </div>
+   <label>
+    Ism / nickname
+    <input id="nameInput" maxlength="35" placeholder="Ismingiz">
+   </label>
 
-    <div class="form">
+   <label>
+    Yosh
+    <input id="ageInput" type="number" min="10" max="100">
+   </label>
 
-      <label>
-        Ism / nickname
-        <input id="nameInput" maxlength="35" placeholder="Ismingiz">
-      </label>
+   <label>
+    Maqsad
+    <select id="goalInput">
+     <option>Strength</option>
+     <option>Muscle building</option>
+     <option>Endurance</option>
+     <option>General fitness</option>
+    </select>
+   </label>
 
-      <label>
-        Yosh
-        <input id="ageInput" type="number" min="10" max="100">
-      </label>
+   <label>
+    Profil rasmi
+    <input id="photoInput" type="file"
+     accept="image/*" onchange="uploadImage(event)">
+   </label>
 
-      <label>
-        Maqsad
+   <button class="btn primary" onclick="saveProfile()">
+    ✓ Profilni saqlash
+   </button>
 
-        <select id="goalInput">
-          <option>Strength</option>
-          <option>Muscle building</option>
-          <option>Endurance</option>
-          <option>General fitness</option>
-        </select>
-
-      </label>
-
-      <label>
-        Profil rasmi
-        <input
-          id="photoInput"
-          type="file"
-          accept="image/*"
-          onchange="uploadImage(event)"
-        >
-      </label>
-
-      <button class="btn primary" onclick="saveProfile()">
-        Save profile
-      </button>
-
-      <button class="btn danger" onclick="resetData()">
-        Reset saved data
-      </button>
-
-    </div>
+   <button class="btn" onclick="resetData()">
+    Reset ma’lumotlar
+   </button>
 
   </div>
+ </div>
 
 </section>
 
 </main>
 
 <div class="footer">
-  Saytni yaratgan inson Qodirov Anvarbek<br>
-  ARVEX FC © 2026
+ Saytni yaratgan inson Qodirov Anvarbek<br>
+ ARVEX FC © 2026
 </div>
 
 </div>
 
 <div id="toast" class="toast hidden"></div>
+
 <script>
-const days = [
-  "Dushanba",
-  "Seshanba",
-  "Chorshanba",
-  "Payshanba",
-  "Juma",
-  "Shanba",
-  "Yakshanba"
+const days=[
+ "Dushanba","Seshanba","Chorshanba",
+ "Payshanba","Juma","Shanba","Yakshanba"
 ];
 
-const colors = [
-  "green",
-  "orange",
-  "purple",
-  "blue",
-  "green",
-  "red",
-  "yellow"
+const colors=[
+ "green","orange","purple","blue",
+ "green","red","yellow"
 ];
 
-const workouts = [
-  {
-    title: "Yelka + yengil kardio",
-    time: "18:00",
-    items: [
-      "Shoulder press — 3×10",
-      "Lateral raise — 3×12",
-      "Plank — 3×30 soniya"
-    ]
-  },
-  {
-    title: "Qanot / Orqa",
-    time: "18:00",
-    items: [
-      "Pull-up — 3×6",
-      "Row — 3×10",
-      "Superman — 3×12"
-    ]
-  },
-  {
-    title: "Tiklanish kuni",
-    time: "10–15 daqiqa",
-    items: [
-      "Yengil yurish",
-      "Cho‘zilish",
-      "Nafas mashqlari"
-    ]
-  },
-  {
-    title: "Oyoq",
-    time: "18:00",
-    items: [
-      "Squat — 3×12",
-      "Lunge — 3×10",
-      "Calf raise — 3×15"
-    ]
-  },
-  {
-    title: "Ko‘krak + qo‘l",
-    time: "18:00",
-    items: [
-      "Push-up — 3×10",
-      "Incline push-up — 3×10",
-      "Triceps dip — 3×8"
-    ]
-  },
-  {
-    title: "Butun tana",
-    time: "17:00",
-    items: [
-      "Squat — 3×12",
-      "Push-up — 3×10",
-      "Mountain climber — 3×20"
-    ]
-  },
-  {
-    title: "Dam olish",
-    time: "Erkin vaqt",
-    items: [
-      "Yengil sayr",
-      "Suv ichish",
-      "Keyingi haftaga tayyorgarlik"
-    ]
-  }
+const workouts=[
+ {
+  title:"Yelka",
+  time:"18:00",
+  items:["Shoulder Press — 3×12","Lateral Raise — 3×15","Front Raise — 3×12","Plank — 3×30 soniya"]
+ },
+ {
+  title:"Qanot / Orqa",
+  time:"18:00",
+  items:["Pull-up — 3×6","Row — 3×10","Superman — 3×12"]
+ },
+ {
+  title:"Oyoq",
+  time:"18:00",
+  items:["Squat — 3×12","Lunge — 3×10","Calf Raise — 3×15"]
+ },
+ {
+  title:"Ko‘krak",
+  time:"18:00",
+  items:["Push-up — 3×10","Incline Push-up — 3×10","Plank — 3×30 soniya"]
+ },
+ {
+  title:"Qo‘l",
+  time:"18:00",
+  items:["Biceps Curl — 3×12","Triceps Dip — 3×10","Hammer Curl — 3×12"]
+ },
+ {
+  title:"Butun tana",
+  time:"17:00",
+  items:["Squat — 3×12","Push-up — 3×10","Mountain Climber — 3×20"]
+ },
+ {
+  title:"Dam olish",
+  time:"Erkin vaqt",
+  items:["Yengil sayr","Cho‘zilish","Keyingi haftaga tayyorgarlik"]
+ }
 ];
 
-const meals = [
-  [
-    "Tuxum, suli yormasi va meva.",
-    "Tovuq, guruch va sabzavot.",
-    "Qatiq, tvorog yoki yengil kechki ovqat."
-  ],
-  [
-    "Tuxum va non.",
-    "Go‘sht, guruch va salat.",
-    "Baliq yoki tovuq va sabzavot."
-  ],
-  [
-    "Suli, sut va banan.",
-    "Tovuq va grechka.",
-    "Sabzavotli omlet."
-  ],
-  [
-    "Tuxum, meva va yogurt.",
-    "Guruch, go‘sht va salat.",
-    "Tvorog va sabzavot."
-  ],
-  [
-    "Suli va meva.",
-    "Tovuq, kartoshka va salat.",
-    "Yengil sho‘rva va non."
-  ],
-  [
-    "Tuxum va yogurt.",
-    "Makaron, go‘sht va sabzavot.",
-    "Baliq yoki dukkakli mahsulot."
-  ],
-  [
-    "Yengil va to‘yimli nonushta.",
-    "Muvozanatli tushlik.",
-    "Yengil kechki ovqat."
-  ]
+const meals=[
+ ["Tuxum, suli yormasi va meva.","Tovuq, guruch va sabzavot.","Qatiq, tvorog va meva."],
+ ["Tuxum va non.","Go‘sht, guruch va salat.","Baliq va sabzavot."],
+ ["Suli, sut va banan.","Tovuq va grechka.","Sabzavotli omlet."],
+ ["Tuxum, meva va yogurt.","Guruch, go‘sht va salat.","Tvorog va sabzavot."],
+ ["Suli va meva.","Tovuq, kartoshka va salat.","Yengil sho‘rva."],
+ ["Tuxum va yogurt.","Makaron, go‘sht va sabzavot.","Baliq yoki dukkakli mahsulot."],
+ ["Yengil nonushta.","Muvozanatli tushlik.","Yengil kechki ovqat."]
 ];
 
-const todayKey = () => {
-  const date = new Date();
-  return date.getFullYear() + "-" +
-    String(date.getMonth() + 1).padStart(2, "0") + "-" +
-    String(date.getDate()).padStart(2, "0");
+let state=JSON.parse(localStorage.getItem("arvexState")||"null")||{
+ xp:0,
+ done:0,
+ meals:0,
+ lastXP:"",
+ name:"Anvarbek",
+ age:"",
+ goal:"Strength",
+ photo:"",
+ selectedWorkout:0,
+ selectedMeal:0
 };
 
-let state = JSON.parse(
-  localStorage.getItem("arvexState") || "null"
-) || {
-  xp: 0,
-  done: 0,
-  meals: 0,
-  lastXP: "",
-  name: "Anvarbek",
-  age: "",
-  goal: "Strength",
-  photo: "",
-  selectedWorkout: 0,
-  selectedMeal: new Date().getDay() === 0
-    ? 6
-    : new Date().getDay() - 1
-};
-
-function save() {
-  localStorage.setItem(
-    "arvexState",
-    JSON.stringify(state)
-  );
+function save(){
+ localStorage.setItem("arvexState",JSON.stringify(state));
 }
 
-function toast(message) {
-  const element = document.getElementById("toast");
-
-  element.textContent = message;
-  element.classList.remove("hidden");
-
-  setTimeout(() => {
-    element.classList.add("hidden");
-  }, 2200);
+function today(){
+ const d=new Date();
+ return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
 }
 
-function openPage(pageName) {
-  document.querySelectorAll(".page").forEach(page => {
-    page.classList.remove("active");
-  });
+function toast(message){
+ const el=document.getElementById("toast");
+ el.textContent=message;
+ el.classList.remove("hidden");
 
-  const page = document.getElementById(
-    "page-" + pageName
-  );
-
-  if (page) {
-    page.classList.add("active");
-  }
-
-  document.querySelectorAll(".nav button").forEach(button => {
-    button.classList.toggle(
-      "active",
-      button.dataset.page === pageName
-    );
-  });
-
-  if (pageName === "workout") {
-    renderWorkouts();
-  }
-
-  if (pageName === "meals") {
-    renderMeals();
-  }
+ setTimeout(()=>{
+  el.classList.add("hidden");
+ },2200);
 }
 
-function update() {
-  const level = Math.floor(state.xp / 100) + 1;
-  const insideXP = state.xp % 100;
+function openPage(name){
+ document.querySelectorAll(".page").forEach(p=>{
+  p.classList.remove("active");
+ });
 
-  document.getElementById("levelNumber").textContent = level;
+ document.getElementById("page-"+name).classList.add("active");
 
-  document.getElementById("xpText").textContent =
-    insideXP + " / 100 XP";
+ document.querySelectorAll(".nav button").forEach(b=>{
+  b.classList.toggle("active",b.dataset.page===name);
+ });
 
-  document.getElementById("xpBar").style.width =
-    insideXP + "%";
-
-  document.getElementById("streak").textContent =
-    Math.max(1, state.done);
-
-  document.getElementById("doneCount").textContent =
-    state.done;
-
-  document.getElementById("mealCount").textContent =
-    state.meals;
-
-  document.getElementById("profileName").textContent =
-    state.name || "Anvarbek";
-
-  document.getElementById("nameInput").value =
-    state.name || "";
-
-  document.getElementById("ageInput").value =
-    state.age || "";
-
-  document.getElementById("goalInput").value =
-    state.goal || "Strength";
-
-  const defaultAvatar =
-    "data:image/svg+xml;charset=UTF-8," +
-    encodeURIComponent(`
-      <svg xmlns="http://www.w3.org/2000/svg"
-           width="100" height="100">
-        <rect width="100" height="100" fill="#172536"/>
-        <text x="50" y="62"
-              font-size="42"
-              text-anchor="middle"
-              fill="#7dff45">A</text>
-      </svg>
-    `);
-
-  document.getElementById("avatar").src =
-    state.photo || defaultAvatar;
-
-  const usedToday = state.lastXP === todayKey();
-
-  const xpButton = document.getElementById("xpButton");
-
-  xpButton.disabled = usedToday;
-
-  xpButton.textContent = usedToday
-    ? "✓ XP olindi"
-    : "+ Daily XP";
+ if(name==="workout")renderWorkouts();
+ if(name==="meals")renderMeals();
 }
 
-function addXP() {
-  if (state.lastXP === todayKey()) {
-    toast("Bugungi XP allaqachon olindi.");
-    return;
-  }
+function update(){
+ const level=Math.floor(state.xp/100)+1;
+ const xp=state.xp%100;
 
-  state.xp += 25;
-  state.lastXP = todayKey();
+ document.getElementById("levelNumber").textContent=level;
+ document.getElementById("xpText").textContent=xp+" / 100 XP";
+ document.getElementById("xpBar").style.width=xp+"%";
 
-  save();
-  update();
+ document.getElementById("streak").textContent=Math.max(1,state.done);
+ document.getElementById("doneCount").textContent=state.done;
+ document.getElementById("mealCount").textContent=state.meals;
 
-  toast("+25 XP qo‘shildi!");
+ document.getElementById("profileName").textContent=state.name;
+ document.getElementById("nameInput").value=state.name;
+ document.getElementById("ageInput").value=state.age;
+ document.getElementById("goalInput").value=state.goal;
+
+ if(state.photo){
+  document.getElementById("avatar").src=state.photo;
+ }
+
+ const used=state.lastXP===today();
+ const button=document.getElementById("xpButton");
+
+ button.disabled=used;
+ button.textContent=used?"✓ XP olindi":"⚡ Bugungi XP +25";
 }
 
-function renderWorkouts() {
-  const container =
-    document.getElementById("workoutDays");
+function addXP(){
+ if(state.lastXP===today()){
+  toast("Bugungi XP allaqachon olindi!");
+  return;
+ }
 
-  container.innerHTML = "";
+ state.xp+=25;
+ state.lastXP=today();
 
-  days.forEach((day, index) => {
-    const button = document.createElement("button");
-
-    button.className =
-      "day " +
-      colors[index] +
-      (state.selectedWorkout === index
-        ? " selected"
-        : "");
-
-    button.innerHTML = `
-      <strong>${day}</strong>
-      <span>${workouts[index].title}</span>
-    `;
-
-    button.onclick = () => {
-      state.selectedWorkout = index;
-      save();
-      renderWorkouts();
-    };
-
-    container.appendChild(button);
-  });
-
-  const workout = workouts[state.selectedWorkout];
-
-  document.getElementById("workoutDetail").innerHTML = `
-    <h3>
-      ${days[state.selectedWorkout]} —
-      ${workout.title}
-    </h3>
-
-    <p class="muted">
-      Tavsiya etilgan vaqt: ${workout.time}
-    </p>
-
-    ${workout.items.map(item => `
-      <div class="exercise">
-        <span>${item}</span>
-        <span>✓</span>
-      </div>
-    `).join("")}
-  `;
+ save();
+ update();
+ toast("+25 XP qo‘shildi!");
 }
 
-function finishWorkout() {
-  state.done++;
-  state.xp += 15;
+function renderWorkouts(){
+ const box=document.getElementById("workoutDays");
+ box.innerHTML="";
 
-  save();
-  update();
-  renderWorkouts();
+ days.forEach((day,i)=>{
+  const b=document.createElement("button");
 
-  toast("Mashg‘ulot bajarildi! +15 XP");
-}
+  b.className="day "+colors[i]+
+   (state.selectedWorkout===i?" selected":"");
 
-function renderMeals() {
-  const container =
-    document.getElementById("mealDays");
+  b.innerHTML="<strong>"+day+"</strong>"+
+   "<span>"+workouts[i].title+"</span>";
 
-  container.innerHTML = "";
-
-  days.forEach((day, index) => {
-    const button = document.createElement("button");
-
-    button.className =
-      "day " +
-      colors[index] +
-      (state.selectedMeal === index
-        ? " selected"
-        : "");
-
-    button.innerHTML = `
-      <strong>${day}</strong>
-      <span>Daily menu</span>
-    `;
-
-    button.onclick = () => {
-      state.selectedMeal = index;
-      state.meals++;
-
-      save();
-      renderMeals();
-      update();
-    };
-
-    container.appendChild(button);
-  });
-
-  const meal = meals[state.selectedMeal];
-
-  document.getElementById("mealDetail").innerHTML = `
-    <h3>
-      ${days[state.selectedMeal]} —
-      Bugungi ovqatlanish tartibi
-    </h3>
-
-    <div class="meal">
-      <b>🍳 Nonushta:</b><br>
-      ${meal[0]}
-    </div>
-
-    <br>
-
-    <div class="meal">
-      <b>🍗 Tushlik:</b><br>
-      ${meal[1]}
-    </div>
-
-    <br>
-
-    <div class="meal">
-      <b>🥗 Kechki ovqat:</b><br>
-      ${meal[2]}
-    </div>
-
-    <p class="muted" style="margin-top:12px">
-      Bu umumiy namuna menyu.
-      O‘zingizga mos porsiyani tanlang.
-    </p>
-  `;
-}
-
-function uploadImage(event) {
-  const file = event.target.files[0];
-
-  if (!file) {
-    return;
-  }
-
-  if (!file.type.startsWith("image/")) {
-    toast("Faqat rasm faylini tanlang.");
-    return;
-  }
-
-  const reader = new FileReader();
-
-  reader.onload = () => {
-    state.photo = reader.result;
-
-    save();
-    update();
-
-    toast("Profil rasmi yangilandi!");
+  b.onclick=()=>{
+   state.selectedWorkout=i;
+   save();
+   renderWorkouts();
   };
 
-  reader.readAsDataURL(file);
+  box.appendChild(b);
+ });
+
+ const w=workouts[state.selectedWorkout];
+
+ document.getElementById("workoutDetail").innerHTML=
+  "<h3>"+days[state.selectedWorkout]+" — "+w.title+"</h3>"+
+  "<p class='muted'>Tavsiya etilgan vaqt: "+w.time+"</p>"+
+  w.items.map(x=>
+   "<div class='exercise'><span>"+x+
+   "</span><span>✓</span></div>"
+  ).join("");
 }
 
-function saveProfile() {
-  state.name =
-    document.getElementById("nameInput")
-      .value.trim() || "Anvarbek";
+function finishWorkout(){
+ state.done++;
+ state.xp+=20;
 
-  state.age =
-    document.getElementById("ageInput").value;
+ save();
+ update();
 
-  state.goal =
-    document.getElementById("goalInput").value;
+ toast("Workout bajarildi! +20 XP");
+}
 
+function renderMeals(){
+ const box=document.getElementById("mealDays");
+ box.innerHTML="";
+
+ days.forEach((day,i)=>{
+  const b=document.createElement("button");
+
+  b.className="day "+colors[i]+
+   (state.selectedMeal===i?" selected":"");
+
+  b.innerHTML="<strong>"+day+"</strong><span>Daily menu</span>";
+
+  b.onclick=()=>{
+   state.selectedMeal=i;
+   state.meals++;
+   save();
+   renderMeals();
+   update();
+  };
+
+  box.appendChild(b);
+ });
+
+ const m=meals[state.selectedMeal];
+
+ document.getElementById("mealDetail").innerHTML=
+  "<h3>"+days[state.selectedMeal]+
+  " — Bugungi ovqatlanish</h3>"+
+  "<div class='meal'><b>🍳 Nonushta:</b><br>"+m[0]+"</div><br>"+
+  "<div class='meal'><b>🍗 Tushlik:</b><br>"+m[1]+"</div><br>"+
+  "<div class='meal'><b>🥗 Kechki ovqat:</b><br>"+m[2]+"</div>";
+}
+
+function uploadImage(event){
+ const file=event.target.files[0];
+
+ if(!file)return;
+
+ const reader=new FileReader();
+
+ reader.onload=()=>{
+  state.photo=reader.result;
   save();
   update();
+  toast("Profil rasmi yangilandi!");
+ };
 
-  toast("Profil saqlandi!");
+ reader.readAsDataURL(file);
 }
 
-function resetData() {
-  const confirmed = confirm(
-    "Barcha saqlangan ma’lumotlar o‘chirilsinmi?"
-  );
+function saveProfile(){
+ state.name=document.getElementById("nameInput").value.trim()||"Anvarbek";
+ state.age=document.getElementById("ageInput").value;
+ state.goal=document.getElementById("goalInput").value;
 
-  if (!confirmed) {
-    return;
-  }
+ save();
+ update();
 
-  localStorage.removeItem("arvexState");
-
-  location.reload();
+ toast("Profil saqlandi!");
 }
 
-function toggleTheme() {
-  const light = document.body.classList.toggle("light");
+function resetData(){
+ if(!confirm("Barcha ma’lumotlar o‘chirilsinmi?"))return;
 
-  if (light) {
-    document.documentElement.style.setProperty(
-      "--bg",
-      "#eef4f8"
-    );
+ localStorage.removeItem("arvexState");
+ location.reload();
+}
 
-    document.documentElement.style.setProperty(
-      "--text",
-      "#102033"
-    );
-
-    toast("Light mode yoqildi");
-  } else {
-    document.documentElement.style.setProperty(
-      "--bg",
-      "#070b12"
-    );
-
-    document.documentElement.style.setProperty(
-      "--text",
-      "#ffffff"
-    );
-
-    toast("Dark mode yoqildi");
-  }
+function toggleTheme(){
+ document.body.classList.toggle("light");
+ toast("Dizayn rejimi o‘zgartirildi");
 }
 
 update();
 renderWorkouts();
 renderMeals();
-
-document
-  .querySelector('[data-page="home"]')
-  .classList.add("active");
 </script>
 
 </body>
