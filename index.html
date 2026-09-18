@@ -2,13 +2,11 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<meta name="theme-color" content="#050807">
-<title>ARVEX FC — Ultra</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#05090a">
+<title>ARVEX FC APP</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
 *{
   box-sizing:border-box;
   margin:0;
@@ -17,542 +15,493 @@
 }
 
 :root{
-  --bg:#030605;
-  --panel:rgba(13,20,17,.72);
-  --green:#42ff87;
-  --green2:#12c968;
-  --purple:#9b5cff;
-  --blue:#39a9ff;
-  --red:#ff405d;
-  --yellow:#ffd84d;
-  --text:#f4fff8;
-  --muted:#82938a;
-  --border:rgba(255,255,255,.09);
-}
-
-html,body{
-  min-height:100%;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Inter,Arial,sans-serif;
+  --black:#030708;
+  --dark:#071012;
+  --card:rgba(10,20,22,.78);
+  --green:#35ff88;
+  --blue:#25aaff;
+  --white:#f2fff8;
+  --muted:#71817e;
+  --line:rgba(255,255,255,.08);
 }
 
 body{
-  overflow-x:hidden;
-  padding-bottom:92px;
-}
-
-/* ===== BACKGROUND ===== */
-
-.bg{
-  position:fixed;
-  inset:0;
-  overflow:hidden;
-  pointer-events:none;
-  z-index:-5;
+  min-height:100vh;
   background:
-    radial-gradient(circle at 15% 10%,rgba(30,255,130,.12),transparent 27%),
-    radial-gradient(circle at 90% 20%,rgba(155,92,255,.12),transparent 28%),
-    radial-gradient(circle at 50% 100%,rgba(40,130,255,.09),transparent 32%),
-    #030605;
+    radial-gradient(circle at 15% 0%,rgba(53,255,136,.13),transparent 30%),
+    radial-gradient(circle at 100% 25%,rgba(37,170,255,.15),transparent 32%),
+    #030708;
+  color:var(--white);
+  font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden;
 }
 
-.grid{
-  position:absolute;
-  inset:-50%;
-  opacity:.17;
-  background-image:
-    linear-gradient(rgba(66,255,135,.08) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(66,255,135,.08) 1px,transparent 1px);
-  background-size:42px 42px;
-  transform:perspective(500px) rotateX(65deg);
-  animation:gridMove 18s linear infinite;
-}
+/* BACKGROUND */
 
-@keyframes gridMove{
-  from{transform:perspective(500px) rotateX(65deg) translateY(0)}
-  to{transform:perspective(500px) rotateX(65deg) translateY(84px)}
-}
-
-.orb{
-  position:absolute;
-  width:280px;
-  height:280px;
-  border-radius:50%;
-  filter:blur(75px);
-  opacity:.15;
-  animation:float 10s ease-in-out infinite alternate;
-}
-
-.o1{background:#20ff83;left:-120px;top:20%}
-.o2{background:#8f42ff;right:-130px;top:50%;animation-delay:-4s}
-.o3{background:#158cff;left:30%;bottom:-170px;animation-delay:-7s}
-
-@keyframes float{
-  from{transform:translate(0,0) scale(1)}
-  to{transform:translate(50px,-45px) scale(1.2)}
-}
-
-.scan{
+body:before{
+  content:"";
   position:fixed;
   inset:0;
   pointer-events:none;
-  z-index:999;
-  background:linear-gradient(
-    transparent 49.7%,
-    rgba(66,255,135,.025) 50%,
-    transparent 50.3%
-  );
-  background-size:100% 8px;
+  opacity:.18;
+  background-image:
+    linear-gradient(rgba(53,255,136,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(37,170,255,.06) 1px,transparent 1px);
+  background-size:38px 38px;
+  mask-image:linear-gradient(to bottom,#000,transparent 85%);
 }
 
-/* ===== SPLASH ===== */
-
-#splash{
+.glow{
   position:fixed;
-  inset:0;
-  z-index:5000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#020403;
-  transition:.8s ease;
+  width:230px;
+  height:230px;
+  border-radius:50%;
+  filter:blur(80px);
+  opacity:.12;
+  pointer-events:none;
 }
 
-.splashBox{text-align:center}
-
-.logo{
-  font-size:44px;
-  font-weight:900;
-  letter-spacing:-3px;
-  text-shadow:0 0 25px rgba(66,255,135,.45);
-}
-
-.logo span{color:var(--green)}
-.logo small{color:#89958e;font-size:22px;letter-spacing:-1px}
-
-.splashLine{
-  width:190px;
-  height:3px;
-  background:#15221b;
-  margin:22px auto 0;
-  overflow:hidden;
-  border-radius:99px;
-}
-
-.splashLine i{
-  display:block;
-  width:45%;
-  height:100%;
+.greenGlow{
   background:var(--green);
-  box-shadow:0 0 15px var(--green);
-  animation:load 1.5s ease infinite;
+  left:-100px;
+  top:25%;
+  animation:moveGreen 9s infinite alternate ease-in-out;
 }
 
-@keyframes load{
-  from{transform:translateX(-110%)}
-  to{transform:translateX(330%)}
+.blueGlow{
+  background:var(--blue);
+  right:-100px;
+  top:55%;
+  animation:moveBlue 11s infinite alternate ease-in-out;
 }
 
-/* ===== APP ===== */
+@keyframes moveGreen{
+  to{transform:translate(100px,-70px)}
+}
+
+@keyframes moveBlue{
+  to{transform:translate(-90px,70px)}
+}
+
+/* APP */
 
 .app{
-  width:min(100%,560px);
+  width:100%;
+  max-width:540px;
   margin:auto;
-  padding:18px 15px 20px;
+  padding:18px 15px 105px;
 }
 
-.topbar{
+/* HEADER */
+
+.header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 
-.brand{
-  font-size:24px;
+.logo{
+  font-size:23px;
   font-weight:900;
-  letter-spacing:-1.4px;
+  letter-spacing:-1.5px;
 }
 
-.brand span{color:var(--green)}
-.brand b{color:#8c9891}
+.logo span{
+  color:var(--green);
+  text-shadow:0 0 16px rgba(53,255,136,.5);
+}
 
-.status{
+.logo b{
+  color:#a4aaa9;
+}
+
+.online{
   display:flex;
   align-items:center;
   gap:7px;
   padding:8px 11px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.035);
+  border:1px solid var(--line);
   border-radius:30px;
-  font-size:10px;
-  color:#9caaa3;
-  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,.035);
+  color:#84918e;
+  font-size:8px;
+  font-weight:bold;
+  letter-spacing:1px;
 }
 
-.status i{
+.online i{
   width:7px;
   height:7px;
-  background:var(--green);
   border-radius:50%;
-  box-shadow:0 0 10px var(--green);
+  background:var(--green);
+  box-shadow:0 0 12px var(--green);
 }
 
-/* ===== PAGES ===== */
+/* PAGES */
 
 .page{
   display:none;
-  animation:pageIn .45s ease;
+  animation:page .35s ease;
 }
 
-.page.active{display:block}
-
-@keyframes pageIn{
-  from{opacity:0;transform:translateY(12px)}
-  to{opacity:1;transform:none}
+.page.active{
+  display:block;
 }
 
-/* ===== HERO ===== */
+@keyframes page{
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+/* HERO */
 
 .hero{
   position:relative;
   overflow:hidden;
-  min-height:255px;
-  border:1px solid rgba(66,255,135,.17);
-  border-radius:30px;
-  padding:25px 21px;
+  min-height:270px;
+  border:1px solid rgba(53,255,136,.17);
+  border-radius:32px;
+  padding:25px 22px;
   background:
-    linear-gradient(135deg,rgba(66,255,135,.08),rgba(155,92,255,.055)),
-    rgba(8,14,11,.78);
+    linear-gradient(135deg,rgba(53,255,136,.08),rgba(37,170,255,.08)),
+    rgba(6,14,15,.82);
   box-shadow:
-    inset 0 1px rgba(255,255,255,.05),
-    0 25px 80px rgba(0,0,0,.35);
-}
-
-.hero:before{
-  content:"";
-  position:absolute;
-  width:210px;
-  height:210px;
-  border:1px solid rgba(66,255,135,.12);
-  border-radius:50%;
-  right:-70px;
-  top:-65px;
-  box-shadow:0 0 50px rgba(66,255,135,.08);
+    inset 0 1px rgba(255,255,255,.07),
+    0 25px 70px rgba(0,0,0,.35);
 }
 
 .hero:after{
   content:"";
   position:absolute;
-  width:90px;
-  height:90px;
-  background:var(--green);
-  filter:blur(75px);
-  opacity:.12;
-  right:15px;
-  bottom:0;
+  width:170px;
+  height:170px;
+  right:-70px;
+  top:-70px;
+  border:1px solid rgba(37,170,255,.25);
+  border-radius:50%;
+  box-shadow:
+    0 0 45px rgba(37,170,255,.12),
+    inset 0 0 30px rgba(37,170,255,.08);
 }
 
-.mini{
+.heroTag{
   color:var(--green);
-  font-size:10px;
-  font-weight:800;
+  font-size:8px;
+  font-weight:900;
   letter-spacing:3px;
-  margin-bottom:10px;
 }
 
 .hero h1{
-  font-size:45px;
-  line-height:.94;
-  letter-spacing:-3px;
+  margin-top:12px;
+  font-size:50px;
+  line-height:.88;
+  letter-spacing:-4px;
+}
+
+.hero h1 span{
+  color:var(--green);
+  text-shadow:0 0 25px rgba(53,255,136,.3);
+}
+
+.hero h1 b{
+  color:#9ba5a4;
   font-weight:900;
 }
 
-.hero h1 span{color:var(--green)}
-
-.heroSub{
-  margin-top:10px;
-  color:#9aa79f;
-  font-size:12px;
+.hero p{
+  margin-top:13px;
+  max-width:280px;
+  color:#81908c;
+  font-size:11px;
+  line-height:1.5;
 }
 
 .temur{
-  margin-top:22px;
   display:flex;
   align-items:center;
-  gap:11px;
+  gap:10px;
+  margin-top:24px;
 }
 
-.dots{
+.temurDots{
+  width:26px;
+  height:22px;
   position:relative;
-  width:28px;
-  height:23px;
 }
 
-.dots i{
+.temurDots i{
   position:absolute;
-  width:6px;
-  height:6px;
+  width:5px;
+  height:5px;
   border-radius:50%;
-  background:#e6e6e6;
-  box-shadow:0 0 8px rgba(255,255,255,.5);
+  background:#e9f2ee;
+  box-shadow:0 0 7px white;
 }
 
-.dots i:nth-child(1){left:11px;top:0}
-.dots i:nth-child(2){left:5px;top:11px}
-.dots i:nth-child(3){left:17px;top:11px}
+.temurDots i:nth-child(1){
+  top:0;
+  left:10px;
+}
+
+.temurDots i:nth-child(2){
+  top:10px;
+  left:4px;
+}
+
+.temurDots i:nth-child(3){
+  top:10px;
+  left:16px;
+}
 
 .temur strong{
-  font-size:12px;
+  display:block;
+  font-size:11px;
 }
 
 .temur small{
   display:block;
-  color:#68766e;
-  font-size:9px;
-  margin-top:2px;
+  margin-top:3px;
+  color:#65736f;
+  font-size:8px;
 }
 
-/* ===== SECTION ===== */
+/* SECTION */
 
-.sectionTitle{
+.section{
+  margin-top:23px;
+}
+
+.sectionHead{
   display:flex;
   justify-content:space-between;
-  align-items:end;
-  margin:26px 3px 11px;
+  align-items:center;
+  margin:0 3px 10px;
 }
 
-.sectionTitle h2{
+.sectionHead h2{
   font-size:16px;
   letter-spacing:-.4px;
 }
 
-.sectionTitle span{
-  color:#68776e;
-  font-size:9px;
-  text-transform:uppercase;
+.sectionHead span{
+  color:#65736f;
+  font-size:8px;
   letter-spacing:1px;
 }
 
-/* ===== LEVEL ===== */
+/* CORE CARD */
 
-.level{
+.core{
   position:relative;
   overflow:hidden;
-  border:1px solid rgba(155,92,255,.25);
+  border:1px solid rgba(53,255,136,.16);
+  border-radius:27px;
+  padding:19px;
   background:
-    radial-gradient(circle at 90% 10%,rgba(155,92,255,.19),transparent 35%),
-    linear-gradient(135deg,rgba(155,92,255,.08),rgba(66,255,135,.05)),
-    rgba(10,11,18,.8);
-  border-radius:26px;
-  padding:20px;
+    radial-gradient(circle at 100% 0,rgba(37,170,255,.14),transparent 34%),
+    radial-gradient(circle at 0 100%,rgba(53,255,136,.08),transparent 35%),
+    var(--card);
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
 }
 
-.levelTop{
+.coreTop{
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
 }
 
-.levelName{
-  font-size:10px;
-  letter-spacing:2px;
-  color:#a98cff;
-  font-weight:800;
-}
-
-.levelNumber{
-  font-size:36px;
+.levelLabel{
+  color:var(--green);
+  font-size:8px;
   font-weight:900;
-  letter-spacing:-2px;
+  letter-spacing:2px;
 }
 
-.levelNumber span{
-  font-size:11px;
-  color:#78847e;
-  letter-spacing:0;
+.level{
+  margin-top:5px;
+  font-size:37px;
+  font-weight:900;
 }
 
-.levelRing{
-  width:95px;
-  height:95px;
+.level small{
+  font-size:10px;
+  color:#65736f;
+}
+
+.ring{
+  width:82px;
+  height:82px;
   border-radius:50%;
   display:grid;
   place-items:center;
   background:conic-gradient(
-    var(--green) var(--xp,0%),
-    rgba(255,255,255,.06) 0
+    var(--green) 0deg,
+    var(--blue) var(--progress,0deg),
+    rgba(255,255,255,.06) 0deg
   );
+  box-shadow:0 0 24px rgba(53,255,136,.12);
   position:relative;
-  box-shadow:0 0 25px rgba(66,255,135,.08);
 }
 
-.levelRing:before{
+.ring:before{
   content:"";
   position:absolute;
-  inset:7px;
+  inset:6px;
   border-radius:50%;
-  background:#0a0d0b;
+  background:#081012;
 }
 
-.ringText{
+.ring div{
   position:relative;
-  z-index:2;
   text-align:center;
-  font-size:10px;
-  font-weight:800;
+  font-size:8px;
+  color:#7b8986;
 }
 
-.ringText b{
+.ring b{
   display:block;
-  font-size:18px;
+  color:white;
+  font-size:16px;
+}
+
+.xpTrack{
+  height:7px;
+  margin-top:18px;
+  border-radius:20px;
+  overflow:hidden;
+  background:rgba(255,255,255,.06);
 }
 
 .xpBar{
-  margin-top:17px;
-  height:8px;
-  border-radius:20px;
-  background:rgba(255,255,255,.06);
-  overflow:hidden;
-}
-
-.xpFill{
   width:0;
   height:100%;
   border-radius:20px;
-  background:linear-gradient(90deg,var(--purple),var(--green));
-  box-shadow:0 0 16px rgba(66,255,135,.45);
-  transition:1s cubic-bezier(.2,.8,.2,1);
+  background:linear-gradient(90deg,var(--green),var(--blue));
+  box-shadow:0 0 14px rgba(53,255,136,.45);
+  transition:1s;
 }
 
-.levelBottom{
+.xpInfo{
   display:flex;
   justify-content:space-between;
-  margin-top:8px;
-  color:#748179;
-  font-size:9px;
+  margin-top:7px;
+  color:#64726e;
+  font-size:8px;
 }
 
-.levelButton{
+.xpButton{
   width:100%;
-  margin-top:17px;
+  margin-top:15px;
   padding:13px;
-  border:1px solid rgba(66,255,135,.25);
+  border:1px solid rgba(53,255,136,.25);
   border-radius:15px;
-  background:rgba(66,255,135,.07);
-  color:#dffff0;
-  font-weight:800;
-  font-size:11px;
-  cursor:pointer;
-  transition:.25s;
+  background:linear-gradient(
+    90deg,
+    rgba(53,255,136,.10),
+    rgba(37,170,255,.10)
+  );
+  color:white;
+  font-weight:900;
+  font-size:10px;
 }
 
-.levelButton:active{
+.xpButton:active{
   transform:scale(.97);
 }
 
-.levelButton.done{
-  opacity:.5;
-  cursor:not-allowed;
-}
-
-/* ===== STATS ===== */
+/* STATS */
 
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:9px;
-  margin-top:10px;
+  gap:8px;
+  margin-top:9px;
 }
 
 .stat{
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:14px 10px;
-  background:rgba(255,255,255,.035);
+  padding:14px 8px;
   text-align:center;
-  backdrop-filter:blur(15px);
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(255,255,255,.035);
 }
 
-.stat strong{
+.stat b{
   display:block;
   font-size:18px;
 }
 
 .stat small{
-  color:#6f7c75;
-  font-size:8px;
-  margin-top:4px;
   display:block;
-  text-transform:uppercase;
+  margin-top:4px;
+  color:#62706c;
+  font-size:7px;
   letter-spacing:1px;
 }
 
-/* ===== MOTIVATION ===== */
+/* MOTIVATION */
 
 .motivation{
-  border:1px solid rgba(66,255,135,.12);
   border-radius:22px;
   padding:17px;
-  background:rgba(66,255,135,.035);
-  position:relative;
-  overflow:hidden;
+  border:1px solid rgba(37,170,255,.18);
+  background:
+    linear-gradient(135deg,rgba(37,170,255,.08),rgba(53,255,136,.04));
 }
 
-.motivation:before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0;
-  bottom:0;
-  width:3px;
-  background:var(--green);
-  box-shadow:0 0 15px var(--green);
-}
-
-.label{
-  color:var(--green);
-  font-size:9px;
-  font-weight:800;
-  letter-spacing:1.8px;
-  text-transform:uppercase;
+.motivationLabel{
+  color:var(--blue);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:2px;
 }
 
 .motivation p{
   margin-top:8px;
-  font-size:14px;
+  font-size:13px;
   line-height:1.5;
   font-weight:700;
 }
 
-/* ===== GOAL ===== */
+/* GOAL */
 
 .goal{
-  border:1px solid rgba(255,255,255,.08);
+  border:1px solid var(--line);
   border-radius:22px;
   padding:17px;
-  background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+  background:rgba(255,255,255,.035);
+}
+
+.goalTitle{
+  color:var(--green);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:2px;
 }
 
 .goal p{
-  margin-top:7px;
-  color:#a7b1ac;
-  font-size:12px;
-  line-height:1.55;
+  margin-top:8px;
+  color:#8a9894;
+  font-size:11px;
+  line-height:1.5;
 }
 
-/* ===== AI ===== */
+/* AI */
 
 .ai{
-  border:1px solid rgba(155,92,255,.28);
-  border-radius:24px;
-  padding:19px;
+  border:1px solid rgba(37,170,255,.25);
+  border-radius:25px;
+  padding:18px;
   background:
-    radial-gradient(circle at 100% 0,rgba(155,92,255,.15),transparent 35%),
-    rgba(12,10,19,.82);
-  position:relative;
-  overflow:hidden;
+    radial-gradient(circle at 100% 0,rgba(37,170,255,.15),transparent 40%),
+    rgba(7,14,18,.82);
 }
 
 .aiHead{
@@ -562,119 +511,122 @@ body{
 }
 
 .aiIcon{
-  width:39px;
-  height:39px;
-  border-radius:13px;
+  width:42px;
+  height:42px;
   display:grid;
   place-items:center;
-  background:linear-gradient(135deg,#9b5cff,#5d34c7);
-  box-shadow:0 0 22px rgba(155,92,255,.3);
+  border-radius:14px;
+  color:white;
+  font-size:10px;
+  font-weight:900;
+  background:linear-gradient(135deg,var(--blue),var(--green));
+  box-shadow:0 0 24px rgba(37,170,255,.25);
+}
+
+.aiTitle{
+  font-size:12px;
   font-weight:900;
 }
 
-.ai h3{font-size:13px}
-.ai small{color:#756e83;font-size:9px}
+.aiSub{
+  margin-top:3px;
+  color:#60716e;
+  font-size:8px;
+}
 
 .aiText{
   margin-top:14px;
-  color:#c9c1d4;
-  font-size:12px;
+  color:#a5b2ae;
+  font-size:11px;
   line-height:1.55;
 }
 
 .aiButton{
-  margin-top:14px;
   width:100%;
+  margin-top:14px;
   padding:12px;
-  border:1px solid rgba(155,92,255,.28);
+  border:1px solid rgba(37,170,255,.25);
   border-radius:14px;
-  background:rgba(155,92,255,.08);
-  color:#e4d9ff;
-  font-weight:800;
+  background:rgba(37,170,255,.07);
+  color:#d9f3ff;
+  font-weight:900;
+  font-size:9px;
 }
 
-/* ===== WORKOUT ===== */
+/* WORKOUT */
 
-.dayGrid{
+.days{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:9px;
+  gap:8px;
 }
 
-.dayCard{
-  min-height:91px;
-  border:1px solid var(--day);
-  border-radius:19px;
-  padding:13px 10px;
-  background:
-    linear-gradient(145deg,
-      color-mix(in srgb,var(--day) 15%,transparent),
-      rgba(255,255,255,.025)
-    );
-  box-shadow:0 0 22px color-mix(in srgb,var(--day) 9%,transparent);
-  cursor:pointer;
-  transition:.45s cubic-bezier(.2,.8,.2,1);
-  overflow:hidden;
+.day{
   position:relative;
+  min-height:92px;
+  padding:13px 10px;
+  border:1px solid var(--c);
+  border-radius:19px;
+  background:color-mix(in srgb,var(--c) 8%,#071012);
+  transition:.4s cubic-bezier(.2,.9,.2,1);
+  overflow:hidden;
 }
 
-.dayCard:before{
+.day:after{
   content:"";
   position:absolute;
-  inset:-40%;
-  background:linear-gradient(110deg,transparent,rgba(255,255,255,.09),transparent);
-  transform:translateX(-80%);
-  transition:.6s;
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:var(--c);
+  filter:blur(50px);
+  opacity:.08;
+  right:-30px;
+  bottom:-30px;
 }
 
-.dayCard:active{transform:scale(.96)}
-
-.dayCard.open{
+.day.open{
   grid-column:1/-1;
   min-height:190px;
-  box-shadow:
-    0 0 35px color-mix(in srgb,var(--day) 25%,transparent),
-    inset 0 0 35px color-mix(in srgb,var(--day) 7%,transparent);
+  box-shadow:0 0 35px color-mix(in srgb,var(--c) 22%,transparent);
 }
 
-.dayCard.open:before{
-  transform:translateX(80%);
-}
-
-.dayCard:nth-child(7){
+.day:nth-child(7){
   grid-column:2;
-}
-
-.dayName{
-  font-weight:900;
-  font-size:11px;
-}
-
-.dayType{
-  color:#7e8983;
-  font-size:8px;
-  margin-top:5px;
 }
 
 .dayDot{
   width:8px;
   height:8px;
   border-radius:50%;
-  background:var(--day);
-  box-shadow:0 0 13px var(--day);
-  margin-bottom:10px;
+  background:var(--c);
+  box-shadow:0 0 13px var(--c);
+}
+
+.dayName{
+  margin-top:9px;
+  font-size:10px;
+  font-weight:900;
+}
+
+.dayType{
+  margin-top:4px;
+  color:#6d7b77;
+  font-size:8px;
 }
 
 .dayDetails{
   display:none;
-  margin-top:17px;
-  animation:details .35s ease;
+  margin-top:16px;
 }
 
-.dayCard.open .dayDetails{display:block}
+.day.open .dayDetails{
+  display:block;
+  animation:appear .3s ease;
+}
 
-@keyframes details{
-  from{opacity:0;transform:translateY(8px)}
+@keyframes appear{
+  from{opacity:0;transform:translateY(7px)}
   to{opacity:1;transform:none}
 }
 
@@ -682,264 +634,200 @@ body{
   font-size:18px;
 }
 
-.time{
-  margin-top:6px;
-  color:#aeb8b2;
-  font-size:10px;
+.dayTime{
+  margin-top:5px;
+  color:#82908c;
+  font-size:9px;
 }
 
-.exercises{
+.tags{
   display:flex;
   flex-wrap:wrap;
-  gap:7px;
+  gap:6px;
   margin-top:13px;
 }
 
-.exercise{
-  padding:8px 10px;
+.tag{
+  padding:8px 9px;
   border-radius:10px;
-  background:rgba(255,255,255,.07);
-  color:#cbd5cf;
-  font-size:9px;
+  background:rgba(255,255,255,.06);
+  color:#c3cfcb;
+  font-size:8px;
 }
 
-.completeBtn{
-  margin-top:14px;
-  border:1px solid color-mix(in srgb,var(--day) 45%,transparent);
-  background:color-mix(in srgb,var(--day) 12%,transparent);
-  color:white;
-  border-radius:12px;
+.complete{
+  margin-top:13px;
   padding:10px 13px;
-  font-size:10px;
-  font-weight:800;
+  border:1px solid var(--c);
+  border-radius:11px;
+  background:color-mix(in srgb,var(--c) 12%,transparent);
+  color:white;
+  font-size:8px;
+  font-weight:900;
 }
 
-/* ===== CHALLENGE ===== */
+/* MEALS */
 
-.challenge{
-  border:1px solid rgba(255,216,77,.2);
-  border-radius:23px;
+.today{
+  border:1px solid rgba(53,255,136,.18);
+  border-radius:25px;
   padding:18px;
-  background:rgba(255,216,77,.035);
+  background:
+    linear-gradient(135deg,rgba(53,255,136,.07),rgba(37,170,255,.07)),
+    var(--card);
 }
 
-.challengeTop{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.challengeBadge{
-  color:var(--yellow);
-  font-size:9px;
+.todayLabel{
+  color:var(--green);
+  font-size:8px;
   font-weight:900;
   letter-spacing:2px;
 }
 
-.challenge h3{
-  margin-top:10px;
-  font-size:16px;
-}
-
-.challenge p{
-  color:#8e9792;
-  font-size:10px;
-  margin-top:6px;
-  line-height:1.5;
-}
-
-.challenge button{
-  margin-top:13px;
-  padding:10px 15px;
-  border:1px solid rgba(255,216,77,.28);
-  border-radius:12px;
-  background:rgba(255,216,77,.07);
-  color:#fff2ae;
-  font-size:10px;
-  font-weight:800;
-}
-
-/* ===== MEALS ===== */
-
-.todayMeal{
-  border:1px solid rgba(66,255,135,.2);
-  border-radius:24px;
-  padding:19px;
-  background:
-    radial-gradient(circle at 90% 10%,rgba(66,255,135,.1),transparent 30%),
-    rgba(9,15,12,.8);
-}
-
-.todayMeal h3{
-  margin-top:6px;
+.today h3{
+  margin-top:7px;
   font-size:20px;
-}
-
-.mealList{
-  display:grid;
-  gap:8px;
-  margin-top:15px;
 }
 
 .meal{
   display:flex;
   align-items:center;
-  gap:11px;
+  gap:10px;
+  margin-top:9px;
   padding:12px;
   border-radius:14px;
   background:rgba(255,255,255,.045);
 }
 
 .mealIcon{
-  width:30px;
-  height:30px;
+  width:31px;
+  height:31px;
   display:grid;
   place-items:center;
   border-radius:10px;
-  background:rgba(66,255,135,.1);
+  background:rgba(53,255,136,.08);
 }
 
 .meal strong{
   display:block;
-  font-size:10px;
+  font-size:9px;
 }
 
 .meal span{
   display:block;
-  color:#79857e;
-  font-size:9px;
   margin-top:3px;
-}
-
-.menuGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:9px;
-}
-
-.menuDay{
-  min-height:74px;
-  padding:11px 8px;
-  border-radius:17px;
-  border:1px solid var(--day);
-  background:color-mix(in srgb,var(--day) 7%,transparent);
-  cursor:pointer;
-  transition:.3s;
-}
-
-.menuDay.active{
-  transform:translateY(-3px);
-  box-shadow:0 0 24px color-mix(in srgb,var(--day) 17%,transparent);
-}
-
-.menuDay strong{
-  display:block;
-  font-size:10px;
-}
-
-.menuDay small{
-  color:#748078;
+  color:#71807b;
   font-size:8px;
 }
 
-/* ===== MEDALS ===== */
+.menu{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
 
-.medalGrid{
+.menuDay{
+  padding:13px 9px;
+  border:1px solid var(--c);
+  border-radius:17px;
+  background:color-mix(in srgb,var(--c) 7%,transparent);
+}
+
+.menuDay b{
+  font-size:9px;
+}
+
+.menuDay small{
+  display:block;
+  margin-top:4px;
+  color:#6f7c78;
+  font-size:7px;
+}
+
+/* MEDALS */
+
+.medals{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px;
+  gap:9px;
 }
 
 .medal{
-  position:relative;
-  min-height:155px;
-  border:1px solid var(--medal);
-  border-radius:23px;
-  padding:17px;
+  min-height:150px;
+  padding:16px;
+  border:1px solid var(--c);
+  border-radius:22px;
   background:
-    radial-gradient(circle at 80% 15%,color-mix(in srgb,var(--medal) 18%,transparent),transparent 35%),
+    radial-gradient(circle at 100% 0,color-mix(in srgb,var(--c) 15%,transparent),transparent 40%),
     rgba(255,255,255,.025);
-  overflow:hidden;
 }
 
 .medalIcon{
   width:48px;
   height:48px;
-  border-radius:50%;
   display:grid;
   place-items:center;
+  border-radius:50%;
+  border:1px solid var(--c);
+  background:color-mix(in srgb,var(--c) 10%,transparent);
   font-size:21px;
-  background:color-mix(in srgb,var(--medal) 15%,transparent);
-  border:1px solid var(--medal);
-  box-shadow:0 0 20px color-mix(in srgb,var(--medal) 20%,transparent);
+  box-shadow:0 0 20px color-mix(in srgb,var(--c) 12%,transparent);
 }
 
 .medal h3{
-  margin-top:13px;
-  font-size:13px;
+  margin-top:12px;
+  font-size:12px;
 }
 
 .medal p{
   margin-top:4px;
-  color:#77827c;
-  font-size:9px;
+  color:#6e7b77;
+  font-size:8px;
 }
 
-.lock{
-  position:absolute;
-  right:13px;
-  top:13px;
-  font-size:11px;
-  opacity:.55;
+.medal.locked{
+  opacity:.48;
+  filter:saturate(.4);
 }
 
-.medal.unlocked{
-  animation:medalGlow 2.5s infinite alternate;
-}
-
-@keyframes medalGlow{
-  from{box-shadow:0 0 5px color-mix(in srgb,var(--medal) 5%,transparent)}
-  to{box-shadow:0 0 27px color-mix(in srgb,var(--medal) 18%,transparent)}
-}
-
-/* ===== PROFILE ===== */
+/* PROFILE */
 
 .profile{
-  border:1px solid rgba(66,255,135,.15);
-  border-radius:25px;
-  padding:21px;
-  background:rgba(10,15,12,.8);
+  padding:20px;
+  border:1px solid rgba(53,255,136,.15);
+  border-radius:27px;
+  background:rgba(8,15,16,.8);
 }
 
 .avatar{
-  width:74px;
-  height:74px;
-  border-radius:23px;
+  width:72px;
+  height:72px;
   display:grid;
   place-items:center;
-  background:linear-gradient(135deg,var(--green),#087d42);
-  color:#031208;
-  font-size:25px;
+  border-radius:23px;
+  background:linear-gradient(135deg,var(--green),var(--blue));
+  color:#02100a;
   font-weight:900;
-  box-shadow:0 0 30px rgba(66,255,135,.2);
+  font-size:22px;
+  box-shadow:0 0 28px rgba(53,255,136,.2);
 }
 
 .profile h2{
   margin-top:14px;
-  font-size:22px;
+  font-size:20px;
 }
 
 .profile p{
-  color:#748078;
-  font-size:10px;
   margin-top:4px;
+  color:#6f7d79;
+  font-size:9px;
 }
 
 .profileStats{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:9px;
-  margin-top:19px;
+  gap:8px;
+  margin-top:17px;
 }
 
 .profileStat{
@@ -949,980 +837,764 @@ body{
 }
 
 .profileStat b{
-  font-size:19px;
+  font-size:18px;
 }
 
 .profileStat small{
   display:block;
-  color:#6d7872;
-  font-size:8px;
-  margin-top:3px;
+  margin-top:4px;
+  color:#687670;
+  font-size:7px;
 }
 
 .creator{
-  margin-top:14px;
+  margin-top:18px;
   text-align:center;
-  color:#68746e;
-  font-size:9px;
+  color:#5f6c68;
+  font-size:8px;
 }
 
-/* ===== NAV ===== */
+/* NAV */
 
 .nav{
   position:fixed;
-  z-index:2000;
   left:50%;
-  bottom:12px;
+  bottom:10px;
   transform:translateX(-50%);
-  width:min(calc(100% - 22px),530px);
-  height:67px;
-  padding:7px;
+  z-index:1000;
+  width:calc(100% - 22px);
+  max-width:520px;
+  height:68px;
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:23px;
-  background:rgba(6,10,8,.82);
-  backdrop-filter:blur(24px);
-  box-shadow:0 18px 50px rgba(0,0,0,.5);
+  gap:3px;
+  padding:7px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:24px;
+  background:rgba(4,10,11,.88);
+  backdrop-filter:blur(25px);
+  box-shadow:0 15px 50px rgba(0,0,0,.55);
 }
 
 .nav button{
   border:0;
   border-radius:17px;
   background:transparent;
-  color:#68756e;
-  font-size:8px;
-  font-weight:800;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:4px;
-  cursor:pointer;
-  transition:.25s;
+  color:#64736e;
+  font-size:7px;
+  font-weight:900;
 }
 
 .nav button span{
-  font-size:18px;
-  line-height:1;
+  display:block;
+  margin-bottom:4px;
+  font-size:17px;
 }
 
 .nav button.active{
   color:var(--green);
-  background:rgba(66,255,135,.08);
-  box-shadow:inset 0 0 18px rgba(66,255,135,.04);
+  background:linear-gradient(
+    135deg,
+    rgba(53,255,136,.10),
+    rgba(37,170,255,.10)
+  );
+  box-shadow:inset 0 0 18px rgba(53,255,136,.04);
 }
 
 .nav button.active span{
   filter:drop-shadow(0 0 7px var(--green));
 }
 
-/* ===== TOAST ===== */
+/* TOAST */
 
 .toast{
   position:fixed;
   left:50%;
-  top:22px;
-  z-index:4000;
-  transform:translate(-50%,-120px);
-  padding:12px 17px;
-  border:1px solid rgba(66,255,135,.25);
+  top:20px;
+  transform:translate(-50%,-100px);
+  z-index:3000;
+  padding:12px 16px;
+  border:1px solid rgba(53,255,136,.25);
   border-radius:15px;
-  background:rgba(5,11,8,.94);
-  box-shadow:0 0 30px rgba(66,255,135,.12);
-  font-size:10px;
-  font-weight:800;
-  transition:.4s;
-  white-space:nowrap;
+  background:#07100e;
+  box-shadow:0 0 25px rgba(53,255,136,.12);
+  font-size:9px;
+  font-weight:900;
+  transition:.35s;
 }
 
 .toast.show{
   transform:translate(-50%,0);
-}
-
-/* ===== LEVEL UP ===== */
-
-.levelUp{
-  position:fixed;
-  inset:0;
-  z-index:4500;
-  display:none;
-  place-items:center;
-  background:rgba(0,0,0,.72);
-  backdrop-filter:blur(9px);
-}
-
-.levelUp.show{display:grid}
-
-.levelUpBox{
-  width:calc(100% - 50px);
-  max-width:390px;
-  text-align:center;
-  padding:35px 20px;
-  border:1px solid rgba(66,255,135,.3);
-  border-radius:30px;
-  background:
-    radial-gradient(circle at 50% 0,rgba(66,255,135,.18),transparent 45%),
-    #08100b;
-  animation:pop .45s cubic-bezier(.2,1.5,.4,1);
-}
-
-@keyframes pop{
-  from{opacity:0;transform:scale(.75)}
-  to{opacity:1;transform:scale(1)}
-}
-
-.levelUpBox .big{
-  font-size:54px;
-}
-
-.levelUpBox h2{
-  margin-top:8px;
-  font-size:25px;
-}
-
-.levelUpBox p{
-  margin-top:6px;
-  color:#839087;
-  font-size:11px;
-}
-
-.levelUpBox button{
-  margin-top:20px;
-  padding:12px 28px;
-  border:0;
-  border-radius:13px;
-  background:var(--green);
-  color:#041008;
-  font-weight:900;
-}
-
-/* ===== RESPONSIVE ===== */
-
-@media(max-width:360px){
-  .hero h1{font-size:39px}
-  .dayGrid{gap:7px}
-  .dayCard{padding:11px 8px}
-  .menuGrid{gap:7px}
-}
-
-@media(min-width:700px){
-  .app{padding-top:30px}
 }
 </style>
 </head>
 
 <body>
 
-<div id="splash">
-  <div class="splashBox">
-    <div class="logo"><span>ARVEX</span> <small>FC</small></div>
-    <div class="splashLine"><i></i></div>
-  </div>
-</div>
-
-<div class="bg">
-  <div class="grid"></div>
-  <div class="orb o1"></div>
-  <div class="orb o2"></div>
-  <div class="orb o3"></div>
-</div>
-
-<div class="scan"></div>
+<div class="glow greenGlow"></div>
+<div class="glow blueGlow"></div>
 
 <div class="toast" id="toast"></div>
 
-<div class="levelUp" id="levelUp">
-  <div class="levelUpBox">
-    <div class="big">⚡</div>
-    <h2>LEVEL UP!</h2>
-    <p>ARVEX energiyangiz oshdi.</p>
-    <button onclick="closeLevelUp()">DAVOM ETISH</button>
-  </div>
-</div>
-
 <main class="app">
 
-  <header class="topbar">
-    <div class="brand"><span>ARVEX</span> <b>FC</b></div>
-    <div class="status"><i></i> SYSTEM ONLINE</div>
-  </header>
+<header class="header">
+  <div class="logo"><span>ARVEX</span> <b>FC</b></div>
+  <div class="online"><i></i> ONLINE</div>
+</header>
 
-  <!-- HOME -->
-  <section class="page active" id="home">
+<!-- HOME -->
+<section class="page active" id="home">
 
-    <div class="hero">
-      <div class="mini">ARVEX PERFORMANCE SYSTEM</div>
-      <h1><span>ARVEX</span><br>FC</h1>
-      <p class="heroSub">Har kuni kuchliroq. Har kuni bir qadam oldinda.</p>
+  <div class="hero">
+    <div class="heroTag">PERFORMANCE APP</div>
 
-      <div class="temur">
-        <div class="dots">
-          <i></i><i></i><i></i>
-        </div>
-        <div>
-          <strong>Amir Temur</strong>
-          <small>Intizom • Kuch • Harakat</small>
-        </div>
+    <h1>
+      <span>ARVEX</span><br>
+      <b>FC</b>
+    </h1>
+
+    <p>
+      Kuch. Intizom. Harakat.
+      Har kuni o‘zingning yaxshiroq versiyangga aylan.
+    </p>
+
+    <div class="temur">
+      <div class="temurDots">
+        <i></i><i></i><i></i>
+      </div>
+      <div>
+        <strong>Amir Temur</strong>
+        <small>Intizom • Jasorat • Harakat</small>
       </div>
     </div>
+  </div>
 
-    <div class="sectionTitle">
+  <div class="section">
+    <div class="sectionHead">
       <h2>ARVEX CORE</h2>
-      <span>Performance</span>
+      <span>LEVEL SYSTEM</span>
     </div>
 
-    <div class="level">
-      <div class="levelTop">
+    <div class="core">
+
+      <div class="coreTop">
+
         <div>
-          <div class="levelName">CURRENT LEVEL</div>
-          <div class="levelNumber"><span id="level">1</span> <span>LVL</span></div>
+          <div class="levelLabel">CURRENT LEVEL</div>
+          <div class="level">
+            <span id="level">1</span>
+            <small>LVL</small>
+          </div>
         </div>
 
-        <div class="levelRing" id="levelRing">
-          <div class="ringText">
-            <b id="xpPercent">0%</b>
+        <div class="ring" id="ring">
+          <div>
+            <b id="percent">0%</b>
             XP
           </div>
         </div>
+
       </div>
 
-      <div class="xpBar">
-        <div class="xpFill" id="xpFill"></div>
+      <div class="xpTrack">
+        <div class="xpBar" id="xpBar"></div>
       </div>
 
-      <div class="levelBottom">
+      <div class="xpInfo">
         <span id="xpText">0 / 100 XP</span>
-        <span id="xpNext">Next Level</span>
+        <span>NEXT LEVEL</span>
       </div>
 
-      <button class="levelButton" id="levelBtn" onclick="claimDailyXP()">
+      <button class="xpButton" id="xpButton" onclick="dailyXP()">
         ⚡ BUGUNGI XP OLISH
       </button>
+
     </div>
 
     <div class="stats">
       <div class="stat">
-        <strong id="streak">0</strong>
-        <small>Streak</small>
+        <b id="streak">0</b>
+        <small>STREAK</small>
       </div>
       <div class="stat">
-        <strong id="workouts">0</strong>
-        <small>Workouts</small>
+        <b id="workouts">0</b>
+        <small>WORKOUT</small>
       </div>
       <div class="stat">
-        <strong id="totalXP">0</strong>
-        <small>Total XP</small>
+        <b id="totalXP">0</b>
+        <small>TOTAL XP</small>
       </div>
     </div>
+  </div>
 
-    <div class="sectionTitle">
+  <div class="section">
+    <div class="sectionHead">
       <h2>Bugungi motivatsiya</h2>
     </div>
 
     <div class="motivation">
-      <div class="label">ARVEX MINDSET</div>
-      <p id="motivationText"></p>
+      <div class="motivationLabel">ARVEX MINDSET</div>
+      <p id="motivation"></p>
     </div>
+  </div>
 
-    <div class="sectionTitle">
+  <div class="section">
+    <div class="sectionHead">
       <h2>Maqsad</h2>
     </div>
 
     <div class="goal">
-      <div class="label">YOUR MISSION</div>
-      <p>Bugungi mashg‘ulotni sifatli bajarish, intizomni saqlash va kechagidan kuchliroq bo‘lish.</p>
+      <div class="goalTitle">YOUR MISSION</div>
+      <p>
+        Bugungi mashg‘ulotni sifatli bajar.
+        Intizomni saqla va kechagidan kuchliroq bo‘lishga harakat qil.
+      </p>
     </div>
+  </div>
 
-    <div class="sectionTitle">
+  <div class="section">
+    <div class="sectionHead">
       <h2>AI Coach</h2>
-      <span>Smart Advice</span>
+      <span>SMART</span>
     </div>
 
     <div class="ai">
       <div class="aiHead">
         <div class="aiIcon">AI</div>
         <div>
-          <h3>ARVEX AI COACH</h3>
-          <small>Personal training assistant</small>
+          <div class="aiTitle">ARVEX AI COACH</div>
+          <div class="aiSub">Personal training assistant</div>
         </div>
       </div>
 
       <p class="aiText" id="aiText">
-        Bugungi mashg‘ulotingni tanla. Men senga shu kun uchun qisqa tavsiya beraman.
+        Bugungi mashg‘ulot uchun tavsiya olish mumkin.
       </p>
 
-      <button class="aiButton" onclick="aiAdvice()">✦ AI COACHNI ISHLATISH</button>
+      <button class="aiButton" onclick="coach()">
+        ✦ COACH TAVSIYASINI OLISH
+      </button>
     </div>
+  </div>
 
-    <div class="sectionTitle">
-      <h2>Daily Challenge</h2>
-      <span>+10 XP</span>
-    </div>
+</section>
 
-    <div class="challenge">
-      <div class="challengeTop">
-        <div class="challengeBadge">TODAY'S MISSION</div>
-        <span>⚡</span>
-      </div>
-      <h3 id="challengeTitle">5 daqiqa yengil mobility</h3>
-      <p id="challengeText">Bo‘yin, yelka, bel va oyoqlarni yengil harakatlantirib, mashg‘ulotga tayyorlan.</p>
-      <button id="challengeBtn" onclick="completeChallenge()">CHALLENGE BAJARILDI</button>
-    </div>
+<!-- WORKOUT -->
+<section class="page" id="workout">
 
-  </section>
+  <div class="sectionHead">
+    <h2>Workout</h2>
+    <span>7 DAY PLAN</span>
+  </div>
 
-  <!-- WORKOUT -->
-  <section class="page" id="workout">
+  <div class="days" id="days"></div>
 
-    <div class="sectionTitle">
-      <h2>Workout</h2>
-      <span>7 Day System</span>
-    </div>
+</section>
 
-    <div class="dayGrid" id="dayGrid"></div>
+<!-- MEALS -->
+<section class="page" id="meals">
 
-    <div class="sectionTitle">
-      <h2>AI Coach</h2>
-      <span>Workout Advice</span>
-    </div>
+  <div class="sectionHead">
+    <h2>Meals / Nutrition</h2>
+    <span>DAILY</span>
+  </div>
 
-    <div class="ai">
-      <div class="aiHead">
-        <div class="aiIcon">AI</div>
-        <div>
-          <h3>WORKOUT COACH</h3>
-          <small>Today’s guidance</small>
-        </div>
-      </div>
-      <p class="aiText" id="workoutAI">
-        Kunni tanlang va mashg‘ulot ma’lumotini ko‘ring.
-      </p>
-    </div>
+  <div class="today">
+    <div class="todayLabel">BUGUNGI OVQATLANISH TARTIBI</div>
+    <h3 id="mealDay"></h3>
+    <div id="mealList"></div>
+  </div>
 
-  </section>
-
-  <!-- MEALS -->
-  <section class="page" id="meals">
-
-    <div class="sectionTitle">
-      <h2>Meals / Nutrition</h2>
-      <span>Weekly Menu</span>
-    </div>
-
-    <div class="todayMeal">
-      <div class="label">BUGUNGI OVQATLANISH TARTIBI</div>
-      <h3 id="todayMealTitle">Dushanba</h3>
-
-      <div class="mealList" id="todayMealList"></div>
-    </div>
-
-    <div class="sectionTitle">
+  <div class="section">
+    <div class="sectionHead">
       <h2>1 Haftalik Menyu</h2>
-      <span>Daily</span>
+      <span>WEEK</span>
     </div>
 
-    <div class="menuGrid" id="menuGrid"></div>
+    <div class="menu" id="menu"></div>
+  </div>
 
-  </section>
+</section>
 
-  <!-- MEDALS -->
-  <section class="page" id="medals">
+<!-- MEDALS -->
+<section class="page" id="medals">
 
-    <div class="sectionTitle">
-      <h2>Medals</h2>
-      <span>Achievements</span>
-    </div>
+  <div class="sectionHead">
+    <h2>Medals</h2>
+    <span>ACHIEVEMENTS</span>
+  </div>
 
-    <div class="medalGrid" id="medalGrid"></div>
+  <div class="medals" id="medalsList"></div>
 
-  </section>
+</section>
 
-  <!-- PROFILE -->
-  <section class="page" id="profile">
+<!-- PROFILE -->
+<section class="page" id="profile">
 
-    <div class="sectionTitle">
-      <h2>Profile</h2>
-      <span>ARVEX Athlete</span>
-    </div>
+  <div class="sectionHead">
+    <h2>Profile</h2>
+    <span>ATHLETE</span>
+  </div>
 
-    <div class="profile">
-      <div class="avatar">AQ</div>
-      <h2>ARVEX Athlete</h2>
-      <p>Performance mode • Active</p>
+  <div class="profile">
 
-      <div class="profileStats">
-        <div class="profileStat">
-          <b id="profileLevel">1</b>
-          <small>LEVEL</small>
-        </div>
+    <div class="avatar">AQ</div>
 
-        <div class="profileStat">
-          <b id="profileXP">0</b>
-          <small>XP</small>
-        </div>
+    <h2>ARVEX Athlete</h2>
+    <p>Performance mode • Active</p>
 
-        <div class="profileStat">
-          <b id="profileWorkout">0</b>
-          <small>WORKOUTS</small>
-        </div>
+    <div class="profileStats">
 
-        <div class="profileStat">
-          <b id="profileStreak">0</b>
-          <small>STREAK</small>
-        </div>
+      <div class="profileStat">
+        <b id="pLevel">1</b>
+        <small>LEVEL</small>
       </div>
 
-      <div class="creator">
-        Saytni yaratgan inson Qodirov Anvarbek
+      <div class="profileStat">
+        <b id="pXP">0</b>
+        <small>XP</small>
       </div>
+
+      <div class="profileStat">
+        <b id="pWorkout">0</b>
+        <small>WORKOUTS</small>
+      </div>
+
+      <div class="profileStat">
+        <b id="pStreak">0</b>
+        <small>STREAK</small>
+      </div>
+
     </div>
 
-  </section>
+    <div class="creator">
+      Saytni yaratgan inson Qodirov Anvarbek
+    </div>
+
+  </div>
+
+</section>
 
 </main>
 
+<!-- NAV -->
 <nav class="nav">
-  <button class="active" onclick="showPage('home',this)">
-    <span>⌂</span>Home
+
+  <button class="active" onclick="page('home',this)">
+    <span>⌂</span>
+    HOME
   </button>
 
-  <button onclick="showPage('workout',this)">
-    <span>⚡</span>Workout
+  <button onclick="page('workout',this)">
+    <span>⚡</span>
+    WORKOUT
   </button>
 
-  <button onclick="showPage('meals',this)">
-    <span>◈</span>Meals
+  <button onclick="page('meals',this)">
+    <span>◈</span>
+    MEALS
   </button>
 
-  <button onclick="showPage('medals',this)">
-    <span>✦</span>Medals
+  <button onclick="page('medals',this)">
+    <span>✦</span>
+    MEDALS
   </button>
 
-  <button onclick="showPage('profile',this)">
-    <span>◎</span>Profile
+  <button onclick="page('profile',this)">
+    <span>◎</span>
+    PROFILE
   </button>
+
 </nav>
 
 <script>
-/* =========================
-   ARVEX FC ULTRA ENGINE
-========================= */
 
-const KEY="arvex_ultra_v1";
+const KEY="ARVEX_APP_DATA";
 
-let state=JSON.parse(localStorage.getItem(KEY)) || {
+let data=JSON.parse(localStorage.getItem(KEY))||{
   level:1,
   xp:0,
   totalXP:0,
   streak:0,
   workouts:0,
   lastXP:"",
-  lastChallenge:"",
-  completedDays:[],
-  completedDates:[]
+  completed:[]
 };
 
 function save(){
-  localStorage.setItem(KEY,JSON.stringify(state));
+  localStorage.setItem(KEY,JSON.stringify(data));
 }
 
-function todayKey(){
+function today(){
   const d=new Date();
-  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
 }
 
-function getDay(){
-  return new Date().getDay();
+/* NAV */
+
+function page(id,btn){
+
+  document.querySelectorAll(".page")
+    .forEach(x=>x.classList.remove("active"));
+
+  document.getElementById(id)
+    .classList.add("active");
+
+  document.querySelectorAll(".nav button")
+    .forEach(x=>x.classList.remove("active"));
+
+  btn.classList.add("active");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
-const motivations=[
-  "Bugun mukammal bo‘lish shart emas. Bugun kechagidan yaxshiroq bo‘lish kifoya.",
-  "Intizom kayfiyat kelishini kutmaydi.",
-  "Kichik qadamlar katta natijalarga olib boradi.",
-  "Mashg‘ulot tugaydi. Natija esa qoladi.",
-  "O‘zing bilan raqobat qil.",
-  "Bugungi mehnat — ertangi kuch.",
-  "Boshlagan ishingni oxirigacha olib bor."
-];
+/* XP */
 
-document.getElementById("motivationText").textContent=
-  motivations[getDay()%motivations.length];
+function update(){
 
-/* ===== NAV ===== */
+  document.getElementById("level").textContent=data.level;
 
-function showPage(id,button){
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-
-  document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
-  button.classList.add("active");
-
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-
-/* ===== XP ===== */
-
-function updateUI(){
-
-  const percent=Math.min(100,state.xp);
-
-  document.getElementById("level").textContent=state.level;
-  document.getElementById("xpPercent").textContent=percent+"%";
   document.getElementById("xpText").textContent=
-    state.xp+" / 100 XP";
+    data.xp+" / 100 XP";
 
-  document.getElementById("xpFill").style.width=percent+"%";
-  document.getElementById("levelRing").style.setProperty("--xp",percent+"%");
+  document.getElementById("percent").textContent=
+    data.xp+"%";
 
-  document.getElementById("streak").textContent=state.streak;
-  document.getElementById("workouts").textContent=state.workouts;
-  document.getElementById("totalXP").textContent=state.totalXP;
+  document.getElementById("xpBar").style.width=
+    data.xp+"%";
 
-  document.getElementById("profileLevel").textContent=state.level;
-  document.getElementById("profileXP").textContent=state.totalXP;
-  document.getElementById("profileWorkout").textContent=state.workouts;
-  document.getElementById("profileStreak").textContent=state.streak;
+  document.getElementById("ring").style.setProperty(
+    "--progress",
+    (data.xp*3.6)+"deg"
+  );
 
-  const btn=document.getElementById("levelBtn");
+  document.getElementById("streak").textContent=data.streak;
+  document.getElementById("workouts").textContent=data.workouts;
+  document.getElementById("totalXP").textContent=data.totalXP;
 
-  if(state.lastXP===todayKey()){
-    btn.textContent="✓ BUGUNGI XP OLINGAN";
-    btn.classList.add("done");
-    btn.disabled=true;
+  document.getElementById("pLevel").textContent=data.level;
+  document.getElementById("pXP").textContent=data.totalXP;
+  document.getElementById("pWorkout").textContent=data.workouts;
+  document.getElementById("pStreak").textContent=data.streak;
+
+  const button=document.getElementById("xpButton");
+
+  if(data.lastXP===today()){
+    button.textContent="✓ BUGUNGI XP OLINGAN";
+    button.disabled=true;
   }else{
-    btn.textContent="⚡ BUGUNGI XP OLISH";
-    btn.classList.remove("done");
-    btn.disabled=false;
-  }
-
-  const cb=document.getElementById("challengeBtn");
-
-  if(state.lastChallenge===todayKey()){
-    cb.textContent="✓ BAJARILDI";
-    cb.disabled=true;
+    button.textContent="⚡ BUGUNGI XP OLISH";
+    button.disabled=false;
   }
 }
 
 function addXP(amount){
 
-  state.xp+=amount;
-  state.totalXP+=amount;
+  data.xp+=amount;
+  data.totalXP+=amount;
 
-  let leveled=false;
-
-  while(state.xp>=100){
-    state.xp-=100;
-    state.level++;
-    leveled=true;
+  if(data.xp>=100){
+    data.xp-=100;
+    data.level++;
+    toast("⚡ LEVEL UP!");
   }
 
   save();
-  updateUI();
-
-  if(leveled){
-    document.getElementById("levelUp").classList.add("show");
-  }
+  update();
 }
 
-function claimDailyXP(){
+function dailyXP(){
 
-  if(state.lastXP===todayKey())return;
-
-  state.lastXP=todayKey();
-
-  if(state.completedDates.length===0){
-    state.streak=1;
-  }else{
-    const last=state.completedDates[state.completedDates.length-1];
-    const lastDate=new Date(last);
-    const now=new Date();
-
-    const diff=Math.floor(
-      (new Date(now.getFullYear(),now.getMonth(),now.getDate())-
-      new Date(lastDate.getFullYear(),lastDate.getMonth(),lastDate.getDate()))
-      /(1000*60*60*24)
-    );
-
-    if(diff===1)state.streak++;
-    else if(diff>1)state.streak=1;
+  if(data.lastXP===today()){
+    toast("Bugungi XP allaqachon olingan.");
+    return;
   }
 
-  if(!state.completedDates.includes(todayKey())){
-    state.completedDates.push(todayKey());
+  data.lastXP=today();
+
+  if(data.streak===0){
+    data.streak=1;
   }
 
   addXP(10);
 
-  toast("⚡ +10 XP qo‘shildi!");
+  toast("+10 XP qo‘shildi ⚡");
 }
 
-/* ===== WORKOUT ===== */
+/* MOTIVATION */
 
-const workouts=[
-  {
-    name:"Dushanba",
-    type:"Yelka",
-    color:"#42ff87",
-    time:"18:00 — 19:00",
-    exercises:["Yelka","Qizdirish","Yengil kuch mashqlari"]
-  },
-  {
-    name:"Seshanba",
-    type:"Qanot / Back",
-    color:"#39d9ff",
-    time:"18:00 — 19:00",
-    exercises:["Qanot","Orqa mushaklari","Texnika"]
-  },
-  {
-    name:"Chorshanba",
-    type:"Oyoq",
-    color:"#65ff72",
-    time:"18:00 — 19:00",
-    exercises:["Oyoq","Squat texnikasi","Mobility"]
-  },
-  {
-    name:"Payshanba",
-    type:"Ko‘krak",
-    color:"#398bff",
-    time:"18:00 — 19:00",
-    exercises:["Ko‘krak","Push mashqlari","Mobility"]
-  },
-  {
-    name:"Juma",
-    type:"Qo‘l",
-    color:"#a85cff",
-    time:"18:00 — 19:00",
-    exercises:["Biceps","Triceps","Yengil kuch"]
-  },
-  {
-    name:"Shanba",
-    type:"Full Body",
-    color:"#ff405d",
-    time:"17:00 — 18:00",
-    exercises:["Butun tana","Kuch","Mobility"]
-  },
-  {
-    name:"Yakshanba",
-    type:"Recovery",
-    color:"#ffd84d",
-    time:"Dam olish kuni",
-    exercises:["Yengil yurish","Stretching","Tiklanish"]
-  }
+const motivation=[
+  "Intizom kayfiyatni kutmaydi.",
+  "Bugungi mehnat — ertangi kuch.",
+  "O‘zing bilan raqobat qil.",
+  "Kichik qadamlar katta natija beradi.",
+  "Boshlagan ishingni oxirigacha olib bor.",
+  "Har kuni bir qadam oldinda.",
+  "Kuch avval fikrda boshlanadi."
 ];
 
-function renderWorkouts(){
+document.getElementById("motivation").textContent=
+  motivation[new Date().getDay()];
 
-  const grid=document.getElementById("dayGrid");
-  grid.innerHTML="";
+/* WORKOUT */
 
-  workouts.forEach((w,i)=>{
+const workout=[
+  ["Dushanba","Yelka","#35ff88","18:00 — 19:00"],
+  ["Seshanba","Qanot / Back","#25aaff","18:00 — 19:00"],
+  ["Chorshanba","Oyoq","#43e878","18:00 — 19:00"],
+  ["Payshanba","Ko‘krak","#258dff","18:00 — 19:00"],
+  ["Juma","Qo‘l","#35d9ff","18:00 — 19:00"],
+  ["Shanba","Full Body","#35ff88","17:00 — 18:00"],
+  ["Yakshanba","Recovery","#25aaff","Dam olish"]
+];
 
-    const card=document.createElement("div");
+function renderWorkout(){
 
-    card.className="dayCard";
-    card.style.setProperty("--day",w.color);
+  const box=document.getElementById("days");
 
-    const completed=state.completedDays.includes(i);
+  box.innerHTML="";
 
-    card.innerHTML=`
+  workout.forEach((w,i)=>{
+
+    const d=document.createElement("div");
+
+    d.className="day";
+    d.style.setProperty("--c",w[2]);
+
+    d.innerHTML=`
       <div class="dayDot"></div>
-      <div class="dayName">${w.name}</div>
-      <div class="dayType">${w.type}</div>
+      <div class="dayName">${w[0]}</div>
+      <div class="dayType">${w[1]}</div>
 
       <div class="dayDetails">
-        <h3>${w.type}</h3>
-        <div class="time">🕒 ${w.time}</div>
 
-        <div class="exercises">
-          ${w.exercises.map(x=>`<div class="exercise">${x}</div>`).join("")}
+        <h3>${w[1]}</h3>
+
+        <div class="dayTime">
+          🕒 ${w[3]}
+        </div>
+
+        <div class="tags">
+          <div class="tag">Qizdirish</div>
+          <div class="tag">Texnika</div>
+          <div class="tag">Mobility</div>
         </div>
 
         ${
           i===6
-          ? `<div class="exercise" style="margin-top:13px">
-               Bugun tiklanishga e’tibor ber.
-             </div>`
-          : `<button class="completeBtn" onclick="completeWorkout(event,${i})">
-               ${completed?"✓ BAJARILGAN":"+20 XP — BAJARILDI"}
-             </button>`
+          ? `<div class="tag" style="margin-top:13px">
+              Bugun tiklanishga e’tibor ber.
+            </div>`
+          : `<button class="complete"
+              onclick="completeWorkout(event,${i})">
+              ${data.completed.includes(i)?"✓ BAJARILGAN":"+20 XP — BAJARILDI"}
+            </button>`
         }
+
       </div>
     `;
 
-    card.onclick=function(){
-      document.querySelectorAll(".dayCard").forEach(c=>{
-        if(c!==card)c.classList.remove("open");
-      });
+    d.onclick=()=>{
+      document.querySelectorAll(".day")
+        .forEach(x=>{
+          if(x!==d)x.classList.remove("open");
+        });
 
-      card.classList.toggle("open");
-
-      document.getElementById("workoutAI").textContent=
-        aiWorkoutText(w);
+      d.classList.toggle("open");
     };
 
-    grid.appendChild(card);
+    box.appendChild(d);
   });
 }
 
-function aiWorkoutText(w){
+function completeWorkout(e,index){
 
-  if(w.name==="Yakshanba"){
-    return "Bugun tiklanish kuni. Yengil harakat, mobility va yetarli dam olishga e’tibor ber.";
-  }
+  e.stopPropagation();
 
-  return `${w.name} kuni — ${w.type}. Mashg‘ulotni shoshilmasdan, texnikani to‘g‘ri saqlagan holda bajar. Noqulaylik yoki og‘riq sezilsa, to‘xtab kattalarga yoki mutaxassisga ayt.`;
-}
-
-function completeWorkout(event,index){
-
-  event.stopPropagation();
-
-  if(state.completedDays.includes(index)){
-    toast("✓ Bu mashg‘ulot allaqachon bajarilgan.");
+  if(data.completed.includes(index)){
+    toast("Bu mashg‘ulot bajarilgan.");
     return;
   }
 
-  state.completedDays.push(index);
-  state.workouts++;
+  data.completed.push(index);
+  data.workouts++;
 
   addXP(20);
 
-  toast("🔥 Workout bajarildi! +20 XP");
+  renderWorkout();
 
-  renderWorkouts();
-  renderMedals();
+  toast("🔥 +20 XP");
 }
 
-/* ===== AI ===== */
+/* AI */
 
-function aiAdvice(){
+function coach(){
 
-  const w=workouts[getDay()===0?6:getDay()-1];
+  const day=new Date().getDay();
+
+  const advice=[
+    "Bugun yelkaga e’tibor ber. Harakatlarni nazorat bilan bajar.",
+    "Bugun qanot va orqa mushaklari uchun texnikaga e’tibor ber.",
+    "Oyoq mashqlarida shoshilmasdan, harakatni nazorat qil.",
+    "Ko‘krak mashqlarida to‘g‘ri texnika birinchi o‘rinda.",
+    "Qo‘l mashqlarini nazorat bilan bajar va dam olishga vaqt ber.",
+    "Full Body kuni. Mashqlarni sifatli va xavfsiz bajar.",
+    "Bugun tiklanish kuni. Yengil harakat va dam olishga e’tibor ber."
+  ];
 
   document.getElementById("aiText").textContent=
-    `Bugun ${w.name}: ${w.type}. Avval yengil qizdirish qil, keyin mashqlarni nazorat bilan bajar. Sifatli texnika tezlikdan muhim.`;
+    advice[day];
 
-  toast("✦ AI Coach yangilandi");
+  toast("AI Coach yangilandi ✦");
 }
 
-/* ===== CHALLENGE ===== */
-
-const challenges=[
-  ["5 daqiqa mobility","Bo‘yin, yelka, bel va oyoqlarni yengil harakatlantir."],
-  ["Qomatni tekshir","Kun davomida qomatni to‘g‘ri tutishga e’tibor ber."],
-  ["Yengil yurish","Bir necha daqiqa yengil yurib, tanani harakatlantir."],
-  ["Nafasni tikla","Bir necha daqiqa sokin nafas olishga e’tibor ber."],
-  ["Recovery mode","Bugun tanangga yetarli dam va tiklanish imkonini ber."]
-];
-
-const ch=challenges[getDay()%challenges.length];
-
-document.getElementById("challengeTitle").textContent=ch[0];
-document.getElementById("challengeText").textContent=ch[1];
-
-function completeChallenge(){
-
-  if(state.lastChallenge===todayKey())return;
-
-  state.lastChallenge=todayKey();
-  addXP(10);
-
-  document.getElementById("challengeBtn").textContent="✓ BAJARILDI";
-  document.getElementById("challengeBtn").disabled=true;
-
-  toast("⚡ Challenge bajarildi! +10 XP");
-}
-
-/* ===== MEALS ===== */
+/* MEALS */
 
 const meals=[
-  {
-    name:"Dushanba",
-    color:"#42ff87",
-    items:[
-      ["🌅","Nonushta","Tuxum + non + meva"],
-      ["☀️","Tushlik","Guruch + go‘sht + sabzavot"],
-      ["🌙","Kechki ovqat","Sho‘rva + sabzavot"]
-    ]
-  },
-  {
-    name:"Seshanba",
-    color:"#ff8a35",
-    items:[
-      ["🌅","Nonushta","Sut mahsuloti + non + meva"],
-      ["☀️","Tushlik","Makaron + go‘sht + salat"],
-      ["🌙","Kechki ovqat","Tovuq + sabzavot"]
-    ]
-  },
-  {
-    name:"Chorshanba",
-    color:"#9a5cff",
-    items:[
-      ["🌅","Nonushta","Tuxum + non + meva"],
-      ["☀️","Tushlik","Guruch + tovuq + sabzavot"],
-      ["🌙","Kechki ovqat","Kartoshka + sabzavot"]
-    ]
-  },
-  {
-    name:"Payshanba",
-    color:"#398bff",
-    items:[
-      ["🌅","Nonushta","Yogurt + meva + non"],
-      ["☀️","Tushlik","Go‘sht + guruch + salat"],
-      ["🌙","Kechki ovqat","Tuxum + sabzavot"]
-    ]
-  },
-  {
-    name:"Juma",
-    color:"#39d9ff",
-    items:[
-      ["🌅","Nonushta","Tuxum + non + meva"],
-      ["☀️","Tushlik","Tovuq + guruch + sabzavot"],
-      ["🌙","Kechki ovqat","Sho‘rva + non"]
-    ]
-  },
-  {
-    name:"Shanba",
-    color:"#ff405d",
-    items:[
-      ["🌅","Nonushta","Sut + tuxum + meva"],
-      ["☀️","Tushlik","Go‘sht + kartoshka + salat"],
-      ["🌙","Kechki ovqat","Tovuq + sabzavot"]
-    ]
-  },
-  {
-    name:"Yakshanba",
-    color:"#ffd84d",
-    items:[
-      ["🌅","Nonushta","Tuxum + non + meva"],
-      ["☀️","Tushlik","Oila bilan muvozanatli ovqat"],
-      ["🌙","Kechki ovqat","Yengil uy taomi"]
-    ]
-  }
+  ["Dushanba","#35ff88",
+    ["🍳 Nonushta — tuxum, non, meva",
+     "🍚 Tushlik — guruch, go‘sht, sabzavot",
+     "🥣 Kechki ovqat — sho‘rva, sabzavot"]],
+
+  ["Seshanba","#25aaff",
+    ["🥛 Nonushta — sut mahsuloti, non, meva",
+     "🍝 Tushlik — makaron, go‘sht, salat",
+     "🍗 Kechki ovqat — tovuq, sabzavot"]],
+
+  ["Chorshanba","#35ff88",
+    ["🍳 Nonushta — tuxum, non, meva",
+     "🍚 Tushlik — guruch, tovuq, sabzavot",
+     "🥔 Kechki ovqat — kartoshka, sabzavot"]],
+
+  ["Payshanba","#25aaff",
+    ["🥛 Nonushta — yogurt, meva, non",
+     "🍚 Tushlik — go‘sht, guruch, salat",
+     "🍳 Kechki ovqat — tuxum, sabzavot"]],
+
+  ["Juma","#35d9ff",
+    ["🍳 Nonushta — tuxum, non, meva",
+     "🍗 Tushlik — tovuq, guruch, sabzavot",
+     "🥣 Kechki ovqat — sho‘rva, non"]],
+
+  ["Shanba","#35ff88",
+    ["🥛 Nonushta — sut, tuxum, meva",
+     "🥩 Tushlik — go‘sht, kartoshka, salat",
+     "🍗 Kechki ovqat — tovuq, sabzavot"]],
+
+  ["Yakshanba","#25aaff",
+    ["🍳 Nonushta — tuxum, non, meva",
+     "🍲 Tushlik — muvozanatli uy taomi",
+     "🥣 Kechki ovqat — yengil uy taomi"]]
 ];
 
-function renderMeals(){
+function showMeal(index){
 
-  const todayIndex=getDay()===0?6:getDay()-1;
-  const today=meals[todayIndex];
+  document.getElementById("mealDay").textContent=
+    meals[index][0];
 
-  document.getElementById("todayMealTitle").textContent=today.name;
-
-  document.getElementById("todayMealList").innerHTML=
-    today.items.map(m=>`
+  document.getElementById("mealList").innerHTML=
+    meals[index][2].map(x=>`
       <div class="meal">
-        <div class="mealIcon">${m[0]}</div>
+        <div class="mealIcon">●</div>
         <div>
-          <strong>${m[1]}</strong>
-          <span>${m[2]}</span>
+          <strong>${x.split("—")[0]}</strong>
+          <span>${x.split("—")[1]}</span>
         </div>
       </div>
     `).join("");
+}
 
-  const grid=document.getElementById("menuGrid");
-  grid.innerHTML="";
+function renderMeals(){
+
+  const index=
+    new Date().getDay()===0
+    ?6
+    :new Date().getDay()-1;
+
+  showMeal(index);
+
+  const menu=document.getElementById("menu");
+
+  menu.innerHTML="";
 
   meals.forEach((m,i)=>{
 
     const d=document.createElement("div");
-    d.className="menuDay";
-    if(i===todayIndex)d.classList.add("active");
 
-    d.style.setProperty("--day",m.color);
+    d.className="menuDay";
+    d.style.setProperty("--c",m[1]);
 
     d.innerHTML=`
-      <strong>${m.name}</strong>
-      <small>${i===todayIndex?"BUGUN":"Menu"}</small>
+      <b>${m[0]}</b>
+      <small>${i===index?"BUGUN":"MENU"}</small>
     `;
 
-    d.onclick=()=>{
-      document.querySelectorAll(".menuDay").forEach(x=>x.classList.remove("active"));
-      d.classList.add("active");
+    d.onclick=()=>showMeal(i);
 
-      document.getElementById("todayMealTitle").textContent=m.name;
-
-      document.getElementById("todayMealList").innerHTML=
-        m.items.map(x=>`
-          <div class="meal">
-            <div class="mealIcon">${x[0]}</div>
-            <div>
-              <strong>${x[1]}</strong>
-              <span>${x[2]}</span>
-            </div>
-          </div>
-        `).join("");
-    };
-
-    grid.appendChild(d);
+    menu.appendChild(d);
   });
 }
 
-/* ===== MEDALS ===== */
+/* MEDALS */
 
 const medalData=[
-  ["🥉","Bronze","1 Day","#cd8b4a",1],
-  ["🥈","Silver","1 Week","#c5d0d8",7],
-  ["🥇","Gold","30 Days","#ffd84d",30],
-  ["💎","Elite","90 Days","#9b5cff",90],
-  ["🏆","1 Year Certificate","1 Year","#42ff87",365]
+  ["🥉","Bronze","1 Day","#35ff88",1],
+  ["🥈","Silver","1 Week","#25aaff",7],
+  ["🥇","Gold","30 Days","#35ff88",30],
+  ["💎","Elite","90 Days","#25aaff",90],
+  ["🏆","1 Year Certificate","1 Year","#35ff88",365]
 ];
 
 function renderMedals(){
 
-  const grid=document.getElementById("medalGrid");
+  document.getElementById("medalsList").innerHTML=
+    medalData.map(m=>{
 
-  grid.innerHTML=medalData.map(m=>{
+      const unlocked=data.workouts>=m[4];
 
-    const unlocked=state.workouts>=m[4];
+      return `
+        <div class="medal ${unlocked?"":"locked"}"
+             style="--c:${m[3]}">
 
-    return `
-      <div class="medal ${unlocked?"unlocked":""}" style="--medal:${m[3]}">
-        <div class="lock">${unlocked?"✓":"🔒"}</div>
-        <div class="medalIcon">${m[0]}</div>
-        <h3>${m[1]}</h3>
-        <p>${m[2]}</p>
-      </div>
-    `;
-  }).join("");
+          <div class="medalIcon">${m[0]}</div>
+
+          <h3>${m[1]}</h3>
+
+          <p>${m[2]}</p>
+
+        </div>
+      `;
+    }).join("");
 }
 
-/* ===== TOAST ===== */
+/* TOAST */
 
 let toastTimer;
 
-function toast(message){
+function toast(text){
 
   const t=document.getElementById("toast");
 
-  t.textContent=message;
+  t.textContent=text;
   t.classList.add("show");
 
   clearTimeout(toastTimer);
 
   toastTimer=setTimeout(()=>{
     t.classList.remove("show");
-  },2200);
+  },2000);
 }
 
-function closeLevelUp(){
-  document.getElementById("levelUp").classList.remove("show");
-}
+/* START */
 
-/* ===== INIT ===== */
-
-renderWorkouts();
+renderWorkout();
 renderMeals();
 renderMedals();
-updateUI();
-
-setTimeout(()=>{
-  document.getElementById("splash").style.opacity="0";
-
-  setTimeout(()=>{
-    document.getElementById("splash").style.display="none";
-  },800);
-},1600);
+update();
 
 </script>
 
