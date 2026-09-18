@@ -2,7 +2,7 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
 <meta name="theme-color" content="#050706">
 <title>ARVEX FC</title>
 
@@ -17,10 +17,11 @@
   --green2:#18d96b;
   --blue:#29a9ff;
   --white:#f4f8f6;
-  --muted:#87958e;
-  --line:rgba(255,255,255,.08);
+  --muted:#84918b;
+  --line:rgba(255,255,255,.075);
+  --danger:#ff5d67;
+  --gold:#e8c94c;
   --radius:22px;
-  --shadow:0 20px 60px rgba(0,0,0,.45);
 }
 
 *{
@@ -36,11 +37,11 @@ html{
 
 body{
   font-family:Inter,Arial,sans-serif;
-  background:
-    radial-gradient(circle at 15% 0%,rgba(57,255,136,.12),transparent 30%),
-    radial-gradient(circle at 90% 15%,rgba(41,169,255,.10),transparent 28%),
-    var(--bg);
   color:var(--white);
+  background:
+    radial-gradient(circle at 10% 0%,rgba(57,255,136,.10),transparent 28%),
+    radial-gradient(circle at 95% 10%,rgba(41,169,255,.10),transparent 27%),
+    var(--bg);
   min-height:100vh;
   overflow-x:hidden;
 }
@@ -50,11 +51,11 @@ body:before{
   position:fixed;
   inset:0;
   pointer-events:none;
-  opacity:.18;
+  opacity:.15;
   background-image:
     linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:40px 40px;
+  background-size:38px 38px;
   mask-image:linear-gradient(to bottom,#000,transparent 90%);
 }
 
@@ -67,18 +68,18 @@ button{
 .app{
   width:min(100%,620px);
   margin:auto;
-  padding:18px 15px 105px;
+  padding:18px 15px 110px;
   position:relative;
   z-index:1;
 }
 
-/* HEADER */
+/* TOP */
 
 .topbar{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  margin-bottom:22px;
+  justify-content:space-between;
+  margin-bottom:20px;
 }
 
 .brand{
@@ -88,18 +89,21 @@ button{
 }
 
 .brand-mark{
-  width:42px;
-  height:42px;
-  border-radius:14px;
+  width:43px;
+  height:43px;
   display:grid;
   place-items:center;
-  background:
-    linear-gradient(145deg,rgba(57,255,136,.22),rgba(41,169,255,.12));
-  border:1px solid rgba(57,255,136,.25);
-  box-shadow:0 0 30px rgba(57,255,136,.12);
-  font-weight:900;
+  border-radius:14px;
   color:var(--green);
-  letter-spacing:-2px;
+  font-size:18px;
+  font-weight:900;
+  background:linear-gradient(
+    145deg,
+    rgba(57,255,136,.20),
+    rgba(41,169,255,.10)
+  );
+  border:1px solid rgba(57,255,136,.25);
+  box-shadow:0 0 28px rgba(57,255,136,.10);
 }
 
 .brand-name{
@@ -109,7 +113,7 @@ button{
 }
 
 .brand-name span{
-  color:#9aa59f;
+  color:#929c97;
 }
 
 .status{
@@ -117,12 +121,12 @@ button{
   align-items:center;
   gap:7px;
   padding:8px 11px;
+  border-radius:30px;
   border:1px solid var(--line);
   background:rgba(255,255,255,.035);
-  border-radius:30px;
-  font-size:10px;
+  color:#a8b4ae;
+  font-size:9px;
   font-weight:800;
-  color:#aebbb4;
 }
 
 .status i{
@@ -133,42 +137,64 @@ button{
   box-shadow:0 0 12px var(--green);
 }
 
+/* PAGES */
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+  animation:pageIn .3s ease;
+}
+
+@keyframes pageIn{
+  from{
+    opacity:0;
+    transform:translateY(7px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
 /* HERO */
 
 .hero{
   position:relative;
   overflow:hidden;
-  min-height:265px;
-  padding:27px 23px;
-  border:1px solid rgba(57,255,136,.15);
+  min-height:295px;
+  padding:29px 23px;
   border-radius:30px;
+  border:1px solid rgba(57,255,136,.18);
   background:
     radial-gradient(circle at 100% 0%,rgba(41,169,255,.20),transparent 35%),
     radial-gradient(circle at 0% 100%,rgba(57,255,136,.15),transparent 40%),
-    linear-gradient(145deg,#0d1511,#070b09 70%);
-  box-shadow:var(--shadow);
+    linear-gradient(145deg,#0d1711,#070b09 72%);
+  box-shadow:0 25px 70px rgba(0,0,0,.45);
 }
 
 .hero:after{
   content:"";
   position:absolute;
-  width:220px;
-  height:220px;
-  right:-100px;
-  top:-100px;
+  width:230px;
+  height:230px;
+  right:-110px;
+  top:-110px;
   border-radius:50%;
   border:1px solid rgba(57,255,136,.18);
   box-shadow:
     0 0 0 25px rgba(57,255,136,.025),
-    0 0 0 50px rgba(57,255,136,.018);
+    0 0 0 52px rgba(57,255,136,.015);
 }
 
 .hero-grid{
   position:absolute;
   right:-25px;
   bottom:-35px;
-  width:230px;
-  height:150px;
+  width:240px;
+  height:160px;
   transform:skewY(-12deg);
   background:
     linear-gradient(rgba(57,255,136,.09) 1px,transparent 1px),
@@ -183,34 +209,50 @@ button{
 }
 
 .eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:7px 10px;
+  border-radius:9px;
   color:var(--green);
-  font-size:10px;
+  background:rgba(57,255,136,.06);
+  border:1px solid rgba(57,255,136,.12);
+  font-size:8px;
   font-weight:900;
-  letter-spacing:2.5px;
-  margin-bottom:13px;
+  letter-spacing:1.8px;
+}
+
+.eyebrow:before{
+  content:"";
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 10px var(--green);
 }
 
 .hero h1{
-  font-size:clamp(38px,12vw,60px);
+  margin-top:18px;
+  font-size:clamp(45px,13vw,66px);
   line-height:.9;
-  letter-spacing:-3px;
+  letter-spacing:-4px;
   font-weight:900;
 }
 
 .hero h1 span{
-  color:#8c9691;
+  color:#9ba49f;
 }
 
 .hero-sub{
-  margin-top:15px;
-  color:#aab5af;
-  font-size:13px;
-  line-height:1.6;
-  max-width:310px;
+  margin-top:16px;
+  max-width:300px;
+  color:#a6b1ab;
+  font-size:12px;
+  line-height:1.65;
 }
 
 .temur{
-  margin-top:20px;
+  margin-top:22px;
   display:flex;
   align-items:center;
   gap:10px;
@@ -230,18 +272,18 @@ button{
 .temur-dots b{
   width:5px;
   height:5px;
-  background:#d8b64c;
   border-radius:50%;
-  box-shadow:0 0 8px rgba(216,182,76,.5);
+  background:#d8b64c;
+  box-shadow:0 0 8px rgba(216,182,76,.45);
 }
 
 .temur span{
-  color:#c7d0cb;
-  font-size:11px;
-  font-weight:700;
+  font-size:10px;
+  font-weight:800;
+  color:#c3ccc7;
 }
 
-/* SECTION */
+/* SECTIONS */
 
 .section{
   margin-top:25px;
@@ -255,53 +297,74 @@ button{
 }
 
 .section-head h2{
-  font-size:15px;
+  font-size:13px;
   font-weight:900;
-  letter-spacing:.3px;
+  letter-spacing:.8px;
 }
 
 .section-head p{
-  color:#69766f;
-  font-size:10px;
-  font-weight:700;
+  color:#65726b;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.7px;
 }
 
 /* LEVEL */
 
 .level-card{
-  padding:18px;
-  border:1px solid var(--line);
-  border-radius:var(--radius);
+  position:relative;
+  overflow:hidden;
+  padding:20px;
+  border-radius:24px;
+  border:1px solid rgba(57,255,136,.16);
   background:
-    linear-gradient(145deg,rgba(57,255,136,.07),rgba(41,169,255,.045)),
-    var(--panel);
-  box-shadow:var(--shadow);
+    radial-gradient(circle at 100% 0%,rgba(41,169,255,.13),transparent 38%),
+    linear-gradient(145deg,#0e1611,#080d0a);
+  box-shadow:0 20px 55px rgba(0,0,0,.35);
+}
+
+.level-card:after{
+  content:"XP";
+  position:absolute;
+  right:12px;
+  bottom:-18px;
+  font-size:72px;
+  font-weight:900;
+  letter-spacing:-7px;
+  color:rgba(57,255,136,.025);
 }
 
 .level-top{
+  position:relative;
+  z-index:1;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:15px;
+  gap:16px;
 }
 
 .level-ring{
-  width:82px;
-  height:82px;
+  width:88px;
+  height:88px;
+  flex:none;
   border-radius:50%;
   display:grid;
   place-items:center;
-  background:conic-gradient(var(--green) 0deg,var(--blue) 0deg,rgba(255,255,255,.07) 0deg);
   position:relative;
-  transition:.5s ease;
+  background:conic-gradient(
+    var(--green) 0deg,
+    var(--blue) 0deg,
+    rgba(255,255,255,.07) 0deg
+  );
+  box-shadow:0 0 25px rgba(57,255,136,.08);
+  transition:.5s;
 }
 
 .level-ring:before{
   content:"";
   position:absolute;
   inset:7px;
-  background:#0a0f0c;
   border-radius:50%;
+  background:#090e0b;
 }
 
 .level-number{
@@ -312,14 +375,14 @@ button{
 
 .level-number strong{
   display:block;
-  font-size:24px;
+  font-size:26px;
   line-height:1;
 }
 
 .level-number small{
-  font-size:8px;
-  color:#829087;
-  font-weight:800;
+  color:#7c8982;
+  font-size:7px;
+  font-weight:900;
 }
 
 .level-info{
@@ -327,55 +390,61 @@ button{
 }
 
 .level-info small{
-  color:#7d8983;
-  font-size:10px;
-  font-weight:700;
+  color:#718078;
+  font-size:9px;
+  font-weight:800;
 }
 
 .level-info h3{
   margin:4px 0 5px;
-  font-size:19px;
+  font-size:20px;
 }
 
 .xp-text{
   color:var(--green);
-  font-size:11px;
-  font-weight:800;
+  font-size:10px;
+  font-weight:900;
 }
 
 .xp-bar{
-  height:6px;
-  margin-top:13px;
-  background:rgba(255,255,255,.06);
-  border-radius:20px;
+  height:7px;
+  margin-top:12px;
   overflow:hidden;
+  border-radius:20px;
+  background:rgba(255,255,255,.055);
 }
 
 .xp-fill{
-  height:100%;
   width:0%;
-  background:linear-gradient(90deg,var(--green),var(--blue));
+  height:100%;
   border-radius:20px;
-  transition:.5s ease;
+  background:linear-gradient(90deg,var(--green),var(--blue));
   box-shadow:0 0 15px rgba(57,255,136,.45);
+  transition:.5s;
 }
 
 .claim{
+  position:relative;
+  z-index:2;
   width:100%;
-  margin-top:15px;
-  padding:13px;
-  border-radius:14px;
-  background:linear-gradient(90deg,var(--green),#65ffa7);
+  margin-top:17px;
+  padding:14px;
+  border-radius:15px;
   color:#041009;
-  font-size:11px;
+  background:linear-gradient(100deg,var(--green),#29dfff);
+  font-size:10px;
   font-weight:900;
-  text-transform:uppercase;
-  letter-spacing:.5px;
+  letter-spacing:.7px;
   box-shadow:0 8px 25px rgba(57,255,136,.13);
+  transition:.2s;
+}
+
+.claim:active{
+  transform:scale(.98);
 }
 
 .claim:disabled{
-  opacity:.4;
+  opacity:.35;
   cursor:not-allowed;
 }
 
@@ -389,66 +458,150 @@ button{
 }
 
 .stat{
-  padding:14px 10px;
-  border:1px solid var(--line);
-  border-radius:17px;
-  background:rgba(255,255,255,.025);
+  padding:15px 8px;
   text-align:center;
+  border-radius:18px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.025);
 }
 
 .stat b{
   display:block;
-  font-size:20px;
-  font-weight:900;
+  font-size:21px;
 }
 
 .stat span{
-  color:#748078;
-  font-size:8px;
+  display:block;
+  margin-top:4px;
+  color:#6e7b74;
+  font-size:7px;
   font-weight:800;
+  letter-spacing:.7px;
   text-transform:uppercase;
-  letter-spacing:.5px;
+}
+
+/* MISSION */
+
+.mission{
+  position:relative;
+  overflow:hidden;
+  padding:19px;
+  border-radius:23px;
+  border:1px solid rgba(57,255,136,.14);
+  background:
+    radial-gradient(circle at 100% 0%,rgba(57,255,136,.10),transparent 40%),
+    #0a100d;
+}
+
+.mission-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.mission-badge{
+  color:var(--green);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1.5px;
+}
+
+.mission-xp{
+  padding:5px 8px;
+  border-radius:8px;
+  color:var(--blue);
+  background:rgba(41,169,255,.07);
+  font-size:8px;
+  font-weight:900;
+}
+
+.mission h3{
+  margin-top:10px;
+  font-size:15px;
+}
+
+.mission p{
+  margin-top:5px;
+  color:#7f8c85;
+  font-size:10px;
+  line-height:1.5;
+}
+
+.mission-bar{
+  height:5px;
+  margin-top:14px;
+  border-radius:10px;
+  background:rgba(255,255,255,.05);
+  overflow:hidden;
+}
+
+.mission-bar i{
+  display:block;
+  width:0%;
+  height:100%;
+  border-radius:10px;
+  background:linear-gradient(90deg,var(--green),var(--blue));
+  transition:.4s;
 }
 
 /* MOTIVATION */
 
 .motivation{
-  padding:19px;
-  border-radius:var(--radius);
+  position:relative;
+  overflow:hidden;
+  padding:21px;
+  border-radius:24px;
   border:1px solid rgba(41,169,255,.16);
   background:
-    radial-gradient(circle at 100% 0%,rgba(41,169,255,.12),transparent 45%),
+    radial-gradient(circle at 100% 0%,rgba(41,169,255,.14),transparent 42%),
     #0a100d;
 }
 
+.motivation:after{
+  content:"“";
+  position:absolute;
+  right:14px;
+  bottom:-27px;
+  color:rgba(41,169,255,.05);
+  font-family:Georgia,serif;
+  font-size:110px;
+}
+
 .label{
+  position:relative;
+  z-index:1;
   color:var(--blue);
-  font-size:9px;
+  font-size:8px;
   font-weight:900;
   letter-spacing:1.5px;
-  text-transform:uppercase;
 }
 
 .motivation h3{
-  margin-top:8px;
-  font-size:18px;
-  line-height:1.35;
+  position:relative;
+  z-index:1;
+  margin-top:9px;
+  max-width:340px;
+  font-size:19px;
+  line-height:1.4;
 }
 
 .motivation p{
+  position:relative;
+  z-index:1;
   margin-top:8px;
-  color:#87938d;
-  font-size:11px;
+  max-width:340px;
+  color:#84918a;
+  font-size:10px;
   line-height:1.6;
 }
 
 /* GOAL */
 
 .goal{
-  padding:18px;
+  padding:19px;
+  border-radius:23px;
   border:1px solid var(--line);
-  border-radius:var(--radius);
-  background:var(--panel);
+  background:linear-gradient(145deg,#0d1310,#080d0a);
 }
 
 .goal-row{
@@ -458,15 +611,19 @@ button{
 }
 
 .goal-icon{
-  width:43px;
-  height:43px;
+  width:46px;
+  height:46px;
+  flex:none;
   display:grid;
   place-items:center;
-  border-radius:14px;
-  background:rgba(57,255,136,.08);
-  border:1px solid rgba(57,255,136,.13);
+  border-radius:15px;
   color:var(--green);
-  font-size:18px;
+  background:linear-gradient(
+    145deg,
+    rgba(57,255,136,.14),
+    rgba(41,169,255,.10)
+  );
+  border:1px solid rgba(57,255,136,.15);
 }
 
 .goal h3{
@@ -474,18 +631,21 @@ button{
 }
 
 .goal p{
-  margin-top:3px;
-  color:#7f8b84;
-  font-size:10px;
+  margin-top:4px;
+  color:#77837d;
+  font-size:9px;
+  line-height:1.5;
 }
 
 /* COACH */
 
 .coach{
-  padding:18px;
-  border-radius:var(--radius);
-  border:1px solid rgba(57,255,136,.13);
-  background:linear-gradient(135deg,#0c1410,#09100e);
+  padding:19px;
+  border-radius:24px;
+  border:1px solid rgba(57,255,136,.14);
+  background:
+    radial-gradient(circle at 100% 0%,rgba(57,255,136,.10),transparent 40%),
+    #090f0c;
 }
 
 .coach-head{
@@ -495,14 +655,20 @@ button{
 }
 
 .coach-icon{
-  width:42px;
-  height:42px;
-  border-radius:14px;
+  width:43px;
+  height:43px;
   display:grid;
   place-items:center;
-  background:linear-gradient(135deg,rgba(57,255,136,.15),rgba(41,169,255,.13));
+  border-radius:14px;
   color:var(--green);
+  font-size:10px;
   font-weight:900;
+  background:linear-gradient(
+    145deg,
+    rgba(57,255,136,.16),
+    rgba(41,169,255,.12)
+  );
+  border:1px solid rgba(57,255,136,.15);
 }
 
 .coach-head h3{
@@ -510,18 +676,19 @@ button{
 }
 
 .coach-head p{
-  color:#728078;
-  font-size:9px;
   margin-top:3px;
+  color:#707c75;
+  font-size:8px;
 }
 
 .coach-text{
   margin-top:14px;
-  padding:13px;
-  border-radius:13px;
-  background:rgba(255,255,255,.025);
-  color:#a8b2ad;
-  font-size:11px;
+  padding:14px;
+  border-radius:15px;
+  background:rgba(255,255,255,.022);
+  border:1px solid rgba(255,255,255,.04);
+  color:#9ba7a1;
+  font-size:10px;
   line-height:1.6;
 }
 
@@ -534,16 +701,16 @@ button{
 }
 
 .day{
-  min-height:91px;
+  min-height:92px;
   padding:12px 9px;
-  border-radius:17px;
-  border:1px solid var(--line);
-  background:#0a0f0c;
-  text-align:left;
-  color:var(--white);
-  transition:.25s;
   position:relative;
   overflow:hidden;
+  text-align:left;
+  border-radius:18px;
+  border:1px solid var(--line);
+  background:#090e0b;
+  color:var(--white);
+  transition:.2s;
 }
 
 .day:active{
@@ -551,35 +718,33 @@ button{
 }
 
 .day.active{
-  border-color:rgba(57,255,136,.5);
-  background:linear-gradient(145deg,rgba(57,255,136,.10),rgba(41,169,255,.05));
-  box-shadow:0 0 25px rgba(57,255,136,.08);
+  border-color:rgba(57,255,136,.45);
+  background:
+    linear-gradient(145deg,rgba(57,255,136,.11),rgba(41,169,255,.05)),
+    #0a100d;
+  box-shadow:0 0 25px rgba(57,255,136,.07);
 }
 
 .day-name{
   display:block;
-  font-size:10px;
+  font-size:9px;
   font-weight:900;
-  letter-spacing:.4px;
+  letter-spacing:.3px;
 }
 
 .day-type{
   display:block;
   margin-top:8px;
-  color:#849189;
-  font-size:9px;
+  color:#7e8b84;
+  font-size:8px;
 }
 
 .day-time{
   display:block;
   margin-top:8px;
   color:var(--green);
-  font-size:8px;
-  font-weight:800;
-}
-
-.day:nth-child(4){
-  grid-column:1;
+  font-size:7px;
+  font-weight:900;
 }
 
 .day:nth-child(7){
@@ -590,12 +755,12 @@ button{
   display:none;
   margin-top:10px;
   padding:18px;
-  border-radius:21px;
-  border:1px solid rgba(57,255,136,.18);
+  border-radius:22px;
+  border:1px solid rgba(57,255,136,.17);
   background:
     radial-gradient(circle at 100% 0%,rgba(41,169,255,.10),transparent 40%),
-    #0a100d;
-  animation:slide .3s ease;
+    #090f0c;
+  animation:slide .25s ease;
 }
 
 .workout-detail.show{
@@ -603,14 +768,21 @@ button{
 }
 
 @keyframes slide{
-  from{opacity:0;transform:translateY(-7px)}
-  to{opacity:1;transform:translateY(0)}
+  from{
+    opacity:0;
+    transform:translateY(-6px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 .detail-top{
   display:flex;
-  justify-content:space-between;
   align-items:start;
+  justify-content:space-between;
+  gap:10px;
 }
 
 .detail-top h3{
@@ -620,17 +792,18 @@ button{
 .time-badge{
   padding:7px 9px;
   border-radius:10px;
-  background:rgba(57,255,136,.08);
   color:var(--green);
-  font-size:9px;
+  background:rgba(57,255,136,.07);
+  font-size:8px;
   font-weight:900;
+  white-space:nowrap;
 }
 
 .detail-desc{
-  color:#87948d;
+  margin:8px 0 15px;
+  color:#829089;
   font-size:10px;
   line-height:1.6;
-  margin:8px 0 15px;
 }
 
 .exercise{
@@ -638,54 +811,53 @@ button{
   justify-content:space-between;
   align-items:center;
   padding:12px 0;
-  border-top:1px solid rgba(255,255,255,.055);
+  border-top:1px solid rgba(255,255,255,.05);
 }
 
 .exercise strong{
-  font-size:11px;
+  font-size:10px;
 }
 
 .exercise span{
-  color:#6e7b74;
-  font-size:9px;
+  color:#68756e;
+  font-size:8px;
 }
 
 .complete{
   width:100%;
   margin-top:14px;
-  padding:12px;
-  border-radius:13px;
-  background:rgba(57,255,136,.09);
-  border:1px solid rgba(57,255,136,.18);
+  padding:13px;
+  border-radius:14px;
   color:var(--green);
-  font-size:10px;
+  background:rgba(57,255,136,.08);
+  border:1px solid rgba(57,255,136,.18);
+  font-size:9px;
   font-weight:900;
-  text-transform:uppercase;
 }
 
 .complete.done{
-  opacity:.5;
+  opacity:.4;
 }
 
 /* MEALS */
 
 .today-meal{
-  border-radius:var(--radius);
+  overflow:hidden;
+  border-radius:24px;
   border:1px solid rgba(41,169,255,.14);
   background:
-    radial-gradient(circle at 100% 0%,rgba(41,169,255,.12),transparent 45%),
+    radial-gradient(circle at 100% 0%,rgba(41,169,255,.12),transparent 42%),
     var(--panel);
-  overflow:hidden;
 }
 
 .today-head{
-  padding:17px;
+  padding:18px;
   border-bottom:1px solid var(--line);
 }
 
 .today-head small{
   color:var(--blue);
-  font-size:9px;
+  font-size:8px;
   font-weight:900;
   letter-spacing:1.4px;
 }
@@ -711,22 +883,19 @@ button{
 }
 
 .meal-title strong{
-  font-size:10px;
-  text-transform:uppercase;
+  font-size:9px;
 }
 
 .meal-title span{
   color:#68756e;
-  font-size:9px;
+  font-size:8px;
 }
 
 .meal p{
-  color:#9aa59f;
-  font-size:10px;
+  color:#99a49f;
+  font-size:9px;
   line-height:1.5;
 }
-
-/* WEEK MENU */
 
 .menu-list{
   display:grid;
@@ -734,10 +903,10 @@ button{
 }
 
 .menu-day{
-  border:1px solid var(--line);
-  border-radius:17px;
-  background:#0a0f0c;
   overflow:hidden;
+  border-radius:18px;
+  border:1px solid var(--line);
+  background:#090e0b;
 }
 
 .menu-button{
@@ -760,20 +929,21 @@ button{
 .menu-dot{
   width:8px;
   height:8px;
+  flex:none;
   border-radius:50%;
   background:var(--green);
-  box-shadow:0 0 12px rgba(57,255,136,.5);
+  box-shadow:0 0 11px rgba(57,255,136,.5);
 }
 
 .menu-button strong{
-  font-size:11px;
+  font-size:10px;
 }
 
 .menu-button small{
   display:block;
-  color:#68756e;
-  font-size:8px;
   margin-top:3px;
+  color:#65716b;
+  font-size:7px;
 }
 
 .arrow{
@@ -802,15 +972,14 @@ button{
 
 .menu-item b{
   display:block;
-  font-size:9px;
-  color:var(--green);
   margin-bottom:4px;
-  text-transform:uppercase;
+  color:var(--green);
+  font-size:8px;
 }
 
 .menu-item span{
-  color:#9ba59f;
-  font-size:10px;
+  color:#98a39e;
+  font-size:9px;
   line-height:1.5;
 }
 
@@ -825,20 +994,9 @@ button{
   position:relative;
   overflow:hidden;
   padding:18px;
-  border:1px solid var(--line);
   border-radius:21px;
-  background:linear-gradient(135deg,#0c110f,#080c0a);
-}
-
-.medal:after{
-  content:"";
-  position:absolute;
-  width:100px;
-  height:100px;
-  right:-40px;
-  top:-40px;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,.05);
+  border:1px solid var(--line);
+  background:linear-gradient(145deg,#0c110f,#080c0a);
 }
 
 .medal-head{
@@ -848,60 +1006,71 @@ button{
 }
 
 .medal-icon{
-  width:48px;
-  height:48px;
-  border-radius:15px;
+  width:49px;
+  height:49px;
   display:grid;
   place-items:center;
+  flex:none;
+  border-radius:16px;
+  background:rgba(255,255,255,.045);
   font-weight:900;
-  font-size:17px;
-  background:rgba(255,255,255,.05);
+  font-size:15px;
 }
 
 .medal h3{
-  font-size:15px;
+  font-size:14px;
 }
 
 .medal p{
   margin-top:3px;
   color:#707c75;
-  font-size:9px;
+  font-size:8px;
 }
 
 .medal-lock{
   margin-left:auto;
-  color:#59645e;
-  font-size:10px;
+  color:#58635d;
+  font-size:9px;
 }
 
 .medal-progress{
-  margin-top:14px;
   height:5px;
-  background:rgba(255,255,255,.05);
+  margin-top:14px;
+  overflow:hidden;
   border-radius:10px;
+  background:rgba(255,255,255,.05);
 }
 
 .medal-progress i{
   display:block;
-  height:100%;
   width:0;
-  background:linear-gradient(90deg,var(--green),var(--blue));
+  height:100%;
   border-radius:10px;
+  background:linear-gradient(90deg,var(--green),var(--blue));
 }
 
-.medal.bronze .medal-icon{color:#cd8a4a}
-.medal.silver .medal-icon{color:#cbd3d0}
-.medal.gold .medal-icon{color:#e7c74f}
+.medal.bronze .medal-icon{
+  color:#cd8a4a;
+}
+
+.medal.silver .medal-icon{
+  color:#d0d7d4;
+}
+
+.medal.gold .medal-icon{
+  color:var(--gold);
+}
+
 .medal.elite{
-  border-color:rgba(57,255,136,.18);
+  border-color:rgba(57,255,136,.20);
 }
 
 /* PROFILE */
 
 .profile-card{
   padding:21px;
-  border:1px solid var(--line);
   border-radius:24px;
+  border:1px solid var(--line);
   background:linear-gradient(145deg,#0c1310,#080d0a);
 }
 
@@ -916,12 +1085,17 @@ button{
   height:61px;
   display:grid;
   place-items:center;
+  flex:none;
   border-radius:20px;
-  background:linear-gradient(145deg,rgba(57,255,136,.18),rgba(41,169,255,.12));
-  border:1px solid rgba(57,255,136,.18);
   color:var(--green);
-  font-size:21px;
+  font-size:20px;
   font-weight:900;
+  background:linear-gradient(
+    145deg,
+    rgba(57,255,136,.18),
+    rgba(41,169,255,.12)
+  );
+  border:1px solid rgba(57,255,136,.18);
 }
 
 .profile-top h3{
@@ -930,8 +1104,8 @@ button{
 
 .profile-top p{
   margin-top:4px;
-  color:#718078;
-  font-size:9px;
+  color:#6e7b74;
+  font-size:8px;
 }
 
 .profile-data{
@@ -949,8 +1123,8 @@ button{
 
 .profile-stat span{
   display:block;
-  color:#69756f;
-  font-size:8px;
+  color:#68746e;
+  font-size:7px;
   text-transform:uppercase;
 }
 
@@ -960,14 +1134,11 @@ button{
   font-size:14px;
 }
 
-/* CREATOR */
-
 .creator{
   margin-top:25px;
   text-align:center;
   color:#56625c;
   font-size:8px;
-  letter-spacing:.3px;
 }
 
 /* NAV */
@@ -1000,16 +1171,15 @@ button{
 
 .nav-icon{
   display:block;
-  font-size:16px;
-  line-height:1;
   margin-bottom:5px;
+  font-size:16px;
 }
 
 .nav-label{
   font-size:7px;
   font-weight:900;
-  text-transform:uppercase;
   letter-spacing:.4px;
+  text-transform:uppercase;
 }
 
 .nav-btn.active{
@@ -1017,39 +1187,26 @@ button{
   background:rgba(57,255,136,.07);
 }
 
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-  animation:pageIn .35s ease;
-}
-
-@keyframes pageIn{
-  from{opacity:0;transform:translateY(5px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
 /* TOAST */
 
 .toast{
   position:fixed;
-  z-index:50;
+  z-index:100;
   left:50%;
   top:20px;
   transform:translate(-50%,-20px);
   padding:12px 17px;
   border-radius:13px;
+  color:#dce7e1;
   background:#101813;
   border:1px solid rgba(57,255,136,.22);
-  color:#dce7e1;
-  font-size:10px;
+  box-shadow:0 10px 40px rgba(0,0,0,.5);
+  font-size:9px;
   font-weight:800;
   opacity:0;
   pointer-events:none;
   transition:.3s;
-  box-shadow:0 10px 40px rgba(0,0,0,.5);
+  white-space:nowrap;
 }
 
 .toast.show{
@@ -1057,24 +1214,18 @@ button{
   transform:translate(-50%,0);
 }
 
-/* DESKTOP */
-
 @media(min-width:700px){
   .app{
     padding-top:30px;
   }
 
-  .bottom-nav{
-    bottom:20px;
-  }
-
   .hero{
-    min-height:310px;
-    padding:38px;
+    min-height:320px;
+    padding:40px;
   }
 
   .hero h1{
-    font-size:68px;
+    font-size:70px;
   }
 
   .medals{
@@ -1100,865 +1251,1104 @@ button{
   </div>
 </header>
 
+
 <!-- HOME -->
 <main id="home" class="page active">
 
-  <section class="hero">
-    <div class="hero-grid"></div>
+<section class="hero">
+  <div class="hero-grid"></div>
 
-    <div class="hero-content">
-      <div class="eyebrow">PERFORMANCE SYSTEM</div>
+  <div class="hero-content">
+    <div class="eyebrow">PERFORMANCE SYSTEM</div>
 
-      <h1>ARVEX <span>FC</span></h1>
+    <h1>ARVEX <span>FC</span></h1>
 
-      <p class="hero-sub">
-        Har kuni ozgina oldinga. Kuch, intizom va muntazamlik.
-      </p>
+    <p class="hero-sub">
+      Har kuni ozgina oldinga. Kuch, intizom va muntazamlik.
+    </p>
 
-      <div class="temur">
-        <div class="temur-dots">
-          <div class="row"><b></b></div>
-          <div class="row"><b></b><b></b></div>
-        </div>
-        <span>AMIR TEMUR</span>
+    <div class="temur">
+      <div class="temur-dots">
+        <div class="row"><b></b></div>
+        <div class="row"><b></b><b></b></div>
       </div>
+      <span>AMIR TEMUR</span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section">
-    <div class="section-head">
-      <h2>LEVEL</h2>
-      <p>BUGUNGI FAOLLIK</p>
-    </div>
 
-    <div class="level-card">
-      <div class="level-top">
+<section class="section">
 
-        <div class="level-ring" id="levelRing">
-          <div class="level-number">
-            <strong id="levelNumber">1</strong>
-            <small>LEVEL</small>
-          </div>
-        </div>
+<div class="section-head">
+  <h2>LEVEL</h2>
+  <p>BUGUNGI FAOLLIK</p>
+</div>
 
-        <div class="level-info">
-          <small>ATHLETE XP</small>
-          <h3 id="levelTitle">ROOKIE</h3>
-          <div class="xp-text">
-            <span id="xpValue">0</span> / 100 XP
-          </div>
+<div class="level-card">
 
-          <div class="xp-bar">
-            <div class="xp-fill" id="xpFill"></div>
-          </div>
-        </div>
+<div class="level-top">
 
-      </div>
+<div class="level-ring" id="levelRing">
+<div class="level-number">
+<strong id="levelNumber">1</strong>
+<small>LEVEL</small>
+</div>
+</div>
 
-      <button class="claim" id="claimXp">
-        BUGUNGI XP +10
-      </button>
-    </div>
+<div class="level-info">
+<small>ATHLETE XP</small>
+<h3 id="levelTitle">ROOKIE</h3>
 
-    <div class="stats">
-      <div class="stat">
-        <b id="streak">0</b>
-        <span>Streak</span>
-      </div>
-      <div class="stat">
-        <b id="workoutCount">0</b>
-        <span>Workout</span>
-      </div>
-      <div class="stat">
-        <b id="totalXp">0</b>
-        <span>Total XP</span>
-      </div>
-    </div>
-  </section>
+<div class="xp-text">
+<span id="xpValue">0</span> / 100 XP
+</div>
 
-  <section class="section">
-    <div class="section-head">
-      <h2>BUGUNGI MOTIVATSIYA</h2>
-    </div>
+<div class="xp-bar">
+<div class="xp-fill" id="xpFill"></div>
+</div>
 
-    <div class="motivation">
-      <div class="label" id="motivationDay">ARVEX DAILY</div>
-      <h3 id="motivationTitle">Intizom natijadan oldin keladi.</h3>
-      <p id="motivationText">
-        Bugungi kichik harakat ertangi kuchli odatning boshlanishi.
-      </p>
-    </div>
-  </section>
+</div>
+</div>
 
-  <section class="section">
-    <div class="section-head">
-      <h2>MAQSAD</h2>
-    </div>
+<button class="claim" id="claimXp">
+BUGUNGI XP +10
+</button>
 
-    <div class="goal">
-      <div class="goal-row">
-        <div class="goal-icon">◆</div>
-        <div>
-          <h3>O‘zingning kuchliroq versiyang</h3>
-          <p>Muntazam mashq • To‘g‘ri ovqatlanish • Intizom</p>
-        </div>
-      </div>
-    </div>
-  </section>
+</div>
 
-  <section class="section">
-    <div class="section-head">
-      <h2>AI COACH</h2>
-      <p>SMART GUIDE</p>
-    </div>
+<div class="stats">
 
-    <div class="coach">
-      <div class="coach-head">
-        <div class="coach-icon">AI</div>
-        <div>
-          <h3>ARVEX COACH</h3>
-          <p>Bugungi mashg‘ulot uchun tavsiya</p>
-        </div>
-      </div>
+<div class="stat">
+<b id="streak">0</b>
+<span>Streak</span>
+</div>
 
-      <div class="coach-text" id="coachText">
-        Bugun texnikaga e’tibor ber. Harakatlarni shoshmasdan va nazorat bilan bajar.
-      </div>
-    </div>
-  </section>
+<div class="stat">
+<b id="workoutCount">0</b>
+<span>Workout</span>
+</div>
+
+<div class="stat">
+<b id="totalXp">0</b>
+<span>Total XP</span>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-head">
+<h2>DAILY MISSION</h2>
+<p>+10 XP</p>
+</div>
+
+<div class="mission">
+
+<div class="mission-top">
+<span class="mission-badge">TODAY'S MISSION</span>
+<span class="mission-xp">+10 XP</span>
+</div>
+
+<h3 id="missionTitle">Bugungi XP'ni ol</h3>
+
+<p id="missionText">
+Bugungi faolligingni tasdiqla va streakni davom ettir.
+</p>
+
+<div class="mission-bar">
+<i id="missionFill"></i>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-head">
+<h2>BUGUNGI MOTIVATSIYA</h2>
+</div>
+
+<div class="motivation">
+
+<div class="label" id="motivationDay">
+ARVEX DAILY
+</div>
+
+<h3 id="motivationTitle">
+Intizom natijadan oldin keladi.
+</h3>
+
+<p id="motivationText">
+Bugungi kichik harakat ertangi kuchli odatning boshlanishi.
+</p>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-head">
+<h2>MAQSAD</h2>
+</div>
+
+<div class="goal">
+
+<div class="goal-row">
+
+<div class="goal-icon">◆</div>
+
+<div>
+<h3>O‘zingning kuchliroq versiyang</h3>
+<p>Muntazam mashq • To‘g‘ri ovqatlanish • Intizom</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-head">
+<h2>AI COACH</h2>
+<p>SMART GUIDE</p>
+</div>
+
+<div class="coach">
+
+<div class="coach-head">
+
+<div class="coach-icon">AI</div>
+
+<div>
+<h3>ARVEX COACH</h3>
+<p>Bugungi mashg‘ulot uchun tavsiya</p>
+</div>
+
+</div>
+
+<div class="coach-text" id="coachText">
+Bugungi mashg‘ulotda texnikaga va harakatni nazorat qilishga e'tibor ber.
+</div>
+
+</div>
+
+</section>
 
 </main>
+
 
 <!-- WORKOUT -->
 <main id="workout" class="page">
 
-  <section class="section" style="margin-top:5px">
-    <div class="section-head">
-      <h2>WORKOUT</h2>
-      <p>7 KUNLIK REJA</p>
-    </div>
+<section class="section">
 
-    <div class="days" id="days"></div>
-    <div class="workout-detail" id="workoutDetail"></div>
-  </section>
+<div class="section-head">
+<h2>WORKOUT</h2>
+<p>7 KUNLIK REJA</p>
+</div>
+
+<div class="days" id="days"></div>
+
+<div class="workout-detail" id="workoutDetail">
+
+<div class="detail-top">
+<div>
+<h3 id="detailTitle">YELKA</h3>
+</div>
+
+<div class="time-badge" id="detailTime">
+18:00–19:00
+</div>
+</div>
+
+<p class="detail-desc" id="detailDesc"></p>
+
+<div id="exerciseList"></div>
+
+<button class="complete" id="completeWorkout">
+WORKOUTNI BAJARDIM +20 XP
+</button>
+
+</div>
+
+</section>
 
 </main>
+
 
 <!-- MEALS -->
 <main id="meals" class="page">
 
-  <section class="section" style="margin-top:5px">
-    <div class="section-head">
-      <h2>MEALS / NUTRITION</h2>
-      <p id="todayDay">BUGUN</p>
-    </div>
+<section class="section">
 
-    <div class="today-meal" id="todayMeal"></div>
-  </section>
+<div class="section-head">
+<h2>MEALS</h2>
+<p>NUTRITION</p>
+</div>
 
-  <section class="section">
-    <div class="section-head">
-      <h2>1 HAFTALIK MENU</h2>
-      <p>7 KUN</p>
-    </div>
+<div class="today-meal">
 
-    <div class="menu-list" id="menuList"></div>
-  </section>
+<div class="today-head">
+<small>BUGUNGI OVQATLANISH TARTIBI</small>
+<h3 id="todayMealDay">DUSHANBA</h3>
+</div>
+
+<div id="todayMeals"></div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-head">
+<h2>1 HAFTALIK MENU</h2>
+<p>7 KUN</p>
+</div>
+
+<div class="menu-list" id="menuList"></div>
+
+</section>
 
 </main>
+
 
 <!-- MEDALS -->
 <main id="medals" class="page">
 
-  <section class="section" style="margin-top:5px">
-    <div class="section-head">
-      <h2>MEDALS</h2>
-      <p>ATHLETE REWARDS</p>
-    </div>
+<section class="section">
 
-    <div class="medals">
+<div class="section-head">
+<h2>MEDALS</h2>
+<p>YOUR JOURNEY</p>
+</div>
 
-      <div class="medal bronze">
-        <div class="medal-head">
-          <div class="medal-icon">B</div>
-          <div>
-            <h3>BRONZE</h3>
-            <p>1 DAY</p>
-          </div>
-          <div class="medal-lock">LOCKED</div>
-        </div>
-        <div class="medal-progress"><i style="width:0%"></i></div>
-      </div>
+<div class="medals" id="medalsList"></div>
 
-      <div class="medal silver">
-        <div class="medal-head">
-          <div class="medal-icon">S</div>
-          <div>
-            <h3>SILVER</h3>
-            <p>1 WEEK</p>
-          </div>
-          <div class="medal-lock">LOCKED</div>
-        </div>
-        <div class="medal-progress"><i style="width:0%"></i></div>
-      </div>
-
-      <div class="medal gold">
-        <div class="medal-head">
-          <div class="medal-icon">G</div>
-          <div>
-            <h3>GOLD</h3>
-            <p>30 DAYS</p>
-          </div>
-          <div class="medal-lock">LOCKED</div>
-        </div>
-        <div class="medal-progress"><i style="width:0%"></i></div>
-      </div>
-
-      <div class="medal elite">
-        <div class="medal-head">
-          <div class="medal-icon">E</div>
-          <div>
-            <h3>ELITE</h3>
-            <p>90 DAYS</p>
-          </div>
-          <div class="medal-lock">LOCKED</div>
-        </div>
-        <div class="medal-progress"><i style="width:0%"></i></div>
-      </div>
-
-      <div class="medal">
-        <div class="medal-head">
-          <div class="medal-icon">1Y</div>
-          <div>
-            <h3>1 YEAR CERTIFICATE</h3>
-            <p>365 DAYS</p>
-          </div>
-          <div class="medal-lock">LOCKED</div>
-        </div>
-        <div class="medal-progress"><i style="width:0%"></i></div>
-      </div>
-
-    </div>
-  </section>
+</section>
 
 </main>
+
 
 <!-- PROFILE -->
 <main id="profile" class="page">
 
-  <section class="section" style="margin-top:5px">
-    <div class="section-head">
-      <h2>PROFILE</h2>
-      <p>ATHLETE ACCOUNT</p>
-    </div>
+<section class="section">
 
-    <div class="profile-card">
+<div class="section-head">
+<h2>PROFILE</h2>
+<p>ATHLETE</p>
+</div>
 
-      <div class="profile-top">
-        <div class="avatar">AQ</div>
+<div class="profile-card">
 
-        <div>
-          <h3>ARVEX ATHLETE</h3>
-          <p>YOUR PERFORMANCE PROFILE</p>
-        </div>
-      </div>
+<div class="profile-top">
 
-      <div class="profile-data">
+<div class="avatar">A</div>
 
-        <div class="profile-stat">
-          <span>Level</span>
-          <b id="profileLevel">1</b>
-        </div>
+<div>
+<h3>ARVEX ATHLETE</h3>
+<p>Performance profile</p>
+</div>
 
-        <div class="profile-stat">
-          <span>Total XP</span>
-          <b id="profileXp">0</b>
-        </div>
+</div>
 
-        <div class="profile-stat">
-          <span>Workout</span>
-          <b id="profileWorkout">0</b>
-        </div>
+<div class="profile-data">
 
-        <div class="profile-stat">
-          <span>Streak</span>
-          <b id="profileStreak">0</b>
-        </div>
+<div class="profile-stat">
+<span>Level</span>
+<b id="profileLevel">1</b>
+</div>
 
-      </div>
+<div class="profile-stat">
+<span>Total XP</span>
+<b id="profileXp">0</b>
+</div>
 
-    </div>
-  </section>
+<div class="profile-stat">
+<span>Workout</span>
+<b id="profileWorkout">0</b>
+</div>
 
-  <div class="creator">
-    Saytni yaratgan inson Qodirov Anvarbek
-  </div>
+<div class="profile-stat">
+<span>Streak</span>
+<b id="profileStreak">0</b>
+</div>
+
+</div>
+
+</div>
+
+<div class="creator">
+Saytni yaratgan inson Qodirov Anvarbek
+</div>
+
+</section>
 
 </main>
 
 </div>
 
-<!-- NAVIGATION -->
+
+<!-- NAV -->
 
 <nav class="bottom-nav">
 
-  <button class="nav-btn active" data-page="home">
-    <span class="nav-icon">⌂</span>
-    <span class="nav-label">Home</span>
-  </button>
+<button class="nav-btn active" data-page="home">
+<span class="nav-icon">⌂</span>
+<span class="nav-label">Home</span>
+</button>
 
-  <button class="nav-btn" data-page="workout">
-    <span class="nav-icon">✦</span>
-    <span class="nav-label">Workout</span>
-  </button>
+<button class="nav-btn" data-page="workout">
+<span class="nav-icon">◈</span>
+<span class="nav-label">Workout</span>
+</button>
 
-  <button class="nav-btn" data-page="meals">
-    <span class="nav-icon">◈</span>
-    <span class="nav-label">Meals</span>
-  </button>
+<button class="nav-btn" data-page="meals">
+<span class="nav-icon">◉</span>
+<span class="nav-label">Meals</span>
+</button>
 
-  <button class="nav-btn" data-page="medals">
-    <span class="nav-icon">◆</span>
-    <span class="nav-label">Medals</span>
-  </button>
+<button class="nav-btn" data-page="medals">
+<span class="nav-icon">◆</span>
+<span class="nav-label">Medals</span>
+</button>
 
-  <button class="nav-btn" data-page="profile">
-    <span class="nav-icon">○</span>
-    <span class="nav-label">Profile</span>
-  </button>
+<button class="nav-btn" data-page="profile">
+<span class="nav-icon">●</span>
+<span class="nav-label">Profile</span>
+</button>
 
 </nav>
 
+
 <div class="toast" id="toast"></div>
+
 
 <script>
 
-/* =========================
-   ARVEX FC DATA
-========================= */
+const workoutData = [
 
-const workouts = [
-  {
-    day:"DUSHANBA",
-    type:"YELKA",
-    time:"18:00–19:00",
-    desc:"Yelka mushaklari uchun nazoratli va texnikaga asoslangan mashg‘ulot.",
-    exercises:[
-      ["Yengil qizish","8 min"],
-      ["Yelka press","3 × 10"],
-      ["Yon tomonga ko‘tarish","3 × 12"],
-      ["Oldinga ko‘tarish","3 × 10"],
-      ["Yengil cho‘zilish","5 min"]
-    ]
-  },
-  {
-    day:"SESHANBA",
-    type:"QANOT / BACK",
-    time:"18:00–19:00",
-    desc:"Orqa mushaklarini mustahkamlash va harakat texnikasiga e’tibor.",
-    exercises:[
-      ["Yengil qizish","8 min"],
-      ["Lat pulldown","3 × 10"],
-      ["Seated row","3 × 10"],
-      ["Back extension","2 × 12"],
-      ["Yengil cho‘zilish","5 min"]
-    ]
-  },
-  {
-    day:"CHORSHANBA",
-    type:"OYOQ",
-    time:"18:00–19:00",
-    desc:"Oyoq mushaklari va umumiy barqarorlik uchun mashg‘ulot.",
-    exercises:[
-      ["Yengil qizish","8 min"],
-      ["Bodyweight squat","3 × 10"],
-      ["Lunge","3 × 8"],
-      ["Calf raise","3 × 12"],
-      ["Yengil cho‘zilish","5 min"]
-    ]
-  },
-  {
-    day:"PAYSHANBA",
-    type:"KO‘KRAK",
-    time:"18:00–19:00",
-    desc:"Ko‘krak mushaklari uchun nazoratli va xavfsiz mashqlar.",
-    exercises:[
-      ["Yengil qizish","8 min"],
-      ["Push-up","3 × 8"],
-      ["Chest press","3 × 10"],
-      ["Incline push-up","2 × 10"],
-      ["Yengil cho‘zilish","5 min"]
-    ]
-  },
-  {
-    day:"JUMA",
-    type:"QO‘L",
-    time:"18:00–19:00",
-    desc:"Qo‘l mushaklari uchun texnika va nazoratga e’tibor.",
-    exercises:[
-      ["Yengil qizish","8 min"],
-      ["Biceps curl","3 × 10"],
-      ["Triceps extension","3 × 10"],
-      ["Hammer curl","2 × 10"],
-      ["Yengil cho‘zilish","5 min"]
-    ]
-  },
-  {
-    day:"SHANBA",
-    type:"FULL BODY",
-    time:"17:00–18:00",
-    desc:"Butun tana uchun yengil va muvozanatli mashg‘ulot.",
-    exercises:[
-      ["Yengil qizish","8 min"],
-      ["Squat","3 × 8"],
-      ["Push-up","3 × 8"],
-      ["Row","3 × 10"],
-      ["Yengil cho‘zilish","5 min"]
-    ]
-  },
-  {
-    day:"YAKSHANBA",
-    type:"DAM OLISH",
-    time:"DAM OLISH",
-    desc:"Tiklanish kuni. Yengil yurish va oddiy harakatlar yetarli.",
-    exercises:[
-      ["Yengil yurish","15–20 min"],
-      ["Yengil cho‘zilish","5–10 min"],
-      ["Tiklanish","REST"]
-    ]
-  }
-];
+{
+day:"DUSHANBA",
+type:"YELKA",
+time:"18:00–19:00",
+desc:"Yelka mashg‘ulotida harakatlarni nazorat bilan bajar va yaxshi qizishdan boshlagin.",
+items:[
+["Qizish","8 daqiqa"],
+["Yelka press","3 × 10"],
+["Yon tomonga ko‘tarish","3 × 12"],
+["Oldinga ko‘tarish","2 × 10"],
+["Yengil cho‘zilish","5 daqiqa"]
+]
+},
 
-const menus = [
-  {
-    day:"DUSHANBA",
-    meals:[
-      ["NONUSHTA","Qaynatilgan tuxum, suli bo‘tqasi, banan"],
-      ["TUSHLIK","Tovuqli guruch, bodring-pomidor salati"],
-      ["KECHKI OVQAT","Sabzavotli sho‘rva, dimlangan tovuq, non"]
-    ]
-  },
-  {
-    day:"SESHANBA",
-    meals:[
-      ["NONUSHTA","Tvorog, olma, non, sut"],
-      ["TUSHLIK","Mol go‘shtli grechka, karam-sabzi salati"],
-      ["KECHKI OVQAT","Kartoshka pyuresi, dimlangan tovuq, bodring"]
-    ]
-  },
-  {
-    day:"CHORSHANBA",
-    meals:[
-      ["NONUSHTA","Omlet, non, banan, yogurt"],
-      ["TUSHLIK","Tovuqli makaron, sabzavotli salat"],
-      ["KECHKI OVQAT","Moshxo‘rda, non, ko‘katlar"]
-    ]
-  },
-  {
-    day:"PAYSHANBA",
-    meals:[
-      ["NONUSHTA","Suli bo‘tqasi, banan, qaynatilgan tuxum"],
-      ["TUSHLIK","Mol go‘shtli guruch, sabzavotli salat"],
-      ["KECHKI OVQAT","Dimlangan kartoshka, tovuq go‘shti, bodring-pomidor"]
-    ]
-  },
-  {
-    day:"JUMA",
-    meals:[
-      ["NONUSHTA","Tvorog, banan, non, sut"],
-      ["TUSHLIK","Tovuqli grechka, sabzi-karam salati"],
-      ["KECHKI OVQAT","Mastava, non, ko‘katlar"]
-    ]
-  },
-  {
-    day:"SHANBA",
-    meals:[
-      ["NONUSHTA","Omlet, suli bo‘tqasi, olma"],
-      ["TUSHLIK","Dimlama, guruch, bodring-pomidor salati"],
-      ["KECHKI OVQAT","Tovuqli sho‘rva, non, sabzavot"]
-    ]
-  },
-  {
-    day:"YAKSHANBA",
-    meals:[
-      ["NONUSHTA","Qaynatilgan tuxum, tvorog, meva, non"],
-      ["TUSHLIK","Palov, achchiq-chuchuk salat"],
-      ["KECHKI OVQAT","Sabzavotli sho‘rva, dimlangan go‘sht, non"]
-    ]
-  }
+{
+day:"SESHANBA",
+type:"QANOT / BACK",
+time:"18:00–19:00",
+desc:"Orqa mushaklari uchun texnikani saqla va harakatni shoshmasdan bajar.",
+items:[
+["Qizish","8 daqiqa"],
+["Row harakati","3 × 10"],
+["Lat pull-down","3 × 10"],
+["Reverse fly","2 × 12"],
+["Yengil cho‘zilish","5 daqiqa"]
+]
+},
+
+{
+day:"CHORSHANBA",
+type:"OYOQ",
+time:"18:00–19:00",
+desc:"Oyoq mashg‘ulotida muvozanat va to‘g‘ri texnikaga e’tibor ber.",
+items:[
+["Qizish","8 daqiqa"],
+["Squat","3 × 10"],
+["Lunge","2 × 10"],
+["Glute bridge","3 × 12"],
+["Yengil cho‘zilish","5 daqiqa"]
+]
+},
+
+{
+day:"PAYSHANBA",
+type:"KO‘KRAK",
+time:"18:00–19:00",
+desc:"Ko‘krak mashqlarini nazoratli amplitudada va qulay darajada bajar.",
+items:[
+["Qizish","8 daqiqa"],
+["Push-up","3 × 8"],
+["Chest press","3 × 10"],
+["Incline push-up","2 × 10"],
+["Yengil cho‘zilish","5 daqiqa"]
+]
+},
+
+{
+day:"JUMA",
+type:"QO‘L",
+time:"18:00–19:00",
+desc:"Qo‘l mashg‘ulotida harakat sifatini tezlikdan ustun qo‘y.",
+items:[
+["Qizish","8 daqiqa"],
+["Biceps curl","3 × 10"],
+["Triceps extension","3 × 10"],
+["Hammer curl","2 × 10"],
+["Yengil cho‘zilish","5 daqiqa"]
+]
+},
+
+{
+day:"SHANBA",
+type:"FULL BODY",
+time:"17:00–18:00",
+desc:"Butun tana mashg‘ulotida asosiy harakatlarni sifatli va nazorat bilan bajar.",
+items:[
+["Qizish","8 daqiqa"],
+["Squat","3 × 10"],
+["Push-up","3 × 8"],
+["Row","3 × 10"],
+["Yengil cho‘zilish","5 daqiqa"]
+]
+},
+
+{
+day:"YAKSHANBA",
+type:"DAM OLISH",
+time:"DAM OLISH",
+desc:"Bugun tiklanishga vaqt ber. Yengil yurish va odatiy kundalik harakat yetarli.",
+items:[
+["Yengil yurish","10–20 daqiqa"],
+["Yengil cho‘zilish","5 daqiqa"],
+["Tiklanish","Asosiy vazifa"]
+]
+}
+
 ];
 
 
-/* =========================
-   STORAGE
-========================= */
+const meals = [
+
+{
+day:"DUSHANBA",
+breakfast:"Qaynatilgan tuxum, suli bo‘tqasi, banan",
+lunch:"Tovuqli guruch, bodring-pomidor salati",
+dinner:"Sabzavotli sho‘rva, dimlangan tovuq, non"
+},
+
+{
+day:"SESHANBA",
+breakfast:"Tvorog, olma, non, sut",
+lunch:"Mol go‘shtli grechka, karam-sabzi salati",
+dinner:"Kartoshka pyuresi, dimlangan tovuq, bodring"
+},
+
+{
+day:"CHORSHANBA",
+breakfast:"Omlet, non, banan, yogurt",
+lunch:"Tovuqli makaron, sabzavotli salat",
+dinner:"Moshxo‘rda, non, ko‘katlar"
+},
+
+{
+day:"PAYSHANBA",
+breakfast:"Suli bo‘tqasi, banan, qaynatilgan tuxum",
+lunch:"Mol go‘shtli guruch, sabzavotli salat",
+dinner:"Dimlangan kartoshka, tovuq go‘shti, bodring-pomidor"
+},
+
+{
+day:"JUMA",
+breakfast:"Tvorog, banan, non, sut",
+lunch:"Tovuqli grechka, sabzi-karam salati",
+dinner:"Mastava, non, ko‘katlar"
+},
+
+{
+day:"SHANBA",
+breakfast:"Omlet, suli bo‘tqasi, olma",
+lunch:"Dimlama, guruch, bodring-pomidor salati",
+dinner:"Tovuqli sho‘rva, non, sabzavot"
+},
+
+{
+day:"YAKSHANBA",
+breakfast:"Qaynatilgan tuxum, tvorog, meva, non",
+lunch:"Palov, achchiq-chuchuk salat",
+dinner:"Sabzavotli sho‘rva, dimlangan go‘sht, non"
+}
+
+];
+
+
+const motivation = [
+
+["DUSHANBA","Bugunni kuchli boshlagin.","Kichik qadamlar katta odatlarga aylanadi."],
+["SESHANBA","Harakatni davom ettir.","Natija muntazamlikdan boshlanadi."],
+["CHORSHANBA","O‘rtada to‘xtama.","Bugungi mehnat o‘zingga bergan va’dangdir."],
+["PAYSHANBA","Sifatga e’tibor ber.","Har bir harakatni nazorat bilan bajar."],
+["JUMA","Haftani kuchli yakunla.","Intizom kayfiyatga bog‘liq emas."],
+["SHANBA","O‘zing uchun vaqt ajrat.","Bugungi mashg‘ulot ertangi odatni kuchaytiradi."],
+["YAKSHANBA","Tiklanishni unutma.","Dam olish ham mashg‘ulot jarayonining bir qismidir."]
+];
+
+
+const coachAdvice = [
+"Bugun mashg‘ulotni qizishdan boshlagin va harakatlarni nazorat bilan bajar.",
+"Orqa mashqlarida gavda holatini saqlash va harakatni shoshmasdan bajarish muhim.",
+"Oyoq mashg‘ulotida muvozanat va qulay harakat amplitudasiga e’tibor ber.",
+"Bugun texnikani tezlikdan ustun qo‘y.",
+"Qo‘l mashqlarida nazoratli harakat va yetarli dam olishga e’tibor ber.",
+"Full Body kunida barcha asosiy harakatlarni sifatli bajar va o‘zingni ortiqcha zo‘riqtirma.",
+"Bugun tiklanish kuni. Yengil harakat va yaxshi dam olishga e’tibor ber."
+];
+
 
 let state = JSON.parse(localStorage.getItem("arvexState")) || {
-  xp:0,
-  workouts:0,
-  streak:0,
-  lastXp:"",
-  completed:[]
+xp:0,
+workouts:0,
+streak:0,
+lastXp:"",
+completedDays:[]
 };
 
+
 function save(){
-  localStorage.setItem("arvexState",JSON.stringify(state));
+localStorage.setItem("arvexState",JSON.stringify(state));
 }
 
 
-/* =========================
-   LEVEL
-========================= */
+function todayIndex(){
+return new Date().getDay() === 0 ? 6 : new Date().getDay()-1;
+}
+
+
+function todayKey(){
+return new Date().toISOString().slice(0,10);
+}
+
 
 function getLevel(){
-  return Math.floor(state.xp / 100) + 1;
+return Math.floor(state.xp / 100) + 1;
 }
 
+
 function getLevelName(level){
-  if(level >= 10) return "ELITE ATHLETE";
-  if(level >= 7) return "PRO ATHLETE";
-  if(level >= 4) return "RISING ATHLETE";
-  return "ROOKIE";
+if(level < 3) return "ROOKIE";
+if(level < 5) return "RISING";
+if(level < 8) return "ELITE";
+return "LEGEND";
 }
+
 
 function updateLevel(){
 
-  const level = getLevel();
-  const currentXp = state.xp % 100;
-  const percent = currentXp;
+const level = getLevel();
 
-  document.getElementById("levelNumber").textContent = level;
-  document.getElementById("levelTitle").textContent = getLevelName(level);
-  document.getElementById("xpValue").textContent = currentXp;
-  document.getElementById("xpFill").style.width = percent + "%";
+const currentXp = state.xp % 100;
 
-  const degrees = percent * 3.6;
+document.getElementById("levelNumber").textContent = level;
 
-  document.getElementById("levelRing").style.background =
-    `conic-gradient(var(--green) 0deg,var(--blue) ${degrees}deg,rgba(255,255,255,.07) ${degrees}deg)`;
+document.getElementById("levelTitle").textContent =
+getLevelName(level);
 
-  document.getElementById("totalXp").textContent = state.xp;
-  document.getElementById("workoutCount").textContent = state.workouts;
-  document.getElementById("streak").textContent = state.streak;
+document.getElementById("xpValue").textContent =
+currentXp;
 
-  document.getElementById("profileLevel").textContent = level;
-  document.getElementById("profileXp").textContent = state.xp;
-  document.getElementById("profileWorkout").textContent = state.workouts;
-  document.getElementById("profileStreak").textContent = state.streak;
+document.getElementById("totalXp").textContent =
+state.xp;
 
-  const today = new Date().toISOString().slice(0,10);
-  const button = document.getElementById("claimXp");
+document.getElementById("workoutCount").textContent =
+state.workouts;
 
-  if(state.lastXp === today){
-    button.disabled = true;
-    button.textContent = "BUGUNGI XP OLINGAN";
-  }else{
-    button.disabled = false;
-    button.textContent = "BUGUNGI XP +10";
-  }
+document.getElementById("streak").textContent =
+state.streak;
+
+document.getElementById("profileLevel").textContent =
+level;
+
+document.getElementById("profileXp").textContent =
+state.xp;
+
+document.getElementById("profileWorkout").textContent =
+state.workouts;
+
+document.getElementById("profileStreak").textContent =
+state.streak;
+
+document.getElementById("xpFill").style.width =
+currentXp + "%";
+
+document.getElementById("levelRing").style.background =
+`conic-gradient(
+var(--green) ${currentXp * 3.6}deg,
+var(--blue) ${currentXp * 3.6}deg,
+rgba(255,255,255,.07) ${currentXp * 3.6}deg
+)`;
+
+const claimed = state.lastXp === todayKey();
+
+const claim = document.getElementById("claimXp");
+
+claim.disabled = claimed;
+
+claim.textContent =
+claimed ? "BUGUNGI XP OLINGAN ✓" : "BUGUNGI XP +10";
+
+document.getElementById("missionFill").style.width =
+claimed ? "100%" : "0%";
+
+document.getElementById("missionTitle").textContent =
+claimed ? "Daily mission bajarildi" : "Bugungi XP'ni ol";
+
+document.getElementById("missionText").textContent =
+claimed
+? "Bugungi vazifa bajarildi. Ertangi streak uchun yana qayt."
+: "Bugungi faolligingni tasdiqla va streakni davom ettir.";
+
 }
+
+
+function showToast(text){
+
+const toast = document.getElementById("toast");
+
+toast.textContent = text;
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+toast.classList.remove("show");
+},1800);
+
+}
+
 
 document.getElementById("claimXp").addEventListener("click",()=>{
 
-  const today = new Date().toISOString().slice(0,10);
-
-  if(state.lastXp === today) return;
-
-  state.xp += 10;
-  state.lastXp = today;
-
-  if(state.streak === 0){
-    state.streak = 1;
-  }
-
-  save();
-  updateLevel();
-  showToast("+10 XP qo‘shildi");
-});
-
-
-/* =========================
-   WORKOUT RENDER
-========================= */
-
-const daysContainer = document.getElementById("days");
-const detail = document.getElementById("workoutDetail");
-
-workouts.forEach((w,index)=>{
-
-  const button = document.createElement("button");
-  button.className = "day";
-
-  button.innerHTML = `
-    <span class="day-name">${w.day}</span>
-    <span class="day-type">${w.type}</span>
-    <span class="day-time">${w.time}</span>
-  `;
-
-  button.addEventListener("click",()=>{
-
-    document.querySelectorAll(".day").forEach(x=>x.classList.remove("active"));
-    button.classList.add("active");
-
-    detail.classList.add("show");
-
-    detail.innerHTML = `
-      <div class="detail-top">
-        <div>
-          <h3>${w.type}</h3>
-          <div class="detail-desc">${w.day}</div>
-        </div>
-
-        <div class="time-badge">${w.time}</div>
-      </div>
-
-      <p class="detail-desc">${w.desc}</p>
-
-      ${w.exercises.map((e)=>`
-        <div class="exercise">
-          <strong>${e[0]}</strong>
-          <span>${e[1]}</span>
-        </div>
-      `).join("")}
-
-      ${
-        index === 6
-        ? `<button class="complete done">RECOVERY DAY</button>`
-        : `<button class="complete" data-workout="${index}">WORKOUTNI BAJARDIM +20 XP</button>`
-      }
-    `;
-
-    const complete = detail.querySelector("[data-workout]");
-
-    if(complete){
-
-      const key = new Date().toISOString().slice(0,10) + "-" + index;
-
-      if(state.completed.includes(key)){
-        complete.classList.add("done");
-        complete.textContent = "BUGUN BAJARILGAN";
-      }
-
-      complete.addEventListener("click",()=>{
-
-        if(state.completed.includes(key)) return;
-
-        state.completed.push(key);
-        state.workouts++;
-        state.xp += 20;
-
-        if(state.streak === 0){
-          state.streak = 1;
-        }
-
-        save();
-        updateLevel();
-
-        complete.classList.add("done");
-        complete.textContent = "WORKOUT BAJARILDI";
-
-        showToast("+20 XP qo‘shildi");
-      });
-    }
-  });
-
-  daysContainer.appendChild(button);
-});
-
-
-/* =========================
-   MEALS
-========================= */
-
-const jsDay = new Date().getDay();
-const menuIndex = jsDay === 0 ? 6 : jsDay - 1;
-
-function renderTodayMeal(){
-
-  const today = menus[menuIndex];
-
-  document.getElementById("todayDay").textContent = today.day;
-
-  document.getElementById("todayMeal").innerHTML = `
-    <div class="today-head">
-      <small>BUGUNGI OVQATLANISH TARTIBI</small>
-      <h3>${today.day}</h3>
-    </div>
-
-    ${today.meals.map(meal=>`
-      <div class="meal">
-        <div class="meal-title">
-          <strong>${meal[0]}</strong>
-          <span>ARVEX</span>
-        </div>
-        <p>${meal[1]}</p>
-      </div>
-    `).join("")}
-  `;
+if(state.lastXp === todayKey()){
+showToast("Bugungi XP allaqachon olingan");
+return;
 }
 
-renderTodayMeal();
+state.xp += 10;
 
+state.lastXp = todayKey();
 
-const menuList = document.getElementById("menuList");
+state.streak += 1;
 
-menus.forEach((menu,index)=>{
+save();
 
-  const item = document.createElement("div");
-  item.className = "menu-day";
+updateLevel();
 
-  item.innerHTML = `
-    <button class="menu-button">
-      <div class="menu-button-left">
-        <div class="menu-dot"></div>
-        <div>
-          <strong>${menu.day}</strong>
-          <small>3 TA OVQAT</small>
-        </div>
-      </div>
-
-      <div class="arrow">⌄</div>
-    </button>
-
-    <div class="menu-content">
-      ${menu.meals.map(meal=>`
-        <div class="menu-item">
-          <b>${meal[0]}</b>
-          <span>${meal[1]}</span>
-        </div>
-      `).join("")}
-    </div>
-  `;
-
-  item.querySelector(".menu-button").addEventListener("click",()=>{
-    item.classList.toggle("open");
-  });
-
-  menuList.appendChild(item);
-});
-
-
-/* =========================
-   DAILY MOTIVATION
-========================= */
-
-const motivations = [
-  [
-    "DUSHANBA",
-    "Boshlash uchun mukammal vaqt kerak emas.",
-    "Bugun mashg‘ulotni sifatli boshlashning o‘zi katta qadam."
-  ],
-  [
-    "SESHANBA",
-    "Kuch nazorat bilan keladi.",
-    "Harakatni shoshmasdan, texnikani saqlagan holda bajar."
-  ],
-  [
-    "CHORSHANBA",
-    "Bugungi mehnat — ertangi odat.",
-    "Muntazamlikni saqla va o‘zingga vaqt ber."
-  ],
-  [
-    "PAYSHANBA",
-    "Intizom kayfiyatga bog‘liq emas.",
-    "Bugun ham rejang bo‘yicha harakat qil."
-  ],
-  [
-    "JUMA",
-    "Hafta oxirida ham ritmni yo‘qotma.",
-    "Kichik qadamlar katta natijalarga olib keladi."
-  ],
-  [
-    "SHANBA",
-    "Bugun o‘zing uchun vaqt ajrat.",
-    "Mashg‘ulotni sifatli bajar va yetarlicha dam ol."
-  ],
-  [
-    "YAKSHANBA",
-    "Tiklanish ham mashg‘ulotning bir qismi.",
-    "Bugun tanangga dam ber va keyingi haftaga tayyorlan."
-  ]
-];
-
-const mot = motivations[menuIndex];
-
-document.getElementById("motivationDay").textContent = mot[0];
-document.getElementById("motivationTitle").textContent = mot[1];
-document.getElementById("motivationText").textContent = mot[2];
-
-
-/* =========================
-   AI COACH
-========================= */
-
-const coachTexts = [
-  "Bugun yelka mashg‘ulotida texnikaga e’tibor ber. Harakatlarni nazorat bilan bajar.",
-  "Qanot mashg‘ulotida gavdani nazorat qil va harakat amplitudasini shoshmasdan bajar.",
-  "Oyoq kunida avval yaxshi qizib ol. Harakat sifatini tezlikdan ustun qo‘y.",
-  "Ko‘krak mashqlarida texnikani saqla va harakatlarni nazorat bilan bajar.",
-  "Qo‘l mashqlarida ortiqcha tezlikdan qochib, har bir harakatni to‘g‘ri bajar.",
-  "Full Body kuni butun tanani muvozanatli ishlat. Sifatli bajarish muhim.",
-  "Bugun tiklanish kuni. Yengil yurish, cho‘zilish va yetarli dam olishga e’tibor ber."
-];
-
-document.getElementById("coachText").textContent = coachTexts[menuIndex];
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-const navButtons = document.querySelectorAll(".nav-btn");
-const pages = document.querySelectorAll(".page");
-
-navButtons.forEach(button=>{
-
-  button.addEventListener("click",()=>{
-
-    const target = button.dataset.page;
-
-    navButtons.forEach(x=>x.classList.remove("active"));
-    button.classList.add("active");
-
-    pages.forEach(page=>{
-      page.classList.remove("active");
-    });
-
-    document.getElementById(target).classList.add("active");
-
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
-  });
+showToast("+10 XP qo‘shildi ⚡");
 
 });
 
 
-/* =========================
-   TOAST
-========================= */
+/* MOTIVATION */
 
-let toastTimer;
+function updateDaily(){
 
-function showToast(message){
+const index = todayIndex();
 
-  const toast = document.getElementById("toast");
+const m = motivation[index];
 
-  toast.textContent = message;
-  toast.classList.add("show");
+document.getElementById("motivationDay").textContent =
+m[0];
 
-  clearTimeout(toastTimer);
+document.getElementById("motivationTitle").textContent =
+m[1];
 
-  toastTimer = setTimeout(()=>{
-    toast.classList.remove("show");
-  },1800);
+document.getElementById("motivationText").textContent =
+m[2];
+
+document.getElementById("coachText").textContent =
+coachAdvice[index];
+
 }
 
 
-/* =========================
-   START
-========================= */
+updateDaily();
+
+
+/* WORKOUT */
+
+const daysBox =
+document.getElementById("days");
+
+const detail =
+document.getElementById("workoutDetail");
+
+const detailTitle =
+document.getElementById("detailTitle");
+
+const detailTime =
+document.getElementById("detailTime");
+
+const detailDesc =
+document.getElementById("detailDesc");
+
+const exerciseList =
+document.getElementById("exerciseList");
+
+const completeBtn =
+document.getElementById("completeWorkout");
+
+
+let selectedWorkout = 0;
+
+
+function renderDays(){
+
+daysBox.innerHTML="";
+
+workoutData.forEach((item,index)=>{
+
+const button =
+document.createElement("button");
+
+button.className="day";
+
+button.innerHTML=`
+<span class="day-name">${item.day}</span>
+<span class="day-type">${item.type}</span>
+<span class="day-time">${item.time}</span>
+`;
+
+button.addEventListener("click",()=>{
+openWorkout(index);
+});
+
+daysBox.appendChild(button);
+
+});
+
+}
+
+
+function openWorkout(index){
+
+selectedWorkout=index;
+
+document.querySelectorAll(".day")
+.forEach((el,i)=>{
+el.classList.toggle("active",i===index);
+});
+
+const item = workoutData[index];
+
+detailTitle.textContent=item.type;
+
+detailTime.textContent=item.time;
+
+detailDesc.textContent=item.desc;
+
+exerciseList.innerHTML="";
+
+item.items.forEach(ex=>{
+
+const row=document.createElement("div");
+
+row.className="exercise";
+
+row.innerHTML=`
+<strong>${ex[0]}</strong>
+<span>${ex[1]}</span>
+`;
+
+exerciseList.appendChild(row);
+
+});
+
+const completed =
+state.completedDays.includes(
+item.day+"-"+todayKey()
+);
+
+completeBtn.classList.toggle("done",completed);
+
+completeBtn.textContent =
+completed
+? "BUGUNGI WORKOUT BAJARILGAN ✓"
+: "WORKOUTNI BAJARDIM +20 XP";
+
+detail.classList.add("show");
+
+}
+
+
+completeBtn.addEventListener("click",()=>{
+
+const item=workoutData[selectedWorkout];
+
+const key=item.day+"-"+todayKey();
+
+if(state.completedDays.includes(key)){
+showToast("Bu workout bugun bajarilgan");
+return;
+}
+
+state.completedDays.push(key);
+
+state.workouts += 1;
+
+state.xp += 20;
+
+save();
+
+updateLevel();
+
+openWorkout(selectedWorkout);
+
+showToast("+20 XP • WORKOUT SAQLANDI");
+
+});
+
+
+renderDays();
+
+
+/* MEALS */
+
+function renderTodayMeals(){
+
+const index=todayIndex();
+
+const meal=meals[index];
+
+document.getElementById("todayMealDay")
+.textContent=meal.day;
+
+document.getElementById("todayMeals").innerHTML=`
+
+<div class="meal">
+<div class="meal-title">
+<strong>NONUSHTA</strong>
+<span>01</span>
+</div>
+<p>${meal.breakfast}</p>
+</div>
+
+<div class="meal">
+<div class="meal-title">
+<strong>TUSHLIK</strong>
+<span>02</span>
+</div>
+<p>${meal.lunch}</p>
+</div>
+
+<div class="meal">
+<div class="meal-title">
+<strong>KECHKI OVQAT</strong>
+<span>03</span>
+</div>
+<p>${meal.dinner}</p>
+</div>
+
+`;
+
+}
+
+
+function renderMenu(){
+
+const box=document.getElementById("menuList");
+
+box.innerHTML="";
+
+meals.forEach((meal,index)=>{
+
+const div=document.createElement("div");
+
+div.className="menu-day";
+
+div.innerHTML=`
+
+<button class="menu-button">
+
+<div class="menu-button-left">
+
+<div class="menu-dot"></div>
+
+<div>
+<strong>${meal.day}</strong>
+<small>3 TA OVQAT</small>
+</div>
+
+</div>
+
+<div class="arrow">⌄</div>
+
+</button>
+
+<div class="menu-content">
+
+<div class="menu-item">
+<b>NONUSHTA</b>
+<span>${meal.breakfast}</span>
+</div>
+
+<div class="menu-item">
+<b>TUSHLIK</b>
+<span>${meal.lunch}</span>
+</div>
+
+<div class="menu-item">
+<b>KECHKI OVQAT</b>
+<span>${meal.dinner}</span>
+</div>
+
+</div>
+`;
+
+div.querySelector(".menu-button")
+.addEventListener("click",()=>{
+div.classList.toggle("open");
+});
+
+box.appendChild(div);
+
+});
+
+}
+
+
+renderTodayMeals();
+renderMenu();
+
+
+/* MEDALS */
+
+function medalProgress(type){
+
+if(type==="bronze")
+return Math.min(state.workouts/1*100,100);
+
+if(type==="silver")
+return Math.min(state.workouts/7*100,100);
+
+if(type==="gold")
+return Math.min(state.workouts/30*100,100);
+
+if(type==="elite")
+return Math.min(state.workouts/90*100,100);
+
+return Math.min(state.workouts/365*100,100);
+
+}
+
+
+function renderMedals(){
+
+const box=document.getElementById("medalsList");
+
+const data=[
+
+["bronze","BRONZE","1 KUN","1 ta workout"],
+["silver","SILVER","1 HAFTA","7 ta workout"],
+["gold","GOLD","30 KUN","30 ta workout"],
+["elite","ELITE","90 KUN","90 ta workout"],
+["year","1 YEAR CERTIFICATE","365 KUN","365 ta workout"]
+
+];
+
+box.innerHTML="";
+
+data.forEach(item=>{
+
+const progress=medalProgress(item[0]);
+
+const unlocked=progress>=100;
+
+const div=document.createElement("div");
+
+div.className="medal "+item[0];
+
+div.innerHTML=`
+
+<div class="medal-head">
+
+<div class="medal-icon">
+${item[0]==="bronze"?"B":
+item[0]==="silver"?"S":
+item[0]==="gold"?"G":
+item[0]==="elite"?"E":"1Y"}
+</div>
+
+<div>
+<h3>${item[1]}</h3>
+<p>${item[2]} • ${item[3]}</p>
+</div>
+
+<div class="medal-lock">
+${unlocked?"✓":"LOCK"}
+</div>
+
+</div>
+
+<div class="medal-progress">
+<i style="width:${progress}%"></i>
+</div>
+
+`;
+
+box.appendChild(div);
+
+});
+
+}
+
+
+renderMedals();
+
+
+/* NAVIGATION */
+
+document.querySelectorAll(".nav-btn")
+.forEach(button=>{
+
+button.addEventListener("click",()=>{
+
+const page=button.dataset.page;
+
+document.querySelectorAll(".page")
+.forEach(p=>{
+p.classList.remove("active");
+});
+
+document.getElementById(page)
+.classList.add("active");
+
+document.querySelectorAll(".nav-btn")
+.forEach(b=>{
+b.classList.remove("active");
+});
+
+button.classList.add("active");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+});
+
+});
+
 
 updateLevel();
 
