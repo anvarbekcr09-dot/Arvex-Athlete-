@@ -3,3136 +3,1807 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>TURAN LEAGUE — Athlete Platform</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#05070b">
-<meta name="description" content="TURAN LEAGUE — athletes performance platform">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="description" content="TURAN LEAGUE — Athlete Performance Platform">
+<title>TURAN LEAGUE — Athlete OS</title>
 
 <style>
 :root{
-    --bg:#030507;
-    --bg2:#070b12;
-    --panel:#0a1018;
-    --panel2:#0d1520;
-    --blue:#169cff;
-    --blue2:#36b5ff;
-    --green:#39ff88;
-    --green2:#8affb9;
-    --white:#f4f8ff;
-    --muted:#7d8b9d;
-    --line:rgba(255,255,255,.08);
-    --gold:#ffd84d;
-    --orange:#ff9c38;
-    --red:#ff5268;
-    --purple:#9c6cff;
-    --shadow:0 20px 60px rgba(0,0,0,.4);
+  --bg:#03050a;
+  --bg2:#07101b;
+  --card:rgba(10,18,29,.86);
+  --card2:rgba(14,25,40,.92);
+  --green:#39ff88;
+  --blue:#21a9ff;
+  --cyan:#39e7ff;
+  --purple:#9b5cff;
+  --orange:#ff9d3d;
+  --red:#ff4f67;
+  --yellow:#ffd84d;
+  --text:#f4f8ff;
+  --muted:#8291a8;
+  --line:rgba(255,255,255,.09);
+  --shadow:0 20px 60px rgba(0,0,0,.38);
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{
-    font-family:"Inter",sans-serif;
-    background:
-        radial-gradient(circle at 10% 5%,rgba(22,156,255,.12),transparent 30%),
-        radial-gradient(circle at 90% 25%,rgba(57,255,136,.08),transparent 30%),
-        var(--bg);
-    color:var(--white);
-    min-height:100vh;
-    overflow-x:hidden;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 10% 5%,rgba(33,169,255,.13),transparent 25%),
+    radial-gradient(circle at 90% 20%,rgba(57,255,136,.10),transparent 25%),
+    radial-gradient(circle at 50% 100%,rgba(155,92,255,.08),transparent 30%),
+    var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
 }
 
-button,
-input,
-select{
-    font-family:inherit;
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:0}
+a{text-decoration:none;color:inherit}
+
+#particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  overflow:hidden;
 }
-
-button{
-    border:0;
-    cursor:pointer;
+.particle{
+  position:absolute;
+  width:3px;height:3px;
+  border-radius:50%;
+  background:var(--blue);
+  opacity:.45;
+  animation:float 8s infinite ease-in-out;
 }
-
-::-webkit-scrollbar{
-    width:5px;
+@keyframes float{
+  0%,100%{transform:translateY(0) scale(1);opacity:.15}
+  50%{transform:translateY(-70px) scale(1.5);opacity:.7}
 }
-
-::-webkit-scrollbar-thumb{
-    background:linear-gradient(var(--blue),var(--green));
-    border-radius:20px;
-}
-
-/* BACKGROUND */
-
-.bg-grid{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:-5;
-    background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-    background-size:42px 42px;
-    mask-image:linear-gradient(to bottom,black,transparent 90%);
-}
-
-.orb{
-    position:fixed;
-    width:250px;
-    height:250px;
-    border-radius:50%;
-    filter:blur(80px);
-    opacity:.12;
-    pointer-events:none;
-    z-index:-3;
-    animation:orbFloat 10s ease-in-out infinite alternate;
-}
-
-.orb.one{
-    background:var(--blue);
-    left:-100px;
-    top:150px;
-}
-
-.orb.two{
-    background:var(--green);
-    right:-120px;
-    top:500px;
-    animation-delay:2s;
-}
-
-.orb.three{
-    background:var(--purple);
-    left:30%;
-    bottom:-100px;
-    animation-delay:4s;
-}
-
-@keyframes orbFloat{
-    from{transform:translate(0,0) scale(1)}
-    to{transform:translate(35px,-30px) scale(1.15)}
-}
-
-/* APP */
 
 .app{
-    width:100%;
-    max-width:620px;
-    margin:auto;
-    min-height:100vh;
-    padding-bottom:110px;
+  width:min(100%,560px);
+  margin:auto;
+  min-height:100vh;
+  padding-bottom:100px;
 }
 
-/* HEADER */
-
-.header{
-    position:sticky;
-    top:0;
-    z-index:100;
-    padding:15px 16px 12px;
-    background:rgba(3,5,7,.78);
-    backdrop-filter:blur(20px);
-    border-bottom:1px solid rgba(255,255,255,.05);
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  padding:14px 16px 12px;
+  background:rgba(3,5,10,.76);
+  backdrop-filter:blur(22px);
+  border-bottom:1px solid var(--line);
 }
 
-.header-inner{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+.header-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
 }
 
 .brand{
-    display:flex;
-    align-items:center;
-    gap:10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.brand-mark{
-    width:42px;
-    height:42px;
-    border-radius:13px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:
-        linear-gradient(135deg,var(--green),var(--blue));
-    color:#03100a;
-    font-weight:900;
-    font-size:17px;
-    box-shadow:0 0 30px rgba(57,255,136,.22);
+.logo{
+  width:43px;height:43px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  font-weight:1000;
+  font-size:13px;
+  color:#021109;
+  background:linear-gradient(135deg,var(--green),var(--blue));
+  box-shadow:0 0 28px rgba(57,255,136,.25);
 }
 
-.brand-text h1{
-    font-size:17px;
-    font-weight:900;
-    letter-spacing:.8px;
+.brand h1{
+  font-size:20px;
+  letter-spacing:2px;
+  line-height:1;
+}
+.brand small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  letter-spacing:2px;
+  margin-top:4px;
 }
 
-.brand-text span{
-    display:block;
-    color:var(--muted);
-    font-size:8px;
-    font-weight:700;
-    letter-spacing:2px;
-    margin-top:2px;
-}
-
-.header-actions{
-    display:flex;
-    gap:8px;
-}
-
+.header-actions{display:flex;gap:7px}
 .icon-btn{
-    width:40px;
-    height:40px;
-    border-radius:13px;
-    background:rgba(255,255,255,.05);
-    color:white;
-    border:1px solid var(--line);
-    font-size:17px;
-    transition:.25s;
+  width:40px;height:40px;
+  border-radius:13px;
+  background:rgba(255,255,255,.055);
+  border:1px solid var(--line);
+  color:white;
+  display:grid;
+  place-items:center;
+  transition:.25s;
 }
+.icon-btn:hover{transform:translateY(-2px);border-color:rgba(57,255,136,.4)}
 
-.icon-btn:hover{
-    border-color:rgba(57,255,136,.5);
-    transform:translateY(-2px);
-}
+main{padding:15px}
 
-/* PAGES */
-
-.page{
-    display:none;
-    padding:18px 15px;
-    animation:pageIn .4s ease;
-}
-
-.page.active{
-    display:block;
-}
-
+.page{display:none;animation:pageIn .35s ease}
+.page.active{display:block}
 @keyframes pageIn{
-    from{
-        opacity:0;
-        transform:translateY(12px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:none}
 }
-
-/* HERO */
 
 .hero{
-    position:relative;
-    min-height:420px;
-    border-radius:30px;
-    overflow:hidden;
-    isolation:isolate;
-    box-shadow:var(--shadow);
-    border:1px solid rgba(255,255,255,.08);
+  min-height:300px;
+  border-radius:27px;
+  position:relative;
+  overflow:hidden;
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  margin-bottom:15px;
+  background:
+    linear-gradient(180deg,transparent 10%,rgba(0,0,0,.92) 100%),
+    linear-gradient(90deg,rgba(3,5,10,.5),transparent),
+    url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=85")
+    center/cover;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(255,255,255,.08);
 }
-
-.hero-media{
-    position:absolute;
-    inset:0;
-    z-index:-2;
-    background:
-        linear-gradient(180deg,rgba(0,0,0,.15),rgba(3,5,7,.92)),
-        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=90")
-        center/cover;
-    transform:scale(1.03);
-    animation:heroZoom 12s ease-in-out infinite alternate;
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,rgba(33,169,255,.12),transparent 50%,rgba(57,255,136,.12));
+  pointer-events:none;
 }
-
-@keyframes heroZoom{
-    from{transform:scale(1.03)}
-    to{transform:scale(1.10)}
+.hero-content{position:relative;z-index:2}
+.hero-tag{
+  display:inline-flex;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(57,255,136,.12);
+  border:1px solid rgba(57,255,136,.35);
+  color:var(--green);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  margin-bottom:10px;
 }
-
-.hero::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    z-index:-1;
-    background:
-        linear-gradient(90deg,rgba(3,5,7,.8),transparent 65%),
-        linear-gradient(0deg,rgba(3,5,7,.95),transparent 60%);
-}
-
-.hero-content{
-    min-height:420px;
-    padding:26px 22px;
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-}
-
-.live{
-    position:absolute;
-    top:20px;
-    left:20px;
-    display:flex;
-    align-items:center;
-    gap:7px;
-    background:rgba(3,5,7,.55);
-    border:1px solid rgba(57,255,136,.25);
-    padding:7px 11px;
-    border-radius:30px;
-    backdrop-filter:blur(10px);
-    font-size:9px;
-    font-weight:800;
-    letter-spacing:1px;
-}
-
-.live-dot{
-    width:7px;
-    height:7px;
-    background:var(--green);
-    border-radius:50%;
-    box-shadow:0 0 12px var(--green);
-    animation:pulse 1.3s infinite;
-}
-
-@keyframes pulse{
-    50%{opacity:.3;transform:scale(.65)}
-}
-
-.hero-eyebrow{
-    color:var(--green);
-    font-size:11px;
-    font-weight:900;
-    letter-spacing:3px;
-    margin-bottom:10px;
-}
-
 .hero h2{
-    font-size:clamp(34px,9vw,58px);
-    line-height:.94;
-    font-weight:900;
-    letter-spacing:-2px;
-    max-width:450px;
+  font-size:34px;
+  line-height:1.02;
+  margin-bottom:8px;
 }
-
-.hero h2 span{
-    color:transparent;
-    background:linear-gradient(90deg,var(--blue2),var(--green));
-    background-clip:text;
-    -webkit-background-clip:text;
-}
-
 .hero p{
-    margin-top:15px;
-    color:#aeb8c5;
-    line-height:1.6;
-    font-size:13px;
-    max-width:430px;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:9px;
-    margin-top:20px;
-}
-
-.primary-btn,
-.secondary-btn{
-    padding:13px 17px;
-    border-radius:14px;
-    font-size:12px;
-    font-weight:800;
-    transition:.25s;
-}
-
-.primary-btn{
-    background:linear-gradient(135deg,var(--green),#18d978);
-    color:#031008;
-    box-shadow:0 8px 30px rgba(57,255,136,.18);
-}
-
-.secondary-btn{
-    background:rgba(255,255,255,.07);
-    color:white;
-    border:1px solid rgba(255,255,255,.1);
-}
-
-.primary-btn:hover,
-.secondary-btn:hover{
-    transform:translateY(-2px);
-}
-
-/* SECTION */
-
-.section{
-    margin-top:24px;
-}
-
-.section-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    margin-bottom:12px;
+  color:#c5cfdd;
+  font-size:13px;
+  max-width:390px;
 }
 
 .section-title{
-    font-size:18px;
-    font-weight:900;
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin:23px 2px 10px;
+}
+.section-title h2{font-size:18px}
+.section-title span{font-size:11px;color:var(--muted)}
+
+.card{
+  background:linear-gradient(145deg,rgba(12,21,34,.93),rgba(6,11,19,.94));
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:15px;
+  box-shadow:var(--shadow);
+  margin-bottom:12px;
 }
 
-.section-sub{
-    font-size:10px;
-    color:var(--muted);
-    margin-top:4px;
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+.stat{
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:12px 8px;
+  text-align:center;
+}
+.stat strong{
+  display:block;
+  font-size:20px;
+  color:white;
+}
+.stat span{
+  font-size:9px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.6px;
 }
 
-.see-all{
-    color:var(--blue2);
-    font-size:10px;
-    font-weight:800;
-    cursor:pointer;
+.progress-wrap{margin-top:13px}
+.progress-head{
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  margin-bottom:7px;
 }
-
-/* FORM */
-
-.form-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:9px;
-}
-
-.stat-card{
-    padding:15px 11px;
-    border-radius:18px;
-    background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.025));
-    border:1px solid var(--line);
-    position:relative;
-    overflow:hidden;
-}
-
-.stat-card::before{
-    content:"";
-    position:absolute;
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    right:-25px;
-    top:-25px;
-    background:var(--accent,var(--blue));
-    filter:blur(22px);
-    opacity:.3;
-}
-
-.stat-label{
-    color:var(--muted);
-    font-size:9px;
-    font-weight:700;
-}
-
-.stat-value{
-    font-size:23px;
-    font-weight:900;
-    margin-top:5px;
-}
-
-.stat-extra{
-    color:var(--green);
-    font-size:8px;
-    margin-top:4px;
-}
-
-/* TARGET */
-
-.target{
-    background:
-        linear-gradient(135deg,rgba(22,156,255,.13),rgba(57,255,136,.05)),
-        var(--panel);
-    border:1px solid rgba(22,156,255,.2);
-    border-radius:22px;
-    padding:18px;
-    overflow:hidden;
-    position:relative;
-}
-
-.target-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.target-name{
-    font-size:12px;
-    color:#aeb8c5;
-}
-
-.target-value{
-    font-size:30px;
-    font-weight:900;
-}
-
-.target-unit{
-    font-size:11px;
-    color:var(--muted);
-}
-
+.progress-head span:last-child{color:var(--green);font-weight:900}
 .progress{
-    height:9px;
-    background:rgba(255,255,255,.07);
-    border-radius:20px;
-    overflow:hidden;
-    margin-top:15px;
+  height:9px;
+  border-radius:99px;
+  background:rgba(255,255,255,.08);
+  overflow:hidden;
 }
-
-.progress-fill{
-    height:100%;
-    width:0;
-    border-radius:20px;
-    background:linear-gradient(90deg,var(--blue),var(--green));
-    box-shadow:0 0 15px rgba(57,255,136,.4);
-    transition:1.2s ease;
+.progress i{
+  display:block;
+  height:100%;
+  width:0;
+  border-radius:inherit;
+  background:linear-gradient(90deg,var(--blue),var(--green));
+  box-shadow:0 0 18px rgba(57,255,136,.45);
+  transition:1s;
 }
-
-.target-bottom{
-    display:flex;
-    justify-content:space-between;
-    margin-top:9px;
-    color:var(--muted);
-    font-size:9px;
-}
-
-/* COMPETITION */
-
-.competition{
-    position:relative;
-    overflow:hidden;
-    border-radius:22px;
-    padding:19px;
-    background:
-        linear-gradient(135deg,rgba(156,108,255,.15),rgba(22,156,255,.06)),
-        var(--panel);
-    border:1px solid rgba(156,108,255,.18);
-}
-
-.competition-badge{
-    display:inline-block;
-    color:#c8b5ff;
-    background:rgba(156,108,255,.12);
-    border:1px solid rgba(156,108,255,.2);
-    padding:6px 9px;
-    border-radius:8px;
-    font-size:8px;
-    font-weight:900;
-    letter-spacing:1px;
-}
-
-.competition h3{
-    margin-top:12px;
-    font-size:22px;
-}
-
-.competition p{
-    margin-top:5px;
-    color:var(--muted);
-    font-size:10px;
-}
-
-.countdown{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:7px;
-    margin-top:17px;
-}
-
-.count-box{
-    padding:12px 5px;
-    text-align:center;
-    background:rgba(0,0,0,.22);
-    border-radius:12px;
-}
-
-.count-box strong{
-    display:block;
-    font-size:21px;
-}
-
-.count-box span{
-    color:var(--muted);
-    font-size:7px;
-    text-transform:uppercase;
-}
-
-/* QUICK ACTIONS */
 
 .quick-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:9px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
 }
-
 .quick{
-    padding:16px;
-    border-radius:19px;
-    background:var(--panel);
-    border:1px solid var(--line);
-    transition:.25s;
-    cursor:pointer;
+  padding:15px 8px;
+  border-radius:17px;
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--line);
+  color:white;
+  text-align:center;
+  transition:.25s;
+}
+.quick:hover{transform:translateY(-3px);border-color:rgba(33,169,255,.45)}
+.quick b{display:block;font-size:22px;margin-bottom:6px}
+.quick span{font-size:10px;color:#b9c5d5}
+
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+  margin-top:13px;
+}
+.time-box{
+  text-align:center;
+  background:rgba(33,169,255,.08);
+  border:1px solid rgba(33,169,255,.18);
+  border-radius:14px;
+  padding:10px 4px;
+}
+.time-box strong{font-size:20px}
+.time-box small{display:block;color:var(--muted);font-size:8px}
+
+.btn{
+  min-height:43px;
+  padding:0 16px;
+  border-radius:13px;
+  color:#031008;
+  background:linear-gradient(135deg,var(--green),#8affba);
+  font-weight:900;
+  transition:.25s;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(57,255,136,.18)}
+.btn.blue{
+  color:white;
+  background:linear-gradient(135deg,var(--blue),#6dd1ff);
+}
+.btn.dark{
+  color:white;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+}
+.btn.red{color:white;background:linear-gradient(135deg,var(--red),#ff7d8e)}
+.btn.full{width:100%}
+
+.two{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
-.quick:hover{
-    transform:translateY(-3px);
-    border-color:rgba(57,255,136,.3);
+.input{
+  width:100%;
+  background:#080f18;
+  border:1px solid var(--line);
+  color:white;
+  outline:none;
+  padding:12px 13px;
+  border-radius:12px;
+  margin-top:6px;
+}
+.input:focus{border-color:var(--blue)}
+label{
+  display:block;
+  font-size:11px;
+  color:var(--muted);
+  margin-bottom:11px;
 }
 
-.quick-icon{
-    font-size:22px;
-}
+textarea.input{resize:vertical;min-height:90px}
 
-.quick h4{
-    font-size:12px;
-    margin-top:9px;
-}
-
-.quick p{
-    font-size:9px;
-    color:var(--muted);
-    margin-top:4px;
-    line-height:1.4;
-}
-
-/* TRAINING */
-
-.day-list{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
+.day-list{display:grid;gap:9px}
 .day{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:19px;
-    overflow:hidden;
+  overflow:hidden;
+  border-radius:18px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.035);
 }
-
-.day-main{
-    display:flex;
-    align-items:center;
-    padding:15px;
-    cursor:pointer;
+.day-head{
+  width:100%;
+  background:none;
+  color:white;
+  padding:14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
-
-.day-mark{
-    width:43px;
-    height:43px;
-    border-radius:13px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:900;
-    color:#020507;
-    margin-right:12px;
+.day-left{display:flex;align-items:center;gap:11px}
+.day-icon{
+  width:40px;height:40px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  font-size:19px;
 }
-
-.mon{background:var(--green)}
-.tue{background:var(--orange)}
-.wed{background:var(--purple)}
-.thu{background:var(--blue)}
-.fri{background:#40e0d0}
-.sat{background:var(--red)}
-.sun{background:var(--gold)}
-
-.day-info{
-    flex:1;
+.day h3{font-size:13px}
+.day p{font-size:10px;color:var(--muted);margin-top:3px}
+.day-content{
+  display:none;
+  padding:0 14px 14px;
 }
-
-.day-info h3{
-    font-size:13px;
-}
-
-.day-info p{
-    color:var(--muted);
-    font-size:9px;
-    margin-top:4px;
-}
-
-.day-arrow{
-    color:var(--muted);
-    transition:.3s;
-}
-
-.day.open .day-arrow{
-    transform:rotate(180deg);
-    color:var(--green);
-}
-
-.day-details{
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .4s ease;
-}
-
-.day.open .day-details{
-    max-height:400px;
-}
-
-.day-details-inner{
-    padding:0 15px 15px 70px;
-}
-
+.day.open .day-content{display:block}
 .exercise{
-    display:flex;
-    justify-content:space-between;
-    padding:9px 0;
-    border-top:1px solid rgba(255,255,255,.05);
-    font-size:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 0;
+  border-top:1px solid var(--line);
 }
+.exercise span{font-size:12px}
+.exercise small{color:var(--green)}
 
-.exercise span:last-child{
-    color:var(--green);
-    font-weight:800;
+.result-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
 }
-
-/* RESULTS */
-
-.result-card{
-    padding:18px;
-    border-radius:22px;
-    background:
-        linear-gradient(135deg,rgba(57,255,136,.08),rgba(22,156,255,.05)),
-        var(--panel);
-    border:1px solid rgba(57,255,136,.15);
-    margin-bottom:10px;
+.result{
+  padding:14px;
+  border-radius:17px;
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--line);
 }
-
-.result-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.result-date{
-    color:var(--muted);
-    font-size:9px;
-}
-
-.result-value{
-    font-size:35px;
-    font-weight:900;
-    margin-top:10px;
-}
-
-.result-value span{
-    font-size:11px;
-    color:var(--muted);
-    font-weight:500;
-}
-
-.result-progress{
-    margin-top:13px;
-}
-
-.result-progress div{
-    height:6px;
-    border-radius:10px;
-    background:linear-gradient(90deg,var(--blue),var(--green));
-}
-
-/* GRAPH */
+.result small{color:var(--muted)}
+.result strong{display:block;font-size:25px;margin-top:4px}
+.result em{font-size:10px;color:var(--green);font-style:normal}
 
 .chart{
-    height:190px;
-    display:flex;
-    align-items:flex-end;
-    gap:8px;
-    padding:20px 10px 10px;
-    border-radius:22px;
-    background:var(--panel);
-    border:1px solid var(--line);
+  height:190px;
+  display:flex;
+  align-items:end;
+  gap:7px;
+  padding:15px 3px 5px;
 }
-
 .bar{
-    flex:1;
-    min-height:20px;
-    border-radius:8px 8px 3px 3px;
-    background:linear-gradient(to top,var(--blue),var(--green));
-    position:relative;
-    animation:barIn .8s ease backwards;
+  flex:1;
+  min-width:10px;
+  border-radius:8px 8px 3px 3px;
+  background:linear-gradient(180deg,var(--green),var(--blue));
+  box-shadow:0 0 16px rgba(33,169,255,.18);
+  position:relative;
+  animation:grow 1s ease;
 }
-
 .bar span{
-    position:absolute;
-    top:-19px;
-    width:100%;
-    text-align:center;
-    color:var(--muted);
-    font-size:8px;
+  position:absolute;
+  bottom:-20px;
+  width:100%;
+  text-align:center;
+  font-size:8px;
+  color:var(--muted);
 }
+@keyframes grow{from{height:0!important}}
 
-@keyframes barIn{
-    from{height:0}
+.rank{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:12px 0;
+  border-bottom:1px solid var(--line);
 }
-
-/* RANKING */
-
-.rank-card{
-    display:flex;
-    align-items:center;
-    gap:11px;
-    padding:13px;
-    margin-bottom:8px;
-    border-radius:17px;
-    background:var(--panel);
-    border:1px solid var(--line);
-}
-
-.rank-number{
-    width:32px;
-    text-align:center;
-    font-weight:900;
-}
-
-.rank-avatar{
-    width:39px;
-    height:39px;
-    border-radius:12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:linear-gradient(135deg,var(--blue),var(--green));
-    color:#021009;
-    font-weight:900;
-}
-
-.rank-info{
-    flex:1;
-}
-
-.rank-info strong{
-    font-size:11px;
-}
-
-.rank-info small{
-    display:block;
-    color:var(--muted);
-    font-size:8px;
-    margin-top:3px;
-}
-
-.rank-score{
-    font-size:12px;
-    font-weight:900;
-    color:var(--green);
-}
-
-/* PROFILE */
-
-.profile-card{
-    padding:22px;
-    border-radius:25px;
-    background:
-        linear-gradient(145deg,rgba(22,156,255,.13),rgba(57,255,136,.05)),
-        var(--panel);
-    border:1px solid rgba(22,156,255,.18);
-    text-align:center;
-}
-
+.rank:last-child{border-bottom:0}
+.rank-num{width:25px;text-align:center;font-weight:1000;color:var(--muted)}
 .avatar{
-    width:85px;
-    height:85px;
-    margin:auto;
-    border-radius:27px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:30px;
-    font-weight:900;
-    color:#03100a;
-    background:linear-gradient(135deg,var(--green),var(--blue));
-    box-shadow:0 0 40px rgba(57,255,136,.18);
+  width:42px;height:42px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#14293e,#0b111b);
+  border:1px solid var(--line);
+  font-weight:900;
+}
+.rank-info{flex:1}
+.rank-info b{display:block;font-size:12px}
+.rank-info small{color:var(--muted)}
+.rank-score{font-weight:900;color:var(--green)}
+
+.profile-cover{
+  height:150px;
+  border-radius:21px;
+  background:
+    linear-gradient(180deg,transparent,rgba(0,0,0,.8)),
+    url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=80")
+    center/cover;
+  position:relative;
+  margin-bottom:50px;
+}
+.profile-avatar{
+  position:absolute;
+  left:18px;
+  bottom:-38px;
+  width:78px;height:78px;
+  border-radius:24px;
+  border:4px solid var(--bg);
+  background:linear-gradient(135deg,var(--green),var(--blue));
+  display:grid;
+  place-items:center;
+  color:#031008;
+  font-size:25px;
+  font-weight:1000;
 }
 
-.profile-card h2{
-    margin-top:13px;
-    font-size:20px;
+.badges{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+.badge{
+  text-align:center;
+  padding:13px 5px;
+  border-radius:16px;
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--line);
+}
+.badge div{font-size:26px}
+.badge span{font-size:9px;color:var(--muted)}
+
+.media-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+}
+.media{
+  aspect-ratio:1/1;
+  border-radius:17px;
+  overflow:hidden;
+  position:relative;
+  background:#111;
+}
+.media img,.media video{
+  width:100%;height:100%;
+  object-fit:cover;
+}
+.media label{
+  position:absolute;
+  left:7px;bottom:7px;
+  padding:5px 7px;
+  background:rgba(0,0,0,.65);
+  color:white;
+  border-radius:7px;
+  font-size:8px;
 }
 
-.profile-card p{
-    margin-top:5px;
-    color:var(--muted);
-    font-size:10px;
+.challenge{
+  padding:13px;
+  border-radius:17px;
+  border:1px solid var(--line);
+  background:linear-gradient(135deg,rgba(57,255,136,.06),rgba(33,169,255,.06));
+  margin-bottom:8px;
 }
-
-.athlete-id{
-    display:inline-block;
-    margin-top:12px;
-    padding:6px 10px;
-    border-radius:8px;
-    background:rgba(255,255,255,.06);
-    color:var(--blue2);
-    font-size:9px;
-    font-weight:800;
+.challenge-top{
+  display:flex;
+  justify-content:space-between;
 }
-
-.profile-stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    margin-top:20px;
-    gap:7px;
-}
-
-.profile-stat{
-    background:rgba(0,0,0,.2);
-    border-radius:12px;
-    padding:10px 5px;
-}
-
-.profile-stat strong{
-    display:block;
-    font-size:15px;
-}
-
-.profile-stat span{
-    font-size:7px;
-    color:var(--muted);
-}
-
-/* PORTFOLIO */
-
-.portfolio-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:8px;
-}
-
-.portfolio-item{
-    aspect-ratio:1;
-    border-radius:15px;
-    overflow:hidden;
-    background:var(--panel);
-    position:relative;
-    border:1px solid var(--line);
-}
-
-.portfolio-item img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    opacity:.78;
-}
-
-.portfolio-label{
-    position:absolute;
-    bottom:6px;
-    left:6px;
-    right:6px;
-    padding:5px;
-    background:rgba(0,0,0,.65);
-    border-radius:7px;
-    font-size:7px;
-    font-weight:700;
-}
-
-/* AI */
+.challenge b{font-size:12px}
+.challenge small{color:var(--green)}
+.challenge p{font-size:10px;color:var(--muted);margin:5px 0 9px}
 
 .ai-box{
-    padding:20px;
-    border-radius:23px;
-    background:
-        linear-gradient(135deg,rgba(156,108,255,.14),rgba(22,156,255,.08)),
-        var(--panel);
-    border:1px solid rgba(156,108,255,.2);
+  border:1px solid rgba(155,92,255,.3);
+  background:
+    radial-gradient(circle at 90% 0%,rgba(155,92,255,.15),transparent 35%),
+    rgba(12,9,22,.9);
 }
-
-.ai-title{
-    display:flex;
-    align-items:center;
-    gap:10px;
+.ai-message{
+  background:rgba(255,255,255,.05);
+  border-radius:14px;
+  padding:13px;
+  font-size:12px;
+  line-height:1.5;
+  margin-bottom:10px;
 }
+.ai-message strong{color:#c7a5ff}
 
-.ai-icon{
-    width:40px;
-    height:40px;
-    border-radius:13px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:linear-gradient(135deg,var(--purple),var(--blue));
-    font-size:19px;
+.portfolio{
+  display:grid;
+  gap:8px;
 }
-
-.ai-box h3{
-    font-size:14px;
+.portfolio-item{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:15px;
 }
-
-.ai-box p{
-    margin-top:12px;
-    color:#b2bdca;
-    line-height:1.6;
-    font-size:10px;
+.portfolio-icon{
+  width:40px;height:40px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.06);
 }
-
-.ai-options{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:7px;
-    margin-top:14px;
-}
-
-.ai-option{
-    padding:11px;
-    background:rgba(255,255,255,.05);
-    color:white;
-    border:1px solid var(--line);
-    border-radius:11px;
-    font-size:9px;
-    font-weight:700;
-}
-
-/* BOTTOM NAV */
+.portfolio-info{flex:1}
+.portfolio-info b{font-size:12px}
+.portfolio-info small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
 
 .bottom-nav{
-    position:fixed;
-    bottom:12px;
-    left:50%;
-    transform:translateX(-50%);
-    width:min(590px,calc(100% - 22px));
-    z-index:200;
-    padding:8px;
-    border-radius:23px;
-    background:rgba(7,11,17,.88);
-    backdrop-filter:blur(25px);
-    border:1px solid rgba(255,255,255,.09);
-    box-shadow:0 20px 50px rgba(0,0,0,.5);
+  position:fixed;
+  z-index:100;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(100%,560px);
+  padding:9px 9px calc(9px + env(safe-area-inset-bottom));
+  background:rgba(3,5,10,.9);
+  backdrop-filter:blur(22px);
+  border-top:1px solid var(--line);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
 }
-
-.nav-list{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
+.nav-btn{
+  background:none;
+  color:#718097;
+  padding:7px 2px;
+  border-radius:13px;
+  transition:.2s;
 }
-
-.nav-item{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:4px;
-    padding:9px 3px;
-    border-radius:15px;
-    background:transparent;
-    color:#687687;
-    transition:.25s;
+.nav-btn div{font-size:19px}
+.nav-btn span{font-size:8px;display:block;margin-top:3px}
+.nav-btn.active{
+  color:var(--green);
+  background:rgba(57,255,136,.07);
 }
-
-.nav-item span:first-child{
-    font-size:17px;
-}
-
-.nav-item span:last-child{
-    font-size:7px;
-    font-weight:800;
-}
-
-.nav-item.active{
-    background:linear-gradient(135deg,rgba(57,255,136,.13),rgba(22,156,255,.12));
-    color:white;
-}
-
-.nav-item.active span:first-child{
-    color:var(--green);
-    filter:drop-shadow(0 0 7px rgba(57,255,136,.5));
-}
-
-/* MODAL */
 
 .modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.72);
-    backdrop-filter:blur(10px);
-    z-index:500;
-    display:none;
-    align-items:flex-end;
-    justify-content:center;
+  position:fixed;
+  z-index:200;
+  inset:0;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  background:rgba(0,0,0,.7);
+  backdrop-filter:blur(7px);
 }
-
-.modal.show{
-    display:flex;
+.modal.show{display:flex}
+.modal-box{
+  width:min(100%,560px);
+  max-height:88vh;
+  overflow:auto;
+  background:#07101a;
+  border:1px solid var(--line);
+  border-radius:27px 27px 0 0;
+  padding:18px;
+  animation:modalUp .3s ease;
 }
-
-.modal-card{
-    width:min(620px,100%);
-    max-height:90vh;
-    overflow:auto;
-    background:#091019;
-    border:1px solid var(--line);
-    border-radius:28px 28px 0 0;
-    padding:22px 17px 30px;
-    animation:modalUp .35s ease;
-}
-
-@keyframes modalUp{
-    from{transform:translateY(100%)}
-    to{transform:translateY(0)}
-}
-
+@keyframes modalUp{from{transform:translateY(100%)}to{transform:none}}
 .modal-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
 }
-
-.modal-head h2{
-    font-size:19px;
-}
-
+.modal-head h2{font-size:18px}
 .close{
-    width:36px;
-    height:36px;
-    border-radius:11px;
-    background:rgba(255,255,255,.06);
-    color:white;
+  width:35px;height:35px;
+  border-radius:11px;
+  background:rgba(255,255,255,.06);
+  color:white;
 }
-
-.field{
-    margin-bottom:13px;
-}
-
-.field label{
-    display:block;
-    color:var(--muted);
-    font-size:9px;
-    font-weight:700;
-    margin-bottom:6px;
-}
-
-.field input,
-.field select{
-    width:100%;
-    padding:13px;
-    border-radius:13px;
-    outline:none;
-    color:white;
-    background:#060a10;
-    border:1px solid var(--line);
-}
-
-.field input:focus,
-.field select:focus{
-    border-color:var(--blue);
-}
-
-.full-btn{
-    width:100%;
-    margin-top:6px;
-    padding:14px;
-    border-radius:14px;
-    background:linear-gradient(135deg,var(--green),var(--blue));
-    color:#02100a;
-    font-weight:900;
-}
-
-/* TOAST */
 
 .toast{
-    position:fixed;
-    left:50%;
-    bottom:95px;
-    transform:translate(-50%,20px);
-    background:#101923;
-    border:1px solid rgba(57,255,136,.2);
-    color:white;
-    padding:12px 16px;
-    border-radius:13px;
-    font-size:10px;
-    font-weight:700;
-    opacity:0;
-    pointer-events:none;
-    z-index:1000;
-    transition:.3s;
-    white-space:nowrap;
+  position:fixed;
+  z-index:500;
+  left:50%;
+  bottom:90px;
+  transform:translate(-50%,20px);
+  opacity:0;
+  pointer-events:none;
+  background:#101b29;
+  border:1px solid rgba(57,255,136,.3);
+  padding:11px 15px;
+  border-radius:13px;
+  font-size:11px;
+  box-shadow:var(--shadow);
+  transition:.3s;
 }
-
 .toast.show{
-    opacity:1;
-    transform:translate(-50%,0);
+  opacity:1;
+  transform:translate(-50%,0);
 }
-
-/* BADGES */
-
-.badge-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:9px;
-}
-
-.badge{
-    padding:17px;
-    border-radius:18px;
-    background:var(--panel);
-    border:1px solid var(--line);
-}
-
-.badge-icon{
-    font-size:26px;
-}
-
-.badge h4{
-    margin-top:8px;
-    font-size:11px;
-}
-
-.badge p{
-    margin-top:4px;
-    color:var(--muted);
-    font-size:8px;
-    line-height:1.5;
-}
-
-/* RECOVERY */
 
 .check-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:8px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
 }
-
-.check{
-    padding:14px;
-    border-radius:17px;
-    background:var(--panel);
-    border:1px solid var(--line);
+.check-item{
+  padding:12px;
+  border-radius:15px;
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--line);
 }
-
-.check-top{
-    display:flex;
-    justify-content:space-between;
+.check-item strong{display:block;margin-bottom:7px}
+.range{
+  width:100%;
+  accent-color:var(--green);
 }
-
-.check strong{
-    font-size:11px;
-}
-
-.check-value{
-    color:var(--green);
-    font-size:9px;
-}
-
-.check input[type=range]{
-    width:100%;
-    accent-color:var(--green);
-    margin-top:10px;
-}
-
-/* MEDIA */
-
-.media-card{
-    height:210px;
-    border-radius:23px;
-    overflow:hidden;
-    position:relative;
-    background:
-        linear-gradient(0deg,rgba(0,0,0,.8),transparent),
-        url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=90")
-        center/cover;
-    border:1px solid var(--line);
-}
-
-.media-content{
-    position:absolute;
-    bottom:17px;
-    left:17px;
-}
-
-.media-content span{
-    color:var(--green);
-    font-size:8px;
-    font-weight:900;
-    letter-spacing:2px;
-}
-
-.media-content h3{
-    margin-top:5px;
-    font-size:19px;
-}
-
-/* EMPTY */
 
 .empty{
-    text-align:center;
-    padding:30px 15px;
-    color:var(--muted);
+  text-align:center;
+  padding:25px 10px;
+  color:var(--muted);
+  font-size:12px;
 }
 
-.empty-icon{
-    font-size:35px;
-    margin-bottom:8px;
+@media(max-width:390px){
+  .hero h2{font-size:29px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .quick-grid{grid-template-columns:repeat(2,1fr)}
 }
-
-/* DESKTOP */
 
 @media(min-width:700px){
-    body{
-        padding:20px 0;
-    }
-
-    .app{
-        border-left:1px solid rgba(255,255,255,.03);
-        border-right:1px solid rgba(255,255,255,.03);
-    }
-
-    .bottom-nav{
-        bottom:20px;
-    }
-}
-
-@media(max-width:380px){
-    .hero h2{
-        font-size:34px;
-    }
-
-    .form-grid{
-        gap:6px;
-    }
-
-    .stat-value{
-        font-size:20px;
-    }
+  body{padding:20px 0}
+  .app{
+    border:1px solid var(--line);
+    border-radius:30px;
+    overflow:hidden;
+    box-shadow:0 30px 100px rgba(0,0,0,.5);
+  }
+  header{position:sticky}
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg-grid"></div>
-<div class="orb one"></div>
-<div class="orb two"></div>
-<div class="orb three"></div>
+<div id="particles"></div>
 
 <div class="app">
 
-<!-- HEADER -->
-
-<header class="header">
-    <div class="header-inner">
-
-        <div class="brand">
-            <div class="brand-mark">T</div>
-
-            <div class="brand-text">
-                <h1>TURAN LEAGUE</h1>
-                <span>ATHLETE PERFORMANCE PLATFORM</span>
-            </div>
-        </div>
-
-        <div class="header-actions">
-            <button class="icon-btn" onclick="showToast('Bildirishnomalar hozircha toza 🔔')">🔔</button>
-            <button class="icon-btn" onclick="openModal('profileModal')">👤</button>
-        </div>
-
+<header>
+  <div class="header-row">
+    <div class="brand">
+      <div class="logo">TL</div>
+      <div>
+        <h1>TURAN</h1>
+        <small>ATHLETE LEAGUE</small>
+      </div>
     </div>
+
+    <div class="header-actions">
+      <button class="icon-btn" onclick="openModal('checkModal')">🧠</button>
+      <button class="icon-btn" onclick="openModal('profileModal')">👤</button>
+    </div>
+  </div>
 </header>
 
+<main>
 
 <!-- HOME -->
-
-<main id="home" class="page active">
-
-    <section class="hero">
-
-        <div class="hero-media"></div>
-
-        <div class="live">
-            <span class="live-dot"></span>
-            ATHLETE MODE
-        </div>
-
-        <div class="hero-content">
-
-            <div class="hero-eyebrow">
-                TURAN LEAGUE / 2026
-            </div>
-
-            <h2>
-                TRAIN.<br>
-                <span>PERFORM.</span><br>
-                RISE.
-            </h2>
-
-            <p>
-                Mashg‘ulotlaringni, natijalaringni va maqsadlaringni
-                bitta professional athlete platformasida boshqar.
-            </p>
-
-            <div class="hero-buttons">
-                <button class="primary-btn" onclick="goPage('train')">
-                    ⚡ Bugungi mashg‘ulot
-                </button>
-
-                <button class="secondary-btn" onclick="goPage('results')">
-                    Natijalar →
-                </button>
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- FORM -->
-
-    <section class="section">
-
-        <div class="section-head">
-            <div>
-                <div class="section-title">Your Form</div>
-                <div class="section-sub">Bugungi performance holating</div>
-            </div>
-
-            <span class="see-all" onclick="openModal('checkModal')">
-                CHECK
-            </span>
-        </div>
-
-        <div class="form-grid">
-
-            <div class="stat-card" style="--accent:var(--green)">
-                <div class="stat-label">FORM</div>
-                <div class="stat-value">84%</div>
-                <div class="stat-extra">↑ +6%</div>
-            </div>
-
-            <div class="stat-card" style="--accent:var(--blue)">
-                <div class="stat-label">ENERGY</div>
-                <div class="stat-value">8.2</div>
-                <div class="stat-extra">GOOD</div>
-            </div>
-
-            <div class="stat-card" style="--accent:var(--purple)">
-                <div class="stat-label">FOCUS</div>
-                <div class="stat-value">91%</div>
-                <div class="stat-extra">HIGH</div>
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- TARGET -->
-
-    <section class="section">
-
-        <div class="section-head">
-            <div>
-                <div class="section-title">Your Target</div>
-                <div class="section-sub">Shaxsiy rekord sari</div>
-            </div>
-
-            <span class="see-all" onclick="openModal('resultModal')">
-                UPDATE
-            </span>
-        </div>
-
-        <div class="target">
-
-            <div class="target-top">
-
-                <div>
-                    <div class="target-name">Yadro uloqtirish</div>
-                    <div class="target-value">
-                        15.00 <span class="target-unit">m</span>
-                    </div>
-                </div>
-
-                <div style="text-align:right">
-                    <div class="target-name">CURRENT</div>
-                    <div class="target-value" style="font-size:22px">
-                        13.42
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="progress">
-                <div class="progress-fill" style="width:89.4%"></div>
-            </div>
-
-            <div class="target-bottom">
-                <span>13.42 m current</span>
-                <span>15.00 m goal</span>
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- COMPETITION -->
-
-    <section class="section">
-
-        <div class="section-head">
-            <div>
-                <div class="section-title">Next Competition</div>
-                <div class="section-sub">Keyingi startgacha</div>
-            </div>
-        </div>
-
-        <div class="competition">
-
-            <span class="competition-badge">
-                UPCOMING COMPETITION
-            </span>
-
-            <h3>Toshkent Open</h3>
-
-            <p>
-                Yengil atletika • Uloqtirish
-            </p>
-
-            <div class="countdown">
-
-                <div class="count-box">
-                    <strong id="days">--</strong>
-                    <span>Days</span>
-                </div>
-
-                <div class="count-box">
-                    <strong id="hours">--</strong>
-                    <span>Hours</span>
-                </div>
-
-                <div class="count-box">
-                    <strong id="minutes">--</strong>
-                    <span>Minutes</span>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- QUICK -->
-
-    <section class="section">
-
-        <div class="section-head">
-            <div>
-                <div class="section-title">Quick Actions</div>
-                <div class="section-sub">Kerakli funksiyalar</div>
-            </div>
-        </div>
-
-        <div class="quick-grid">
-
-            <div class="quick" onclick="goPage('train')">
-                <div class="quick-icon">🏋️</div>
-                <h4>Training Planner</h4>
-                <p>Haftalik mashg‘ulot rejasini boshqar.</p>
-            </div>
-
-            <div class="quick" onclick="goPage('results')">
-                <div class="quick-icon">📈</div>
-                <h4>Performance</h4>
-                <p>Natijalaring va progressni ko‘r.</p>
-            </div>
-
-            <div class="quick" onclick="openModal('checkModal')">
-                <div class="quick-icon">🧠</div>
-                <h4>Athlete Check</h4>
-                <p>Energy, sleep, fatigue va focus.</p>
-            </div>
-
-            <div class="quick" onclick="openModal('aiModal')">
-                <div class="quick-icon">🤖</div>
-                <h4>TURAN AI</h4>
-                <p>Sport bo‘yicha aqlli yordamchi.</p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- MEDIA -->
-
-    <section class="section">
-
-        <div class="section-head">
-            <div>
-                <div class="section-title">Athlete Focus</div>
-                <div class="section-sub">Bugungi fokus</div>
-            </div>
-        </div>
-
-        <div class="media-card">
-            <div class="media-content">
-                <span>PERFORMANCE MINDSET</span>
-                <h3>Bugun kechagidan kuchliroq bo‘l.</h3>
-            </div>
-        </div>
-
-    </section>
-
-</main>
-
+<section id="home" class="page active">
+
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-tag">⚡ ATHLETE OS • LIVE</div>
+      <h2>BUILD YOUR<br>PERSONAL BEST.</h2>
+      <p>Trening, natija, maqsad, musobaqa va sportchi profilingiz — bitta platformada.</p>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><strong id="statXP">420</strong><span>XP</span></div>
+    <div class="stat"><strong id="statLevel">4</strong><span>Level</span></div>
+    <div class="stat"><strong id="statStreak">7</strong><span>Streak</span></div>
+    <div class="stat"><strong id="statPR">13.42</strong><span>PR</span></div>
+  </div>
+
+  <div class="section-title">
+    <h2>🎯 Bugungi maqsad</h2>
+    <span id="goalPercent">68%</span>
+  </div>
+
+  <div class="card">
+    <div class="progress-head">
+      <span>Personal Best Target</span>
+      <span>14.00 m</span>
+    </div>
+    <div class="progress">
+      <i id="goalBar"></i>
+    </div>
+    <div style="margin-top:11px;font-size:11px;color:var(--muted)">
+      Hozirgi natija: <b style="color:white" id="currentResult">13.42 m</b>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <h2>⚡ Quick Actions</h2>
+    <span>Useful tools</span>
+  </div>
+
+  <div class="quick-grid">
+    <button class="quick" onclick="openModal('performanceModal')"><b>📊</b><span>Add Result</span></button>
+    <button class="quick" onclick="openModal('checkModal')"><b>🧠</b><span>Athlete Check</span></button>
+    <button class="quick" onclick="openModal('trainingModal')"><b>🏋️</b><span>Training</span></button>
+    <button class="quick" onclick="openModal('goalModal')"><b>🎯</b><span>Set Goal</span></button>
+    <button class="quick" onclick="openModal('competitionModal')"><b>🏟️</b><span>Competition</span></button>
+    <button class="quick" onclick="openModal('aiModal')"><b>🤖</b><span>TURAN AI</span></button>
+  </div>
+
+  <div class="section-title">
+    <h2>🏟️ Next Competition</h2>
+    <span>Countdown</span>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <b>Uzbekistan Athletics Meet</b>
+        <div style="font-size:10px;color:var(--muted);margin-top:4px">Throwing • Tashkent</div>
+      </div>
+      <span style="font-size:24px">🏆</span>
+    </div>
+
+    <div class="countdown">
+      <div class="time-box"><strong id="days">00</strong><small>DAYS</small></div>
+      <div class="time-box"><strong id="hours">00</strong><small>HOURS</small></div>
+      <div class="time-box"><strong id="minutes">00</strong><small>MIN</small></div>
+      <div class="time-box"><strong id="seconds">00</strong><small>SEC</small></div>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <h2>🔥 Today's Challenge</h2>
+    <span>+50 XP</span>
+  </div>
+
+  <div class="challenge">
+    <div class="challenge-top">
+      <b>Complete today's training</b>
+      <small>+50 XP</small>
+    </div>
+    <p>Bugungi mashg‘ulotni yakunlang va streakni davom ettiring.</p>
+    <button class="btn full" onclick="completeChallenge(this)">Complete Challenge</button>
+  </div>
+
+  <div class="section-title">
+    <h2>💧 Daily Recovery</h2>
+    <span id="waterText">4 / 8 glasses</span>
+  </div>
+
+  <div class="card">
+    <div class="progress-head">
+      <span>Water</span>
+      <span id="waterPercent">50%</span>
+    </div>
+    <div class="progress"><i id="waterBar"></i></div>
+    <button class="btn blue full" style="margin-top:11px" onclick="addWater()">+ Add Water</button>
+  </div>
+
+</section>
 
 <!-- TRAIN -->
+<section id="train" class="page">
 
-<main id="train" class="page">
+  <div class="section-title">
+    <h2>🏋️ Training Planner</h2>
+    <span>Weekly Plan</span>
+  </div>
 
-    <div class="section-head">
-        <div>
-            <div class="section-title">Training Planner</div>
-            <div class="section-sub">Haftalik mashg‘ulot rejang</div>
-        </div>
+  <div class="card">
+    <div class="progress-head">
+      <span>Weekly training completion</span>
+      <span id="trainingPercent">43%</span>
+    </div>
+    <div class="progress"><i style="width:43%"></i></div>
+  </div>
 
-        <span class="see-all" onclick="showToast('Reja yangilandi ✓')">
-            SYNC
-        </span>
+  <div class="day-list">
+
+    <div class="day">
+      <button class="day-head" onclick="toggleDay(this)">
+        <div class="day-left">
+          <div class="day-icon" style="background:rgba(57,255,136,.12)">🟢</div>
+          <div><h3>Monday • Strength</h3><p>Shoulder + Upper Body</p></div>
+        </div><span>⌄</span>
+      </button>
+      <div class="day-content">
+        <div class="exercise"><span>Warm-up</span><small>10 min</small></div>
+        <div class="exercise"><span>Shoulder Press</span><small>4 × 10</small></div>
+        <div class="exercise"><span>Lateral Raise</span><small>3 × 12</small></div>
+        <div class="exercise"><span>Core</span><small>3 × 30 sec</small></div>
+        <button class="btn full" onclick="trainingDone(this)">✓ Mark Complete</button>
+      </div>
     </div>
 
+    <div class="day">
+      <button class="day-head" onclick="toggleDay(this)">
+        <div class="day-left">
+          <div class="day-icon" style="background:rgba(255,157,61,.12)">🔥</div>
+          <div><h3>Tuesday • Pull</h3><p>Back + Lats</p></div>
+        </div><span>⌄</span>
+      </button>
+      <div class="day-content">
+        <div class="exercise"><span>Warm-up</span><small>10 min</small></div>
+        <div class="exercise"><span>Lat Pulldown</span><small>4 × 10</small></div>
+        <div class="exercise"><span>Row</span><small>4 × 10</small></div>
+        <div class="exercise"><span>Face Pull</span><small>3 × 15</small></div>
+        <button class="btn full" onclick="trainingDone(this)">✓ Mark Complete</button>
+      </div>
+    </div>
+
+    <div class="day">
+      <button class="day-head" onclick="toggleDay(this)">
+        <div class="day-left">
+          <div class="day-icon" style="background:rgba(155,92,255,.12)">🟣</div>
+          <div><h3>Wednesday • Recovery</h3><p>Mobility + Light Activity</p></div>
+        </div><span>⌄</span>
+      </button>
+      <div class="day-content">
+        <div class="exercise"><span>Mobility</span><small>15 min</small></div>
+        <div class="exercise"><span>Light Cardio</span><small>20 min</small></div>
+        <div class="exercise"><span>Recovery</span><small>10 min</small></div>
+        <button class="btn full" onclick="trainingDone(this)">✓ Mark Complete</button>
+      </div>
+    </div>
+
+    <div class="day">
+      <button class="day-head" onclick="toggleDay(this)">
+        <div class="day-left">
+          <div class="day-icon" style="background:rgba(33,169,255,.12)">🔵</div>
+          <div><h3>Thursday • Legs</h3><p>Lower Body</p></div>
+        </div><span>⌄</span>
+      </button>
+      <div class="day-content">
+        <div class="exercise"><span>Warm-up</span><small>10 min</small></div>
+        <div class="exercise"><span>Squat</span><small>4 × 8</small></div>
+        <div class="exercise"><span>Lunge</span><small>3 × 10</small></div>
+        <div class="exercise"><span>Calf Work</span><small>3 × 15</small></div>
+        <button class="btn full" onclick="trainingDone(this)">✓ Mark Complete</button>
+      </div>
+    </div>
+
+    <div class="day">
+      <button class="day-head" onclick="toggleDay(this)">
+        <div class="day-left">
+          <div class="day-icon" style="background:rgba(57,231,255,.12)">💎</div>
+          <div><h3>Friday • Technique</h3><p>Sport Specific Work</p></div>
+        </div><span>⌄</span>
+      </button>
+      <div class="day-content">
+        <div class="exercise"><span>Technique Drill</span><small>20 min</small></div>
+        <div class="exercise"><span>Movement Practice</span><small>20 min</small></div>
+        <div class="exercise"><span>Cool Down</span><small>10 min</small></div>
+        <button class="btn full" onclick="trainingDone(this)">✓ Mark Complete</button>
+      </div>
+    </div>
+
+    <div class="day">
+      <button class="day-head" onclick="toggleDay(this)">
+        <div class="day-left">
+          <div class="day-icon" style="background:rgba(255,79,103,.12)">🔴</div>
+          <div><h3>Saturday • Full Body</h3><p>Complete Athlete Session</p></div>
+        </div><span>⌄</span>
+      </button>
+      <div class="day-content">
+        <div class="exercise"><span>Warm-up</span><small>10 min</small></div>
+        <div class="exercise"><span>Full Body Strength</span><small>30 min</small></div>
+        <div class="exercise"><span>Core</span><small>10 min</small></div>
+        <div class="exercise"><span>Mobility</span><small>10 min</small></div>
+        <button class="btn full" onclick="trainingDone(this)">✓ Mark Complete</button>
+      </div>
+    </div>
+
+    <div class="day">
+      <button class="day-head" onclick="toggleDay(this)">
+        <div class="day-left">
+          <div class="day-icon" style="background:rgba(255,216,77,.12)">🟡</div>
+          <div><h3>Sunday • Rest</h3><p>Recovery + Planning</p></div>
+        </div><span>⌄</span>
+      </button>
+      <div class="day-content">
+        <div class="exercise"><span>Recovery</span><small>20 min</small></div>
+        <div class="exercise"><span>Next Week Planning</span><small>10 min</small></div>
+        <button class="btn full" onclick="trainingDone(this)">✓ Complete Day</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-title">
+    <h2>📝 Training Notes</h2>
+  </div>
+
+  <div class="card">
+    <textarea id="trainingNotes" class="input" placeholder="Bugungi mashg‘ulot haqida yozing..."></textarea>
+    <button class="btn full" style="margin-top:10px" onclick="saveNotes()">Save Training Notes</button>
+  </div>
 
-    <section class="day-list">
-
-        <div class="day open">
-
-            <div class="day-main" onclick="toggleDay(this.parentElement)">
-                <div class="day-mark mon">MON</div>
-
-                <div class="day-info">
-                    <h3>Shoulders + Power</h3>
-                    <p>Bugungi asosiy mashg‘ulot • 70 min</p>
-                </div>
-
-                <div class="day-arrow">⌄</div>
-            </div>
-
-            <div class="day-details">
-                <div class="day-details-inner">
-
-                    <div class="exercise">
-                        <span>Warm-up</span>
-                        <span>10 min</span>
-                    </div>
-
-                    <div class="exercise">
-                        <span>Shoulder activation</span>
-                        <span>3 × 12</span>
-                    </div>
-
-                    <div class="exercise">
-                        <span>Power movement</span>
-                        <span>4 × 6</span>
-                    </div>
-
-                    <div class="exercise">
-                        <span>Core stability</span>
-                        <span>3 × 30s</span>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="day">
-
-            <div class="day-main" onclick="toggleDay(this.parentElement)">
-                <div class="day-mark tue">TUE</div>
-
-                <div class="day-info">
-                    <h3>Back + Lats</h3>
-                    <p>Orqa mushaklari • 65 min</p>
-                </div>
-
-                <div class="day-arrow">⌄</div>
-            </div>
-
-            <div class="day-details">
-                <div class="day-details-inner">
-                    <div class="exercise">
-                        <span>Warm-up</span>
-                        <span>10 min</span>
-                    </div>
-
-                    <div class="exercise">
-                        <span>Lat activation</span>
-                        <span>4 × 10</span>
-                    </div>
-
-                    <div class="exercise">
-                        <span>Rows</span>
-                        <span>4 × 8</span>
-                    </div>
-
-                    <div class="exercise">
-                        <span>Core</span>
-                        <span>3 × 12</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="day">
-
-            <div class="day-main" onclick="toggleDay(this.parentElement)">
-                <div class="day-mark wed">WED</div>
-
-                <div class="day-info">
-                    <h3>Leg Power</h3>
-                    <p>Oyoqlar + power • 70 min</p>
-                </div>
-
-                <div class="day-arrow">⌄</div>
-            </div>
-
-            <div class="day-details">
-                <div class="day-details-inner">
-                    <div class="exercise">
-                        <span>Mobility</span>
-                        <span>10 min</span>
-                    </div>
-
-                    <div class="exercise">
-                        <span>Leg strength</span>
-                        <span>4 × 8</span>
-                    </div>
-
-                    <div class="exercise">
-                        <span>Explosive movement</span>
-                        <span>4 × 5</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="day">
-
-            <div class="day-main" onclick="toggleDay(this.parentElement)">
-                <div class="day-mark thu">THU</div>
-
-                <div class="day-info">
-                    <h3>Technique Day</h3>
-                    <p>Texnika + yengil mashg‘ulot</p>
-                </div>
-
-                <div class="day-arrow">⌄</div>
-            </div>
-
-            <div class="day-details">
-                <div class="day-details-inner">
-                    <div class="exercise">
-                        <span>Technique drills</span>
-                        <span>20 min</span>
-                    </div>
-
-                    <div class="exercise">
-                        <span>Mobility</span>
-                        <span>15 min</span>
-                    </div>
-
-                    <div class="exercise">
-                        <span>Light cardio</span>
-                        <span>15 min</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="day">
-
-            <div class="day-main" onclick="toggleDay(this.parentElement)">
-                <div class="day-mark fri">FRI</div>
-
-                <div class="day-info">
-                    <h3>Speed + Coordination</h3>
-                    <p>Tezlik va koordinatsiya</p>
-                </div>
-
-                <div class="day-arrow">⌄</div>
-            </div>
-
-            <div class="day-details">
-                <div class="day-details-inner">
-                    <div class="exercise">
-                        <span>Warm-up</span>
-                        <span>10 min</span>
-                    </div>
-
-                    <div class="exercise">
-                        <span>Speed drills</span>
-                        <span>6 sets</span>
-                    </div>
-
-                    <div class="exercise">
-                        <span>Coordination</span>
-                        <span>15 min</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="day">
-
-            <div class="day-main" onclick="toggleDay(this.parentElement)">
-                <div class="day-mark sat">SAT</div>
-
-                <div class="day-info">
-                    <h3>Full Body</h3>
-                    <p>Butun tana • asosiy kun</p>
-                </div>
-
-                <div class="day-arrow">⌄</div>
-            </div>
-
-            <div class="day-details">
-                <div class="day-details-inner">
-                    <div class="exercise">
-                        <span>Full body activation</span>
-                        <span>10 min</span>
-                    </div>
-
-                    <div class="exercise">
-                        <span>Strength circuit</span>
-                        <span>4 rounds</span>
-                    </div>
-
-                    <div class="exercise">
-                        <span>Core</span>
-                        <span>3 sets</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="day">
-
-            <div class="day-main" onclick="toggleDay(this.parentElement)">
-                <div class="day-mark sun">SUN</div>
-
-                <div class="day-info">
-                    <h3>Recovery</h3>
-                    <p>Tiklanish + mobility</p>
-                </div>
-
-                <div class="day-arrow">⌄</div>
-            </div>
-
-            <div class="day-details">
-                <div class="day-details-inner">
-                    <div class="exercise">
-                        <span>Mobility</span>
-                        <span>15 min</span>
-                    </div>
-
-                    <div class="exercise">
-                        <span>Easy walk</span>
-                        <span>20 min</span>
-                    </div>
-
-                    <div class="exercise">
-                        <span>Recovery</span>
-                        <span>Rest</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="section">
-
-        <div class="section-head">
-            <div>
-                <div class="section-title">Training Focus</div>
-                <div class="section-sub">Bugungi asosiy yo‘nalish</div>
-            </div>
-        </div>
-
-        <div class="ai-box">
-
-            <div class="ai-title">
-                <div class="ai-icon">⚡</div>
-
-                <div>
-                    <h3>Power Session</h3>
-                    <div class="section-sub">
-                        Texnika + kuch + nazorat
-                    </div>
-                </div>
-            </div>
-
-            <p>
-                Mashg‘ulotdan oldin tayyorgarlikni,
-                mashg‘ulot davomida texnikani va yakunda
-                tiklanishni nazorat qilishga e’tibor ber.
-            </p>
-
-        </div>
-
-    </section>
-
-</main>
-
+</section>
 
 <!-- RESULTS -->
+<section id="results" class="page">
 
-<main id="results" class="page">
+  <div class="section-title">
+    <h2>📊 Performance</h2>
+    <button class="btn" onclick="openModal('performanceModal')">+ Result</button>
+  </div>
 
-    <div class="section-head">
+  <div class="result-grid">
+    <div class="result"><small>Personal Best</small><strong id="resultPR">13.42</strong><em>meters</em></div>
+    <div class="result"><small>Average</small><strong>12.86</strong><em>meters</em></div>
+    <div class="result"><small>Best This Month</small><strong>13.42</strong><em>meters</em></div>
+    <div class="result"><small>Progress</small><strong>+8.4%</strong><em>vs last month</em></div>
+  </div>
 
-        <div>
-            <div class="section-title">Performance</div>
-            <div class="section-sub">Natijalar va progress</div>
-        </div>
+  <div class="section-title">
+    <h2>📈 Progress</h2>
+    <span>Recent results</span>
+  </div>
 
-        <button class="primary-btn" onclick="openModal('resultModal')">
-            + Result
-        </button>
-
+  <div class="card">
+    <div class="chart" id="chart">
+      <div class="bar" style="height:40%"><span>W1</span></div>
+      <div class="bar" style="height:47%"><span>W2</span></div>
+      <div class="bar" style="height:53%"><span>W3</span></div>
+      <div class="bar" style="height:58%"><span>W4</span></div>
+      <div class="bar" style="height:65%"><span>W5</span></div>
+      <div class="bar" style="height:72%"><span>W6</span></div>
+      <div class="bar" style="height:82%"><span>W7</span></div>
+      <div class="bar" style="height:90%"><span>NOW</span></div>
     </div>
+  </div>
 
+  <div class="section-title">
+    <h2>🏆 Personal Records</h2>
+  </div>
 
-    <section class="section">
+  <div class="card">
+    <div class="portfolio">
+      <div class="portfolio-item">
+        <div class="portfolio-icon">🥇</div>
+        <div class="portfolio-info"><b>Shot Put</b><small>13.42 m • Personal Best</small></div>
+        <span>PR</span>
+      </div>
+      <div class="portfolio-item">
+        <div class="portfolio-icon">⚡</div>
+        <div class="portfolio-info"><b>Best Training Result</b><small>13.20 m</small></div>
+        <span>✓</span>
+      </div>
+      <div class="portfolio-item">
+        <div class="portfolio-icon">📈</div>
+        <div class="portfolio-info"><b>Monthly Progress</b><small>+8.4%</small></div>
+        <span>↑</span>
+      </div>
+    </div>
+  </div>
 
-        <div class="section-head">
-            <div>
-                <div class="section-title">Progress</div>
-                <div class="section-sub">So‘nggi natijalar</div>
-            </div>
-        </div>
+  <div class="section-title">
+    <h2>🏅 Achievements</h2>
+  </div>
 
-        <div class="chart">
+  <div class="badges">
+    <div class="badge"><div>🎯</div><span>First PR</span></div>
+    <div class="badge"><div>🔥</div><span>7 Day Streak</span></div>
+    <div class="badge"><div>⚡</div><span>Fast Progress</span></div>
+    <div class="badge"><div>🏆</div><span>Competition</span></div>
+    <div class="badge"><div>💪</div><span>Consistency</span></div>
+    <div class="badge"><div>💎</div><span>Elite Path</span></div>
+  </div>
 
-            <div class="bar" style="height:45%">
-                <span>11.9</span>
-            </div>
-
-            <div class="bar" style="height:53%">
-                <span>12.4</span>
-            </div>
-
-            <div class="bar" style="height:58%">
-                <span>12.7</span>
-            </div>
-
-            <div class="bar" style="height:63%">
-                <span>12.9</span>
-            </div>
-
-            <div class="bar" style="height:69%">
-                <span>13.0</span>
-            </div>
-
-            <div class="bar" style="height:76%">
-                <span>13.2</span>
-            </div>
-
-            <div class="bar" style="height:84%">
-                <span>13.42</span>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="section">
-
-        <div class="section-head">
-            <div>
-                <div class="section-title">Personal Records</div>
-                <div class="section-sub">Shaxsiy rekordlar</div>
-            </div>
-        </div>
-
-
-        <div class="result-card">
-
-            <div class="result-top">
-                <strong>Shot Put</strong>
-                <span class="result-date">TODAY</span>
-            </div>
-
-            <div class="result-value">
-                13.42 <span>meters</span>
-            </div>
-
-            <div class="result-progress">
-                <div style="width:89%"></div>
-            </div>
-
-        </div>
-
-
-        <div class="result-card">
-
-            <div class="result-top">
-                <strong>Best Training Result</strong>
-                <span class="result-date">SEASON</span>
-            </div>
-
-            <div class="result-value">
-                13.42 <span>meters</span>
-            </div>
-
-            <div class="result-progress">
-                <div style="width:89%"></div>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="section">
-
-        <div class="section-head">
-            <div>
-                <div class="section-title">Achievements</div>
-                <div class="section-sub">Sportdagi yutuqlar</div>
-            </div>
-        </div>
-
-        <div class="badge-grid">
-
-            <div class="badge">
-                <div class="badge-icon">🥇</div>
-                <h4>First Competition</h4>
-                <p>Birinchi rasmiy musobaqa.</p>
-            </div>
-
-            <div class="badge">
-                <div class="badge-icon">🔥</div>
-                <h4>Consistency</h4>
-                <p>Muntazam mashg‘ulotlar.</p>
-            </div>
-
-            <div class="badge">
-                <div class="badge-icon">📈</div>
-                <h4>Progress</h4>
-                <p>Shaxsiy natijada o‘sish.</p>
-            </div>
-
-            <div class="badge">
-                <div class="badge-icon">🏆</div>
-                <h4>Competition</h4>
-                <p>Musobaqa natijasi qo‘shildi.</p>
-            </div>
-
-        </div>
-
-    </section>
-
-</main>
-
+</section>
 
 <!-- LEAGUE -->
+<section id="league" class="page">
 
-<main id="league" class="page">
+  <div class="section-title">
+    <h2>🌍 TURAN League</h2>
+    <span>Weekly Ranking</span>
+  </div>
 
-    <div class="section-head">
-
-        <div>
-            <div class="section-title">Turan League</div>
-            <div class="section-sub">Athlete ranking</div>
-        </div>
-
-        <span class="see-all">
-            SEASON 2026
-        </span>
-
+  <div class="card">
+    <div class="rank">
+      <div class="rank-num">1</div>
+      <div class="avatar">AK</div>
+      <div class="rank-info"><b>Aziz Karimov</b><small>Athletics</small></div>
+      <div class="rank-score">1,280</div>
     </div>
 
+    <div class="rank">
+      <div class="rank-num">2</div>
+      <div class="avatar">AQ</div>
+      <div class="rank-info"><b>Anvarbek Qodirov</b><small>Throwing</small></div>
+      <div class="rank-score">1,140</div>
+    </div>
 
-    <section class="competition">
+    <div class="rank">
+      <div class="rank-num">3</div>
+      <div class="avatar">SM</div>
+      <div class="rank-info"><b>Sardor M.</b><small>Running</small></div>
+      <div class="rank-score">1,020</div>
+    </div>
 
-        <span class="competition-badge">
-            YOUR POSITION
-        </span>
+    <div class="rank">
+      <div class="rank-num">4</div>
+      <div class="avatar">JA</div>
+      <div class="rank-info"><b>Javohir A.</b><small>Football</small></div>
+      <div class="rank-score">960</div>
+    </div>
 
-        <h3>#07 — Tashkent</h3>
+    <div class="rank">
+      <div class="rank-num">5</div>
+      <div class="avatar">MK</div>
+      <div class="rank-info"><b>Madina K.</b><small>Swimming</small></div>
+      <div class="rank-score">910</div>
+    </div>
+  </div>
 
-        <p>
-            Performance Score: 842
-        </p>
+  <div class="section-title">
+    <h2>🎯 Useful Challenges</h2>
+  </div>
 
-        <div class="progress">
-            <div class="progress-fill" style="width:84.2%"></div>
-        </div>
+  <div class="challenge">
+    <div class="challenge-top"><b>7-Day Consistency</b><small>+150 XP</small></div>
+    <p>7 kun davomida rejangizni kuzating.</p>
+    <div class="progress"><i style="width:71%"></i></div>
+  </div>
 
-    </section>
+  <div class="challenge">
+    <div class="challenge-top"><b>Personal Best Hunt</b><small>+300 XP</small></div>
+    <p>O‘z sportingizdagi shaxsiy rekordni yangilang.</p>
+    <div class="progress"><i style="width:45%"></i></div>
+  </div>
 
+  <div class="challenge">
+    <div class="challenge-top"><b>Competition Ready</b><small>+250 XP</small></div>
+    <p>Musobaqa checklistini to‘liq yakunlang.</p>
+    <div class="progress"><i style="width:60%"></i></div>
+  </div>
 
-    <section class="section">
-
-        <div class="section-head">
-            <div>
-                <div class="section-title">Top Athletes</div>
-                <div class="section-sub">Season leaderboard</div>
-            </div>
-        </div>
-
-
-        <div class="rank-card">
-
-            <div class="rank-number">01</div>
-
-            <div class="rank-avatar">A</div>
-
-            <div class="rank-info">
-                <strong>Azizbek T.</strong>
-                <small>Throwing • Tashkent</small>
-            </div>
-
-            <div class="rank-score">972</div>
-
-        </div>
-
-
-        <div class="rank-card">
-
-            <div class="rank-number">02</div>
-
-            <div class="rank-avatar">S</div>
-
-            <div class="rank-info">
-                <strong>Sardor K.</strong>
-                <small>Throwing • Samarkand</small>
-            </div>
-
-            <div class="rank-score">951</div>
-
-        </div>
-
-
-        <div class="rank-card">
-
-            <div class="rank-number">03</div>
-
-            <div class="rank-avatar">M</div>
-
-            <div class="rank-info">
-                <strong>Muhammad A.</strong>
-                <small>Throwing • Tashkent</small>
-            </div>
-
-            <div class="rank-score">928</div>
-
-        </div>
-
-
-        <div class="rank-card">
-
-            <div class="rank-number">04</div>
-
-            <div class="rank-avatar">D</div>
-
-            <div class="rank-info">
-                <strong>Davron R.</strong>
-                <small>Throwing • Bukhara</small>
-            </div>
-
-            <div class="rank-score">910</div>
-
-        </div>
-
-
-        <div class="rank-card" style="border-color:rgba(57,255,136,.3)">
-
-            <div class="rank-number" style="color:var(--green)">07</div>
-
-            <div class="rank-avatar">AQ</div>
-
-            <div class="rank-info">
-                <strong>Anvarbek Q.</strong>
-                <small>Your profile • Tashkent</small>
-            </div>
-
-            <div class="rank-score">842</div>
-
-        </div>
-
-    </section>
-
-
-    <section class="section">
-
-        <div class="section-head">
-            <div>
-                <div class="section-title">Useful Challenges</div>
-                <div class="section-sub">Performance uchun</div>
-            </div>
-        </div>
-
-        <div class="quick-grid">
-
-            <div class="quick" onclick="completeChallenge(this,'Consistency')">
-                <div class="quick-icon">🔥</div>
-                <h4>Consistency</h4>
-                <p>Haftalik mashg‘ulotlarni reja bo‘yicha bajar.</p>
-            </div>
-
-            <div class="quick" onclick="completeChallenge(this,'Result')">
-                <div class="quick-icon">📈</div>
-                <h4>New Result</h4>
-                <p>Shaxsiy natijangni qayd et.</p>
-            </div>
-
-        </div>
-
-    </section>
-
-</main>
-
+</section>
 
 <!-- PROFILE -->
+<section id="profile" class="page">
 
-<main id="profile" class="page">
+  <div class="profile-cover">
+    <div class="profile-avatar">AQ</div>
+  </div>
 
-    <div class="profile-card">
-
-        <div class="avatar">
-            AQ
-        </div>
-
-        <h2>Anvarbek Qodirov</h2>
-
-        <p>Throwing Athlete • Uzbekistan</p>
-
-        <span class="athlete-id">
-            ATHLETE ID: TL-2026-001
-        </span>
-
-
-        <div class="profile-stats">
-
-            <div class="profile-stat">
-                <strong>13.42</strong>
-                <span>BEST</span>
-            </div>
-
-            <div class="profile-stat">
-                <strong>842</strong>
-                <span>SCORE</span>
-            </div>
-
-            <div class="profile-stat">
-                <strong>27</strong>
-                <span>SESSIONS</span>
-            </div>
-
-        </div>
-
+  <div class="card" style="margin-top:-38px;position:relative">
+    <div style="display:flex;justify-content:space-between;align-items:start">
+      <div>
+        <h2 id="profileName">Anvarbek Qodirov</h2>
+        <p style="color:var(--muted);font-size:11px;margin-top:4px">
+          Throwing Athlete • TURAN ID: TL-2048
+        </p>
+      </div>
+      <span style="color:var(--green);font-size:11px">● ACTIVE</span>
     </div>
 
-
-    <section class="section">
-
-        <div class="section-head">
-            <div>
-                <div class="section-title">Athlete Portfolio</div>
-                <div class="section-sub">Sportdagi tarixing</div>
-            </div>
-
-            <span class="see-all">
-                EDIT
-            </span>
-        </div>
-
-
-        <div class="portfolio-grid">
-
-            <div class="portfolio-item">
-
-                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=85">
-
-                <div class="portfolio-label">
-                    TRAINING
-                </div>
-
-            </div>
-
-
-            <div class="portfolio-item">
-
-                <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=600&q=85">
-
-                <div class="portfolio-label">
-                    PERFORMANCE
-                </div>
-
-            </div>
-
-
-            <div class="portfolio-item">
-
-                <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=600&q=85">
-
-                <div class="portfolio-label">
-                    COMPETITION
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="section">
-
-        <div class="section-head">
-            <div>
-                <div class="section-title">TURAN AI</div>
-                <div class="section-sub">Athlete assistant</div>
-            </div>
-        </div>
-
-
-        <div class="ai-box">
-
-            <div class="ai-title">
-
-                <div class="ai-icon">
-                    ✦
-                </div>
-
-                <div>
-                    <h3>How can TURAN AI help?</h3>
-                    <div class="section-sub">
-                        Ma’lumotlaring asosida umumiy tavsiyalar
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="ai-options">
-
-                <button class="ai-option" onclick="aiAnswer('workout')">
-                    🏋️ Workout
-                </button>
-
-                <button class="ai-option" onclick="aiAnswer('nutrition')">
-                    🍎 Nutrition
-                </button>
-
-                <button class="ai-option" onclick="aiAnswer('motivation')">
-                    ⚡ Motivation
-                </button>
-
-                <button class="ai-option" onclick="aiAnswer('progress')">
-                    📈 Progress
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="section">
-
-        <div class="quick-grid">
-
-            <div class="quick" onclick="showToast('Profil sozlamalari ochiladi')">
-                <div class="quick-icon">⚙️</div>
-                <h4>Settings</h4>
-                <p>Profil va platforma sozlamalari.</p>
-            </div>
-
-            <div class="quick" onclick="showToast('Athlete ID nusxalandi')">
-                <div class="quick-icon">🪪</div>
-                <h4>Athlete ID</h4>
-                <p>Shaxsiy sport profiling.</p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <div style="
-        text-align:center;
-        margin-top:35px;
-        color:#647181;
-        font-size:8px;
-        letter-spacing:1px;
-    ">
-        TURAN LEAGUE • ATHLETE PERFORMANCE PLATFORM
-        <br><br>
-        Saytni yaratgan inson: Qodirov Anvarbek
+    <div class="stats" style="margin-top:14px">
+      <div class="stat"><strong>4</strong><span>Level</span></div>
+      <div class="stat"><strong>7</strong><span>Streak</span></div>
+      <div class="stat"><strong>6</strong><span>Medals</span></div>
+      <div class="stat"><strong>14</strong><span>Events</span></div>
     </div>
+  </div>
+
+  <div class="section-title">
+    <h2>🪪 Athlete Portfolio</h2>
+    <span>Public Profile</span>
+  </div>
+
+  <div class="card">
+    <div class="portfolio">
+      <div class="portfolio-item">
+        <div class="portfolio-icon">🥇</div>
+        <div class="portfolio-info"><b>Competition Medal</b><small>1st Place • Athletics</small></div>
+      </div>
+      <div class="portfolio-item">
+        <div class="portfolio-icon">📜</div>
+        <div class="portfolio-info"><b>Certificate</b><small>Regional Athletics Meet</small></div>
+      </div>
+      <div class="portfolio-item">
+        <div class="portfolio-icon">📊</div>
+        <div class="portfolio-info"><b>Personal Record</b><small>13.42 m Shot Put</small></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <h2>🏅 Medals</h2>
+  </div>
+
+  <div class="badges">
+    <div class="badge"><div>🥉</div><span>Bronze</span></div>
+    <div class="badge"><div>🥈</div><span>Silver</span></div>
+    <div class="badge"><div>🥇</div><span>Gold</span></div>
+    <div class="badge"><div>🏆</div><span>Elite</span></div>
+    <div class="badge"><div>📜</div><span>Certificate</span></div>
+    <div class="badge"><div>⭐</div><span>PR Holder</span></div>
+  </div>
+
+  <div class="section-title">
+    <h2>📸 Athlete Media</h2>
+  </div>
+
+  <div class="media-grid">
+    <div class="media">
+      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=700&q=80">
+      <label>TRAINING</label>
+    </div>
+    <div class="media">
+      <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=700&q=80">
+      <label>WORKOUT</label>
+    </div>
+    <div class="media">
+      <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=700&q=80">
+      <label>ATHLETE</label>
+    </div>
+    <div class="media">
+      <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=700&q=80">
+      <label>COMPETITION</label>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <h2>🤖 TURAN AI</h2>
+  </div>
+
+  <div class="card ai-box">
+    <div class="ai-message">
+      <strong>🤖 TURAN AI Coach</strong><br>
+      Bugungi maqsadni aniqlash, mashg‘ulot ma’lumotlaringizni ko‘rib chiqish va umumiy sport tavsiyalarini olish uchun AI Coach’dan foydalaning.
+    </div>
+
+    <div class="two">
+      <button class="btn blue" onclick="aiAnswer('workout')">🏋️ Workout</button>
+      <button class="btn" onclick="aiAnswer('motivation')">🔥 Motivation</button>
+      <button class="btn dark" onclick="aiAnswer('nutrition')">🍎 Nutrition</button>
+      <button class="btn dark" onclick="aiAnswer('analysis')">📊 Analysis</button>
+    </div>
+  </div>
+
+  <button class="btn full" onclick="shareProfile()">📤 Share Athlete Profile</button>
+
+</section>
 
 </main>
 
-
-<!-- BOTTOM NAV -->
-
 <nav class="bottom-nav">
-
-    <div class="nav-list">
-
-        <button class="nav-item active" data-page="home" onclick="goPage('home')">
-            <span>⌂</span>
-            <span>HOME</span>
-        </button>
-
-        <button class="nav-item" data-page="train" onclick="goPage('train')">
-            <span>◈</span>
-            <span>TRAIN</span>
-        </button>
-
-        <button class="nav-item" data-page="results" onclick="goPage('results')">
-            <span>⌁</span>
-            <span>RESULTS</span>
-        </button>
-
-        <button class="nav-item" data-page="league" onclick="goPage('league')">
-            <span>♛</span>
-            <span>LEAGUE</span>
-        </button>
-
-        <button class="nav-item" data-page="profile" onclick="goPage('profile')">
-            <span>●</span>
-            <span>PROFILE</span>
-        </button>
-
-    </div>
-
+  <button class="nav-btn active" data-page="home" onclick="go('home',this)">
+    <div>⌂</div><span>Home</span>
+  </button>
+  <button class="nav-btn" data-page="train" onclick="go('train',this)">
+    <div>🏋️</div><span>Workout</span>
+  </button>
+  <button class="nav-btn" data-page="results" onclick="go('results',this)">
+    <div>📊</div><span>Results</span>
+  </button>
+  <button class="nav-btn" data-page="league" onclick="go('league',this)">
+    <div>🏆</div><span>League</span>
+  </button>
+  <button class="nav-btn" data-page="profile" onclick="go('profile',this)">
+    <div>👤</div><span>Profile</span>
+  </button>
 </nav>
 
 </div>
 
-
-<!-- RESULT MODAL -->
-
-<div class="modal" id="resultModal">
-
-    <div class="modal-card">
-
-        <div class="modal-head">
-            <h2>Add Performance</h2>
-            <button class="close" onclick="closeModal('resultModal')">×</button>
-        </div>
-
-        <div class="field">
-            <label>SPORT</label>
-
-            <select id="sportSelect">
-                <option>Shot Put</option>
-                <option>Discus Throw</option>
-                <option>Javelin Throw</option>
-                <option>Running</option>
-                <option>Other</option>
-            </select>
-        </div>
-
-        <div class="field">
-            <label>RESULT</label>
-            <input id="resultInput" type="number" step="0.01" placeholder="Masalan: 13.42">
-        </div>
-
-        <div class="field">
-            <label>NOTE</label>
-            <input id="resultNote" type="text" placeholder="Mashg‘ulot yoki musobaqa">
-        </div>
-
-        <button class="full-btn" onclick="saveResult()">
-            SAVE RESULT
-        </button>
-
+<!-- PERFORMANCE MODAL -->
+<div class="modal" id="performanceModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>📊 Add Performance</h2>
+      <button class="close" onclick="closeModal('performanceModal')">✕</button>
     </div>
 
+    <label>Sport / Event
+      <input id="perfEvent" class="input" value="Shot Put">
+    </label>
+
+    <label>Result
+      <input id="perfValue" class="input" type="number" step="0.01" placeholder="13.50">
+    </label>
+
+    <label>Unit
+      <select id="perfUnit" class="input">
+        <option>meters</option>
+        <option>seconds</option>
+        <option>points</option>
+        <option>reps</option>
+      </select>
+    </label>
+
+    <label>Note
+      <textarea id="perfNote" class="input" placeholder="Musobaqa yoki trening haqida..."></textarea>
+    </label>
+
+    <button class="btn full" onclick="savePerformance()">Save Result</button>
+  </div>
 </div>
 
-
-<!-- CHECK MODAL -->
-
+<!-- ATHLETE CHECK -->
 <div class="modal" id="checkModal">
-
-    <div class="modal-card">
-
-        <div class="modal-head">
-            <h2>Athlete Check</h2>
-            <button class="close" onclick="closeModal('checkModal')">×</button>
-        </div>
-
-        <div class="check-grid">
-
-            <div class="check">
-                <div class="check-top">
-                    <strong>Energy</strong>
-                    <span class="check-value" id="energyValue">8</span>
-                </div>
-
-                <input type="range" min="1" max="10" value="8"
-                       oninput="updateRange('energyValue',this.value)">
-            </div>
-
-
-            <div class="check">
-                <div class="check-top">
-                    <strong>Focus</strong>
-                    <span class="check-value" id="focusValue">9</span>
-                </div>
-
-                <input type="range" min="1" max="10" value="9"
-                       oninput="updateRange('focusValue',this.value)">
-            </div>
-
-
-            <div class="check">
-                <div class="check-top">
-                    <strong>Sleep</strong>
-                    <span class="check-value" id="sleepValue">8</span>
-                </div>
-
-                <input type="range" min="1" max="10" value="8"
-                       oninput="updateRange('sleepValue',this.value)">
-            </div>
-
-
-            <div class="check">
-                <div class="check-top">
-                    <strong>Fatigue</strong>
-                    <span class="check-value" id="fatigueValue">3</span>
-                </div>
-
-                <input type="range" min="1" max="10" value="3"
-                       oninput="updateRange('fatigueValue',this.value)">
-            </div>
-
-        </div>
-
-        <button class="full-btn" onclick="saveCheck()">
-            SAVE CHECK
-        </button>
-
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>🧠 Athlete Check</h2>
+      <button class="close" onclick="closeModal('checkModal')">✕</button>
     </div>
 
-</div>
+    <p style="color:var(--muted);font-size:11px;margin-bottom:15px">
+      Bu o‘z-o‘zini kuzatish vositasi. Tibbiy tashxis bermaydi.
+    </p>
 
+    <div class="check-grid">
+      <div class="check-item">
+        <strong>⚡ Energy</strong>
+        <input id="energy" class="range" type="range" min="1" max="10" value="7">
+        <span id="energyVal">7/10</span>
+      </div>
+      <div class="check-item">
+        <strong>😴 Sleep</strong>
+        <input id="sleep" class="range" type="range" min="1" max="10" value="7">
+        <span id="sleepVal">7/10</span>
+      </div>
+      <div class="check-item">
+        <strong>💪 Fatigue</strong>
+        <input id="fatigue" class="range" type="range" min="1" max="10" value="3">
+        <span id="fatigueVal">3/10</span>
+      </div>
+      <div class="check-item">
+        <strong>🎯 Focus</strong>
+        <input id="focus" class="range" type="range" min="1" max="10" value="8">
+        <span id="focusVal">8/10</span>
+      </div>
+    </div>
+
+    <button class="btn full" style="margin-top:15px" onclick="saveCheck()">Save Athlete Check</button>
+
+    <div id="checkResult" style="margin-top:12px"></div>
+  </div>
+</div>
 
 <!-- AI MODAL -->
-
 <div class="modal" id="aiModal">
-
-    <div class="modal-card">
-
-        <div class="modal-head">
-            <h2>TURAN AI</h2>
-            <button class="close" onclick="closeModal('aiModal')">×</button>
-        </div>
-
-        <div class="ai-box">
-
-            <div class="ai-title">
-
-                <div class="ai-icon">
-                    ✦
-                </div>
-
-                <div>
-                    <h3>Athlete Assistant</h3>
-                    <div class="section-sub">
-                        Umumiy sport tavsiyalari
-                    </div>
-                </div>
-
-            </div>
-
-            <p id="aiResponse">
-                Quyidagi yo‘nalishlardan birini tanlang.
-            </p>
-
-            <div class="ai-options">
-
-                <button class="ai-option" onclick="aiModalAnswer('workout')">
-                    🏋️ Workout
-                </button>
-
-                <button class="ai-option" onclick="aiModalAnswer('meal')">
-                    🍎 Meals
-                </button>
-
-                <button class="ai-option" onclick="aiModalAnswer('goal')">
-                    🎯 Goal
-                </button>
-
-                <button class="ai-option" onclick="aiModalAnswer('mind')">
-                    🧠 Mindset
-                </button>
-
-            </div>
-
-        </div>
-
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>🤖 TURAN AI Coach</h2>
+      <button class="close" onclick="closeModal('aiModal')">✕</button>
     </div>
 
-</div>
+    <div id="aiOutput" class="ai-message">
+      <strong>TURAN AI:</strong><br>
+      Sizga qaysi yo‘nalishda yordam beray?
+    </div>
 
+    <div class="quick-grid">
+      <button class="quick" onclick="aiAnswer('workout')"><b>🏋️</b><span>Workout</span></button>
+      <button class="quick" onclick="aiAnswer('nutrition')"><b>🍎</b><span>Nutrition</span></button>
+      <button class="quick" onclick="aiAnswer('motivation')"><b>🔥</b><span>Motivation</span></button>
+      <button class="quick" onclick="aiAnswer('analysis')"><b>📊</b><span>Analysis</span></button>
+    </div>
+  </div>
+</div>
 
 <!-- PROFILE MODAL -->
-
 <div class="modal" id="profileModal">
-
-    <div class="modal-card">
-
-        <div class="modal-head">
-            <h2>Athlete Profile</h2>
-            <button class="close" onclick="closeModal('profileModal')">×</button>
-        </div>
-
-        <div class="field">
-            <label>NAME</label>
-            <input id="profileName" type="text" value="Anvarbek Qodirov">
-        </div>
-
-        <div class="field">
-            <label>SPORT</label>
-
-            <select>
-                <option>Throwing</option>
-                <option>Running</option>
-                <option>Jumping</option>
-                <option>Football</option>
-                <option>Other</option>
-            </select>
-
-        </div>
-
-        <div class="field">
-            <label>COUNTRY</label>
-            <input type="text" value="Uzbekistan">
-        </div>
-
-        <button class="full-btn" onclick="saveProfile()">
-            SAVE PROFILE
-        </button>
-
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>👤 Athlete Profile</h2>
+      <button class="close" onclick="closeModal('profileModal')">✕</button>
     </div>
 
+    <label>Name
+      <input id="userName" class="input" value="Anvarbek Qodirov">
+    </label>
+
+    <label>Sport
+      <input id="userSport" class="input" value="Throwing">
+    </label>
+
+    <label>Athlete ID
+      <input id="userID" class="input" value="TL-2048">
+    </label>
+
+    <button class="btn full" onclick="saveProfile()">Save Profile</button>
+  </div>
 </div>
 
+<!-- TRAINING MODAL -->
+<div class="modal" id="trainingModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>🏋️ Quick Training</h2>
+      <button class="close" onclick="closeModal('trainingModal')">✕</button>
+    </div>
 
-<!-- TOAST -->
+    <div class="challenge">
+      <b>Today's Training</b>
+      <p>Warm-up → Technique → Strength → Cool down</p>
+    </div>
+
+    <button class="btn full" onclick="quickTraining()">Start Training</button>
+  </div>
+</div>
+
+<!-- GOAL MODAL -->
+<div class="modal" id="goalModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>🎯 Set Goal</h2>
+      <button class="close" onclick="closeModal('goalModal')">✕</button>
+    </div>
+
+    <label>Goal name
+      <input id="goalName" class="input" value="Personal Best">
+    </label>
+
+    <label>Target
+      <input id="goalValue" class="input" type="number" step="0.01" value="14">
+    </label>
+
+    <label>Unit
+      <select id="goalUnit" class="input">
+        <option>meters</option>
+        <option>seconds</option>
+        <option>points</option>
+      </select>
+    </label>
+
+    <button class="btn full" onclick="saveGoal()">Save Goal</button>
+  </div>
+</div>
+
+<!-- COMPETITION MODAL -->
+<div class="modal" id="competitionModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>🏟️ Competition Center</h2>
+      <button class="close" onclick="closeModal('competitionModal')">✕</button>
+    </div>
+
+    <label>Competition name
+      <input id="compName" class="input" value="Uzbekistan Athletics Meet">
+    </label>
+
+    <label>Date
+      <input id="compDate" class="input" type="date">
+    </label>
+
+    <label>Location
+      <input id="compLocation" class="input" value="Tashkent">
+    </label>
+
+    <button class="btn full" onclick="saveCompetition()">Save Competition</button>
+
+    <div class="card" style="margin-top:12px;margin-bottom:0">
+      <b>🎒 Preparation Checklist</b>
+      <p style="font-size:10px;color:var(--muted);margin-top:7px">
+        Equipment • Documents • Schedule • Warm-up plan • Competition result
+      </p>
+    </div>
+  </div>
+</div>
 
 <div class="toast" id="toast"></div>
 
-
 <script>
-
 /* =========================
-   NAVIGATION
+   TURAN LEAGUE APP ENGINE
 ========================= */
 
-function goPage(page){
+const $ = id => document.getElementById(id);
 
-    document.querySelectorAll(".page").forEach(function(el){
-        el.classList.remove("active");
-    });
+let state = JSON.parse(localStorage.getItem("turanState") || "{}");
 
-    const target=document.getElementById(page);
+state.xp ??= 420;
+state.level ??= 4;
+state.streak ??= 7;
+state.pr ??= 13.42;
+state.water ??= 4;
+state.goal ??= 14;
+state.name ??= "Anvarbek Qodirov";
+state.sport ??= "Throwing";
+state.athleteID ??= "TL-2048";
 
-    if(target){
-        target.classList.add("active");
-    }
-
-    document.querySelectorAll(".nav-item").forEach(function(item){
-        item.classList.remove("active");
-    });
-
-    const nav=document.querySelector('[data-page="'+page+'"]');
-
-    if(nav){
-        nav.classList.add("active");
-    }
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+function saveState(){
+  localStorage.setItem("turanState",JSON.stringify(state));
+  updateUI();
 }
 
+function updateUI(){
 
-/* =========================
-   DAY ACCORDION
-========================= */
+  $("statXP").textContent=state.xp;
+  $("statLevel").textContent=state.level;
+  $("statStreak").textContent=state.streak;
+  $("statPR").textContent=Number(state.pr).toFixed(2);
+  $("resultPR").textContent=Number(state.pr).toFixed(2);
+  $("currentResult").textContent=Number(state.pr).toFixed(2)+" m";
+  $("profileName").textContent=state.name;
 
-function toggleDay(day){
+  const goal=Number(state.goal)||14;
+  const pr=Number(state.pr)||0;
+  const pct=Math.min(100,Math.round(pr/goal*100));
 
-    document.querySelectorAll(".day").forEach(function(item){
+  $("goalPercent").textContent=pct+"%";
+  $("goalBar").style.width=pct+"%";
 
-        if(item!==day){
-            item.classList.remove("open");
-        }
-
-    });
-
-    day.classList.toggle("open");
+  const water=Math.min(8,state.water);
+  const wp=Math.round(water/8*100);
+  $("waterText").textContent=water+" / 8 glasses";
+  $("waterPercent").textContent=wp+"%";
+  $("waterBar").style.width=wp+"%";
 }
 
+function go(page,btn){
 
-/* =========================
-   MODALS
-========================= */
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  $(page).classList.add("active");
+
+  document.querySelectorAll(".nav-btn").forEach(n=>n.classList.remove("active"));
+  if(btn)btn.classList.add("active");
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
 
 function openModal(id){
-
-    const modal=document.getElementById(id);
-
-    if(modal){
-        modal.classList.add("show");
-        document.body.style.overflow="hidden";
-    }
+  $(id).classList.add("show");
 }
 
 function closeModal(id){
-
-    const modal=document.getElementById(id);
-
-    if(modal){
-        modal.classList.remove("show");
-        document.body.style.overflow="";
-    }
+  $(id).classList.remove("show");
 }
 
-
-/* close when clicking outside */
-
-document.querySelectorAll(".modal").forEach(function(modal){
-
-    modal.addEventListener("click",function(e){
-
-        if(e.target===modal){
-            modal.classList.remove("show");
-            document.body.style.overflow="";
-        }
-
-    });
-
+document.querySelectorAll(".modal").forEach(modal=>{
+  modal.addEventListener("click",e=>{
+    if(e.target===modal) modal.classList.remove("show");
+  });
 });
 
-
-/* =========================
-   TOAST
-========================= */
-
-let toastTimer;
-
-function showToast(message){
-
-    const toast=document.getElementById("toast");
-
-    toast.textContent=message;
-
-    toast.classList.add("show");
-
-    clearTimeout(toastTimer);
-
-    toastTimer=setTimeout(function(){
-        toast.classList.remove("show");
-    },2400);
+function toast(message){
+  const t=$("toast");
+  t.textContent=message;
+  t.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>t.classList.remove("show"),2400);
 }
 
-
-/* =========================
-   RESULT
-========================= */
-
-function saveResult(){
-
-    const result=document.getElementById("resultInput").value;
-
-    if(!result){
-
-        showToast("Natijani kiriting");
-
-        return;
-    }
-
-    localStorage.setItem(
-        "turan_last_result",
-        result
-    );
-
-    closeModal("resultModal");
-
-    showToast("Natija saqlandi ✓");
+function toggleDay(btn){
+  btn.parentElement.classList.toggle("open");
 }
 
+function trainingDone(btn){
+  btn.textContent="✓ Completed";
+  btn.disabled=true;
+  btn.style.opacity=".65";
 
-/* =========================
-   ATHLETE CHECK
-========================= */
+  state.xp+=35;
+  saveState();
 
-function updateRange(id,value){
+  toast("🏋️ Training completed! +35 XP");
+}
 
-    const el=document.getElementById(id);
+function completeChallenge(btn){
+  btn.textContent="✓ Completed";
+  btn.disabled=true;
 
-    if(el){
-        el.textContent=value;
-    }
+  state.xp+=50;
+  state.streak++;
+  saveState();
+
+  toast("🔥 Challenge completed! +50 XP");
+}
+
+function addWater(){
+  if(state.water>=8){
+    toast("💧 Bugungi suv maqsadi bajarildi!");
+    return;
+  }
+
+  state.water++;
+  state.xp+=5;
+  saveState();
+
+  toast("💧 Water added! +5 XP");
+}
+
+function saveNotes(){
+  const text=$("trainingNotes").value.trim();
+
+  if(!text){
+    toast("📝 Avval izoh yozing.");
+    return;
+  }
+
+  localStorage.setItem("trainingNotes",text);
+  state.xp+=5;
+  saveState();
+
+  toast("📝 Training note saved!");
+}
+
+function savePerformance(){
+
+  const value=parseFloat($("perfValue").value);
+
+  if(!value){
+    toast("📊 Natijani kiriting.");
+    return;
+  }
+
+  if(value>state.pr){
+    state.pr=value;
+    state.xp+=100;
+    toast("🏆 NEW PERSONAL BEST! +100 XP");
+  }else{
+    state.xp+=25;
+    toast("📊 Result saved! +25 XP");
+  }
+
+  saveState();
+  closeModal("performanceModal");
+  $("perfValue").value="";
+}
+
+function saveProfile(){
+
+  state.name=$("userName").value.trim() || "Athlete";
+  state.sport=$("userSport").value.trim() || "Athlete";
+  state.athleteID=$("userID").value.trim() || "TL-0000";
+
+  saveState();
+  closeModal("profileModal");
+
+  toast("👤 Profile updated!");
+}
+
+function saveGoal(){
+
+  const value=parseFloat($("goalValue").value);
+
+  if(!value){
+    toast("🎯 Maqsadni kiriting.");
+    return;
+  }
+
+  state.goal=value;
+  saveState();
+
+  closeModal("goalModal");
+  toast("🎯 New goal saved!");
+}
+
+function saveCompetition(){
+
+  const name=$("compName").value;
+  const date=$("compDate").value;
+
+  if(date){
+    localStorage.setItem("competitionDate",date+"T09:00:00");
+  }
+
+  localStorage.setItem("competitionName",name);
+
+  closeModal("competitionModal");
+  toast("🏟️ Competition saved!");
+  startCountdown();
+}
+
+function quickTraining(){
+  closeModal("trainingModal");
+  go("train",document.querySelector('[data-page="train"]'));
+  toast("🏋️ Training planner opened!");
 }
 
 function saveCheck(){
 
-    const check={
-        energy:document.getElementById("energyValue").textContent,
-        focus:document.getElementById("focusValue").textContent,
-        sleep:document.getElementById("sleepValue").textContent,
-        fatigue:document.getElementById("fatigueValue").textContent,
-        date:new Date().toISOString()
-    };
+  const energy=+$("energy").value;
+  const sleep=+$("sleep").value;
+  const fatigue=+$("fatigue").value;
+  const focus=+$("focus").value;
 
-    localStorage.setItem(
-        "turan_athlete_check",
-        JSON.stringify(check)
-    );
+  const score=Math.round((energy+sleep+(11-fatigue)+focus)/4);
 
-    closeModal("checkModal");
+  localStorage.setItem("athleteCheck",JSON.stringify({
+    energy,sleep,fatigue,focus,score,date:new Date().toISOString()
+  }));
 
-    showToast("Athlete Check saqlandi ✓");
+  let message="🟢 Bugungi umumiy holat yaxshi ko‘rinmoqda.";
+
+  if(score<5){
+    message="🟡 Bugun yuklamani ehtiyotkorlik bilan rejalashtirish va dam olishga e’tibor berish foydali.";
+  }else if(score<7){
+    message="🔵 Holatingiz o‘rtacha. Mashg‘ulotni rejangizga qarab moslashtiring.";
+  }
+
+  $("checkResult").innerHTML=
+    '<div class="ai-message"><strong>Athlete Check: '+score+'/10</strong><br>'+message+'</div>';
+
+  state.xp+=10;
+  saveState();
+
+  toast("🧠 Athlete Check saved! +10 XP");
 }
 
-
-/* =========================
-   PROFILE
-========================= */
-
-function saveProfile(){
-
-    const name=document.getElementById("profileName").value;
-
-    if(!name){
-
-        showToast("Ismni kiriting");
-
-        return;
-    }
-
-    localStorage.setItem(
-        "turan_profile_name",
-        name
-    );
-
-    closeModal("profileModal");
-
-    showToast("Profil saqlandi ✓");
-
-}
-
-
-/* =========================
-   AI
-========================= */
+["energy","sleep","fatigue","focus"].forEach(id=>{
+  $(id).addEventListener("input",()=>{
+    $(id+"Val").textContent=$(id).value+"/10";
+  });
+});
 
 function aiAnswer(type){
 
-    const messages={
+  const output=$("aiOutput");
+  if(!output)return;
 
-        workout:
-        "Bugungi mashg‘ulotda texnika, nazorat va sifatli bajarishga e’tibor ber. Yuklamani o‘z holatingga mos boshqar.",
+  const answers={
+    workout:
+    "<strong>🏋️ TURAN AI:</strong><br>Bugungi mashg‘ulotda texnika, sifatli harakat va rejangizdagi asosiy vazifaga e’tibor bering. Mashg‘ulotni holatingizga moslab bajaring.",
 
-        nutrition:
-        "Mashg‘ulot atrofida yetarli ovqatlanish, oqsil manbalari, uglevodlar, meva-sabzavot va suyuqlikni unutmaslik muhim.",
+    nutrition:
+    "<strong>🍎 TURAN AI:</strong><br>Kun davomida xilma-xil va muvozanatli ovqatlanish, yetarli suyuqlik va muntazam ovqatlanish sport faoliyati uchun muhim.",
 
-        motivation:
-        "Katta natija kichik, muntazam qadamlar yig‘indisidan keladi. Bugungi bitta yaxshi mashg‘ulot ham progress.",
+    motivation:
+    "<strong>🔥 TURAN AI:</strong><br>Katta natija bir kunda emas, muntazam kichik qadamlar orqali quriladi. Bugungi vazifani bajaring — ertangi natija shundan boshlanadi.",
 
-        progress:
-        "Natijalarni muntazam yozib bor. Haftalik o‘zgarishni solishtirish bir martalik natijadan ko‘ra foydaliroq."
-    };
+    analysis:
+    "<strong>📊 TURAN AI:</strong><br>Sizning hozirgi PR natijangiz "+Number(state.pr).toFixed(2)+" m. Maqsad "+Number(state.goal).toFixed(2)+" m. Progressni muntazam natijalar orqali kuzatib boring."
+  };
 
-    showToast(messages[type] || "TURAN AI tayyor");
+  output.innerHTML=answers[type]||answers.motivation;
+
+  openModal("aiModal");
 }
 
+function shareProfile(){
 
-function aiModalAnswer(type){
+  const text=
+`TURAN LEAGUE
+Athlete: ${state.name}
+Sport: ${state.sport}
+TURAN ID: ${state.athleteID}
+Personal Best: ${Number(state.pr).toFixed(2)}`;
 
-    const response=document.getElementById("aiResponse");
-
-    const answers={
-
-        workout:
-        "Mashg‘ulot rejangni bajarishda texnika va nazoratni birinchi o‘ringa qo‘y. Kuchli charchoq bo‘lsa, murabbiy bilan yuklamani moslashtir.",
-
-        meal:
-        "Kun davomida muvozanatli ovqatlanish, yetarli energiya, oqsil, uglevod, meva-sabzavot va suvga e’tibor ber.",
-
-        goal:
-        "Maqsadingni aniq son bilan yoz: masalan, shaxsiy rekord. Keyin unga olib boradigan haftalik kichik bosqichlarni belgila.",
-
-        mind:
-        "Natija darhol kelmasligi mumkin. Mashg‘ulot sifati, intizom va tiklanishga e’tibor berish uzoq muddatda kuchliroq natija beradi."
-    };
-
-    response.textContent=answers[type];
+  if(navigator.share){
+    navigator.share({
+      title:"TURAN LEAGUE Athlete Profile",
+      text
+    }).catch(()=>{});
+  }else{
+    navigator.clipboard?.writeText(text);
+    toast("📋 Athlete profile copied!");
+  }
 }
 
+function startCountdown(){
 
-/* =========================
-   CHALLENGES
-========================= */
+  let saved=localStorage.getItem("competitionDate");
 
-function completeChallenge(element,name){
+  let target=saved
+    ? new Date(saved).getTime()
+    : new Date(Date.now()+12*24*60*60*1000).getTime();
 
-    element.style.borderColor="rgba(57,255,136,.5)";
+  function tick(){
 
-    showToast(
-        name+" challenge belgilandi ✓"
-    );
-}
+    let diff=target-Date.now();
 
-
-/* =========================
-   COUNTDOWN
-========================= */
-
-/*
-   Demo competition date.
-   Keyinchalik shu sanani o‘zgartirish mumkin.
-*/
-
-const competitionDate=
-    new Date("2026-11-15T09:00:00+05:00").getTime();
-
-function updateCountdown(){
-
-    const now=new Date().getTime();
-
-    let distance=competitionDate-now;
-
-    if(distance<0){
-        distance=0;
+    if(diff<0){
+      diff=0;
     }
 
-    const days=Math.floor(
-        distance/(1000*60*60*24)
-    );
+    const d=Math.floor(diff/86400000);
+    const h=Math.floor(diff%86400000/3600000);
+    const m=Math.floor(diff%3600000/60000);
+    const s=Math.floor(diff%60000/1000);
 
-    const hours=Math.floor(
-        (distance%(1000*60*60*24))/
-        (1000*60*60)
-    );
+    $("days").textContent=String(d).padStart(2,"0");
+    $("hours").textContent=String(h).padStart(2,"0");
+    $("minutes").textContent=String(m).padStart(2,"0");
+    $("seconds").textContent=String(s).padStart(2,"0");
+  }
 
-    const minutes=Math.floor(
-        (distance%(1000*60*60))/
-        (1000*60)
-    );
-
-    document.getElementById("days").textContent=days;
-    document.getElementById("hours").textContent=hours;
-    document.getElementById("minutes").textContent=minutes;
+  tick();
+  clearInterval(window.countdownTimer);
+  window.countdownTimer=setInterval(tick,1000);
 }
-
-updateCountdown();
-
-setInterval(updateCountdown,60000);
-
-
-/* =========================
-   LOCAL PROFILE LOAD
-========================= */
-
-const savedName=
-    localStorage.getItem("turan_profile_name");
-
-if(savedName){
-
-    document.getElementById("profileName").value=savedName;
-
-}
-
-
-/* =========================
-   RESULT LOAD
-========================= */
-
-const savedResult=
-    localStorage.getItem("turan_last_result");
-
-if(savedResult){
-
-    console.log(
-        "Last TURAN result:",
-        savedResult
-    );
-
-}
-
-
-/* =========================
-   KEYBOARD ESC
-========================= */
-
-document.addEventListener("keydown",function(e){
-
-    if(e.key==="Escape"){
-
-        document.querySelectorAll(".modal.show")
-        .forEach(function(modal){
-
-            modal.classList.remove("show");
-
-        });
-
-        document.body.style.overflow="";
-
-    }
-
-});
-
-
-/* =========================
-   SMALL PARTICLE EFFECT
-========================= */
 
 function createParticles(){
 
-    for(let i=0;i<18;i++){
+  const container=$("particles");
 
-        const particle=
-            document.createElement("div");
+  for(let i=0;i<35;i++){
 
-        particle.style.position="fixed";
-        particle.style.width=
-            Math.random()*3+1+"px";
+    const p=document.createElement("i");
+    p.className="particle";
 
-        particle.style.height=
-            particle.style.width;
+    p.style.left=Math.random()*100+"%";
+    p.style.top=Math.random()*100+"%";
+    p.style.animationDelay=Math.random()*7+"s";
+    p.style.animationDuration=(5+Math.random()*8)+"s";
 
-        particle.style.borderRadius="50%";
-
-        particle.style.background=
-            i%2===0
-            ?"rgba(57,255,136,.35)"
-            :"rgba(22,156,255,.35)";
-
-        particle.style.left=
-            Math.random()*100+"vw";
-
-        particle.style.top=
-            Math.random()*100+"vh";
-
-        particle.style.pointerEvents="none";
-        particle.style.zIndex="-1";
-
-        const duration=
-            8+Math.random()*12;
-
-        particle.animate(
-            [
-                {
-                    transform:"translateY(0)",
-                    opacity:0
-                },
-                {
-                    transform:
-                    "translateY(-80px)",
-                    opacity:.8
-                },
-                {
-                    transform:
-                    "translateY(-160px)",
-                    opacity:0
-                }
-            ],
-            {
-                duration:duration*1000,
-                iterations:Infinity,
-                delay:Math.random()*5000
-            }
-        );
-
-        document.body.appendChild(particle);
-    }
+    container.appendChild(p);
+  }
 }
 
+function loadSaved(){
+
+  const notes=localStorage.getItem("trainingNotes");
+  if(notes)$("trainingNotes").value=notes;
+
+  $("userName").value=state.name;
+  $("userSport").value=state.sport;
+  $("userID").value=state.athleteID;
+
+  updateUI();
+}
+
+/* XP LEVEL SYSTEM */
+setInterval(()=>{
+
+  const required=state.level*150;
+
+  if(state.xp>=required){
+
+    state.xp-=required;
+    state.level++;
+
+    saveState();
+
+    toast("🎖 LEVEL UP! Level "+state.level);
+  }
+
+},1000);
+
+/* KEYBOARD */
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){
+    document.querySelectorAll(".modal.show")
+      .forEach(m=>m.classList.remove("show"));
+  }
+});
+
+/* INIT */
 createParticles();
-
-
-/* =========================
-   HERO PARALLAX
-========================= */
-
-document.addEventListener(
-    "mousemove",
-    function(e){
-
-        if(window.innerWidth<700){
-            return;
-        }
-
-        const hero=
-            document.querySelector(".hero-media");
-
-        if(!hero){
-            return;
-        }
-
-        const x=
-            (e.clientX/window.innerWidth-.5)*8;
-
-        const y=
-            (e.clientY/window.innerHeight-.5)*8;
-
-        hero.style.transform=
-            "scale(1.08) translate("+x+"px,"+y+"px)";
-    }
-);
-
-
-/* =========================
-   INITIAL
-========================= */
-
-setTimeout(function(){
-
-    document
-        .querySelectorAll(".progress-fill")
-        .forEach(function(bar){
-
-            const width=bar.style.width;
-
-            bar.style.width="0";
-
-            setTimeout(function(){
-                bar.style.width=width;
-            },150);
-
-        });
-
-},300);
-
+loadSaved();
+startCountdown();
 </script>
 
 </body>
