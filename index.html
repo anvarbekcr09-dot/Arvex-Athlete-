@@ -1,1174 +1,376 @@
+
 <!DOCTYPE html>
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#06101d">
-<title>ANVEX FC — 2026</title>
+<meta name="theme-color" content="#050807">
+<title>ANVEX.QE — Learn • Play • Grow</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
- --bg:#06101d;
- --card:#0d1b2d;
- --card2:#11243a;
- --text:#f5f8ff;
- --muted:#91a4bd;
- --blue:#2d8cff;
- --cyan:#19d3ff;
- --green:#20e38a;
- --purple:#9b5cff;
- --yellow:#ffd54a;
- --red:#ff5470;
+--bg:#030605;--card:#0b1210;--card2:#101a16;
+--green:#42ff9b;--green2:#16d879;--blue:#4da6ff;
+--purple:#9b6cff;--yellow:#ffd84d;--red:#ff5f70;
+--cyan:#45e6ff;--text:#f4fff9;--muted:#84948c;
+--line:rgba(255,255,255,.08)
 }
+html{scroll-behavior:smooth}
 body{
- font-family:Inter,system-ui,Arial,sans-serif;
- background:
- radial-gradient(circle at 15% 0%,#153b67 0,transparent 34%),
- radial-gradient(circle at 100% 15%,#34195c 0,transparent 30%),
- var(--bg);
- color:var(--text);
- min-height:100vh;
- padding-bottom:90px;
+font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+background:
+radial-gradient(circle at 5% 0%,rgba(66,255,155,.13),transparent 27%),
+radial-gradient(circle at 100% 10%,rgba(155,108,255,.15),transparent 30%),
+radial-gradient(circle at 50% 100%,rgba(77,166,255,.08),transparent 35%),
+var(--bg);
+color:var(--text);min-height:100vh;overflow-x:hidden
 }
-button{font:inherit;border:0;cursor:pointer;color:inherit}
-.app{max-width:1100px;margin:auto;padding:16px}
+button,input{font:inherit}
+button{cursor:pointer}
+button:active{transform:scale(.96)}
+.app{max-width:540px;min-height:100vh;margin:auto;padding-bottom:105px}
 
-header{
- display:flex;
- align-items:center;
- justify-content:space-between;
- margin-bottom:18px;
+/* LOGIN */
+.login{
+min-height:100vh;display:flex;align-items:center;justify-content:center;
+padding:22px;position:relative;overflow:hidden
 }
-.logo{
- font-size:28px;
- font-weight:950;
- letter-spacing:-1px;
+.login:before,.login:after{
+content:"";position:absolute;border-radius:50%;filter:blur(3px);pointer-events:none
 }
-.logo span{color:var(--cyan)}
-.iconbtn{
- width:46px;
- height:46px;
- border-radius:15px;
- background:#ffffff10;
- border:1px solid #ffffff15;
- font-size:20px;
+.login:before{
+width:250px;height:250px;background:rgba(66,255,155,.09);
+top:-100px;left:-90px
 }
-
-.hero{
- position:relative;
- overflow:hidden;
- border:1px solid #ffffff15;
- border-radius:28px;
- padding:25px;
- background:linear-gradient(135deg,#102d4d,#111a32 60%,#2b1450);
- box-shadow:0 20px 70px #0006;
+.login:after{
+width:260px;height:260px;background:rgba(155,108,255,.10);
+right:-100px;bottom:-100px
 }
-.hero:after{
- content:"⚡";
- position:absolute;
- right:15px;
- top:5px;
- font-size:110px;
- opacity:.07;
+.login-box{
+position:relative;width:100%;padding:32px 22px;border-radius:32px;
+border:1px solid var(--line);background:rgba(10,17,14,.91);
+backdrop-filter:blur(22px);box-shadow:0 30px 100px rgba(0,0,0,.65)
 }
-.eyebrow{
- color:var(--cyan);
- font-weight:900;
- font-size:12px;
- letter-spacing:2px;
+.logo{text-align:center;margin-bottom:26px}
+.logo h1{
+font-size:49px;letter-spacing:6px;font-weight:950;
+background:linear-gradient(90deg,var(--green),#fff,var(--cyan),var(--purple));
+-webkit-background-clip:text;color:transparent
 }
-.hero h1{
- font-size:35px;
- margin:9px 0;
+.logo p{color:var(--muted);margin-top:5px;font-size:13px}
+.logo .tag{
+display:inline-block;margin-top:12px;padding:6px 11px;border-radius:30px;
+background:rgba(66,255,155,.08);border:1px solid rgba(66,255,155,.15);
+color:var(--green);font-size:10px;font-weight:900;letter-spacing:1px
 }
-.hero p{
- color:#b9c9dc;
- line-height:1.55;
- max-width:720px;
+.field{margin:11px 0}
+.field input,.search,.ai-input input{
+width:100%;padding:15px 16px;border:1px solid var(--line);
+border-radius:16px;outline:none;color:white;background:#08100d
 }
-.actions{
- display:flex;
- gap:10px;
- flex-wrap:wrap;
- margin-top:18px;
-}
-.primary,.secondary{
- padding:12px 17px;
- border-radius:14px;
- font-weight:850;
+.field input:focus,.search:focus,.ai-input input:focus{
+border-color:var(--green);box-shadow:0 0 0 3px rgba(66,255,155,.07)
 }
 .primary{
- background:linear-gradient(135deg,var(--blue),var(--purple));
+border:0;border-radius:16px;padding:15px;color:#031008;
+background:linear-gradient(135deg,var(--green),var(--green2));
+font-weight:950;box-shadow:0 10px 35px rgba(66,255,155,.18)
 }
-.secondary{
- background:#ffffff10;
- border:1px solid #ffffff18;
+.login .primary{width:100%;margin-top:8px}
+.small-note{text-align:center;color:var(--muted);font-size:11px;margin-top:15px}
+
+/* HEADER */
+.top{
+padding:19px 17px 9px;display:flex;justify-content:space-between;align-items:center
+}
+.brand{font-size:25px;font-weight:950;letter-spacing:2px}
+.brand span{color:var(--green)}
+.qe{color:var(--purple)!important}
+.avatar{
+width:43px;height:43px;border:1px solid rgba(255,255,255,.15);
+border-radius:50%;display:grid;place-items:center;
+background:linear-gradient(135deg,var(--green),var(--blue));
+color:#041008;font-weight:950
 }
 
-.stats{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:12px;
- margin:15px 0;
-}
-.stat{
- background:#0d1b2ddd;
- border:1px solid #ffffff10;
- border-radius:19px;
- padding:17px;
-}
-.stat b{
- display:block;
- font-size:23px;
-}
-.stat span{
- color:var(--muted);
- font-size:11px;
-}
+/* PAGE */
+.page{display:none;padding:8px 16px;animation:fade .28s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.greeting{margin:12px 0 17px}
+.greeting small{color:var(--muted)}
+.greeting h2{font-size:29px;margin-top:4px}
 
-.section{margin-top:25px}
-.sectionhead{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin-bottom:12px;
+/* HERO */
+.hero{
+position:relative;overflow:hidden;padding:23px;border-radius:27px;min-height:220px;
+background:
+radial-gradient(circle at 85% 5%,rgba(155,108,255,.32),transparent 35%),
+radial-gradient(circle at 100% 100%,rgba(66,255,155,.15),transparent 40%),
+linear-gradient(135deg,#10271b,#08110d);
+border:1px solid rgba(66,255,155,.14)
 }
-.sectionhead h2{font-size:20px}
-.sectionhead button{
- background:none;
- color:var(--cyan);
- font-weight:850;
+.hero:after{
+content:"✦";position:absolute;right:20px;bottom:4px;
+font-size:100px;color:rgba(255,255,255,.035);transform:rotate(15deg)
 }
+.badge{
+display:inline-block;padding:6px 10px;border-radius:30px;
+background:rgba(66,255,155,.1);color:var(--green);
+font-size:10px;font-weight:900;letter-spacing:.7px
+}
+.hero h2{font-size:28px;margin:12px 0 7px;max-width:370px}
+.hero p{color:#b9c8c1;line-height:1.5;max-width:370px;font-size:13px}
+.hero .primary{margin-top:16px;padding:11px 17px}
 
-.grid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:13px;
+/* XP */
+.xp-card{
+margin-top:14px;padding:17px;border:1px solid var(--line);
+background:linear-gradient(145deg,var(--card),#07100c);border-radius:22px
 }
-.card{
- background:#0d1b2ddd;
- border:1px solid #ffffff10;
- border-radius:20px;
- padding:17px;
-}
-.tile{
- min-height:155px;
- position:relative;
- overflow:hidden;
- transition:.2s;
-}
-.tile:hover{
- transform:translateY(-3px);
- border-color:#ffffff28;
-}
-.emoji{font-size:35px}
-.tile h3{margin:10px 0 5px}
-.tile p{
- font-size:13px;
- color:var(--muted);
- line-height:1.45;
-}
-.tag{
- display:inline-block;
- margin-top:12px;
- padding:6px 9px;
- border-radius:9px;
- background:#ffffff0d;
- color:#bcd0e8;
- font-size:10px;
- font-weight:800;
-}
-
-.challenge{
- display:grid;
- grid-template-columns:1fr auto;
- gap:15px;
- align-items:center;
-}
-.challenge p{
- color:var(--muted);
- margin-top:5px;
-}
-.xp{
- color:var(--yellow);
- font-weight:900;
-}
+.row{display:flex;justify-content:space-between;align-items:center}
+.level{font-weight:950}
+.xp{color:var(--green);font-size:13px;font-weight:800}
 .progress{
- height:9px;
- background:#ffffff0d;
- border-radius:20px;
- overflow:hidden;
- margin:10px 0;
+width:100%;height:9px;margin-top:11px;border-radius:20px;
+background:#202a25;overflow:hidden
 }
-.bar{
- height:100%;
- width:68%;
- border-radius:20px;
- background:linear-gradient(90deg,var(--cyan),var(--purple));
-}
-.reward{
- padding:12px 16px;
- border-radius:14px;
- background:#ffd54a18;
- color:var(--yellow);
- font-weight:900;
+.progress span{
+display:block;height:100%;width:0;border-radius:20px;
+background:linear-gradient(90deg,var(--green),var(--blue),var(--purple));
+transition:.55s
 }
 
-.video{
- display:flex;
- gap:13px;
- align-items:center;
+/* SECTION */
+.section-title{
+display:flex;justify-content:space-between;align-items:center;margin:23px 0 12px
 }
-.thumb{
- width:105px;
- height:75px;
- border-radius:14px;
- background:linear-gradient(135deg,#173f70,#59268e);
- display:grid;
- place-items:center;
- font-size:28px;
- flex:none;
-}
-.video small,.video p{color:var(--muted)}
+.section-title h3{font-size:19px}
+.section-title span{color:var(--green);font-size:11px;font-weight:800}
 
-.list{
- display:grid;
- gap:10px;
+/* CARDS */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{
+padding:17px;border-radius:20px;border:1px solid var(--line);
+background:linear-gradient(145deg,var(--card),#07100d);
+transition:.2s;position:relative;overflow:hidden
 }
-.list button{
- width:100%;
- text-align:left;
- background:#ffffff08;
- padding:14px;
- border-radius:15px;
-}
-.list button b{display:block}
-.list button small{color:var(--muted)}
+.card:hover{border-color:rgba(66,255,155,.22);transform:translateY(-2px)}
+.icon{font-size:27px;margin-bottom:12px}
+.card h4{font-size:15px}
+.card p{color:var(--muted);font-size:12px;margin-top:5px;line-height:1.4}
 
-.hidden{display:none}
+/* LIST */
+.list{display:grid;gap:9px}
+.list-item{
+display:flex;align-items:center;gap:13px;padding:14px;border-radius:18px;
+background:var(--card);border:1px solid var(--line);transition:.2s
+}
+.list-item.done{opacity:.55;border-color:rgba(66,255,155,.25)}
+.list-item.done .arrow{color:var(--green)}
+.list-icon{
+width:43px;height:43px;display:grid;place-items:center;border-radius:14px;
+background:#17231e;font-size:20px;flex-shrink:0
+}
+.list-main{flex:1}
+.list-main strong{display:block;font-size:14px}
+.list-main small{color:var(--muted)}
+.arrow{color:var(--green);font-size:22px}
 
-.nav{
- position:fixed;
- bottom:0;
- left:0;
- right:0;
- background:#07111fee;
- backdrop-filter:blur(18px);
- border-top:1px solid #ffffff12;
- z-index:20;
+/* LEARN */
+.search{margin-bottom:12px}
+.category{
+padding:17px;border-radius:21px;border:1px solid var(--line);margin-bottom:10px;
+background:linear-gradient(135deg,#0d1713,#090f0d)
 }
-.navin{
- max-width:700px;
- margin:auto;
- display:grid;
- grid-template-columns:repeat(5,1fr);
- padding:9px 10px 10px;
+.category-head{display:flex;gap:12px;align-items:center}
+.category-icon{
+width:46px;height:46px;display:grid;place-items:center;border-radius:14px;
+background:#15241d;font-size:23px;flex-shrink:0
 }
-.nav button{
- background:none;
- color:#72859e;
- font-size:11px;
- font-weight:850;
+.category h3{font-size:16px}
+.category p{color:var(--muted);font-size:12px;margin-top:3px}
+.play{
+margin-top:12px;padding:9px 14px;border:0;border-radius:11px;
+background:white;color:#08100c;font-weight:850
 }
-.nav button span{
- display:block;
- font-size:21px;
- margin-bottom:2px;
-}
-.nav button.active{color:#fff}
 
+/* GAME */
+.game{min-height:165px}
+.game:nth-child(1){background:linear-gradient(135deg,#11281c,#0b1511)}
+.game:nth-child(2){background:linear-gradient(135deg,#17132c,#0d101c)}
+.game:nth-child(3){background:linear-gradient(135deg,#241c0d,#11100b)}
+.game:nth-child(4){background:linear-gradient(135deg,#101f2e,#0a1117)}
+
+/* AI */
+.ai-box{min-height:510px;display:flex;flex-direction:column}
+.ai-messages{flex:1;overflow:auto;padding-bottom:10px}
+.message{
+max-width:88%;padding:12px 14px;border-radius:16px;margin-bottom:9px;
+font-size:13px;line-height:1.45
+}
+.ai-message{background:#13221b;border:1px solid var(--line)}
+.user-message{margin-left:auto;background:#18352a}
+.ai-input{display:flex;gap:7px;margin-top:10px}
+.ai-input input{flex:1}
+.ai-input button{
+width:49px;border:0;border-radius:14px;background:var(--green);font-weight:950
+}
+
+/* PROFILE */
+.profile-head{text-align:center;padding:15px 0 23px}
+.big-avatar{
+width:88px;height:88px;border-radius:28px;display:grid;place-items:center;
+margin:auto;background:linear-gradient(135deg,var(--green),var(--blue));
+color:#06100a;font-size:29px;font-weight:950
+}
+.profile-head h2{margin-top:12px}
+.profile-head p{color:var(--muted);margin-top:3px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.stat{text-align:center;padding:15px 5px;background:var(--card);border:1px solid var(--line);border-radius:17px}
+.stat strong{display:block;font-size:20px}
+.stat small{color:var(--muted);font-size:10px}
+
+/* REWARDS */
+.achievement.locked{opacity:.45}
+.medal{
+font-size:43px;margin-bottom:7px
+}
+
+/* MODAL */
 .modal{
- position:fixed;
- inset:0;
- background:#000a;
- display:none;
- align-items:center;
- justify-content:center;
- padding:18px;
- z-index:50;
+position:fixed;inset:0;z-index:50;display:none;align-items:flex-end;
+justify-content:center;background:rgba(0,0,0,.75);backdrop-filter:blur(9px)
 }
-.modal.open{display:flex}
-.modalbox{
- width:min(520px,100%);
- background:#0b192a;
- border:1px solid #ffffff18;
- border-radius:25px;
- padding:22px;
+.modal.show{display:flex}
+.modal-box{
+width:min(540px,100%);max-height:90vh;overflow:auto;padding:22px;
+border-radius:28px 28px 0 0;background:#0a120f;border:1px solid var(--line)
 }
-.modalbox input{
- width:100%;
- padding:13px;
- margin:8px 0 14px;
- border-radius:13px;
- border:1px solid #ffffff18;
- background:#ffffff08;
- color:#fff;
-}
+.modal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
 .close{
- float:right;
- background:#ffffff10;
- padding:7px 10px;
- border-radius:10px;
+width:35px;height:35px;border:0;border-radius:50%;background:#1b2420;color:white
 }
+.question{font-size:21px;font-weight:900;line-height:1.35;margin-bottom:17px}
+.answers{display:grid;gap:10px}
+.answer{
+padding:14px;text-align:left;border:1px solid var(--line);
+border-radius:15px;background:#101a16;color:white
+}
+.answer:hover{border-color:var(--green)}
+.result{text-align:center;padding:20px 5px}
+.result .big{font-size:60px}
 
+/* BOTTOM */
+.bottom-nav{
+position:fixed;z-index:20;bottom:9px;left:50%;transform:translateX(-50%);
+width:min(500px,calc(100% - 18px));padding:8px;border:1px solid rgba(255,255,255,.09);
+background:rgba(8,14,11,.93);backdrop-filter:blur(20px);border-radius:23px;
+display:grid;grid-template-columns:repeat(5,1fr);box-shadow:0 15px 50px rgba(0,0,0,.6)
+}
+.nav-btn{
+border:0;background:transparent;color:#718078;padding:8px 3px;border-radius:16px;
+font-size:10px
+}
+.nav-btn div{font-size:20px;margin-bottom:3px}
+.nav-btn.active{color:var(--green);background:rgba(66,255,155,.08)}
+
+/* TOAST */
 .toast{
- position:fixed;
- top:18px;
- left:50%;
- transform:translateX(-50%) translateY(-100px);
- background:#152b45;
- border:1px solid #ffffff20;
- padding:12px 17px;
- border-radius:14px;
- z-index:100;
- transition:.3s;
+position:fixed;z-index:100;top:20px;left:50%;
+transform:translateX(-50%) translateY(-120px);
+background:#eafff3;color:#06120a;padding:12px 17px;border-radius:14px;
+font-size:13px;font-weight:900;transition:.3s;box-shadow:0 10px 35px #000
 }
-.toast.show{
- transform:translateX(-50%) translateY(0);
-}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.creator{text-align:center;color:#52625a;font-size:10px;margin:30px 0 5px}
 
-@media(max-width:760px){
- .app{padding:13px}
- .stats{grid-template-columns:repeat(2,1fr)}
- .grid{grid-template-columns:repeat(2,1fr)}
- .hero h1{font-size:28px}
- .tile{min-height:145px}
+.streak-box{
+display:flex;align-items:center;justify-content:space-between;
+padding:15px 17px;border-radius:20px;background:linear-gradient(135deg,#24150e,#10100b);
+border:1px solid rgba(255,216,77,.13);margin-top:12px
 }
-@media(max-width:450px){
- .grid{grid-template-columns:1fr}
- .challenge{grid-template-columns:1fr}
- .logo{font-size:23px}
+.streak-box strong{color:var(--yellow);font-size:20px}
+
+@media(max-width:370px){
+.hero h2{font-size:24px}.brand{font-size:21px}.grid{gap:8px}
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<!-- LOGIN -->
+<section id="loginScreen" class="login">
+<div class="login-box">
+<div class="logo">
+<h1>ANVEX<span class="qe">.QE</span></h1>
+<p>Learn • Play • Grow</p>
+<div class="tag">NEXT GENERATION LEARNING</div>
+</div>
 
-<header>
- <div class="logo">ANVEX <span>FC</span></div>
- <button class="iconbtn" onclick="showTab('profile')">👤</button>
+<div class="field"><input id="nameInput" placeholder="Ismingiz"></div>
+<div class="field"><input id="surnameInput" placeholder="Familiyangiz"></div>
+<div class="field"><input id="passwordInput" type="password" placeholder="Parol yarating"></div>
+
+<button class="primary" onclick="register()">ANVEX.QE'ga kirish →</button>
+
+<div class="small-note">
+Bilim ol • O‘yna • Rivojlan
+</div>
+</div>
+</section>
+
+<!-- APP -->
+<main id="app" class="app" style="display:none">
+
+<header class="top">
+<div class="brand">ANVEX<span>.QE</span></div>
+<button class="avatar" onclick="showPage('profile')">
+<span id="avatarLetter">A</span>
+</button>
 </header>
 
-<main>
-
 <!-- HOME -->
-<section id="home">
+<section id="home" class="page active">
+
+<div class="greeting">
+<small>Yana xush kelibsiz 👋</small>
+<h2>Salom, <span id="userName">Do‘st</span>!</h2>
+</div>
 
 <div class="hero">
- <div class="eyebrow">ANVEX FC • 2026</div>
-
- <h1>O‘rgan. Harakat qil. O‘yna. 🚀</h1>
-
- <p>
- Yoshlar uchun sport, bilim, video darslar va o‘yinlarni
- bitta zamonaviy platformada birlashtiradigan yangi avlod
- platformasi.
- </p>
-
- <div class="actions">
-  <button class="primary" onclick="showTab('sport')">
-   Sportni boshlash →
-  </button>
-
-  <button class="secondary" onclick="showTab('learn')">
-   Bilim olish 📚
-  </button>
- </div>
+<span class="badge">⚡ DAILY MISSION</span>
+<h2>Bugun o‘zingni rivojlantir.</h2>
+<p>Bitta bilim ol, challenge bajar, XP yig‘ va yangi Level och.</p>
+<button class="primary" onclick="openQuiz()">Challenge boshlash</button>
 </div>
 
-<div class="stats">
-
- <div class="stat">
-  <b id="xp">680</b>
-  <span>XP POINTS</span>
- </div>
-
- <div class="stat">
-  <b id="level">7</b>
-  <span>LEVEL</span>
- </div>
-
- <div class="stat">
-  <b>12 🔥</b>
-  <span>STREAK</span>
- </div>
-
- <div class="stat">
-  <b id="done">18</b>
-  <span>MISSIONS</span>
- </div>
-
+<div class="xp-card">
+<div class="row">
+<span class="level">LEVEL <span id="level">1</span></span>
+<span class="xp"><span id="xp">0</span> XP</span>
+</div>
+<div class="progress"><span id="xpBar"></span></div>
 </div>
 
-<div class="section">
-
- <div class="sectionhead">
-  <h2>Bugungi Challenge ⚡</h2>
-  <span class="xp">+50 XP</span>
- </div>
-
- <div class="card challenge">
-
-  <div>
-   <h3>20 daqiqa faol bo‘l</h3>
-
-   <p>
-    Yurish, yugurish yoki yengil mashqlarni bajaring.
-   </p>
-
-   <div class="progress">
-    <div class="bar" style="width:65%"></div>
-   </div>
-
-   <small style="color:var(--muted)">
-    13 / 20 daqiqa
-   </small>
-  </div>
-
-  <button class="reward" onclick="completeChallenge()">
-   +50 XP
-  </button>
-
- </div>
+<div class="streak-box">
+<div>
+<small style="color:var(--muted)">🔥 DAILY STREAK</small>
+<h3><span id="streak">1</span> kun</h3>
+</div>
+<strong>🔥</strong>
 </div>
 
-<div class="section">
-
- <div class="sectionhead">
-  <h2>Tezkor bo‘limlar</h2>
- </div>
-
- <div class="grid">
-
-  <div class="card tile" onclick="showTab('sport')">
-   <div class="emoji">🏃</div>
-   <h3>Sport</h3>
-   <p>
-    Athletics, weightlifting, workout va kuch yo‘nalishlari.
-   </p>
-   <span class="tag">TRAIN</span>
-  </div>
-
-  <div class="card tile" onclick="showTab('learn')">
-   <div class="emoji">🧠</div>
-   <h3>Learn</h3>
-   <p>
-    IT, English, bilim va foydali mini-darslar.
-   </p>
-   <span class="tag">LEARN</span>
-  </div>
-
-  <div class="card tile" onclick="showTab('games')">
-   <div class="emoji">🎮</div>
-   <h3>Games</h3>
-   <p>
-    Bilimingizni o‘yinlar va quizlar orqali sinang.
-   </p>
-   <span class="tag">PLAY</span>
-  </div>
-
- </div>
-</div>
-
-</section>
-
-
-<!-- SPORT -->
-<section id="sport" class="hidden">
-
-<div class="sectionhead">
- <h2>🏆 Sport Hub</h2>
- <button onclick="showTab('home')">Home</button>
+<div class="section-title">
+<h3>Bugungi yo‘nalishlar</h3>
+<span>EXPLORE</span>
 </div>
 
 <div class="grid">
-
- <div class="card tile" onclick="startSport('Yengil atletika')">
-  <div class="emoji">🏃‍♂️</div>
-  <h3>Yengil atletika</h3>
-  <p>
-   Yugurish, sakrash va uloqtirish yo‘nalishlari.
-  </p>
-  <span class="tag">ATHLETICS</span>
- </div>
-
- <div class="card tile" onclick="startSport('Og‘ir atletika')">
-  <div class="emoji">🏋️</div>
-  <h3>Og‘ir atletika</h3>
-  <p>
-   Kuch, texnika va xavfsiz mashg‘ulot asoslari.
-  </p>
-  <span class="tag">STRENGTH</span>
- </div>
-
- <div class="card tile" onclick="startSport('Workout')">
-  <div class="emoji">💪</div>
-  <h3>Workout</h3>
-  <p>
-   Uy va zal uchun umumiy mashg‘ulotlar.
-  </p>
-  <span class="tag">FITNESS</span>
- </div>
-
- <div class="card tile" onclick="startSport('Yadro uloqtirish')">
-  <div class="emoji">🥇</div>
-  <h3>Yadro uloqtirish</h3>
-  <p>
-   Texnika, tayyorgarlik va natijalarni kuzatish.
-  </p>
-  <span class="tag">THROWING</span>
- </div>
-
- <div class="card tile" onclick="startSport('Bosqon uloqtirish')">
-  <div class="emoji">🔨</div>
-  <h3>Bosqon uloqtirish</h3>
-  <p>
-   Uloqtirish sporti bo‘yicha bosqichma-bosqich darslar.
-  </p>
-  <span class="tag">THROWING</span>
- </div>
-
- <div class="card tile" onclick="startSport('Gym')">
-  <div class="emoji">🏟️</div>
-  <h3>Zal</h3>
-  <p>
-   Mashg‘ulotlarni rejalashtirish va progress.
-  </p>
-  <span class="tag">GYM</span>
- </div>
-
+<div class="card" onclick="showPage('learn')">
+<div class="icon">📚</div><h4>Learn</h4><p>Yangi bilimlarni o‘rganing</p>
 </div>
-
-<div class="section">
-
-<div class="sectionhead">
- <h2>🎬 Sport video darslari</h2>
-</div>
-
-<div class="list">
-
-<button onclick="lesson('Uloqtirish texnikasi')">
- <b>▶️ Uloqtirish texnikasi</b>
- <small>
-  Texnika asoslarini o‘rganish • 12 min
- </small>
-</button>
-
-<button onclick="lesson('Qizish va tayyorgarlik')">
- <b>▶️ Qizish va tayyorgarlik</b>
- <small>
-  Mashg‘ulotdan oldingi umumiy tayyorgarlik • 8 min
- </small>
-</button>
-
-<button onclick="lesson('Kuch mashg‘uloti asoslari')">
- <b>▶️ Kuch mashg‘uloti asoslari</b>
- <small>
-  To‘g‘ri texnika va xavfsizlik • 15 min
- </small>
-</button>
-
-</div>
-</div>
-
-</section>
-
-
-<!-- LEARN -->
-<section id="learn" class="hidden">
-
-<div class="sectionhead">
- <h2>🧠 Learn Hub</h2>
- <button onclick="showTab('home')">Home</button>
-</div>
-
-<div class="grid">
-
- <div class="card tile" onclick="lesson('English Sprint')">
-  <div class="emoji">🇬🇧</div>
-  <h3>English</h3>
-  <p>
-   Har kuni vocabulary va speaking mashqlari.
-  </p>
-  <span class="tag">12 LESSONS</span>
- </div>
-
- <div class="card tile" onclick="lesson('IT Start')">
-  <div class="emoji">💻</div>
-  <h3>IT Start</h3>
-  <p>
-   Kompyuter, web va dasturlash asoslariga kirish.
-  </p>
-  <span class="tag">8 LESSONS</span>
- </div>
-
- <div class="card tile" onclick="lesson('Cyber Basics')">
-  <div class="emoji">🛡️</div>
-  <h3>Cyber Basics</h3>
-  <p>
-   Internet xavfsizligi va raqamli savodxonlik.
-  </p>
-  <span class="tag">10 LESSONS</span>
- </div>
-
- <div class="card tile" onclick="lesson('Business')">
-  <div class="emoji">📈</div>
-  <h3>Business</h3>
-  <p>
-   G‘oya, jamoa va kichik loyiha asoslari.
-  </p>
-  <span class="tag">6 LESSONS</span>
- </div>
-
- <div class="card tile" onclick="lesson('Huquq asoslari')">
-  <div class="emoji">⚖️</div>
-  <h3>Huquq</h3>
-  <p>
-   Kundalik hayotda kerak bo‘ladigan asosiy tushunchalar.
-  </p>
-  <span class="tag">7 LESSONS</span>
- </div>
-
- <div class="card tile" onclick="lesson('AI Basics')">
-  <div class="emoji">🤖</div>
-  <h3>AI Basics</h3>
-  <p>
-   Sun’iy intellekt va undan foydali foydalanish.
-  </p>
-  <span class="tag">9 LESSONS</span>
- </div>
-
-</div>
-
-</section>
-
-
-<!-- GAMES -->
-<section id="games" class="hidden">
-
-<div class="sectionhead">
- <h2>🎮 Games Arena</h2>
- <button onclick="showTab('home')">Home</button>
-</div>
-
-<div class="grid">
-
- <div class="card tile" onclick="quiz()">
-  <div class="emoji">🧩</div>
-  <h3>Quick Quiz</h3>
-  <p>
-   Savollarga javob berib XP yig‘ing.
-  </p>
-  <span class="tag">+30 XP</span>
- </div>
-
- <div class="card tile" onclick="memoryGame()">
-  <div class="emoji">🧠</div>
-  <h3>Memory</h3>
-  <p>
-   Belgilarni eslab qolish challenge.
-  </p>
-  <span class="tag">+20 XP</span>
- </div>
-
- <div class="card tile" onclick="reaction()">
-  <div class="emoji">⚡</div>
-  <h3>Reaction</h3>
-  <p>
-   Tezlik va diqqatni sinab ko‘ring.
-  </p>
-  <span class="tag">+25 XP</span>
- </div>
-
-</div>
-
-<div class="card" style="margin-top:15px">
-
-<h3>🏅 Bugungi reyting</h3>
-
-<div class="list" style="margin-top:10px">
-
-<button>
- <b>🥇 ANVEX Player</b>
- <small>1,240 XP</small>
-</button>
-
-<button>
- <b>🥈 Smart Runner</b>
- <small>1,080 XP</small>
-</button>
-
-<button>
- <b>🥉 Knowledge Pro</b>
- <small>960 XP</small>
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- PROFILE -->
-<section id="profile" class="hidden">
-
-<div class="sectionhead">
- <h2>👤 Profile</h2>
- <button onclick="editProfile()">Edit</button>
-</div>
-
-<div class="card">
-
-<h2 id="profileName">ANVEX Player</h2>
-
-<p style="color:var(--muted);margin-top:5px">
- Level <span id="profileLevel">7</span>
- •
- <span id="profileXP">680</span> XP
-</p>
-
-<div class="progress">
- <div class="bar" id="profileBar" style="width:68%"></div>
-</div>
-
-</div>
-
-<div class="section grid">
-
- <div class="card tile">
-  <div class="emoji">🥉</div>
-  <h3>Bronze</h3>
-  <p>1 hafta faoliyat</p>
- </div>
-
- <div class="card tile">
-  <div class="emoji">🥈</div>
-  <h3>Silver</h3>
-  <p>1 oy faoliyat</p>
- </div>
-
- <div class="card tile">
-  <div class="emoji">🥇</div>
-  <h3>Gold</h3>
-  <p>6 oy faoliyat</p>
- </div>
-
- <div class="card tile">
-  <div class="emoji">💎</div>
-  <h3>Elite</h3>
-  <p>1 yil + certificate</p>
- </div>
-
-</div>
-
-</section>
-
-</main>
-</div>
-
-
-<!-- BOTTOM NAV -->
-<nav class="nav">
-
-<div class="navin">
-
-<button class="active" data-tab="home"
- onclick="showTab('home')">
- <span>⌂</span>
- Home
-</button>
-
-<button data-tab="sport"
- onclick="showTab('sport')">
- <span>🏃</span>
- Sport
-</button>
-
-<button data-tab="learn"
- onclick="showTab('learn')">
- <span>📚</span>
- Learn
-</button>
-
-<button data-tab="games"
- onclick="showTab('games')">
- <span>🎮</span>
- Games
-</button>
-
-<button data-tab="profile"
- onclick="showTab('profile')">
- <span>👤</span>
- Profile
-</button>
-
-</div>
-</nav>
-
-
-<!-- MODAL -->
-<div class="modal" id="modal">
-
-<div class="modalbox">
-
-<button class="close" onclick="closeModal()">✕</button>
-
-<div id="modalContent"></div>
-
-</div>
-</div>
-
-
-<div class="toast" id="toast"></div>
-
-
-<script>
-
-let state =
- JSON.parse(localStorage.getItem("anvex_state") || "null")
- ||
- {
-  name:"ANVEX Player",
-  xp:680,
-  done:18,
-  challenge:false
- };
-
-
-function save(){
- localStorage.setItem(
-  "anvex_state",
-  JSON.stringify(state)
- );
-}
-
-
-function getLevel(){
- return Math.floor(state.xp/100)+1;
-}
-
-
-function refresh(){
-
- document.getElementById("xp").textContent =
-  state.xp;
-
- document.getElementById("level").textContent =
-  getLevel();
-
- document.getElementById("done").textContent =
-  state.done;
-
- document.getElementById("profileName").textContent =
-  state.name;
-
- document.getElementById("profileLevel").textContent =
-  getLevel();
-
- document.getElementById("profileXP").textContent =
-  state.xp;
-
- let percent=state.xp%100;
-
- if(percent===0)percent=100;
-
- document.getElementById("profileBar").style.width =
-  percent+"%";
-}
-
-
-function toast(text){
-
- let e=document.getElementById("toast");
-
- e.textContent=text;
-
- e.classList.add("show");
-
- setTimeout(
-  ()=>e.classList.remove("show"),
-  2200
- );
-}
-
-
-function showTab(tab){
-
- document.querySelectorAll("main>section")
- .forEach(
-  s=>s.classList.add("hidden")
- );
-
- document.getElementById(tab)
- .classList.remove("hidden");
-
- document.querySelectorAll(".nav button")
- .forEach(
-  b=>b.classList.toggle(
-   "active",
-   b.dataset.tab===tab
-  )
- );
-
- window.scrollTo({
-  top:0,
-  behavior:"smooth"
- });
-
- refresh();
-}
-
-
-function completeChallenge(){
-
- if(state.challenge){
-
-  toast("Challenge allaqachon bajarilgan ✅");
-
-  return;
- }
-
- state.xp+=50;
- state.done++;
- state.challenge=true;
-
- save();
- refresh();
-
- toast("+50 XP! Challenge bajarildi 🔥");
-}
-
-
-function openModal(html){
-
- document.getElementById("modalContent")
- .innerHTML=html;
-
- document.getElementById("modal")
- .classList.add("open");
-}
-
-
-function closeModal(){
-
- document.getElementById("modal")
- .classList.remove("open");
-
-}
-
-
-function startSport(name){
-
- openModal(`
-
- <h2>🏆 ${name}</h2>
-
- <p style="
- color:#91a4bd;
- margin:12px 0 18px;
- line-height:1.5;
- ">
- Bu yo‘nalish uchun mashg‘ulotlar,
- darslar va progress tizimi tayyorlanadi.
- </p>
-
- <button
- class="primary"
- onclick="addXP();closeModal()">
-
- Mashg‘ulotni boshlash +20 XP
-
- </button>
-
- `);
-
-}
-
-
-function lesson(name){
-
- openModal(`
-
- <h2>🎬 ${name}</h2>
-
- <p style="
- color:#91a4bd;
- margin:12px 0;
- line-height:1.5;
- ">
-
- Video dars oynasi.
- Keyinchalik bu joyga tanlangan
- video dars manbalari ulanadi.
-
- </p>
-
- <button
- class="primary"
- onclick="addXP();closeModal()">
-
- Darsni boshlash +10 XP
-
- </button>
-
- `);
-
-}
-
-
-function addXP(){
-
- state.xp+=10;
-
- save();
- refresh();
-
- toast("+10 XP olindi ⚡");
-}
-
-
-function quiz(){
-
- let answer=
- prompt(
-  "Savol: 5 + 7 nechaga teng?"
- );
-
- if(answer===null)return;
-
- if(answer.trim()==="12"){
-
-  state.xp+=30;
-
-  toast("To‘g‘ri! +30 XP 🧠");
-
- }else{
-
-  toast("Keyingi safar albatta 💪");
-
- }
-
- save();
- refresh();
-}
-
-
-function memoryGame(){
-
- openModal(`
-
- <h2>🧠 Memory Challenge</h2>
-
- <p style="
- margin:12px 0;
- color:#91a4bd;
- ">
-
- Belgilarni eslab qoling:
-
- </p>
-
- <h1 style="
- text-align:center;
- margin:22px;
- ">
-
- 🏃 ⚡ 🏆
-
- </h1>
-
- <button
- class="primary"
- onclick="addXP();closeModal()">
-
- Esladim +20 XP
-
- </button>
-
- `);
-
-}
-
-
-function reaction(){
-
- openModal(`
-
- <h2>⚡ Reaction</h2>
-
- <p style="
- color:#91a4bd;
- margin:12px 0;
- ">
-
- Tugmani imkon qadar tez bosing.
-
- </p>
-
- <button
- class="primary"
- onclick="addXP();closeModal()">
-
- ⚡ BOSISH
-
- </button>
-
- `);
-
-}
-
-
-function editProfile(){
-
- openModal(`
-
- <h2>✏️ Profil</h2>
-
- <input
-  id="nameInput"
-  value="${state.name}"
-  placeholder="Ismingiz"
- >
-
- <button
-  class="primary"
-  onclick="saveProfile()">
-
- Saqlash
-
- </button>
-
- `);
-
-}
-
-
-function saveProfile(){
-
- let name=
- document.getElementById("nameInput")
- .value.trim();
-
- if(name){
-  state.name=name;
- }
-
- save();
-
- closeModal();
- refresh();
-
- toast("Profil saqlandi ✅");
-}
-
-
-refresh();
-
-</script>
-
-</body>
-</html>
+<div class="card" onclick="showPage('games')">
+<div class="icon">🎮</div><h4>Games</h4><p>O
