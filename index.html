@@ -3,336 +3,1075 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#050807">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050708">
 <title>ANVEX.QE — Learn • Play • Grow</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+
 :root{
---bg:#030605;--card:#0b1210;--card2:#101a16;
---green:#42ff9b;--green2:#16d879;--blue:#4da6ff;
---purple:#9b6cff;--yellow:#ffd84d;--red:#ff5f70;
---cyan:#45e6ff;--text:#f4fff9;--muted:#84948c;
---line:rgba(255,255,255,.08)
+  --bg:#030506;
+  --bg2:#07100c;
+  --card:#0b1410;
+  --card2:#101c17;
+  --green:#43ff9c;
+  --green2:#18d878;
+  --blue:#4ca7ff;
+  --purple:#a36cff;
+  --cyan:#48e7ff;
+  --yellow:#ffd84d;
+  --red:#ff5f70;
+  --orange:#ff9d4d;
+  --text:#f3fff8;
+  --muted:#81938a;
+  --line:rgba(255,255,255,.08);
 }
+
 html{scroll-behavior:smooth}
+
 body{
-font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
-background:
-radial-gradient(circle at 5% 0%,rgba(66,255,155,.13),transparent 27%),
-radial-gradient(circle at 100% 10%,rgba(155,108,255,.15),transparent 30%),
-radial-gradient(circle at 50% 100%,rgba(77,166,255,.08),transparent 35%),
-var(--bg);
-color:var(--text);min-height:100vh;overflow-x:hidden
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 0% 0%,rgba(67,255,156,.12),transparent 25%),
+    radial-gradient(circle at 100% 0%,rgba(163,108,255,.13),transparent 28%),
+    radial-gradient(circle at 50% 100%,rgba(76,167,255,.08),transparent 32%),
+    var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
 }
-button,input{font:inherit}
-button{cursor:pointer}
-button:active{transform:scale(.96)}
-.app{max-width:540px;min-height:100vh;margin:auto;padding-bottom:105px}
 
-/* LOGIN */
+button,input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+button:active{
+  transform:scale(.97);
+}
+
+/* =========================
+   LOGIN
+========================= */
+
 .login{
-min-height:100vh;display:flex;align-items:center;justify-content:center;
-padding:22px;position:relative;overflow:hidden
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  position:relative;
+  overflow:hidden;
 }
-.login:before,.login:after{
-content:"";position:absolute;border-radius:50%;filter:blur(3px);pointer-events:none
-}
-.login:before{
-width:250px;height:250px;background:rgba(66,255,155,.09);
-top:-100px;left:-90px
-}
+
+.login:before,
 .login:after{
-width:260px;height:260px;background:rgba(155,108,255,.10);
-right:-100px;bottom:-100px
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  filter:blur(40px);
+  opacity:.35;
+  pointer-events:none;
 }
+
+.login:before{
+  background:var(--green);
+  top:-160px;
+  left:-130px;
+}
+
+.login:after{
+  background:var(--purple);
+  bottom:-170px;
+  right:-140px;
+}
+
 .login-box{
-position:relative;width:100%;padding:32px 22px;border-radius:32px;
-border:1px solid var(--line);background:rgba(10,17,14,.91);
-backdrop-filter:blur(22px);box-shadow:0 30px 100px rgba(0,0,0,.65)
+  width:100%;
+  max-width:470px;
+  padding:34px 23px;
+  border-radius:34px;
+  background:rgba(8,15,12,.88);
+  border:1px solid var(--line);
+  backdrop-filter:blur(25px);
+  box-shadow:0 30px 100px rgba(0,0,0,.65);
+  position:relative;
+  z-index:2;
 }
-.logo{text-align:center;margin-bottom:26px}
+
+.logo{
+  text-align:center;
+  margin-bottom:28px;
+}
+
 .logo h1{
-font-size:49px;letter-spacing:6px;font-weight:950;
-background:linear-gradient(90deg,var(--green),#fff,var(--cyan),var(--purple));
--webkit-background-clip:text;color:transparent
+  font-size:53px;
+  font-weight:1000;
+  letter-spacing:5px;
+  background:linear-gradient(
+    90deg,
+    var(--green),
+    white,
+    var(--cyan),
+    var(--purple)
+  );
+  -webkit-background-clip:text;
+  color:transparent;
 }
-.logo p{color:var(--muted);margin-top:5px;font-size:13px}
+
+.logo p{
+  color:var(--muted);
+  margin-top:5px;
+  font-size:13px;
+}
+
 .logo .tag{
-display:inline-block;margin-top:12px;padding:6px 11px;border-radius:30px;
-background:rgba(66,255,155,.08);border:1px solid rgba(66,255,155,.15);
-color:var(--green);font-size:10px;font-weight:900;letter-spacing:1px
+  display:inline-block;
+  margin-top:13px;
+  padding:7px 12px;
+  border-radius:30px;
+  border:1px solid rgba(67,255,156,.2);
+  background:rgba(67,255,156,.08);
+  color:var(--green);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.2px;
 }
-.field{margin:11px 0}
-.field input,.search,.ai-input input{
-width:100%;padding:15px 16px;border:1px solid var(--line);
-border-radius:16px;outline:none;color:white;background:#08100d
+
+.field{
+  margin:11px 0;
 }
-.field input:focus,.search:focus,.ai-input input:focus{
-border-color:var(--green);box-shadow:0 0 0 3px rgba(66,255,155,.07)
+
+.field input{
+  width:100%;
+  padding:16px;
+  border-radius:17px;
+  border:1px solid var(--line);
+  outline:none;
+  background:#07100c;
+  color:white;
 }
+
+.field input:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 3px rgba(67,255,156,.07);
+}
+
 .primary{
-border:0;border-radius:16px;padding:15px;color:#031008;
-background:linear-gradient(135deg,var(--green),var(--green2));
-font-weight:950;box-shadow:0 10px 35px rgba(66,255,155,.18)
+  border:0;
+  color:#031008;
+  font-weight:950;
+  padding:15px 18px;
+  border-radius:16px;
+  background:linear-gradient(135deg,var(--green),var(--green2));
+  box-shadow:0 10px 35px rgba(67,255,156,.16);
 }
-.login .primary{width:100%;margin-top:8px}
-.small-note{text-align:center;color:var(--muted);font-size:11px;margin-top:15px}
 
-/* HEADER */
+.login .primary{
+  width:100%;
+  margin-top:8px;
+}
+
+.small-note{
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:15px;
+}
+
+/* =========================
+   APP
+========================= */
+
+.app{
+  width:100%;
+  max-width:560px;
+  min-height:100vh;
+  margin:auto;
+  padding-bottom:105px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
 .top{
-padding:19px 17px 9px;display:flex;justify-content:space-between;align-items:center
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 17px 9px;
 }
-.brand{font-size:25px;font-weight:950;letter-spacing:2px}
-.brand span{color:var(--green)}
-.qe{color:var(--purple)!important}
+
+.brand{
+  font-size:25px;
+  font-weight:1000;
+  letter-spacing:2px;
+}
+
+.brand span{
+  color:var(--green);
+}
+
 .avatar{
-width:43px;height:43px;border:1px solid rgba(255,255,255,.15);
-border-radius:50%;display:grid;place-items:center;
-background:linear-gradient(135deg,var(--green),var(--blue));
-color:#041008;font-weight:950
+  width:44px;
+  height:44px;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--green),var(--blue));
+  color:#041008;
+  font-weight:1000;
 }
 
-/* PAGE */
-.page{display:none;padding:8px 16px;animation:fade .28s ease}
-.page.active{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.greeting{margin:12px 0 17px}
-.greeting small{color:var(--muted)}
-.greeting h2{font-size:29px;margin-top:4px}
+/* =========================
+   PAGES
+========================= */
 
-/* HERO */
+.page{
+  display:none;
+  padding:8px 16px;
+  animation:pageIn .28s ease;
+}
+
+.page.active{
+  display:block;
+}
+
+@keyframes pageIn{
+  from{
+    opacity:0;
+    transform:translateY(8px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.greeting{
+  margin:13px 0 17px;
+}
+
+.greeting small{
+  color:var(--muted);
+}
+
+.greeting h2{
+  font-size:29px;
+  margin-top:4px;
+}
+
+/* =========================
+   HERO
+========================= */
+
 .hero{
-position:relative;overflow:hidden;padding:23px;border-radius:27px;min-height:220px;
-background:
-radial-gradient(circle at 85% 5%,rgba(155,108,255,.32),transparent 35%),
-radial-gradient(circle at 100% 100%,rgba(66,255,155,.15),transparent 40%),
-linear-gradient(135deg,#10271b,#08110d);
-border:1px solid rgba(66,255,155,.14)
+  position:relative;
+  overflow:hidden;
+  min-height:245px;
+  padding:24px;
+  border-radius:28px;
+  border:1px solid rgba(67,255,156,.14);
+  background:
+    radial-gradient(circle at 90% 5%,rgba(163,108,255,.35),transparent 35%),
+    radial-gradient(circle at 100% 100%,rgba(67,255,156,.18),transparent 40%),
+    linear-gradient(135deg,#10271b,#07100c);
 }
+
 .hero:after{
-content:"✦";position:absolute;right:20px;bottom:4px;
-font-size:100px;color:rgba(255,255,255,.035);transform:rotate(15deg)
+  content:"✦";
+  position:absolute;
+  right:17px;
+  bottom:-15px;
+  font-size:120px;
+  color:rgba(255,255,255,.035);
+  transform:rotate(15deg);
 }
+
 .badge{
-display:inline-block;padding:6px 10px;border-radius:30px;
-background:rgba(66,255,155,.1);color:var(--green);
-font-size:10px;font-weight:900;letter-spacing:.7px
+  display:inline-block;
+  padding:7px 11px;
+  border-radius:30px;
+  background:rgba(67,255,156,.1);
+  color:var(--green);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.8px;
 }
-.hero h2{font-size:28px;margin:12px 0 7px;max-width:370px}
-.hero p{color:#b9c8c1;line-height:1.5;max-width:370px;font-size:13px}
-.hero .primary{margin-top:16px;padding:11px 17px}
 
-/* XP */
+.hero h2{
+  font-size:29px;
+  margin:13px 0 7px;
+  max-width:390px;
+}
+
+.hero p{
+  color:#b7c9c0;
+  font-size:13px;
+  line-height:1.55;
+  max-width:390px;
+}
+
+.hero .primary{
+  margin-top:17px;
+  padding:12px 17px;
+}
+
+/* =========================
+   XP
+========================= */
+
 .xp-card{
-margin-top:14px;padding:17px;border:1px solid var(--line);
-background:linear-gradient(145deg,var(--card),#07100c);border-radius:22px
+  margin-top:13px;
+  padding:17px;
+  border-radius:22px;
+  border:1px solid var(--line);
+  background:linear-gradient(145deg,var(--card),#07100c);
 }
-.row{display:flex;justify-content:space-between;align-items:center}
-.level{font-weight:950}
-.xp{color:var(--green);font-size:13px;font-weight:800}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.level{
+  font-weight:950;
+}
+
+.xp{
+  color:var(--green);
+  font-size:13px;
+  font-weight:850;
+}
+
 .progress{
-width:100%;height:9px;margin-top:11px;border-radius:20px;
-background:#202a25;overflow:hidden
+  height:9px;
+  width:100%;
+  margin-top:11px;
+  border-radius:20px;
+  background:#202a25;
+  overflow:hidden;
 }
+
 .progress span{
-display:block;height:100%;width:0;border-radius:20px;
-background:linear-gradient(90deg,var(--green),var(--blue),var(--purple));
-transition:.55s
+  display:block;
+  width:0;
+  height:100%;
+  border-radius:20px;
+  background:linear-gradient(
+    90deg,
+    var(--green),
+    var(--blue),
+    var(--purple)
+  );
+  transition:.55s;
 }
 
-/* SECTION */
-.section-title{
-display:flex;justify-content:space-between;align-items:center;margin:23px 0 12px
-}
-.section-title h3{font-size:19px}
-.section-title span{color:var(--green);font-size:11px;font-weight:800}
-
-/* CARDS */
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.card{
-padding:17px;border-radius:20px;border:1px solid var(--line);
-background:linear-gradient(145deg,var(--card),#07100d);
-transition:.2s;position:relative;overflow:hidden
-}
-.card:hover{border-color:rgba(66,255,155,.22);transform:translateY(-2px)}
-.icon{font-size:27px;margin-bottom:12px}
-.card h4{font-size:15px}
-.card p{color:var(--muted);font-size:12px;margin-top:5px;line-height:1.4}
-
-/* LIST */
-.list{display:grid;gap:9px}
-.list-item{
-display:flex;align-items:center;gap:13px;padding:14px;border-radius:18px;
-background:var(--card);border:1px solid var(--line);transition:.2s
-}
-.list-item.done{opacity:.55;border-color:rgba(66,255,155,.25)}
-.list-item.done .arrow{color:var(--green)}
-.list-icon{
-width:43px;height:43px;display:grid;place-items:center;border-radius:14px;
-background:#17231e;font-size:20px;flex-shrink:0
-}
-.list-main{flex:1}
-.list-main strong{display:block;font-size:14px}
-.list-main small{color:var(--muted)}
-.arrow{color:var(--green);font-size:22px}
-
-/* LEARN */
-.search{margin-bottom:12px}
-.category{
-padding:17px;border-radius:21px;border:1px solid var(--line);margin-bottom:10px;
-background:linear-gradient(135deg,#0d1713,#090f0d)
-}
-.category-head{display:flex;gap:12px;align-items:center}
-.category-icon{
-width:46px;height:46px;display:grid;place-items:center;border-radius:14px;
-background:#15241d;font-size:23px;flex-shrink:0
-}
-.category h3{font-size:16px}
-.category p{color:var(--muted);font-size:12px;margin-top:3px}
-.play{
-margin-top:12px;padding:9px 14px;border:0;border-radius:11px;
-background:white;color:#08100c;font-weight:850
-}
-
-/* GAME */
-.game{min-height:165px}
-.game:nth-child(1){background:linear-gradient(135deg,#11281c,#0b1511)}
-.game:nth-child(2){background:linear-gradient(135deg,#17132c,#0d101c)}
-.game:nth-child(3){background:linear-gradient(135deg,#241c0d,#11100b)}
-.game:nth-child(4){background:linear-gradient(135deg,#101f2e,#0a1117)}
-
-/* AI */
-.ai-box{min-height:510px;display:flex;flex-direction:column}
-.ai-messages{flex:1;overflow:auto;padding-bottom:10px}
-.message{
-max-width:88%;padding:12px 14px;border-radius:16px;margin-bottom:9px;
-font-size:13px;line-height:1.45
-}
-.ai-message{background:#13221b;border:1px solid var(--line)}
-.user-message{margin-left:auto;background:#18352a}
-.ai-input{display:flex;gap:7px;margin-top:10px}
-.ai-input input{flex:1}
-.ai-input button{
-width:49px;border:0;border-radius:14px;background:var(--green);font-weight:950
-}
-
-/* PROFILE */
-.profile-head{text-align:center;padding:15px 0 23px}
-.big-avatar{
-width:88px;height:88px;border-radius:28px;display:grid;place-items:center;
-margin:auto;background:linear-gradient(135deg,var(--green),var(--blue));
-color:#06100a;font-size:29px;font-weight:950
-}
-.profile-head h2{margin-top:12px}
-.profile-head p{color:var(--muted);margin-top:3px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-.stat{text-align:center;padding:15px 5px;background:var(--card);border:1px solid var(--line);border-radius:17px}
-.stat strong{display:block;font-size:20px}
-.stat small{color:var(--muted);font-size:10px}
-
-/* REWARDS */
-.achievement.locked{opacity:.45}
-.medal{
-font-size:43px;margin-bottom:7px
-}
-
-/* MODAL */
-.modal{
-position:fixed;inset:0;z-index:50;display:none;align-items:flex-end;
-justify-content:center;background:rgba(0,0,0,.75);backdrop-filter:blur(9px)
-}
-.modal.show{display:flex}
-.modal-box{
-width:min(540px,100%);max-height:90vh;overflow:auto;padding:22px;
-border-radius:28px 28px 0 0;background:#0a120f;border:1px solid var(--line)
-}
-.modal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-.close{
-width:35px;height:35px;border:0;border-radius:50%;background:#1b2420;color:white
-}
-.question{font-size:21px;font-weight:900;line-height:1.35;margin-bottom:17px}
-.answers{display:grid;gap:10px}
-.answer{
-padding:14px;text-align:left;border:1px solid var(--line);
-border-radius:15px;background:#101a16;color:white
-}
-.answer:hover{border-color:var(--green)}
-.result{text-align:center;padding:20px 5px}
-.result .big{font-size:60px}
-
-/* BOTTOM */
-.bottom-nav{
-position:fixed;z-index:20;bottom:9px;left:50%;transform:translateX(-50%);
-width:min(500px,calc(100% - 18px));padding:8px;border:1px solid rgba(255,255,255,.09);
-background:rgba(8,14,11,.93);backdrop-filter:blur(20px);border-radius:23px;
-display:grid;grid-template-columns:repeat(5,1fr);box-shadow:0 15px 50px rgba(0,0,0,.6)
-}
-.nav-btn{
-border:0;background:transparent;color:#718078;padding:8px 3px;border-radius:16px;
-font-size:10px
-}
-.nav-btn div{font-size:20px;margin-bottom:3px}
-.nav-btn.active{color:var(--green);background:rgba(66,255,155,.08)}
-
-/* TOAST */
-.toast{
-position:fixed;z-index:100;top:20px;left:50%;
-transform:translateX(-50%) translateY(-120px);
-background:#eafff3;color:#06120a;padding:12px 17px;border-radius:14px;
-font-size:13px;font-weight:900;transition:.3s;box-shadow:0 10px 35px #000
-}
-.toast.show{transform:translateX(-50%) translateY(0)}
-.creator{text-align:center;color:#52625a;font-size:10px;margin:30px 0 5px}
+/* =========================
+   STREAK
+========================= */
 
 .streak-box{
-display:flex;align-items:center;justify-content:space-between;
-padding:15px 17px;border-radius:20px;background:linear-gradient(135deg,#24150e,#10100b);
-border:1px solid rgba(255,216,77,.13);margin-top:12px
+  margin-top:12px;
+  padding:16px 18px;
+  border-radius:21px;
+  border:1px solid rgba(255,216,77,.12);
+  background:linear-gradient(135deg,#26170c,#11100b);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
-.streak-box strong{color:var(--yellow);font-size:20px}
 
-@media(max-width:370px){
-.hero h2{font-size:24px}.brand{font-size:21px}.grid{gap:8px}
+.streak-box small{
+  color:var(--muted);
+}
+
+.streak-box h3{
+  margin-top:3px;
+}
+
+.streak-box strong{
+  color:var(--yellow);
+  font-size:25px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:24px 0 12px;
+}
+
+.section-title h3{
+  font-size:19px;
+}
+
+.section-title span{
+  color:var(--green);
+  font-size:10px;
+  font-weight:900;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.card{
+  position:relative;
+  overflow:hidden;
+  padding:17px;
+  border-radius:21px;
+  border:1px solid var(--line);
+  background:linear-gradient(145deg,var(--card),#07100d);
+  transition:.2s;
+}
+
+.card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(67,255,156,.23);
+}
+
+.icon{
+  font-size:28px;
+  margin-bottom:11px;
+}
+
+.card h4{
+  font-size:15px;
+}
+
+.card p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.45;
+  margin-top:5px;
+}
+
+/* =========================
+   QUICK ACTION
+========================= */
+
+.quick{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+
+.quick button{
+  min-height:78px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#0b1511;
+  color:white;
+}
+
+.quick button div{
+  font-size:23px;
+  margin-bottom:4px;
+}
+
+.quick button small{
+  color:var(--muted);
+  font-size:9px;
+}
+
+/* =========================
+   LIST
+========================= */
+
+.list{
+  display:grid;
+  gap:9px;
+}
+
+.list-item{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:14px;
+  border-radius:18px;
+  border:1px solid var(--line);
+  background:var(--card);
+  transition:.2s;
+}
+
+.list-item:hover{
+  border-color:rgba(67,255,156,.2);
+}
+
+.list-item.done{
+  opacity:.55;
+}
+
+.list-icon{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:#17231e;
+  font-size:20px;
+  flex-shrink:0;
+}
+
+.list-main{
+  flex:1;
+}
+
+.list-main strong{
+  display:block;
+  font-size:14px;
+}
+
+.list-main small{
+  color:var(--muted);
+}
+
+.arrow{
+  color:var(--green);
+  font-size:22px;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search{
+  width:100%;
+  padding:15px 16px;
+  border-radius:17px;
+  border:1px solid var(--line);
+  background:#07100c;
+  color:white;
+  outline:none;
+  margin-bottom:12px;
+}
+
+.search:focus{
+  border-color:var(--green);
+}
+
+/* =========================
+   CATEGORY
+========================= */
+
+.category{
+  padding:17px;
+  margin-bottom:10px;
+  border-radius:21px;
+  border:1px solid var(--line);
+  background:linear-gradient(135deg,#0d1713,#090f0d);
+}
+
+.category-head{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.category-icon{
+  width:48px;
+  height:48px;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  background:#15241d;
+  font-size:23px;
+  flex-shrink:0;
+}
+
+.category h3{
+  font-size:16px;
+}
+
+.category p{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+}
+
+.play{
+  margin-top:12px;
+  padding:9px 14px;
+  border:0;
+  border-radius:12px;
+  background:white;
+  color:#07100b;
+  font-weight:900;
+}
+
+/* =========================
+   GAME
+========================= */
+
+.game{
+  min-height:180px;
+}
+
+.game:nth-child(1){
+  background:linear-gradient(135deg,#11281c,#0b1511);
+}
+
+.game:nth-child(2){
+  background:linear-gradient(135deg,#17132c,#0d101c);
+}
+
+.game:nth-child(3){
+  background:linear-gradient(135deg,#281c0d,#11100b);
+}
+
+.game:nth-child(4){
+  background:linear-gradient(135deg,#10212f,#0a1117);
+}
+
+.game:nth-child(5){
+  background:linear-gradient(135deg,#2a1118,#100b0e);
+}
+
+.game:nth-child(6){
+  background:linear-gradient(135deg,#14152b,#0a0d15);
+}
+
+/* =========================
+   AI
+========================= */
+
+.ai-box{
+  min-height:540px;
+  display:flex;
+  flex-direction:column;
+}
+
+.ai-messages{
+  flex:1;
+  overflow:auto;
+  padding-bottom:10px;
+}
+
+.message{
+  max-width:88%;
+  padding:12px 14px;
+  border-radius:17px;
+  margin-bottom:9px;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.ai-message{
+  background:#13221b;
+  border:1px solid var(--line);
+}
+
+.user-message{
+  margin-left:auto;
+  background:#18352a;
+}
+
+.ai-input{
+  display:flex;
+  gap:7px;
+  margin-top:10px;
+}
+
+.ai-input input{
+  flex:1;
+  width:100%;
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:#07100c;
+  color:white;
+  outline:none;
+}
+
+.ai-input button{
+  width:50px;
+  border:0;
+  border-radius:15px;
+  background:var(--green);
+  font-weight:1000;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile-head{
+  text-align:center;
+  padding:15px 0 23px;
+}
+
+.big-avatar{
+  width:92px;
+  height:92px;
+  border-radius:30px;
+  display:grid;
+  place-items:center;
+  margin:auto;
+  background:linear-gradient(135deg,var(--green),var(--blue));
+  color:#06100a;
+  font-size:30px;
+  font-weight:1000;
+}
+
+.profile-head h2{
+  margin-top:12px;
+}
+
+.profile-head p{
+  color:var(--muted);
+  margin-top:3px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.stat{
+  text-align:center;
+  padding:15px 5px;
+  border-radius:17px;
+  border:1px solid var(--line);
+  background:var(--card);
+}
+
+.stat strong{
+  display:block;
+  font-size:20px;
+}
+
+.stat small{
+  color:var(--muted);
+  font-size:10px;
+}
+
+/* =========================
+   REWARDS
+========================= */
+
+.medal{
+  font-size:42px;
+  margin-bottom:7px;
+}
+
+.achievement.locked{
+  opacity:.4;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:60;
+  display:none;
+  justify-content:center;
+  align-items:flex-end;
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(9px);
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(560px,100%);
+  max-height:91vh;
+  overflow:auto;
+  padding:22px;
+  border-radius:29px 29px 0 0;
+  background:#0a120f;
+  border:1px solid var(--line);
+}
+
+.modal-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.close{
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:50%;
+  background:#1b2420;
+  color:white;
+  font-size:20px;
+}
+
+.question{
+  font-size:21px;
+  font-weight:900;
+  line-height:1.4;
+  margin-bottom:17px;
+}
+
+.answers{
+  display:grid;
+  gap:10px;
+}
+
+.answer{
+  padding:15px;
+  text-align:left;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:#101a16;
+  color:white;
+}
+
+.answer:hover{
+  border-color:var(--green);
+}
+
+.result{
+  text-align:center;
+  padding:20px 5px;
+}
+
+.result .big{
+  font-size:62px;
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav{
+  position:fixed;
+  z-index:30;
+  left:50%;
+  bottom:9px;
+  transform:translateX(-50%);
+  width:min(520px,calc(100% - 18px));
+  padding:8px;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.09);
+  background:rgba(8,14,11,.94);
+  backdrop-filter:blur(20px);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  box-shadow:0 15px 50px rgba(0,0,0,.65);
+}
+
+.nav-btn{
+  border:0;
+  background:transparent;
+  color:#718078;
+  padding:8px 3px;
+  border-radius:16px;
+  font-size:10px;
+}
+
+.nav-btn div{
+  font-size:20px;
+  margin-bottom:3px;
+}
+
+.nav-btn.active{
+  color:var(--green);
+  background:rgba(67,255,156,.08);
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+  z-index:100;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%) translateY(-130px);
+  padding:12px 17px;
+  border-radius:14px;
+  background:#eafff3;
+  color:#06120a;
+  font-size:13px;
+  font-weight:950;
+  transition:.3s;
+  box-shadow:0 10px 35px #000;
+  white-space:nowrap;
+}
+
+.toast.show{
+  transform:translateX(-50%) translateY(0);
+}
+
+.creator{
+  text-align:center;
+  color:#52625a;
+  font-size:10px;
+  margin:30px 0 5px;
+}
+
+/* =========================
+   SPECIAL
+========================= */
+
+.info-box{
+  padding:16px;
+  border-radius:20px;
+  border:1px solid rgba(67,255,156,.12);
+  background:linear-gradient(135deg,#0d1d15,#09100d);
+  margin-top:12px;
+}
+
+.info-box strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.info-box p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
+.rank-card{
+  padding:17px;
+  border-radius:21px;
+  border:1px solid rgba(163,108,255,.18);
+  background:linear-gradient(135deg,#17102a,#0c0d15);
+}
+
+.rank-number{
+  font-size:34px;
+  font-weight:1000;
+  color:var(--purple);
+}
+
+.challenge-card{
+  padding:19px;
+  border-radius:23px;
+  border:1px solid rgba(255,95,112,.15);
+  background:linear-gradient(135deg,#291017,#110b0e);
+}
+
+.challenge-card h3{
+  margin:8px 0;
+}
+
+.challenge-card p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
+.chip-row{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+
+.chip{
+  padding:7px 10px;
+  border-radius:20px;
+  background:#14201a;
+  color:#a9bbb2;
+  font-size:10px;
+  border:1px solid var(--line);
+}
+
+@media(max-width:380px){
+  .logo h1{font-size:45px}
+  .hero h2{font-size:25px}
+  .grid{gap:8px}
+  .quick{gap:5px}
+  .quick button small{font-size:8px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<!-- ==================================================
+     LOGIN
+================================================== -->
+
 <section id="loginScreen" class="login">
+
 <div class="login-box">
+
 <div class="logo">
-<h1>ANVEX<span class="qe">.QE</span></h1>
+<h1>ANVEX<span style="color:#a36cff">.QE</span></h1>
 <p>Learn • Play • Grow</p>
-<div class="tag">NEXT GENERATION LEARNING</div>
+<div class="tag">NEXT GENERATION LEARNING PLATFORM</div>
 </div>
 
-<div class="field"><input id="nameInput" placeholder="Ismingiz"></div>
-<div class="field"><input id="surnameInput" placeholder="Familiyangiz"></div>
-<div class="field"><input id="passwordInput" type="password" placeholder="Parol yarating"></div>
+<div class="field">
+<input id="nameInput" placeholder="Ismingiz">
+</div>
 
-<button class="primary" onclick="register()">ANVEX.QE'ga kirish →</button>
+<div class="field">
+<input id="surnameInput" placeholder="Familiyangiz">
+</div>
+
+<div class="field">
+<input id="passwordInput" type="password" placeholder="Parol yarating">
+</div>
+
+<button class="primary" onclick="register()">
+ANVEX.QE'ga kirish →
+</button>
 
 <div class="small-note">
 Bilim ol • O‘yna • Rivojlan
 </div>
+
 </div>
 </section>
 
-<!-- APP -->
+
+<!-- ==================================================
+     MAIN APP
+================================================== -->
+
 <main id="app" class="app" style="display:none">
 
 <header class="top">
-<div class="brand">ANVEX<span>.QE</span></div>
+
+<div class="brand">
+ANVEX<span>.QE</span>
+</div>
+
 <button class="avatar" onclick="showPage('profile')">
 <span id="avatarLetter">A</span>
 </button>
+
 </header>
 
-<!-- HOME -->
+
+<!-- ==================================================
+     HOME
+================================================== -->
+
 <section id="home" class="page active">
 
 <div class="greeting">
@@ -340,37 +1079,2239 @@ Bilim ol • O‘yna • Rivojlan
 <h2>Salom, <span id="userName">Do‘st</span>!</h2>
 </div>
 
+
 <div class="hero">
+
 <span class="badge">⚡ DAILY MISSION</span>
-<h2>Bugun o‘zingni rivojlantir.</h2>
-<p>Bitta bilim ol, challenge bajar, XP yig‘ va yangi Level och.</p>
-<button class="primary" onclick="openQuiz()">Challenge boshlash</button>
+
+<h2>
+Bugun o‘zingni kechagidan kuchliroq qil.
+</h2>
+
+<p>
+Bilim o‘rganing, challenge bajaring, XP yig‘ing
+va ANVEX.QE darajangizni oshiring.
+</p>
+
+<button class="primary" onclick="openQuiz()">
+Challenge boshlash
+</button>
+
 </div>
+
 
 <div class="xp-card">
+
 <div class="row">
-<span class="level">LEVEL <span id="level">1</span></span>
-<span class="xp"><span id="xp">0</span> XP</span>
-</div>
-<div class="progress"><span id="xpBar"></span></div>
+
+<span class="level">
+LEVEL <span id="level">1</span>
+</span>
+
+<span class="xp">
+<span id="xp">0</span> XP
+</span>
+
 </div>
 
+<div class="progress">
+<span id="xpBar"></span>
+</div>
+
+<small style="display:block;color:var(--muted);margin-top:8px">
+Keyingi Level: <span id="nextLevelXP">100</span> XP
+</small>
+
+</div>
+
+
 <div class="streak-box">
+
 <div>
-<small style="color:var(--muted)">🔥 DAILY STREAK</small>
+<small>🔥 DAILY STREAK</small>
 <h3><span id="streak">1</span> kun</h3>
 </div>
+
 <strong>🔥</strong>
+
 </div>
+
+
+<div class="section-title">
+<h3>⚡ Quick Access</h3>
+<span>EXPLORE</span>
+</div>
+
+
+<div class="quick">
+
+<button onclick="showPage('learn')">
+<div>📚</div>
+<small>Learn</small>
+</button>
+
+<button onclick="showPage('games')">
+<div>🎮</div>
+<small>Games</small>
+</button>
+
+<button onclick="showPage('ai')">
+<div>🤖</div>
+<small>AI</small>
+</button>
+
+<button onclick="showPage('profile')">
+<div>👤</div>
+<small>Profile</small>
+</button>
+
+</div>
+
 
 <div class="section-title">
 <h3>Bugungi yo‘nalishlar</h3>
 <span>EXPLORE</span>
 </div>
 
+
 <div class="grid">
+
 <div class="card" onclick="showPage('learn')">
-<div class="icon">📚</div><h4>Learn</h4><p>Yangi bilimlarni o‘rganing</p>
+<div class="icon">📚</div>
+<h4>Learn</h4>
+<p>Yangi bilimlarni o‘rganing.</p>
 </div>
+
 <div class="card" onclick="showPage('games')">
-<div class="icon">🎮</div><h4>Games</h4><p>O
+<div class="icon">🎮</div>
+<h4>Games</h4>
+<p>O‘ynab XP yig‘ing.</p>
+</div>
+
+<div class="card" onclick="showPage('ai')">
+<div class="icon">🤖</div>
+<h4>ANVEX AI</h4>
+<p>O‘quv yordamchingiz.</p>
+</div>
+
+<div class="card" onclick="showPage('rewards')">
+<div class="icon">🏆</div>
+<h4>Rewards</h4>
+<p>Yutuqlaringiz.</p>
+</div>
+
+</div>
+
+
+<div class="section-title">
+<h3>🎯 Bugungi vazifalar</h3>
+<span id="missionCount">0/4</span>
+</div>
+
+
+<div class="list">
+
+<div class="list-item" id="mission1"
+onclick="completeMission(this,10,1)">
+
+<div class="list-icon">📖</div>
+
+<div class="list-main">
+<strong>Mini dars o‘rgan</strong>
+<small>+10 XP</small>
+</div>
+
+<div class="arrow">›</div>
+
+</div>
+
+
+<div class="list-item" id="mission2"
+onclick="completeMission(this,15,2)">
+
+<div class="list-icon">🧠</div>
+
+<div class="list-main">
+<strong>Mini Quiz bajar</strong>
+<small>+15 XP</small>
+</div>
+
+<div class="arrow">›</div>
+
+</div>
+
+
+<div class="list-item" id="mission3"
+onclick="completeMission(this,20,3)">
+
+<div class="list-icon">🎯</div>
+
+<div class="list-main">
+<strong>Daily Challenge</strong>
+<small>+20 XP</small>
+</div>
+
+<div class="arrow">›</div>
+
+</div>
+
+
+<div class="list-item" id="mission4"
+onclick="completeMission(this,25,4)">
+
+<div class="list-icon">🤖</div>
+
+<div class="list-main">
+<strong>ANVEX AI bilan suhbat</strong>
+<small>+25 XP</small>
+</div>
+
+<div class="arrow">›</div>
+
+</div>
+
+</div>
+
+
+<div class="info-box">
+
+<strong>💡 Bugungi maslahat</strong>
+
+<p>
+Har kuni 20–30 daqiqa foydali bilimga vaqt ajrating.
+Kichik qadamlar katta natijaga olib keladi.
+</p>
+
+</div>
+
+
+<div class="creator">
+ANVEX.QE • Saytni yaratgan inson: Qodirov Anvarbek
+</div>
+
+</section>
+
+
+<!-- ==================================================
+     LEARN
+================================================== -->
+
+<section id="learn" class="page">
+
+<div class="section-title">
+<h3>📚 Learn</h3>
+<span>BILIM MARKAZI</span>
+</div>
+
+<input
+class="search"
+id="learnSearch"
+oninput="filterLearn()"
+placeholder="🔎 Mavzu qidiring..."
+>
+
+
+<div id="learnList">
+
+
+<div class="category"
+data-name="English Ingliz tili">
+
+<div class="category-head">
+
+<div class="category-icon">🇬🇧</div>
+
+<div>
+<h3>English</h3>
+<p>Vocabulary, grammar va practice</p>
+</div>
+
+</div>
+
+<div class="chip-row">
+<span class="chip">Grammar</span>
+<span class="chip">Vocabulary</span>
+<span class="chip">Quiz</span>
+</div>
+
+<button class="play"
+onclick="startLesson('English')">
+Boshlash
+</button>
+
+</div>
+
+
+<div class="category"
+data-name="IT Computer Technology">
+
+<div class="category-head">
+
+<div class="category-icon">💻</div>
+
+<div>
+<h3>IT & Technology</h3>
+<p>Kompyuter va zamonaviy texnologiyalar</p>
+</div>
+
+</div>
+
+<div class="chip-row">
+<span class="chip">Computer</span>
+<span class="chip">Internet</span>
+<span class="chip">Cyber</span>
+</div>
+
+<button class="play"
+onclick="startLesson('IT & Technology')">
+Boshlash
+</button>
+
+</div>
+
+
+<div class="category"
+data-name="Coding Programming Dasturlash">
+
+<div class="category-head">
+
+<div class="category-icon">⌨️</div>
+
+<div>
+<h3>Coding</h3>
+<p>Dasturlash va coding asoslari</p>
+</div>
+
+</div>
+
+<div class="chip-row">
+<span class="chip">HTML</span>
+<span class="chip">CSS</span>
+<span class="chip">JS</span>
+</div>
+
+<button class="play"
+onclick="startLesson('Coding')">
+Boshlash
+</button>
+
+</div>
+
+
+<div class="category"
+data-name="Business Biznes">
+
+<div class="category-head">
+
+<div class="category-icon">💼</div>
+
+<div>
+<h3>Business</h3>
+<p>Biznes fikrlash va tadbirkorlik</p>
+</div>
+
+</div>
+
+<div class="chip-row">
+<span class="chip">Startup</span>
+<span class="chip">Money</span>
+<span class="chip">Idea</span>
+</div>
+
+<button class="play"
+onclick="startLesson('Business')">
+Boshlash
+</button>
+
+</div>
+
+
+<div class="category"
+data-name="Career Kasb Kelajak">
+
+<div class="category-head">
+
+<div class="category-icon">🎓</div>
+
+<div>
+<h3>Career</h3>
+<p>Kasb va kelajak rejalari</p>
+</div>
+
+</div>
+
+<div class="chip-row">
+<span class="chip">Career</span>
+<span class="chip">Skills</span>
+<span class="chip">Future</span>
+</div>
+
+<button class="play"
+onclick="startLesson('Career')">
+Boshlash
+</button>
+
+</div>
+
+
+<div class="category"
+data-name="Science Fan">
+
+<div class="category-head">
+
+<div class="category-icon">🔬</div>
+
+<div>
+<h3>Science</h3>
+<p>Fan, tabiat va ilmiy fikrlash</p>
+</div>
+
+</div>
+
+<div class="chip-row">
+<span class="chip">Physics</span>
+<span class="chip">Space</span>
+<span class="chip">Science</span>
+</div>
+
+<button class="play"
+onclick="startLesson('Science')">
+Boshlash
+</button>
+
+</div>
+
+
+<div class="category"
+data-name="General Knowledge Bilim Dunyo">
+
+<div class="category-head">
+
+<div class="category-icon">🌍</div>
+
+<div>
+<h3>General Knowledge</h3>
+<p>Dunyo va kundalik hayot</p>
+</div>
+
+</div>
+
+<div class="chip-row">
+<span class="chip">World</span>
+<span class="chip">History</span>
+<span class="chip">Facts</span>
+</div>
+
+<button class="play"
+onclick="startLesson('General Knowledge')">
+Boshlash
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ==================================================
+     GAMES
+================================================== -->
+
+<section id="games" class="page">
+
+<div class="section-title">
+<h3>🎮 Games</h3>
+<span>PLAY & EARN XP</span>
+</div>
+
+
+<div class="grid">
+
+
+<div class="card game">
+
+<div class="icon">🧠</div>
+<h4>Quiz Battle</h4>
+<p>Bilimingizni sinang.</p>
+
+<button class="play"
+onclick="openQuiz()">
+Play
+</button>
+
+</div>
+
+
+<div class="card game">
+
+<div class="icon">⚡</div>
+<h4>Speed Quiz</h4>
+<p>Tez javob bering.</p>
+
+<button class="play"
+onclick="openQuiz()">
+Play
+</button>
+
+</div>
+
+
+<div class="card game">
+
+<div class="icon">🧩</div>
+<h4>Logic</h4>
+<p>Mantiqiy savollar.</p>
+
+<button class="play"
+onclick="openQuiz()">
+Play
+</button>
+
+</div>
+
+
+<div class="card game">
+
+<div class="icon">💻</div>
+<h4>Coding Challenge</h4>
+<p>Programmer bo‘lib ko‘ring.</p>
+
+<button class="play"
+onclick="openQuiz()">
+Play
+</button>
+
+</div>
+
+
+<div class="card game">
+
+<div class="icon">🌍</div>
+<h4>World Challenge</h4>
+<p>Dunyo bilimlarini sinang.</p>
+
+<button class="play"
+onclick="openQuiz()">
+Play
+</button>
+
+</div>
+
+
+<div class="card game">
+
+<div class="icon">🔥</div>
+<h4>Daily Challenge</h4>
+<p>Bugungi maxsus challenge.</p>
+
+<button class="play"
+onclick="openQuiz()">
+Play
+</button>
+
+</div>
+
+</div>
+
+
+<div class="section-title">
+<h3>🏆 Daily Tournament</h3>
+</div>
+
+
+<div class="challenge-card">
+
+<div style="font-size:35px">🔥</div>
+
+<h3>Bugungi challenge</h3>
+
+<p>
+10 ta savolga javob bering.
+Har bir to‘g‘ri javob uchun XP oling.
+</p>
+
+<button
+class="primary"
+style="width:100%;margin-top:15px"
+onclick="openQuiz()">
+Turnirga kirish →
+</button>
+
+</div>
+
+
+<div class="section-title">
+<h3>📊 Your Performance</h3>
+</div>
+
+
+<div class="rank-card">
+
+<div class="row">
+
+<div>
+<small style="color:var(--muted)">
+CURRENT LEVEL
+</small>
+
+<div class="rank-number">
+<span id="gameLevel">1</span>
+</div>
+
+</div>
+
+<div style="font-size:40px">
+🏆
+</div>
+
+</div>
+
+<p style="color:var(--muted);font-size:12px;margin-top:8px">
+Quiz savollariga javob berib, XP yig‘ishda davom eting.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ==================================================
+     AI
+================================================== -->
+
+<section id="ai" class="page">
+
+<div class="section-title">
+<h3>🤖 ANVEX AI</h3>
+<span>AI ASSISTANT</span>
+</div>
+
+
+<div class="card ai-box">
+
+<div class="ai-messages" id="aiMessages">
+
+<div class="message ai-message">
+Salom! 👋 Men ANVEX AI yordamchisiman.
+</div>
+
+<div class="message ai-message">
+IT, English, Coding, Business, Career,
+Science yoki o‘qish haqida savol bering.
+</div>
+
+</div>
+
+
+<div class="ai-input">
+
+<input
+id="aiInput"
+placeholder="Savolingizni yozing..."
+onkeydown="if(event.key==='Enter')sendAI()"
+>
+
+<button onclick="sendAI()">➤</button>
+
+</div>
+
+</div>
+
+
+<div class="info-box">
+
+<strong>🤖 AI haqida</strong>
+
+<p>
+Hozirgi versiyada ANVEX AI o‘quv yordamchisi sifatida
+ishlaydi. Keyingi bosqichda haqiqiy AI API ulash mumkin.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ==================================================
+     REWARDS
+================================================== -->
+
+<section id="rewards" class="page">
+
+<div class="section-title">
+<h3>🏆 Rewards</h3>
+<span>YOUR PROGRESS</span>
+</div>
+
+
+<div class="xp-card">
+
+<div class="row">
+
+<span class="level">
+LEVEL <span id="level2">1</span>
+</span>
+
+<span class="xp">
+<span id="xp2">0</span> XP
+</span>
+
+</div>
+
+<div class="progress">
+<span id="xpBar2"></span>
+</div>
+
+</div>
+
+
+<div class="section-title">
+<h3>Achievements</h3>
+</div>
+
+
+<div class="grid">
+
+
+<div class="card achievement">
+<div class="medal">🌱</div>
+<h4>First Step</h4>
+<p>ANVEX.QE'ni boshladingiz.</p>
+</div>
+
+
+<div class="card achievement">
+<div class="medal">🧠</div>
+<h4>Brain Power</h4>
+<p>Quiz savollarini bajaring.</p>
+</div>
+
+
+<div class="card achievement">
+<div class="medal">🔥</div>
+<h4>3 Day Streak</h4>
+<p>3 kun ketma-ket kiring.</p>
+</div>
+
+
+<div class="card achievement">
+<div class="medal">🚀</div>
+<h4>Level Up</h4>
+<p>Yangi levelga chiqing.</p>
+</div>
+
+
+<div class="card achievement">
+<div class="medal">💎</div>
+<h4>XP Hunter</h4>
+<p>100 XP to‘plang.</p>
+</div>
+
+
+<div class="card achievement">
+<div class="medal">👑</div>
+<h4>ANVEX Elite</h4>
+<p>Level 10 ga chiqing.</p>
+</div>
+
+
+<div class="card achievement">
+<div class="medal">🎓</div>
+<h4>Knowledge Seeker</h4>
+<p>5 ta darsni tugating.</p>
+</div>
+
+
+<div class="card achievement">
+<div class="medal">⚡</div>
+<h4>Challenge Master</h4>
+<p>50 ta savolga javob bering.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ==================================================
+     PROFILE
+================================================== -->
+
+<section id="profile" class="page">
+
+<div class="profile-head">
+
+<div class="big-avatar" id="bigAvatar">
+A
+</div>
+
+<h2 id="profileName">
+Anvarbek
+</h2>
+
+<p id="profileSub">
+ANVEX.QE Member
+</p>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+<strong id="statXP">0</strong>
+<small>XP</small>
+</div>
+
+<div class="stat">
+<strong id="statLevel">1</strong>
+<small>LEVEL</small>
+</div>
+
+<div class="stat">
+<strong id="statStreak">1</strong>
+<small>STREAK</small>
+</div>
+
+</div>
+
+
+<div class="section-title">
+<h3>📊 Statistics</h3>
+</div>
+
+
+<div class="list">
+
+
+<div class="list-item">
+<div class="list-icon">🧠</div>
+
+<div class="list-main">
+<strong>Quiz answered</strong>
+<small id="quizStat">0 ta</small>
+</div>
+
+<div class="arrow">›</div>
+</div>
+
+
+<div class="list-item">
+<div class="list-icon">📚</div>
+
+<div class="list-main">
+<strong>Lessons completed</strong>
+<small id="lessonStat">0 ta</small>
+</div>
+
+<div class="arrow">›</div>
+</div>
+
+
+<div class="list-item">
+<div class="list-icon">🎯</div>
+
+<div class="list-main">
+<strong>Missions completed</strong>
+<small id="missionStat">0 ta</small>
+</div>
+
+<div class="arrow">›</div>
+</div>
+
+</div>
+
+
+<div class="section-title">
+<h3>⚙️ Account</h3>
+</div>
+
+
+<div class="list">
+
+
+<div class="list-item"
+onclick="showToast('Profil maʼlumotlari saqlandi ✓')">
+
+<div class="list-icon">👤</div>
+
+<div class="list-main">
+<strong>Profile</strong>
+<small>Ism va shaxsiy profil</small>
+</div>
+
+<div class="arrow">›</div>
+
+</div>
+
+
+<div class="list-item"
+onclick="showToast('ANVEX.QE Level tizimi faol 🚀')">
+
+<div class="list-icon">⭐</div>
+
+<div class="list-main">
+<strong>My Level</strong>
+<small>XP orqali Level oshiring</small>
+</div>
+
+<div class="arrow">›</div>
+
+</div>
+
+
+<div class="list-item"
+onclick="resetData()">
+
+<div class="list-icon">🔄</div>
+
+<div class="list-main">
+<strong>Reset Progress</strong>
+<small>Progressni qayta boshlash</small>
+</div>
+
+<div class="arrow">›</div>
+
+</div>
+
+</div>
+
+
+<div class="creator">
+ANVEX.QE<br>
+Created by Qodirov Anvarbek
+</div>
+
+</section>
+
+</main>
+
+
+<!-- ==================================================
+     BOTTOM NAV
+================================================== -->
+
+<nav id="bottomNav" class="bottom-nav" style="display:none">
+
+<button
+class="nav-btn active"
+data-page="home"
+onclick="showPage('home')">
+
+<div>⌂</div>
+Home
+
+</button>
+
+
+<button
+class="nav-btn"
+data-page="learn"
+onclick="showPage('learn')">
+
+<div>📚</div>
+Learn
+
+</button>
+
+
+<button
+class="nav-btn"
+data-page="games"
+onclick="showPage('games')">
+
+<div>🎮</div>
+Games
+
+</button>
+
+
+<button
+class="nav-btn"
+data-page="ai"
+onclick="showPage('ai')">
+
+<div>🤖</div>
+AI
+
+</button>
+
+
+<button
+class="nav-btn"
+data-page="profile"
+onclick="showPage('profile')">
+
+<div>👤</div>
+Profile
+
+</button>
+
+</nav>
+
+
+<!-- ==================================================
+     QUIZ MODAL
+================================================== -->
+
+<div id="quizModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-top">
+
+<strong>🧠 ANVEX QUIZ</strong>
+
+<button class="close"
+onclick="closeQuiz()">
+×
+</button>
+
+</div>
+
+<div id="quizContent"></div>
+
+</div>
+
+</div>
+
+
+<!-- ==================================================
+     LESSON MODAL
+================================================== -->
+
+<div id="lessonModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-top">
+
+<strong id="lessonTitle">
+📚 Lesson
+</strong>
+
+<button class="close"
+onclick="closeLesson()">
+×
+</button>
+
+</div>
+
+<div id="lessonContent"></div>
+
+</div>
+
+</div>
+
+
+<!-- ==================================================
+     TOAST
+================================================== -->
+
+<div id="toast" class="toast"></div>
+
+
+<script>
+
+/* =====================================================
+   ANVEX.QE DATA
+===================================================== */
+
+let data={
+  name:"",
+  surname:"",
+  password:"",
+  xp:0,
+  level:1,
+  streak:1,
+  quizAnswered:0,
+  lessonsCompleted:0,
+  missions:[false,false,false,false],
+  lastLogin:""
+};
+
+let quizIndex=0;
+let quizScore=0;
+
+const questions=[
+
+{
+q:"HTML nimani anglatadi?",
+a:[
+"Hyper Text Markup Language",
+"High Tech Machine Language",
+"Home Tool Markup Link",
+"Hyper Transfer Main Language"
+],
+correct:0
+},
+
+{
+q:"CSS asosan nima uchun ishlatiladi?",
+a:[
+"Database yaratish",
+"Web sahifani bezash",
+"Server sotib olish",
+"Video montaj"
+],
+correct:1
+},
+
+{
+q:"JavaScript nima?",
+a:[
+"Rasm formati",
+"Dasturlash tili",
+"Operatsion sistema",
+"Brauzer"
+],
+correct:1
+},
+
+{
+q:"Python qaysi biri?",
+a:[
+"Dasturlash tili",
+"Telefon modeli",
+"Brauzer",
+"Grafik karta"
+],
+correct:0
+},
+
+{
+q:"Internetdagi sahifalarni ochish uchun ishlatiladigan dastur nima?",
+a:[
+"Browser",
+"Compiler",
+"Calculator",
+"Editor"
+],
+correct:0
+},
+
+{
+q:"2 + 8 × 2 = ?",
+a:[
+"20",
+"18",
+"12",
+"16"
+],
+correct:1
+},
+
+{
+q:"English tilida knowledge nimani anglatadi?",
+a:[
+"Kuch",
+"Bilim",
+"Tezlik",
+"O‘yin"
+],
+correct:1
+},
+
+{
+q:"Biznesda foyda nimaga yaqin tushuncha?",
+a:[
+"Revenue minus costs",
+"Faqat xarajat",
+"Faqat qarz",
+"Faqat mahsulot"
+],
+correct:0
+},
+
+{
+q:"Cybersecurity nimani himoya qiladi?",
+a:[
+"Faqat kiyimlarni",
+"Raqamli tizim va maʼlumotlarni",
+"Sport zalini",
+"Avtomobilni"
+],
+correct:1
+},
+
+{
+q:"ANVEX.QE asosiy g‘oyasi nima?",
+a:[
+"Learn • Play • Grow",
+"Sleep • Eat • Repeat",
+"Only Games",
+"Only Sport"
+],
+correct:0
+}
+
+];
+
+
+/* =====================================================
+   STORAGE
+===================================================== */
+
+function save(){
+
+localStorage.setItem(
+"anvex_qe_data",
+JSON.stringify(data)
+);
+
+}
+
+
+function load(){
+
+let saved=
+localStorage.getItem("anvex_qe_data");
+
+if(saved){
+
+try{
+data=JSON.parse(saved);
+}catch(e){}
+
+}
+
+if(data.name){
+
+document.getElementById("loginScreen")
+.style.display="none";
+
+document.getElementById("app")
+.style.display="block";
+
+document.getElementById("bottomNav")
+.style.display="grid";
+
+updateUI();
+
+}
+
+}
+
+
+/* =====================================================
+   REGISTER
+===================================================== */
+
+function register(){
+
+let name=
+document.getElementById("nameInput")
+.value.trim();
+
+let surname=
+document.getElementById("surnameInput")
+.value.trim();
+
+let password=
+document.getElementById("passwordInput")
+.value.trim();
+
+if(!name||!surname||!password){
+
+showToast(
+"Iltimos, barcha maydonlarni to‘ldiring"
+);
+
+return;
+
+}
+
+data.name=name;
+data.surname=surname;
+data.password=password;
+
+if(!data.lastLogin){
+
+data.lastLogin=
+new Date().toDateString();
+
+data.streak=1;
+
+}
+
+save();
+
+document.getElementById("loginScreen")
+.style.display="none";
+
+document.getElementById("app")
+.style.display="block";
+
+document.getElementById("bottomNav")
+.style.display="grid";
+
+updateUI();
+
+showToast(
+"ANVEX.QE'ga xush kelibsiz 🚀"
+);
+
+}
+
+
+/* =====================================================
+   UI UPDATE
+===================================================== */
+
+function updateUI(){
+
+document.getElementById("userName")
+.textContent=data.name;
+
+document.getElementById("profileName")
+.textContent=
+data.name+" "+data.surname;
+
+let letter=
+data.name.charAt(0).toUpperCase();
+
+document.getElementById("avatarLetter")
+.textContent=letter;
+
+document.getElementById("bigAvatar")
+.textContent=letter;
+
+document.getElementById("level")
+.textContent=data.level;
+
+document.getElementById("level2")
+.textContent=data.level;
+
+document.getElementById("gameLevel")
+.textContent=data.level;
+
+document.getElementById("xp")
+.textContent=data.xp;
+
+document.getElementById("xp2")
+.textContent=data.xp;
+
+document.getElementById("streak")
+.textContent=data.streak;
+
+document.getElementById("statXP")
+.textContent=data.xp;
+
+document.getElementById("statLevel")
+.textContent=data.level;
+
+document.getElementById("statStreak")
+.textContent=data.streak;
+
+document.getElementById("quizStat")
+.textContent=data.quizAnswered+" ta";
+
+document.getElementById("lessonStat")
+.textContent=data.lessonsCompleted+" ta";
+
+let missionDone=
+data.missions.filter(Boolean).length;
+
+document.getElementById("missionStat")
+.textContent=missionDone+" ta";
+
+document.getElementById("missionCount")
+.textContent=missionDone+"/4";
+
+
+let percent=
+data.xp%100;
+
+document.getElementById("xpBar")
+.style.width=percent+"%";
+
+document.getElementById("xpBar2")
+.style.width=percent+"%";
+
+let next=
+data.level*100;
+
+document.getElementById("nextLevelXP")
+.textContent=next;
+
+
+for(let i=0;i<4;i++){
+
+let el=
+document.getElementById(
+"mission"+(i+1)
+);
+
+if(!el)continue;
+
+if(data.missions[i]){
+
+el.classList.add("done");
+
+el.querySelector(".arrow")
+.textContent="✓";
+
+}
+
+}
+
+updateAchievements();
+
+save();
+
+}
+
+
+/* =====================================================
+   XP SYSTEM
+===================================================== */
+
+function addXP(amount){
+
+let oldLevel=data.level;
+
+data.xp+=amount;
+
+data.level=
+Math.floor(data.xp/100)+1;
+
+if(data.level>oldLevel){
+
+showToast(
+"🚀 LEVEL UP! Level "+
+data.level
+);
+
+}else{
+
+showToast(
+"+"+amount+" XP ⚡"
+);
+
+}
+
+updateUI();
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function showPage(page){
+
+document
+.querySelectorAll(".page")
+.forEach(p=>{
+p.classList.remove("active");
+});
+
+let target=
+document.getElementById(page);
+
+if(target){
+
+target.classList.add("active");
+
+}
+
+document
+.querySelectorAll(".nav-btn")
+.forEach(btn=>{
+
+btn.classList.toggle(
+"active",
+btn.dataset.page===page
+);
+
+});
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* =====================================================
+   MISSIONS
+===================================================== */
+
+function completeMission(el,xp,index){
+
+if(data.missions[index-1]){
+
+showToast(
+"Bu vazifa allaqachon bajarilgan ✓"
+);
+
+return;
+
+}
+
+data.missions[index-1]=true;
+
+el.classList.add("done");
+
+el.querySelector(".arrow")
+.textContent="✓";
+
+addXP(xp);
+
+updateUI();
+
+}
+
+
+/* =====================================================
+   LEARN SEARCH
+===================================================== */
+
+function filterLearn(){
+
+let value=
+document
+.getElementById("learnSearch")
+.value
+.toLowerCase();
+
+document
+.querySelectorAll("#learnList .category")
+.forEach(card=>{
+
+let text=
+card.dataset.name.toLowerCase();
+
+card.style.display=
+text.includes(value)
+?"block"
+:"none";
+
+});
+
+}
+
+
+/* =====================================================
+   LESSONS
+===================================================== */
+
+const lessons={
+
+"English":{
+title:"🇬🇧 English Starter",
+text:`
+<b>Bugungi mini dars</b><br><br>
+
+Learn — o‘rganmoq<br>
+Knowledge — bilim<br>
+Grow — rivojlanmoq<br>
+Improve — yaxshilamoq<br><br>
+
+Misol:<br>
+<b>I learn something new every day.</b><br><br>
+
+Vazifa: ushbu so‘zlarni yodlab,
+keyin quiz orqali o‘zingizni sinang.
+`
+},
+
+"IT & Technology":{
+title:"💻 IT & Technology",
+text:`
+IT — Information Technology.<br><br>
+
+IT ichida:
+<ul style="margin:10px 0 10px 20px;line-height:1.8">
+<li>Software</li>
+<li>Hardware</li>
+<li>Internet</li>
+<li>Cybersecurity</li>
+<li>Artificial Intelligence</li>
+</ul>
+
+Bugungi maqsad:
+IT ichidan o‘zingizga qiziq bo‘lgan
+bitta yo‘nalishni tanlash.
+`
+},
+
+"Coding":{
+title:"⌨️ Coding Starter",
+text:`
+Coding — kompyuterga buyruqlar
+orqali vazifa bajarishni tushuntirish.<br><br>
+
+HTML — tuzilma.<br>
+CSS — dizayn.<br>
+JavaScript — interaktivlik.<br><br>
+
+ANVEX.QE ham HTML, CSS va
+JavaScript asosida ishlaydi.
+`
+},
+
+"Business":{
+title:"💼 Business Mindset",
+text:`
+Biznes — odamlar uchun foydali
+muammoni yechish va qiymat yaratish.<br><br>
+
+3 savol:<br><br>
+
+1. Muammo nima?<br>
+2. Kimga kerak?<br>
+3. Qanday yechim beramiz?<br><br>
+
+Yaxshi g‘oya foydali bo‘lsa,
+uni loyiha shakliga aylantirish mumkin.
+`
+},
+
+"Career":{
+title:"🎓 Career Explorer",
+text:`
+Kasb tanlashda 3 muhim narsa:<br><br>
+
+• Qiziqish<br>
+• Qobiliyat<br>
+• Kelajakdagi talab<br><br>
+
+Formula:<br><br>
+
+<b>O‘rganish → Amaliyot → Portfolio → Imkoniyat</b>
+`
+},
+
+"Science":{
+title:"🔬 Science",
+text:`
+Science — atrofimizdagi dunyoni
+dalillar va tajribalar orqali tushunish.<br><br>
+
+Ilmiy fikrlashda savol berish,
+taxmin qilish, tekshirish va xulosa
+chiqarish muhim.
+`
+},
+
+"General Knowledge":{
+title:"🌍 General Knowledge",
+text:`
+Bilim faqat maktab bilan tugamaydi.<br><br>
+
+Tarix, geografiya, texnologiya,
+fan, iqtisod va kundalik hayot
+haqida doim yangi narsalarni
+o‘rganish mumkin.<br><br>
+
+Bugun bitta yangi fakt o‘rganing.
+`
+}
+
+};
+
+
+function startLesson(name){
+
+let lesson=
+lessons[name];
+
+document.getElementById("lessonTitle")
+.textContent=lesson.title;
+
+document.getElementById("lessonContent")
+.innerHTML=`
+
+<div class="card" style="margin-bottom:12px">
+
+<p style="
+font-size:14px;
+line-height:1.8;
+color:#dce8e2
+">
+
+${lesson.text}
+
+</p>
+
+</div>
+
+<button
+class="primary"
+style="width:100%"
+onclick="finishLesson()">
+
+✓ Darsni tugatish +10 XP
+
+</button>
+
+`;
+
+document
+.getElementById("lessonModal")
+.classList.add("show");
+
+}
+
+
+function finishLesson(){
+
+data.lessonsCompleted++;
+
+save();
+
+closeLesson();
+
+addXP(10);
+
+}
+
+
+function closeLesson(){
+
+document
+.getElementById("lessonModal")
+.classList.remove("show");
+
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+function openQuiz(){
+
+quizIndex=0;
+quizScore=0;
+
+document
+.getElementById("quizModal")
+.classList.add("show");
+
+renderQuestion();
+
+}
+
+
+function renderQuestion(){
+
+let q=
+questions[quizIndex];
+
+document.getElementById("quizContent")
+.innerHTML=`
+
+<div style="
+color:var(--muted);
+font-size:12px;
+margin-bottom:8px">
+
+SAVOL ${quizIndex+1}/${questions.length}
+
+</div>
+
+<div class="question">
+${q.q}
+</div>
+
+<div class="answers">
+
+${q.a.map((answer,i)=>`
+
+<button
+class="answer"
+onclick="answerQuiz(${i})">
+
+${String.fromCharCode(65+i)}.
+${answer}
+
+</button>
+
+`).join("")}
+
+</div>
+
+`;
+
+}
+
+
+function answerQuiz(index){
+
+let q=
+questions[quizIndex];
+
+if(index===q.correct){
+
+quizScore++;
+
+addXP(5);
+
+}else{
+
+showToast(
+"Keyingi savolga o‘tamiz"
+);
+
+}
+
+data.quizAnswered++;
+
+save();
+
+quizIndex++;
+
+setTimeout(()=>{
+
+if(quizIndex<questions.length){
+
+renderQuestion();
+
+}else{
+
+finishQuiz();
+
+}
+
+},350);
+
+}
+
+
+function finishQuiz(){
+
+let percent=
+Math.round(
+(quizScore/questions.length)*100
+);
+
+if(!data.missions[1]){
+
+data.missions[1]=true;
+
+}
+
+document.getElementById("quizContent")
+.innerHTML=`
+
+<div class="result">
+
+<div class="big">
+${percent>=70?"🏆":"💪"}
+</div>
+
+<h2>
+Quiz tugadi!
+</h2>
+
+<p style="
+color:var(--muted);
+margin-top:8px">
+
+${quizScore}/${questions.length}
+ta to‘g‘ri
+
+</p>
+
+
+<div class="card" style="margin-top:18px">
+
+<h3>
+${percent>=70
+?"Zo‘r natija! 🔥"
+:"Yaxshi harakat! 🚀"}
+</h3>
+
+<p>
+Bilimni oshirishda davom eting.
+</p>
+
+</div>
+
+
+<button
+class="primary"
+style="width:100%;margin-top:14px"
+onclick="closeQuiz()">
+
+Davom etish
+
+</button>
+
+</div>
+
+`;
+
+updateUI();
+
+}
+
+
+function closeQuiz(){
+
+document
+.getElementById("quizModal")
+.classList.remove("show");
+
+}
+
+
+/* =====================================================
+   AI
+===================================================== */
+
+function sendAI(){
+
+let input=
+document.getElementById("aiInput");
+
+let text=
+input.value.trim();
+
+if(!text)return;
+
+let box=
+document.getElementById("aiMessages");
+
+box.innerHTML+=`
+
+<div class="message user-message">
+${escapeHTML(text)}
+</div>
+
+`;
+
+input.value="";
+
+let reply=
+getAIReply(text);
+
+setTimeout(()=>{
+
+box.innerHTML+=`
+
+<div class="message ai-message">
+${reply}
+</div>
+
+`;
+
+box.scrollTop=
+box.scrollHeight;
+
+},450);
+
+box.scrollTop=
+box.scrollHeight;
+
+}
+
+
+function getAIReply(text){
+
+let t=
+text.toLowerCase();
+
+
+if(
+t.includes("it")||
+t.includes("dastur")||
+t.includes("coding")||
+t.includes("program")
+){
+
+return `
+💻 <b>IT bo‘yicha yo‘l:</b><br><br>
+
+1. Computer basics<br>
+2. HTML<br>
+3. CSS<br>
+4. JavaScript<br>
+5. Git & GitHub<br>
+6. Kichik loyihalar<br><br>
+
+Eng muhimi — faqat video ko‘rish emas,
+o‘rgangan narsangiz bilan loyiha qiling.
+`;
+
+}
+
+
+if(
+t.includes("english")||
+t.includes("ingliz")
+){
+
+return `
+🇬🇧 English uchun har kuni:<br><br>
+
+• 10 ta yangi so‘z<br>
+• 10 daqiqa listening<br>
+• 5 ta gap yozish<br>
+• qisqa grammar practice<br><br>
+
+Doimiylik tezlikdan muhim.
+`;
+
+}
+
+
+if(
+t.includes("biznes")||
+t.includes("business")
+){
+
+return `
+💼 Biznesni o‘rganishda quyidagidan boshlang:<br><br>
+
+<b>Muammo → Yechim → Mijoz → Qiymat → Daromad</b><br><br>
+
+Yaxshi biznes odamlarga kerakli
+muammoni hal qiladi.
+`;
+
+}
+
+
+if(
+t.includes("kasb")||
+t.includes("career")||
+t.includes("kelajak")
+){
+
+return `
+🎓 Kasb tanlashda qiziqishingiz,
+qobiliyatingiz va kelajakdagi talabni
+birgalikda ko‘rib chiqing.<br><br>
+
+Keyin tanlagan yo‘nalishingiz bo‘yicha
+kichik loyiha qilib ko‘ring.
+`;
+
+}
+
+
+if(
+t.includes("science")||
+t.includes("fan")
+){
+
+return `
+🔬 Ilmiy fikrlash — savol berish,
+taxmin qilish, tekshirish va xulosa
+chiqarish jarayonidir.<br><br>
+
+Qiziqqan mavzuingizni kichik
+savollarga bo‘lib o‘rganing.
+`;
+
+}
+
+
+if(t.includes("salom")){
+
+return `
+👋 Salom! ANVEX AI tayyor.
+Bugun yangi bilim olish uchun
+zo‘r kun.
+`;
+
+}
+
+
+if(
+t.includes("motiv")||
+t.includes("ruh")
+){
+
+return `
+🔥 Katta natija bir kunda kelmaydi.
+Har kuni kichik bir qadam tashlang.
+Bugungi kichik harakat ertangi
+katta imkoniyatga aylanishi mumkin.
+`;
+
+}
+
+
+return `
+🧠 Qiziq savol!
+
+Hozir men o‘quv yordamchisi sifatida
+ishlayapman.
+
+IT, English, Coding, Business,
+Career, Science yoki motivatsiya
+haqida savol bering.
+`;
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(str){
+
+return str.replace(
+/[&<>"']/g,
+function(m){
+
+return({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+})[m];
+
+});
+
+}
+
+
+/* =====================================================
+   ACHIEVEMENTS
+===================================================== */
+
+function updateAchievements(){
+
+let cards=
+document.querySelectorAll(".achievement");
+
+if(!cards.length)return;
+
+if(data.xp>=100){
+
+cards[4].classList.remove("locked");
+
+}
+
+if(data.level>=10){
+
+cards[5].classList.remove("locked");
+
+}
+
+if(data.lessonsCompleted>=5){
+
+cards[6].classList.remove("locked");
+
+}
+
+if(data.quizAnswered>=50){
+
+cards[7].classList.remove("locked");
+
+}
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetData(){
+
+if(
+!confirm(
+"Progressni qayta boshlaysizmi?"
+)
+)return;
+
+localStorage.removeItem(
+"anvex_qe_data"
+);
+
+location.reload();
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+let toastTimer;
+
+function showToast(message){
+
+let toast=
+document.getElementById("toast");
+
+toast.textContent=message;
+
+toast.classList.add("show");
+
+clearTimeout(toastTimer);
+
+toastTimer=setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},1900);
+
+}
+
+
+/* =====================================================
+   MODAL OUTSIDE CLICK
+===================================================== */
+
+document
+.querySelectorAll(".modal")
+.forEach(modal=>{
+
+modal.addEventListener(
+"click",
+function(e){
+
+if(e.target===modal){
+
+modal.classList.remove("show");
+
+}
+
+});
+
+});
+
+
+/* =====================================================
+   ENTER LOGIN
+===================================================== */
+
+document.addEventListener(
+"keydown",
+function(e){
+
+if(
+e.key==="Enter" &&
+document.getElementById("loginScreen")
+.style.display!=="none"
+){
+
+register();
+
+}
+
+});
+
+
+/* =====================================================
+   START
+===================================================== */
+
+load();
+
+</script>
+
+</body>
+</html>
